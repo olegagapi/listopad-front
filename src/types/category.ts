@@ -1,5 +1,8 @@
 export type Category = {
-  title: string;
-  id: number;
-  img: string;
+  id: string;
+  name: string;
+  description?: string | null;
+  parentId?: string | null;
+  image?: string | null;
+  productCount?: number;
 };

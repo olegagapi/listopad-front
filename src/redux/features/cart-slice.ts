@@ -6,11 +6,13 @@ type InitialState = {
 };
 
 type CartItem = {
-  id: number;
+  id: string;
   title: string;
   price: number;
   discountedPrice: number;
   quantity: number;
+  currency?: string;
+  externalUrl?: string | null;
   imgs?: {
     thumbnails: string[];
     previews: string[];
@@ -43,13 +45,13 @@ export const cart = createSlice({
         });
       }
     },
-    removeItemFromCart: (state, action: PayloadAction<number>) => {
+    removeItemFromCart: (state, action: PayloadAction<string>) => {
       const itemId = action.payload;
       state.items = state.items.filter((item) => item.id !== itemId);
     },
     updateCartItemQuantity: (
       state,
-      action: PayloadAction<{ id: number; quantity: number }>
+      action: PayloadAction<{ id: string; quantity: number }>
     ) => {
       const { id, quantity } = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
