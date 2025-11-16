@@ -3,7 +3,6 @@ import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 
 import { removeItemFromWishlist } from "@/redux/features/wishlist-slice";
-import { addItemToCart } from "@/redux/features/cart-slice";
 
 import Image from "next/image";
 
@@ -14,13 +13,12 @@ const SingleItem = ({ item }) => {
     dispatch(removeItemFromWishlist(item.id));
   };
 
+  // view on seller website
   const handleAddToCart = () => {
-    dispatch(
-      addItemToCart({
-        ...item,
-        quantity: 1,
-      })
-    );
+    const url = item.externalUrl || "/shop-details";
+    if (typeof window !== "undefined" && url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -103,12 +101,14 @@ const SingleItem = ({ item }) => {
       </div>
 
       <div className="min-w-[150px] flex justify-end">
-        <button
-          onClick={() => handleAddToCart()}
+        <a
+          href={item.externalUrl || "/shop-details"}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex text-dark hover:text-white bg-gray-1 border border-gray-3 py-2.5 px-6 rounded-md ease-out duration-200 hover:bg-blue hover:border-gray-3"
         >
-          Add to Cart
-        </button>
+          View on seller website
+        </a>
       </div>
     </div>
   );

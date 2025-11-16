@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Product } from "@/types/product";
 import { useModalContext } from "@/app/context/QuickViewModalContext";
 import { updateQuickView } from "@/redux/features/quickView-slice";
-import { addItemToCart } from "@/redux/features/cart-slice";
+
 import { addItemToWishlist } from "@/redux/features/wishlist-slice";
 import { updateproductDetails } from "@/redux/features/product-details";
 import { useDispatch } from "react-redux";
@@ -21,14 +21,12 @@ const ProductItem = ({ item }: { item: Product }) => {
     dispatch(updateQuickView({ ...item }));
   };
 
-  // add to cart
+  // view on seller website
   const handleAddToCart = () => {
-    dispatch(
-      addItemToCart({
-        ...item,
-        quantity: 1,
-      })
-    );
+    const url = item.externalUrl || "/shop-details";
+    if (typeof window !== "undefined" && url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
   };
 
   const handleItemToWishList = () => {
@@ -37,7 +35,7 @@ const ProductItem = ({ item }: { item: Product }) => {
         ...item,
         status: "available",
         quantity: 1,
-      })
+      }),
     );
   };
 
@@ -83,12 +81,14 @@ const ProductItem = ({ item }: { item: Product }) => {
             </svg>
           </button>
 
-          <button
-            onClick={() => handleAddToCart()}
+          <a
+            href={item.externalUrl || "/shop-details"}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex font-medium text-custom-sm py-[7px] px-5 rounded-[5px] bg-blue text-white ease-out duration-200 hover:bg-blue-dark"
           >
-            Add to cart
-          </button>
+            View on seller website
+          </a>
 
           <button
             onClick={() => handleItemToWishList()}
@@ -117,36 +117,11 @@ const ProductItem = ({ item }: { item: Product }) => {
 
       <div className="flex items-center gap-2.5 mb-2">
         <div className="flex items-center gap-1">
-          <Image
-            src="/images/icons/icon-star.svg"
-            alt="star icon"
-            width={14}
-            height={14}
-          />
-          <Image
-            src="/images/icons/icon-star.svg"
-            alt="star icon"
-            width={14}
-            height={14}
-          />
-          <Image
-            src="/images/icons/icon-star.svg"
-            alt="star icon"
-            width={14}
-            height={14}
-          />
-          <Image
-            src="/images/icons/icon-star.svg"
-            alt="star icon"
-            width={14}
-            height={14}
-          />
-          <Image
-            src="/images/icons/icon-star.svg"
-            alt="star icon"
-            width={14}
-            height={14}
-          />
+          <Image src="/images/icons/icon-star.svg" alt="star icon" width={14} height={14} />
+          <Image src="/images/icons/icon-star.svg" alt="star icon" width={14} height={14} />
+          <Image src="/images/icons/icon-star.svg" alt="star icon" width={14} height={14} />
+          <Image src="/images/icons/icon-star.svg" alt="star icon" width={14} height={14} />
+          <Image src="/images/icons/icon-star.svg" alt="star icon" width={14} height={14} />
         </div>
 
         <p className="text-custom-sm">({item.reviews})</p>
