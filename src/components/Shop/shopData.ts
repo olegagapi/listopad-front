@@ -6,15 +6,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 1,
+    externalUrl: "https://example.com/products/1",
     imgs: {
-      thumbnails: [
-        "/images/products/product-1-sm-1.png",
-        "/images/products/product-1-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-1-bg-1.png",
-        "/images/products/product-1-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-1-sm-1.png", "/images/products/product-1-sm-2.png"],
+      previews: ["/images/products/product-1-bg-1.png", "/images/products/product-1-bg-2.png"],
     },
   },
   {
@@ -23,15 +18,10 @@ const shopData: Product[] = [
     price: 899.0,
     discountedPrice: 99.0,
     id: 2,
+    externalUrl: "https://example.com/products/2",
     imgs: {
-      thumbnails: [
-        "/images/products/product-2-sm-1.png",
-        "/images/products/product-2-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-2-bg-1.png",
-        "/images/products/product-2-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-2-sm-1.png", "/images/products/product-2-sm-2.png"],
+      previews: ["/images/products/product-2-bg-1.png", "/images/products/product-2-bg-2.png"],
     },
   },
   {
@@ -40,15 +30,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 3,
+    externalUrl: "https://example.com/products/3",
     imgs: {
-      thumbnails: [
-        "/images/products/product-3-sm-1.png",
-        "/images/products/product-3-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-3-bg-1.png",
-        "/images/products/product-3-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-3-sm-1.png", "/images/products/product-3-sm-2.png"],
+      previews: ["/images/products/product-3-bg-1.png", "/images/products/product-3-bg-2.png"],
     },
   },
   {
@@ -57,15 +42,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 4,
+    externalUrl: "https://example.com/products/4",
     imgs: {
-      thumbnails: [
-        "/images/products/product-4-sm-1.png",
-        "/images/products/product-4-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-4-bg-1.png",
-        "/images/products/product-4-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-4-sm-1.png", "/images/products/product-4-sm-2.png"],
+      previews: ["/images/products/product-4-bg-1.png", "/images/products/product-4-bg-2.png"],
     },
   },
   {
@@ -74,15 +54,10 @@ const shopData: Product[] = [
     price: 99.0,
     discountedPrice: 29.0,
     id: 5,
+    externalUrl: "https://example.com/products/5",
     imgs: {
-      thumbnails: [
-        "/images/products/product-5-sm-1.png",
-        "/images/products/product-5-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-5-bg-1.png",
-        "/images/products/product-5-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-5-sm-1.png", "/images/products/product-5-sm-2.png"],
+      previews: ["/images/products/product-5-bg-1.png", "/images/products/product-5-bg-2.png"],
     },
   },
   {
@@ -91,15 +66,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 6,
+    externalUrl: "https://example.com/products/6",
     imgs: {
-      thumbnails: [
-        "/images/products/product-6-sm-1.png",
-        "/images/products/product-6-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-6-bg-1.png",
-        "/images/products/product-6-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-6-sm-1.png", "/images/products/product-6-sm-2.png"],
+      previews: ["/images/products/product-6-bg-1.png", "/images/products/product-6-bg-2.png"],
     },
   },
   {
@@ -108,15 +78,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 7,
+    externalUrl: "https://example.com/products/7",
     imgs: {
-      thumbnails: [
-        "/images/products/product-7-sm-1.png",
-        "/images/products/product-7-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-7-bg-1.png",
-        "/images/products/product-7-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-7-sm-1.png", "/images/products/product-7-sm-2.png"],
+      previews: ["/images/products/product-7-bg-1.png", "/images/products/product-7-bg-2.png"],
     },
   },
   {
@@ -125,15 +90,10 @@ const shopData: Product[] = [
     price: 59.0,
     discountedPrice: 29.0,
     id: 8,
+    externalUrl: "https://example.com/products/8",
     imgs: {
-      thumbnails: [
-        "/images/products/product-8-sm-1.png",
-        "/images/products/product-8-sm-2.png",
-      ],
-      previews: [
-        "/images/products/product-8-bg-1.png",
-        "/images/products/product-8-bg-2.png",
-      ],
+      thumbnails: ["/images/products/product-8-sm-1.png", "/images/products/product-8-sm-2.png"],
+      previews: ["/images/products/product-8-bg-1.png", "/images/products/product-8-bg-2.png"],
     },
   },
 ];
