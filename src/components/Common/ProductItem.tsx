@@ -21,13 +21,7 @@ const ProductItem = ({ item }: { item: Product }) => {
     dispatch(updateQuickView({ ...item }));
   };
 
-  // view on seller website
-  const handleAddToCart = () => {
-    const url = item.externalUrl || "/shop-details";
-    if (typeof window !== "undefined" && url) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
+
 
   const handleItemToWishList = () => {
     dispatch(

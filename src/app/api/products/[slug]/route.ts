@@ -2,14 +2,15 @@ import { getProductBySlug } from "@/lib/airtable";
 import { NextResponse } from "next/server";
 
 type RouteContext = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function GET(_request: Request, context: RouteContext) {
   try {
-    const product = await getProductBySlug(context.params.slug);
+    const { slug } = await context.params;
+    const product = await getProductBySlug(slug);
 
     if (!product) {
       return NextResponse.json({ product: null }, { status: 404 });

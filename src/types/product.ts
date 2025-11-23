@@ -4,7 +4,7 @@ export type ProductImages = {
 };
 
 export type Product = {
-  id: string;
+  id: string | number;
   slug: string;
   title: string;
   reviews: number;

@@ -15,7 +15,7 @@ const ShopDetails = () => {
   const [storage, setStorage] = useState("gb128");
   const [type, setType] = useState("active");
   const [sim, setSim] = useState("dual");
-  const [quantity, setQuantity] = useState(1);
+
 
   const [activeTab, setActiveTab] = useState("tabOne");
 
@@ -144,11 +144,10 @@ const ShopDetails = () => {
                       <button
                         onClick={() => setPreviewImg(key)}
                         key={key}
-                        className={`flex items-center justify-center w-15 sm:w-25 h-15 sm:h-25 overflow-hidden rounded-lg bg-gray-2 shadow-1 ease-out duration-200 border-2 hover:border-blue ${
-                          key === previewImg
-                            ? "border-blue"
-                            : "border-transparent"
-                        }`}
+                        className={`flex items-center justify-center w-15 sm:w-25 h-15 sm:h-25 overflow-hidden rounded-lg bg-gray-2 shadow-1 ease-out duration-200 border-2 hover:border-blue ${key === previewImg
+                          ? "border-blue"
+                          : "border-transparent"
+                          }`}
                       >
                         <Image
                           width={50}
@@ -395,9 +394,8 @@ const ShopDetails = () => {
                                   onChange={() => setActiveColor(color)}
                                 />
                                 <div
-                                  className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${
-                                    activeColor === color && "border"
-                                  }`}
+                                  className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${activeColor === color && "border"
+                                    }`}
                                   style={{ borderColor: `${color}` }}
                                 >
                                   <span
@@ -435,11 +433,10 @@ const ShopDetails = () => {
 
                                 {/*  */}
                                 <div
-                                  className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${
-                                    storage === item.id
-                                      ? "border-blue bg-blue"
-                                      : "border-gray-4"
-                                  } `}
+                                  className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${storage === item.id
+                                    ? "border-blue bg-blue"
+                                    : "border-gray-4"
+                                    } `}
                                 >
                                   <span
                                     className={
@@ -503,11 +500,10 @@ const ShopDetails = () => {
 
                                 {/*  */}
                                 <div
-                                  className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${
-                                    type === item.id
-                                      ? "border-blue bg-blue"
-                                      : "border-gray-4"
-                                  } `}
+                                  className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${type === item.id
+                                    ? "border-blue bg-blue"
+                                    : "border-gray-4"
+                                    } `}
                                 >
                                   <span
                                     className={
@@ -571,11 +567,10 @@ const ShopDetails = () => {
 
                                 {/*  */}
                                 <div
-                                  className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${
-                                    sim === item.id
-                                      ? "border-blue bg-blue"
-                                      : "border-gray-4"
-                                  } `}
+                                  className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${sim === item.id
+                                    ? "border-blue bg-blue"
+                                    : "border-gray-4"
+                                    } `}
                                 >
                                   <span
                                     className={
@@ -617,63 +612,13 @@ const ShopDetails = () => {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4.5">
-                      <div className="flex items-center rounded-md border border-gray-3">
-                        <button
-                          aria-label="button for remove product"
-                          className="flex items-center justify-center w-12 h-12 ease-out duration-200 hover:text-blue"
-                          onClick={() =>
-                            quantity > 1 && setQuantity(quantity - 1)
-                          }
-                        >
-                          <svg
-                            className="fill-current"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M3.33301 10.0001C3.33301 9.53984 3.7061 9.16675 4.16634 9.16675H15.833C16.2932 9.16675 16.6663 9.53984 16.6663 10.0001C16.6663 10.4603 16.2932 10.8334 15.833 10.8334H4.16634C3.7061 10.8334 3.33301 10.4603 3.33301 10.0001Z"
-                              fill=""
-                            />
-                          </svg>
-                        </button>
-
-                        <span className="flex items-center justify-center w-16 h-12 border-x border-gray-4">
-                          {quantity}
-                        </span>
-
-                        <button
-                          onClick={() => setQuantity(quantity + 1)}
-                          aria-label="button for add product"
-                          className="flex items-center justify-center w-12 h-12 ease-out duration-200 hover:text-blue"
-                        >
-                          <svg
-                            className="fill-current"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M3.33301 10C3.33301 9.5398 3.7061 9.16671 4.16634 9.16671H15.833C16.2932 9.16671 16.6663 9.5398 16.6663 10C16.6663 10.4603 16.2932 10.8334 15.833 10.8334H4.16634C3.7061 10.8334 3.33301 10.4603 3.33301 10Z"
-                              fill=""
-                            />
-                            <path
-                              d="M9.99967 16.6667C9.53944 16.6667 9.16634 16.2936 9.16634 15.8334L9.16634 4.16671C9.16634 3.70647 9.53944 3.33337 9.99967 3.33337C10.4599 3.33337 10.833 3.70647 10.833 4.16671L10.833 15.8334C10.833 16.2936 10.4599 16.6667 9.99967 16.6667Z"
-                              fill=""
-                            />
-                          </svg>
-                        </button>
-                      </div>
-
                       <a
-                        href="#"
+                        href={product.externalUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex font-medium text-white bg-blue py-3 px-7 rounded-md ease-out duration-200 hover:bg-blue-dark"
                       >
-                        Purchase Now
+                        Buy on seller website
                       </a>
 
                       <a
@@ -711,11 +656,10 @@ const ShopDetails = () => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(item.id)}
-                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-blue relative before:h-0.5 before:bg-blue before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${
-                      activeTab === item.id
-                        ? "text-blue before:w-full"
-                        : "text-dark before:w-0"
-                    }`}
+                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-blue relative before:h-0.5 before:bg-blue before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
+                      ? "text-blue before:w-full"
+                      : "text-dark before:w-0"
+                      }`}
                   >
                     {item.title}
                   </button>
@@ -727,9 +671,8 @@ const ShopDetails = () => {
               {/* <!-- tab content one start --> */}
               <div>
                 <div
-                  className={`flex-col sm:flex-row gap-7.5 xl:gap-12.5 mt-12.5 ${
-                    activeTab === "tabOne" ? "flex" : "hidden"
-                  }`}
+                  className={`flex-col sm:flex-row gap-7.5 xl:gap-12.5 mt-12.5 ${activeTab === "tabOne" ? "flex" : "hidden"
+                    }`}
                 >
                   <div className="max-w-[670px] w-full">
                     <h2 className="font-medium text-2xl text-dark mb-7">
@@ -780,9 +723,8 @@ const ShopDetails = () => {
               {/* <!-- tab content two start --> */}
               <div>
                 <div
-                  className={`rounded-xl bg-white shadow-1 p-4 sm:p-6 mt-10 ${
-                    activeTab === "tabTwo" ? "block" : "hidden"
-                  }`}
+                  className={`rounded-xl bg-white shadow-1 p-4 sm:p-6 mt-10 ${activeTab === "tabTwo" ? "block" : "hidden"
+                    }`}
                 >
                   {/* <!-- info item --> */}
                   <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
@@ -923,9 +865,8 @@ const ShopDetails = () => {
               {/* <!-- tab content three start --> */}
               <div>
                 <div
-                  className={`flex-col sm:flex-row gap-7.5 xl:gap-12.5 mt-12.5 ${
-                    activeTab === "tabThree" ? "flex" : "hidden"
-                  }`}
+                  className={`flex-col sm:flex-row gap-7.5 xl:gap-12.5 mt-12.5 ${activeTab === "tabThree" ? "flex" : "hidden"
+                    }`}
                 >
                   <div className="max-w-[570px] w-full">
                     <h2 className="font-medium text-2xl text-dark mb-9">

@@ -5,7 +5,7 @@ type InitialState = {
 };
 
 type WishListItem = {
-  id: string;
+  id: string | number;
   title: string;
   price: number;
   discountedPrice: number;
