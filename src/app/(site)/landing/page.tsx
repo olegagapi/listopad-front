@@ -1,22 +1,23 @@
 import React from "react";
+import Link from "next/link";
 
 export default function LandingPage() {
     return (
         <main className="bg-white pb-20 pt-20 dark:bg-dark">
             {/* Hero Section */}
             <section className="container mx-auto px-4 py-16 text-center">
-                <h1 className="mb-6 text-heading-2 font-bold text-dark dark:text-white sm:text-heading-1">
-                    Listopad. Вітрина українських брендів.
+                <h1 className="mb-6 text-heading-2 text-dark dark:text-white sm:text-heading-1">
+                    <span className="font-bold text-[#FF0080]">Listopad.</span> Вітрина українських брендів.
                 </h1>
                 <p className="mb-4 text-xl font-medium text-body">
-                    Вас вітає Вітрина Listopad - де українські fashion та beauty бренди стають помітними.
+                    Вас вітає Вітрина Listopad — місце, де українські fashion та beauty бренди стають видимими.
                 </p>
                 <p className="mx-auto max-w-3xl text-lg text-body">
-                    Ми збираємо найкращих виробників країни в один живий каталог, що працює як лістинговий маркетплейс: чиста сцена, на якій кожен бренд отримує світло, увагу та прямий шлях до покупця.
+                    Жодних посередників — покупець переходить напряму до вашого бренду.
                 </p>
                 <div className="mt-8">
                     <p className="text-lg font-semibold text-dark dark:text-white">
-                        Тут немає посередників — лише прямий контакт між брендом і клієнтом.
+                        Україна має величезний потенціал локальних виробників. Ми об’єднуємо їх у зручному форматі, який спрощує відкриття брендів і підсилює довіру покупця.
                     </p>
                 </div>
             </section>
@@ -31,20 +32,16 @@ export default function LandingPage() {
                 </div>
                 <div className="order-1 md:order-2">
                     <h2 className="mb-6 text-heading-3 font-bold text-dark dark:text-white">
-                        Ми вас рекламуємо / ми приводимо вам клієнтів
+                        Ми приводимо вам клієнтів
                     </h2>
-                    <p className="mb-4 text-lg text-body">
-                        Все просто: ви створюєте продукт — ми забезпечуємо потік покупців.
-                    </p>
                     <h3 className="mb-3 text-2xl font-semibold text-dark dark:text-white">
-                        Немає сайту? Ми закриваємо цю проблему.
+                        Все просто: ви створюєте продукт — ми забезпечуємо потік покупців.
                     </h3>
-                    <p className="mb-4 text-lg text-body">
-                        Ваш бренд отримує власну верифіковану сторінку, яка працює як повноцінний сайт.
-                    </p>
                     <ul className="list-disc pl-5 text-body space-y-2">
-                        <li>Таргетуємо покупця</li>
-                        <li>Та надаєм аналітику</li>
+                        <li>Платформа генерує трафік</li>
+                        <li>Ми закриваємо питання просування</li>
+                        <li>и отримуєте реальних клієнтів</li>
+                        <li>Ми надаємо детальну аналітику</li>
                     </ul>
                 </div>
             </section>
@@ -57,11 +54,17 @@ export default function LandingPage() {
                             AI-driven пошук
                         </h2>
                         <p className="mb-4 text-lg text-body">
-                            Розумний алгоритм штучного інтелекту, з’єднує бренд і покупця точніше, ніж будь-який каталог.
+                            Розумний алгоритм штучного інтелекту з’єднує бренд і покупця точніше, ніж будь-який традиційний каталог.
                         </p>
-                        <p className="text-lg text-body">
-                            Шукай трендові речі та луки за фото, або власним описом.
-                        </p>
+                        <h3 className="mb-3 text-2xl font-semibold text-dark dark:text-white">
+                            Користувач зможе:
+                        </h3>
+                        <ul className="list-disc pl-5 text-body space-y-2">
+                            <li>шукати трендові речі за фото</li>
+                            <li>шукати образи</li>
+                            <li>знаходити товари за стилем або описом</li>
+                            <li>отримувати релевантні рекомендації</li>
+                        </ul>
                     </div>
                     <div>
                         {/* Placeholder for video/image */}
@@ -82,16 +85,16 @@ export default function LandingPage() {
                 </div>
                 <div className="order-1 md:order-2">
                     <h2 className="mb-6 text-heading-3 font-bold text-dark dark:text-white">
-                        Пуші та комунікація з клієнтом — на нас
+                        Push-повідомлення та комунікація з клієнтом
                     </h2>
                     <p className="mb-4 text-lg text-body">
-                        Ми повертаємо увагу, Ми вас рекламуємо, підігріваємо інтерес і мотивуємо покупця діяти.
+                        Ми повертаємо увагу покупця та допомагаємо бренду не губитися в інформаційному шумі.
                     </p>
+                    <h3 className="mb-3 text-2xl font-semibold text-dark dark:text-white">
+                        Платформа автоматично доставляє вашим клієнтам: релізи, нові колекції, знижки та інші важливі події.
+                    </h3>
                     <p className="mb-4 text-lg text-body">
-                        Платформа зводить сторони - надаючи трафік. Ваша цільова аудиторія, будуть вкурсі твоїх новин.
-                    </p>
-                    <p className="text-lg font-medium text-dark dark:text-white">
-                        Пробиваємо банерну сліпоту за допомогою розумних пуш сповіщень.
+                        Пуші пробивають банерну сліпоту, завжди приходять у потрібний момент і мотивують аудиторію діяти.
                     </p>
                 </div>
             </section>
@@ -101,10 +104,8 @@ export default function LandingPage() {
                 <h2 className="mb-6 text-heading-4 font-bold text-dark dark:text-white">
                     Ми не просто показуємо бренд — ми приводимо продажі.
                 </h2>
-                <p className="mx-auto max-w-3xl text-lg text-body">
-                    Україна багата на виробників під власним імʼям, з різноманітним сегментом продукції, яку ми зберем в один каталог і покажем в зручному форматі для покупця.
-                </p>
             </section>
-        </main>
+
+        </main >
     );
 }
