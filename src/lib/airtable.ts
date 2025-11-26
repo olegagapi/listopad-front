@@ -2,40 +2,6 @@ import { Product } from "@/types/product";
 import { Category } from "@/types/category";
 import { Brand } from "@/types/brand";
 
-const API = "https://api.airtable.com/v0";
-const BASE = process.env.AIRTABLE_BASE_ID;
-const TOKEN = process.env.AIRTABLE_TOKEN;
-
-if (!BASE) {
-  throw new Error("Missing AIRTABLE_BASE_ID environment variable");
-}
-
-if (!TOKEN) {
-  throw new Error("Missing AIRTABLE_TOKEN environment variable");
-}
-
-const PRODUCTS = process.env.AIRTABLE_PRODUCTS_TABLE || "Products";
-const BRANDS = process.env.AIRTABLE_BRANDS_TABLE || "Brands";
-const CATEGORIES = process.env.AIRTABLE_CATEGORIES_TABLE || "Categories";
-
-type AirtableRecord<T = Record<string, unknown>> = {
-  id: string;
-  fields: T & Record<string, any>;
-};
-
-type AirtableResponse<T> = {
-  records: AirtableRecord<T>[];
-};
-
-type AirtableAttachment = {
-  url?: string;
-  thumbnails?: {
-    small?: { url?: string };
-    large?: { url?: string };
-    full?: { url?: string };
-  };
-};
-
 export type ListProductsOptions = {
   limit?: number;
   brandId?: string;
@@ -43,196 +9,179 @@ export type ListProductsOptions = {
   search?: string;
 };
 
-async function at<T = Record<string, unknown>>(
-  path: string,
-  params: Record<string, string | number | undefined> = {},
-) {
-  const url = new URL(`${API}/${BASE}/${encodeURIComponent(path)}`);
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined) {
-      url.searchParams.set(key, String(value));
-    }
-  });
+const BRANDS: Brand[] = [
+  {
+    id: "brand-1",
+    name: "Urban Style",
+    description: "Modern urban fashion for the city dweller.",
+    internalUrl: "/brands/urban-style",
+    externalUrl: "https://example.com/urban-style",
+    instagramUrl: "https://instagram.com/urbanstyle",
+    productCount: 10,
+    averageProductPrice: 150,
+  },
+  {
+    id: "brand-2",
+    name: "Cozy Wear",
+    description: "Comfortable clothing for relaxing at home.",
+    internalUrl: "/brands/cozy-wear",
+    externalUrl: "https://example.com/cozy-wear",
+    instagramUrl: "https://instagram.com/cozywear",
+    productCount: 8,
+    averageProductPrice: 80,
+  },
+];
 
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${TOKEN}` },
-  });
+const CATEGORIES: Category[] = [
+  {
+    id: "cat-1",
+    name: "Men",
+    title: "Men's Collection",
+    description: "Fashion for men.",
+    parentId: null,
+    image: "https://placehold.co/600x400?text=Men",
+    productCount: 12,
+  },
+  {
+    id: "cat-2",
+    name: "Women",
+    title: "Women's Collection",
+    description: "Fashion for women.",
+    parentId: null,
+    image: "https://placehold.co/600x400?text=Women",
+    productCount: 15,
+  },
+];
 
-  if (!res.ok) {
-    throw new Error(`Airtable request failed with status ${res.status}`);
-  }
-
-  return (await res.json()) as AirtableResponse<T>;
-}
-
-function toAttachmentArray(value: unknown): AirtableAttachment[] {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return value.filter((item) => item && typeof item.url === "string");
-}
-
-function uniqueStrings(values: Array<string | undefined | null>): string[] {
-  return Array.from(new Set(values.filter((val): val is string => Boolean(val))));
-}
-
-function escapeFormulaValue(value: string) {
-  return value.replace(/'/g, "\\'");
-}
-
-function buildImageSet(fields: Record<string, any>): Product["imgs"] {
-  const previewAttachments = toAttachmentArray(fields["Preview Image"]);
-  const galleryAttachments = toAttachmentArray(fields.Images);
-  const attachments = [...previewAttachments, ...galleryAttachments];
-
-  return {
-    previews: uniqueStrings(attachments.map((attachment) => attachment.url)),
-    thumbnails: uniqueStrings(
-      attachments.map(
-        (attachment) =>
-          attachment.thumbnails?.small?.url ||
-          attachment.thumbnails?.large?.url ||
-          attachment.url,
-      ),
-    ),
-  };
-}
-
-function mapProduct(record: AirtableRecord): Product {
-  const fields = record.fields || {};
-  const price = typeof fields.Price === "number" ? fields.Price : 0;
-  const discountedPrice =
-    typeof fields["Discounted Price"] === "number" ? fields["Discounted Price"] : price;
-  const brandIds = Array.isArray(fields.Brand) ? fields.Brand : [];
-  const categoryIds = Array.isArray(fields.Category) ? fields.Category : [];
-  const categoryNames = Array.isArray(fields["Category Name"])
-    ? fields["Category Name"]
-    : Array.isArray(fields["Category Names"])
-      ? fields["Category Names"]
-      : [];
-
-  return {
-    id: String(fields.ID || record.id),
-    slug: String(fields.slug || fields.Slug || fields.ID || record.id),
-    title: fields.Name || fields.name || fields.title || "Untitled Product",
-    reviews: typeof fields.Reviews === "number" ? fields.Reviews : 0,
-    price,
-    discountedPrice,
-    currency: fields.Currency || "USD",
-    brandId: brandIds[0],
-    brandName: fields["Brand Name"] || fields.BrandName,
-    categoryIds,
-    categoryNames,
-    tags: Array.isArray(fields.Tags) ? fields.Tags : [],
-    colors: Array.isArray(fields.Colors) ? fields.Colors : [],
-    description: typeof fields.Description === "string" ? fields.Description : null,
-    shortDescription:
-      typeof fields["Short Description"] === "string" ? fields["Short Description"] : null,
-    externalUrl:
-      typeof fields["External Shop URL"] === "string" ? fields["External Shop URL"] : null,
-    instagramUrl:
-      typeof fields["Instagram URL"] === "string" ? fields["Instagram URL"] : null,
-    imgs: buildImageSet(fields),
-  };
-}
-
-function buildProductFormula({ brandId, categoryId, search }: ListProductsOptions) {
-  const filters: string[] = [];
-
-  if (brandId) {
-    filters.push(`FIND('${escapeFormulaValue(brandId)}', ARRAYJOIN({Brand}, ','))`);
-  }
-
-  if (categoryId) {
-    filters.push(`FIND('${escapeFormulaValue(categoryId)}', ARRAYJOIN({Category}, ','))`);
-  }
-
-  if (search) {
-    filters.push(`SEARCH(LOWER('${escapeFormulaValue(search)}'), LOWER({Name}))`);
-  }
-
-  if (filters.length === 0) {
-    return undefined;
-  }
-
-  return filters.length === 1 ? filters[0] : `AND(${filters.join(",")})`;
-}
-
-function mapBrand(record: AirtableRecord): Brand {
-  const fields = record.fields || {};
-
-  return {
-    id: String(fields.ID || record.id),
-    name: fields.Name || "Unnamed Brand",
-    description: typeof fields.Description === "string" ? fields.Description : null,
-    internalUrl:
-      typeof fields["Internal URL"] === "string" ? fields["Internal URL"] : null,
-    externalUrl:
-      typeof fields["External Shop URL"] === "string" ? fields["External Shop URL"] : null,
-    instagramUrl:
-      typeof fields["Instagram URL"] === "string" ? fields["Instagram URL"] : null,
-    productCount: typeof fields["Product Count"] === "number" ? fields["Product Count"] : undefined,
-    averageProductPrice:
-      typeof fields["Average Product Price"] === "number"
-        ? fields["Average Product Price"]
-        : null,
-  };
-}
-
-function mapCategory(record: AirtableRecord): Category {
-  const fields = record.fields || {};
-  const attachments = toAttachmentArray(fields.Image || fields["Preview Image"]);
-  const parentLink = Array.isArray(fields.Parent) ? fields.Parent[0] : undefined;
-
-  return {
-    id: String(fields.ID || record.id),
-    name: fields.Name || "Unnamed Category",
-    description: typeof fields.Description === "string" ? fields.Description : null,
-    parentId:
-      typeof fields["Parent Category"] === "string"
-        ? fields["Parent Category"]
-        : parentLink || null,
-    productCount: typeof fields["Product Count"] === "number" ? fields["Product Count"] : undefined,
-    image: attachments[0]?.url || null,
-  };
-}
+const PRODUCTS: Product[] = [
+  {
+    id: "prod-1",
+    slug: "urban-jacket",
+    title: "Urban Jacket",
+    reviews: 4,
+    price: 120,
+    discountedPrice: 100,
+    currency: "USD",
+    brandId: "brand-1",
+    brandName: "Urban Style",
+    categoryIds: ["cat-1"],
+    categoryNames: ["Men"],
+    tags: ["new", "sale"],
+    colors: ["Black", "Blue"],
+    description: "A stylish jacket for the modern man.",
+    shortDescription: "Stylish urban jacket.",
+    externalUrl: "https://example.com/urban-jacket",
+    instagramUrl: "https://instagram.com/urbanstyle/p/123",
+    imgs: {
+      previews: ["https://placehold.co/400x600?text=Jacket+1", "https://placehold.co/400x600?text=Jacket+2"],
+      thumbnails: ["https://placehold.co/200x300?text=Jacket+1", "https://placehold.co/200x300?text=Jacket+2"],
+    },
+  },
+  {
+    id: "prod-2",
+    slug: "cozy-sweater",
+    title: "Cozy Sweater",
+    reviews: 5,
+    price: 80,
+    discountedPrice: 80,
+    currency: "USD",
+    brandId: "brand-2",
+    brandName: "Cozy Wear",
+    categoryIds: ["cat-2"],
+    categoryNames: ["Women"],
+    tags: ["bestseller"],
+    colors: ["Beige", "White"],
+    description: "Keep warm with this cozy sweater.",
+    shortDescription: "Warm and cozy sweater.",
+    externalUrl: "https://example.com/cozy-sweater",
+    instagramUrl: "https://instagram.com/cozywear/p/456",
+    imgs: {
+      previews: ["https://placehold.co/400x600?text=Sweater+1", "https://placehold.co/400x600?text=Sweater+2"],
+      thumbnails: ["https://placehold.co/200x300?text=Sweater+1", "https://placehold.co/200x300?text=Sweater+2"],
+    },
+  },
+  {
+    id: "prod-3",
+    slug: "street-sneakers",
+    title: "Street Sneakers",
+    reviews: 3,
+    price: 150,
+    discountedPrice: 130,
+    currency: "USD",
+    brandId: "brand-1",
+    brandName: "Urban Style",
+    categoryIds: ["cat-1"],
+    categoryNames: ["Men"],
+    tags: ["limited"],
+    colors: ["Red", "White"],
+    description: "High-top sneakers for the street.",
+    shortDescription: "Cool street sneakers.",
+    externalUrl: "https://example.com/street-sneakers",
+    instagramUrl: null,
+    imgs: {
+      previews: ["https://placehold.co/400x600?text=Sneakers+1"],
+      thumbnails: ["https://placehold.co/200x300?text=Sneakers+1"],
+    },
+  },
+  {
+    id: "prod-4",
+    slug: "lounge-pants",
+    title: "Lounge Pants",
+    reviews: 5,
+    price: 60,
+    discountedPrice: 50,
+    currency: "USD",
+    brandId: "brand-2",
+    brandName: "Cozy Wear",
+    categoryIds: ["cat-2"],
+    categoryNames: ["Women"],
+    tags: ["sale"],
+    colors: ["Grey"],
+    description: "Perfect for lounging around the house.",
+    shortDescription: "Comfortable lounge pants.",
+    externalUrl: "https://example.com/lounge-pants",
+    instagramUrl: null,
+    imgs: {
+      previews: ["https://placehold.co/400x600?text=Pants+1"],
+      thumbnails: ["https://placehold.co/200x300?text=Pants+1"],
+    },
+  },
+];
 
 export async function listProducts(options: ListProductsOptions = {}): Promise<Product[]> {
-  const params: Record<string, string | number | undefined> = {};
+  let filtered = [...PRODUCTS];
+
+  if (options.brandId) {
+    filtered = filtered.filter((p) => p.brandId === options.brandId);
+  }
+
+  if (options.categoryId) {
+    filtered = filtered.filter((p) => p.categoryIds.includes(options.categoryId!));
+  }
+
+  if (options.search) {
+    const searchLower = options.search.toLowerCase();
+    filtered = filtered.filter((p) => p.title.toLowerCase().includes(searchLower));
+  }
 
   if (options.limit) {
-    params.pageSize = Math.max(1, Math.min(options.limit, 100));
+    filtered = filtered.slice(0, options.limit);
   }
 
-  const formula = buildProductFormula(options);
-  if (formula) {
-    params.filterByFormula = formula;
-  }
-
-  const data = await at(PRODUCTS, params);
-  return (data.records || []).map(mapProduct);
+  return filtered;
 }
 
 export async function getProductBySlug(slug: string) {
   if (!slug) {
     return null;
   }
-
-  const data = await at(PRODUCTS, {
-    maxRecords: 1,
-    filterByFormula: `{slug}='${escapeFormulaValue(slug)}'`,
-  });
-  const record = data.records?.[0];
-  return record ? mapProduct(record) : null;
+  return PRODUCTS.find((p) => p.slug === slug) || null;
 }
 
 export async function listBrands(): Promise<Brand[]> {
-  const data = await at(BRANDS);
-  return (data.records || []).map(mapBrand);
+  return BRANDS;
 }
 
 export async function listCategories(): Promise<Category[]> {
-  const data = await at(CATEGORIES);
-  return (data.records || []).map(mapCategory);
+  return CATEGORIES;
 }

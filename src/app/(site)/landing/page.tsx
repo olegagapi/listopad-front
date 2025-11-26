@@ -6,7 +6,7 @@ export default function LandingPage() {
             {/* Hero Section */}
             <section className="container mx-auto px-4 py-16 text-center">
                 <h1 className="mb-6 text-heading-2 font-bold text-dark dark:text-white sm:text-heading-1">
-                    Ми вітрина українських брендів
+                    Listopad. Вітрина українських брендів.
                 </h1>
                 <p className="mb-4 text-xl font-medium text-body">
                     Вас вітає Вітрина Listopad - де українські fashion та beauty бренди стають помітними.
