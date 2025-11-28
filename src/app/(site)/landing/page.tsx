@@ -99,6 +99,84 @@ export default function LandingPage() {
                 </div>
             </section>
 
+            <section className="container mx-auto grid gap-12 px-4 py-16 md:grid-cols-2 items-center">
+                <div className="order-2 md:order-1">
+                    {/* Placeholder for video/image */}
+                    <div className="aspect-video w-full rounded-lg bg-gray-200 dark:bg-dark-2 flex items-center justify-center shadow-1">
+                        <span className="text-gray-500 font-medium">Push Notifications Visual</span>
+                    </div>
+                </div>
+                <div className="order-1 md:order-2">
+                    <h2 className="mb-6 text-heading-3 font-bold text-dark dark:text-white">
+                        Аналітика та інсайти для бренду
+                    </h2>
+                    <p className="mb-4 text-lg text-body">
+                        Ми не лише приводимо трафік — ми показуємо, як саме він працює на ваш бренд.
+                    </p>
+                    <h3 className="mb-3 text-2xl font-semibold text-dark dark:text-white">
+                        Ви отримуєте доступ до аналітики, яка допомагає приймати рішення, а не діяти інтуїтивно:
+                    </h3>
+                    <ul className="list-disc pl-5 text-body space-y-2">
+                        <li>перегляди сторінки бренду</li>
+                        <li>перегляди окремих товарів</li>
+                        <li>кліки та CTR по зовнішніх посиланнях</li>
+                        <li>товари додані в обране</li>
+                        <li>джерела трафіку</li>
+                        <li>популярні пошукові запити та стилі, через які знаходять ваш бренд</li>
+                        <li>взаємодія з рекламними та пуш кампаніями</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="container mx-auto px-4 py-16">
+                <h2 className="mb-12 text-center text-heading-3 font-bold text-dark dark:text-white">
+                    Часті запитання
+                </h2>
+                <div className="mx-auto max-w-3xl space-y-8">
+                    <div className="rounded-lg bg-gray-1 p-6 dark:bg-dark-2">
+                        <h3 className="mb-3 text-xl font-bold text-dark dark:text-white">
+                            Q: Скільки це коштує для бренду?
+                        </h3>
+                        <p className="text-body text-lg">
+                            A: Ми працюємо у форматі, який комфортний для малого та середнього бізнесу. Модель співпраці прозора: ви сплачуєте лише за реальну цінність, яку отримуєте. Детальні умови обговорюються з менеджером після заявки.
+                        </p>
+                    </div>
+                    <div className="rounded-lg bg-gray-1 p-6 dark:bg-dark-2">
+                        <h3 className="mb-3 text-xl font-bold text-dark dark:text-white">
+                            Q: Як швидко мій бренд зʼявиться на Вітрині Listopad?
+                        </h3>
+                        <p className="text-body text-lg">
+                            A: Після заповнення заявки та узгодження деталей бренд зазвичай виходить на платформу впродовж 24 годин — залежно від готовності контенту (фото, описи, посилання).
+                        </p>
+                    </div>
+                    <div className="rounded-lg bg-gray-1 p-6 dark:bg-dark-2">
+                        <h3 className="mb-3 text-xl font-bold text-dark dark:text-white">
+                            Q: Ви берете відсоток з продажів?
+                        </h3>
+                        <p className="text-body text-lg">
+                            A: Ми не виступаємо посередником у транзакції. Покупець переходить напряму на ваші канали продажу. Умови монетизації платформи для брендів узгоджуються окремо (фікс, підписка, змішана модель тощо).
+                        </p>
+                    </div>
+                    <div className="rounded-lg bg-gray-1 p-6 dark:bg-dark-2">
+                        <h3 className="mb-3 text-xl font-bold text-dark dark:text-white">
+                            Q: Як ви приводите трафік на мій бренд?
+                        </h3>
+                        <p className="text-body text-lg">
+                            A: Ми поєднуємо кілька каналів: SEO та видимість у Google, внутрішні добірки, AI-пошук, соцмережі, email та push-кампанії. В результаті бренд отримує цільових покупців, а не просто перегляди.
+                        </p>
+                    </div>
+                    <div className="rounded-lg bg-gray-1 p-6 dark:bg-dark-2">
+                        <h3 className="mb-3 text-xl font-bold text-dark dark:text-white">
+                            Q: Чи є вимоги до брендів, які хочуть приєднатися?
+                        </h3>
+                        <p className="text-body text-lg">
+                            A: Так, ми працюємо з брендами, які створюють власний продукт, дотримуються стандартів якості та мають прозору комунікацію з клієнтом. Після заявки ми коротко проводимо відбір і модерацію.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* Footer Note */}
             <section className="container mx-auto px-4 py-16 text-center border-t border-gray-3 dark:border-dark-3">
                 <h2 className="mb-6 text-heading-4 font-bold text-dark dark:text-white">
