@@ -1,4 +1,4 @@
-import { getProductBySlug } from "@/lib/mock-data";
+import { getProductBySlug } from "@/lib/supabase-data";
 import { NextResponse } from "next/server";
 
 type RouteContext = {

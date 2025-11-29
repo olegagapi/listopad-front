@@ -1,4 +1,4 @@
-import { listCategories } from "@/lib/mock-data";
+import { listCategories } from "@/lib/supabase-data";
 import { NextResponse } from "next/server";
 
 export async function GET() {
