@@ -10,12 +10,16 @@ import PriceDropdown from "./PriceDropdown";
 import SingleGridItem from "../Shop/SingleGridItem";
 import SingleListItem from "../Shop/SingleListItem";
 import { Product } from "@/types/product";
+import { Category } from "@/types/category";
 
 interface ShopWithSidebarProps {
   products: Product[];
+  categories: Category[];
+  colors: string[];
+  genders: string[];
 }
 
-const ShopWithSidebar = ({ products }: ShopWithSidebarProps) => {
+const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSidebarProps) => {
   const [productStyle, setProductStyle] = useState("grid");
   const [productSidebar, setProductSidebar] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
@@ -34,53 +38,6 @@ const ShopWithSidebar = ({ products }: ShopWithSidebarProps) => {
     { label: "Old Products", value: "2" },
   ];
 
-  const categories = [
-    {
-      name: "Desktop",
-      products: 10,
-      isRefined: true,
-    },
-    {
-      name: "Laptop",
-      products: 12,
-      isRefined: false,
-    },
-    {
-      name: "Monitor",
-      products: 30,
-      isRefined: false,
-    },
-    {
-      name: "UPS",
-      products: 23,
-      isRefined: false,
-    },
-    {
-      name: "Phone",
-      products: 10,
-      isRefined: false,
-    },
-    {
-      name: "Watch",
-      products: 13,
-      isRefined: false,
-    },
-  ];
-
-  const genders = [
-    {
-      name: "Men",
-      products: 10,
-    },
-    {
-      name: "Women",
-      products: 23,
-    },
-    {
-      name: "Unisex",
-      products: 8,
-    },
-  ];
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
@@ -168,7 +125,7 @@ const ShopWithSidebar = ({ products }: ShopWithSidebarProps) => {
                   <SizeDropdown />
 
                   {/* // <!-- color box --> */}
-                  <ColorsDropdwon />
+                  <ColorsDropdwon colors={colors} />
 
                   {/* // <!-- price range box --> */}
                   <PriceDropdown />

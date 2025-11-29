@@ -64,6 +64,18 @@ export async function listCategories(): Promise<Category[]> {
     }));
 }
 
+export async function getColors(): Promise<string[]> {
+    return [
+        "white", "black", "grey", "red", "green", "blue",
+        "yellow", "brown", "orange", "cyan", "magenta",
+        "indigo", "silver", "gold"
+    ];
+}
+
+export async function getGenders(): Promise<string[]> {
+    return ["male", "female", "unisex"];
+}
+
 export async function listProducts(options: ListProductsOptions = {}): Promise<Product[]> {
     let query = supabase.from('products').select(`
     *,

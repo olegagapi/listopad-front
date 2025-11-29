@@ -1,6 +1,6 @@
 import React from "react";
 import ShopWithSidebar from "@/components/ShopWithSidebar";
-import { listProducts } from "@/lib/supabase-data";
+import { listProducts, listCategories, getColors, getGenders } from "@/lib/supabase-data";
 
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -13,10 +13,18 @@ export const revalidate = 60;
 
 const ShopWithSidebarPage = async () => {
   const products = await listProducts();
+  const categories = await listCategories();
+  const colors = await getColors();
+  const genders = await getGenders();
 
   return (
     <main>
-      <ShopWithSidebar products={products} />
+      <ShopWithSidebar
+        products={products}
+        categories={categories}
+        colors={colors}
+        genders={genders}
+      />
     </main>
   );
 };
