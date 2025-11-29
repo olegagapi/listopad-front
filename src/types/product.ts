@@ -3,6 +3,24 @@ export type ProductImages = {
   previews: string[];
 };
 
+export type PrimeColor =
+  | "white"
+  | "black"
+  | "grey"
+  | "red"
+  | "green"
+  | "blue"
+  | "yellow"
+  | "brown"
+  | "orange"
+  | "cyan"
+  | "magenta"
+  | "indigo"
+  | "silver"
+  | "gold";
+
+export type Gender = "male" | "female" | "unisex";
+
 export type Product = {
   id: string | number;
   slug: string;
@@ -16,7 +34,8 @@ export type Product = {
   categoryIds: string[];
   categoryNames: string[];
   tags: string[];
-  colors: string[];
+  colors: PrimeColor[];
+  gender?: Gender;
   description?: string | null;
   shortDescription?: string | null;
   externalUrl?: string | null;

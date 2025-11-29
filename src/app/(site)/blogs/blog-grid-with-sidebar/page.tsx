@@ -8,12 +8,18 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const BlogGridWithSidebarPage = () => {
+import { listProducts } from "@/lib/supabase-data";
+
+export const revalidate = 60;
+
+const BlogGridSidebarPage = async () => {
+  const products = await listProducts({ limit: 3 });
+
   return (
-    <>
-      <BlogGridWithSidebar />
-    </>
+    <main>
+      <BlogGridWithSidebar products={products} />
+    </main>
   );
 };
 
-export default BlogGridWithSidebarPage;
+export default BlogGridSidebarPage;

@@ -1,14 +1,18 @@
 import React from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import BlogItem from "../Blog/BlogItem";
-import blogData from "../BlogGrid/blogData"; 
-import SearchForm from "../Blog/SearchForm"; 
+import blogData from "../BlogGrid/blogData";
+import SearchForm from "../Blog/SearchForm";
 import LatestPosts from "../Blog/LatestPosts";
 import LatestProducts from "../Blog/LatestProducts";
 import Categories from "../Blog/Categories";
-import shopData from "../Shop/shopData"; 
- 
-const BlogGridWithSidebar = () => {
+import { Product } from "@/types/product";
+
+interface BlogGridWithSidebarProps {
+  products: Product[];
+}
+
+const BlogGridWithSidebar = ({ products }: BlogGridWithSidebarProps) => {
   const categories = [
     {
       name: "Desktop",
@@ -179,7 +183,7 @@ const BlogGridWithSidebar = () => {
               <LatestPosts blogs={blogData} />
 
               {/* <!-- Latest Products box --> */}
-              <LatestProducts products={shopData} />
+              <LatestProducts products={products} />
 
               {/* <!-- Popular Category box --> */}
               <Categories categories={categories} />

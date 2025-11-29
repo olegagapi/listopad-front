@@ -8,10 +8,16 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const ShopDetailsPage = () => {
+import { listProducts } from "@/lib/supabase-data";
+
+export const revalidate = 60;
+
+const ShopDetailsPage = async () => {
+  const otherProducts = await listProducts({ limit: 4 });
+
   return (
     <main>
-      <ShopDetails />
+      <ShopDetails otherProducts={otherProducts} />
     </main>
   );
 };

@@ -7,7 +7,13 @@ import RecentlyViewdItems from "./RecentlyViewd";
 import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { useAppSelector } from "@/redux/store";
 
-const ShopDetails = () => {
+import { Product } from "@/types/product";
+
+interface ShopDetailsProps {
+  otherProducts: Product[];
+}
+
+const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
   const [activeColor, setActiveColor] = useState("blue");
   const { openPreviewModal } = usePreviewSlider();
   const [previewImg, setPreviewImg] = useState(0);
@@ -73,7 +79,7 @@ const ShopDetails = () => {
     },
   ];
 
-  const colors = ["red", "blue", "orange", "pink", "purple"];
+  // const colors = ["red", "blue", "orange", "pink", "purple"];
 
   const alreadyExist = localStorage.getItem("productDetails");
   const productFromStorage = useAppSelector(
@@ -379,7 +385,7 @@ const ShopDetails = () => {
                         </div>
 
                         <div className="flex items-center gap-2.5">
-                          {colors.map((color, key) => (
+                          {product.colors?.map((color, key) => (
                             <label
                               key={key}
                               htmlFor={color}
@@ -733,6 +739,18 @@ const ShopDetails = () => {
                     </div>
                     <div className="w-full">
                       <p className="text-sm sm:text-base text-dark">Apple</p>
+                    </div>
+                  </div>
+
+                  {/* <!-- info item --> */}
+                  <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
+                    <div className="max-w-[450px] min-w-[140px] w-full">
+                      <p className="text-sm sm:text-base text-dark">Gender</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="text-sm sm:text-base text-dark capitalize">
+                        {product.gender || "Unisex"}
+                      </p>
                     </div>
                   </div>
 
@@ -1385,7 +1403,7 @@ const ShopDetails = () => {
             </div>
           </section>
 
-          <RecentlyViewdItems />
+          <RecentlyViewdItems products={otherProducts} />
 
           <Newsletter />
         </>

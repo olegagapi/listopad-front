@@ -27,9 +27,8 @@ const PreviewSliderModal = () => {
 
   return (
     <div
-      className={`preview-slider w-full h-screen  z-999999 inset-0 flex justify-center items-center bg-[#000000F2] bg-opacity-70 ${
-        isModalPreviewOpen ? "fixed" : "hidden"
-      }`}
+      className={`preview-slider w-full h-screen  z-999999 inset-0 flex justify-center items-center bg-[#000000F2] bg-opacity-70 ${isModalPreviewOpen ? "fixed" : "hidden"
+        }`}
     >
       <button
         onClick={() => closePreviewModal()}
@@ -96,16 +95,18 @@ const PreviewSliderModal = () => {
       </div>
 
       <Swiper ref={sliderRef} slidesPerView={1} spaceBetween={20}>
-        <SwiperSlide>
-          <div className="flex justify-center items-center">
-            <Image
-              src={"/images/products/product-2-bg-1.png"}
-              alt={"product image"}
-              width={450}
-              height={450}
-            />
-          </div>
-        </SwiperSlide>
+        {data?.imgs?.previews?.map((img: string, index: number) => (
+          <SwiperSlide key={index}>
+            <div className="flex justify-center items-center">
+              <Image
+                src={img}
+                alt={"product image"}
+                width={450}
+                height={450}
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

@@ -8,10 +8,16 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const ShopWithoutSidebarPage = () => {
+import { listProducts } from "@/lib/supabase-data";
+
+export const revalidate = 60;
+
+const ShopWithoutSidebarPage = async () => {
+  const products = await listProducts();
+
   return (
     <main>
-      <ShopWithoutSidebar />
+      <ShopWithoutSidebar products={products} />
     </main>
   );
 };
