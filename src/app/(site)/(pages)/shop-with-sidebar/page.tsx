@@ -1,5 +1,6 @@
 import React from "react";
 import ShopWithSidebar from "@/components/ShopWithSidebar";
+import { listProducts } from "@/lib/supabase-data";
 
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -8,10 +9,14 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const ShopWithSidebarPage = () => {
+export const revalidate = 60;
+
+const ShopWithSidebarPage = async () => {
+  const products = await listProducts();
+
   return (
     <main>
-      <ShopWithSidebar />
+      <ShopWithSidebar products={products} />
     </main>
   );
 };

@@ -7,15 +7,23 @@ import BestSeller from "./BestSeller";
 import CounDown from "./Countdown";
 import Testimonials from "./Testimonials";
 import Newsletter from "../Common/Newsletter";
+import { Category } from "@/types/category";
+import { Product } from "@/types/product";
 
-const Home = () => {
+interface HomeProps {
+  categories: Category[];
+  newArrivals: Product[];
+  bestSellers: Product[];
+}
+
+const Home = ({ categories, newArrivals, bestSellers }: HomeProps) => {
   return (
     <main>
       <Hero />
-      <Categories />
-      <NewArrival />
+      <Categories categories={categories} />
+      <NewArrival products={newArrivals} />
       <PromoBanner />
-      <BestSeller />
+      <BestSeller products={bestSellers} />
       <CounDown />
       <Testimonials />
       <Newsletter />
