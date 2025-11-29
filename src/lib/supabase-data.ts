@@ -184,3 +184,28 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
         },
     };
 }
+
+export async function countProducts(options: ListProductsOptions = {}): Promise<number> {
+    let query = supabase.from('products').select('*', { count: 'exact', head: true });
+
+    if (options.brandId) {
+        query = query.eq('brand_id', options.brandId);
+    }
+
+    if (options.categoryId) {
+        query = query.eq('category_id', options.categoryId);
+    }
+
+    if (options.search) {
+        query = query.ilike('name', `%${options.search}%`);
+    }
+
+    const { count, error } = await query;
+
+    if (error) {
+        console.error('Error counting products:', error);
+        return 0;
+    }
+
+    return count || 0;
+}

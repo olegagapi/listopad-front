@@ -15,6 +15,20 @@ interface ShopWithoutSidebarProps {
 const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
   const [productStyle, setProductStyle] = useState("grid");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
+
+  const totalProducts = products.length;
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const nextPage = () => setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
+  const prevPage = () => setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+
   const options = [
     { label: "Latest Products", value: "0" },
     { label: "Best Selling", value: "1" },
@@ -39,7 +53,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                     <CustomSelect options={options} />
 
                     <p>
-                      Showing <span className="text-dark">9 of 50</span>{" "}
+                      Showing <span className="text-dark">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} of {totalProducts}</span>{" "}
                       Products
                     </p>
                   </div>
@@ -130,7 +144,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                   : "flex flex-col gap-7.5"
                   }`}
               >
-                {products.map((item, key) =>
+                {currentProducts.map((item, key) =>
                   productStyle === "grid" ? (
                     <SingleGridItem item={item} key={key} />
                   ) : (
@@ -146,11 +160,11 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                   <ul className="flex items-center">
                     <li>
                       <button
-                        id="paginationLeft"
+                        onClick={prevPage}
+                        disabled={currentPage === 1}
                         aria-label="button for pagination left"
                         type="button"
-                        disabled
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px disabled:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-blue hover:text-white disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
@@ -168,75 +182,27 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                       </button>
                     </li>
 
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] bg-blue text-white hover:text-white hover:bg-blue"
-                      >
-                        1
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                      >
-                        2
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                      >
-                        3
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                      >
-                        4
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                      >
-                        5
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                      >
-                        ...
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        className="flex py-1.5 px-3.5 duration-200 rounded-[3px] hover:text-white hover:bg-blue"
-                      >
-                        10
-                      </a>
-                    </li>
+                    {Array.from({ length: totalPages }, (_, i) => (
+                      <li key={i}>
+                        <button
+                          onClick={() => paginate(i + 1)}
+                          className={`flex py-1.5 px-3.5 duration-200 rounded-[3px] ${currentPage === i + 1
+                              ? "bg-blue text-white"
+                              : "hover:text-white hover:bg-blue"
+                            }`}
+                        >
+                          {i + 1}
+                        </button>
+                      </li>
+                    ))}
 
                     <li>
                       <button
-                        id="paginationLeft"
-                        aria-label="button for pagination left"
+                        onClick={nextPage}
+                        disabled={currentPage === totalPages}
+                        aria-label="button for pagination right"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-white hover:bg-blue disabled:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-white hover:bg-blue disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
