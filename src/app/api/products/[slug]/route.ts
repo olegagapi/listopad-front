@@ -1,4 +1,4 @@
-import { getProductBySlug } from "@/lib/airtable";
+import { getProductBySlug } from "@/lib/mock-data";
 import { NextResponse } from "next/server";
 
 type RouteContext = {

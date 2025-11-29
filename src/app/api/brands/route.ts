@@ -1,4 +1,4 @@
-import { listBrands } from "@/lib/airtable";
+import { listBrands } from "@/lib/mock-data";
 import { NextResponse } from "next/server";
 
 export async function GET() {
