@@ -5,8 +5,9 @@ import CustomSelect from "./CustomSelect";
 import { menuData } from "./menuData";
 import Dropdown from "./Dropdown";
 import Image from "next/image";
+import { Category } from "@/types/category";
 
-const Header = () => {
+const Header = ({ categories }: { categories: Category[] }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
@@ -26,10 +27,10 @@ const Header = () => {
 
   const options = [
     { label: "All Categories", value: "0" },
-    { label: "Cat1", value: "1" },
-    { label: "Cat2", value: "2" },
-    { label: "Cat3", value: "3" },
-    { label: "Cat4", value: "4" },
+    ...(categories || []).map((category) => ({
+      label: category.name || category.title || "Unknown",
+      value: category.id.toString(),
+    })),
   ];
 
   return (

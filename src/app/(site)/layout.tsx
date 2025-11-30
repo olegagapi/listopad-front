@@ -13,6 +13,7 @@ import PreviewSliderModal from "@/components/Common/PreviewSlider";
 
 import ScrollToTop from "@/components/Common/ScrollToTop";
 import PreLoader from "@/components/Common/PreLoader";
+import { Category } from "@/types/category";
 
 export default function RootLayout({
   children,
@@ -20,9 +21,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [loading, setLoading] = useState<boolean>(true);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    const init = async () => {
+      try {
+        const res = await fetch("/api/categories");
+        const data = await res.json();
+        if (data.categories) {
+          const topLevel = data.categories.filter((c: Category) => !c.parentId);
+          setCategories(topLevel);
+        }
+      } catch (error) {
+        console.error("Failed to fetch categories", error);
+      } finally {
+        setTimeout(() => setLoading(false), 1000);
+      }
+    };
+    init();
   }, []);
 
   return (
@@ -35,7 +51,7 @@ export default function RootLayout({
             <ReduxProvider>
               <ModalProvider>
                 <PreviewSliderProvider>
-                  <Header />
+                  <Header categories={categories} />
                   {children}
 
                   <QuickViewModal />
