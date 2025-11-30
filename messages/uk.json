@@ -1,0 +1,147 @@
+{
+    "Common": {
+        "title": "Listopad"
+    },
+    "Header": {
+        "searchPlaceholder": "Я шукаю...",
+        "support": "ЦІЛОДОБОВА ПІДТРИМКА",
+        "recentlyViewed": "Переглянуті",
+        "wishlist": "Список бажань",
+        "allCategories": "Всі категорії",
+        "unknown": "Невідомо",
+        "menu": {
+            "popular": "Популярне",
+            "shop": "Магазин",
+            "contact": "Контакти",
+            "pages": "Сторінки",
+            "blogs": "Блог",
+            "shopWithSidebar": "Магазин з сайдбаром",
+            "shopWithoutSidebar": "Магазин без сайдбару",
+            "checkout": "Оформлення",
+            "cart": "Кошик",
+            "signin": "Вхід",
+            "signup": "Реєстрація",
+            "myAccount": "Мій акаунт",
+            "error": "Помилка",
+            "mailSuccess": "Лист надіслано",
+            "blogGridWithSidebar": "Блог сітка з сайдбаром",
+            "blogGrid": "Блог сітка",
+            "blogDetailsWithSidebar": "Деталі блогу з сайдбаром",
+            "blogDetails": "Деталі блогу"
+        }
+    },
+    "Footer": {
+        "helpSupport": "Допомога та підтримка",
+        "address": "685 Market Street,Las Vegas, LA 95820,United States.",
+        "account": "Акаунт",
+        "myAccount": "Мій акаунт",
+        "loginRegister": "Вхід / Реєстрація",
+        "cart": "Кошик",
+        "wishlist": "Список бажань",
+        "shop": "Магазин",
+        "quickLink": "Швидкі посилання",
+        "privacyPolicy": "Політика конфіденційності",
+        "refundPolicy": "Політика повернення",
+        "termsOfUse": "Умови використання",
+        "faqs": "FAQ",
+        "contact": "Контакти",
+        "downloadApp": "Завантажити додаток",
+        "saveWithApp": "Знижка $3 з додатком для нових користувачів",
+        "downloadOn": "Завантажити в",
+        "appStore": "App Store",
+        "getInOn": "Завантажити в",
+        "googlePlay": "Google Play",
+        "rightsReserved": "Всі права захищені PimjoLabs.",
+        "weAccept": "Ми приймаємо:"
+    },
+    "Auth": {
+        "signinTitle": "Увійдіть до свого акаунту",
+        "signinDetail": "Введіть свої дані нижче",
+        "email": "Email",
+        "emailPlaceholder": "Введіть ваш email",
+        "password": "Пароль",
+        "passwordPlaceholder": "Введіть ваш пароль",
+        "signinButton": "Увійти",
+        "forgotPassword": "Забули пароль?",
+        "or": "Або",
+        "signinGoogle": "Увійти через Google",
+        "signupGithub": "Зареєструватися через Github",
+        "noAccount": "Немає акаунту?",
+        "signupNow": "Зареєструватися зараз!"
+    },
+    "Shop": {
+        "exploreProducts": "Всі товари",
+        "filters": "Фільтри:",
+        "cleanAll": "Очистити все",
+        "showing": "Показано",
+        "of": "з",
+        "products": "товарів"
+    },
+    "Metadata": {
+        "shopTitle": "Магазин | Listopad",
+        "shopDescription": "Це сторінка магазину для Listopad",
+        "signinTitle": "Вхід | Listopad",
+        "signinDescription": "Це сторінка входу для Listopad",
+        "homeTitle": "NextCommerce | Nextjs E-commerce template",
+        "homeDescription": "Це головна сторінка для NextCommerce Template"
+    },
+    "Home": {
+        "Hero": {
+            "limitedOffer": "обмежена пропозиція"
+        },
+        "Categories": {
+            "subtitle": "Категорії",
+            "title": "Перегляд за категоріями"
+        },
+        "NewArrival": {
+            "subtitle": "Цього тижня",
+            "title": "Нові надходження",
+            "viewAll": "Дивитися всі"
+        },
+        "Promo": {
+            "iphoneTitle": "Apple iPhone 14 Plus",
+            "iphoneDiscount": "ЗНИЖКА ДО 30%",
+            "iphoneDesc": "iPhone 14 має той самий надшвидкий чіп, що й iPhone 13 Pro, A15 Bionic, з 5-ядерним графічним процесором, забезпечує роботу всіх новітніх функцій.",
+            "buyNow": "Купити зараз",
+            "treadmillTitle": "Складна моторизована бігова доріжка",
+            "treadmillSubtitle": "Тренування вдома",
+            "treadmillDiscount": "Знижка 20%",
+            "grabNow": "Хапай зараз",
+            "watchTitle": "Apple Watch Ultra",
+            "watchDiscountPrefix": "До",
+            "watchDiscountSuffix": "знижки",
+            "watchDesc": "Корпус з аерокосмічного титану вражає ідеальним балансом усього."
+        },
+        "BestSeller": {
+            "subtitle": "Цього місяця",
+            "title": "Хіти продажу",
+            "viewAll": "Дивитися всі"
+        },
+        "Countdown": {
+            "subtitle": "Не пропустіть!!",
+            "title": "Покращте свій музичний досвід",
+            "desc": "Havit H206d - це дротові навушники для ПК.",
+            "days": "Днів",
+            "hours": "Годин",
+            "minutes": "Хвилин",
+            "seconds": "Секунд",
+            "checkItOut": "Перевірте це!"
+        },
+        "Testimonials": {
+            "subtitle": "Відгуки",
+            "title": "Відгуки користувачів"
+        }
+    },
+    "Newsletter": {
+        "title": "Не пропустіть останні тренди та пропозиції",
+        "desc": "Зареєструйтеся, щоб отримувати новини про останні пропозиції та коди знижок",
+        "placeholder": "Введіть ваш email",
+        "subscribe": "Підписатися"
+    },
+    "Breadcrumb": {
+        "home": "Головна /"
+    },
+    "ProductItem": {
+        "viewOnSeller": "Переглянути на сайті продавця"
+    }
+}

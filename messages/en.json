@@ -1,0 +1,147 @@
+{
+    "Common": {
+        "title": "Listopad"
+    },
+    "Header": {
+        "searchPlaceholder": "I am shopping for...",
+        "support": "24/7 SUPPORT",
+        "recentlyViewed": "Recently Viewed",
+        "wishlist": "Wishlist",
+        "allCategories": "All Categories",
+        "unknown": "Unknown",
+        "menu": {
+            "popular": "Popular",
+            "shop": "Shop",
+            "contact": "Contact",
+            "pages": "Pages",
+            "blogs": "Blogs",
+            "shopWithSidebar": "Shop With Sidebar",
+            "shopWithoutSidebar": "Shop Without Sidebar",
+            "checkout": "Checkout",
+            "cart": "Cart",
+            "signin": "Sign in",
+            "signup": "Sign up",
+            "myAccount": "My Account",
+            "error": "Error",
+            "mailSuccess": "Mail Success",
+            "blogGridWithSidebar": "Blog Grid with sidebar",
+            "blogGrid": "Blog Grid",
+            "blogDetailsWithSidebar": "Blog details with sidebar",
+            "blogDetails": "Blog details"
+        }
+    },
+    "Footer": {
+        "helpSupport": "Help & Support",
+        "address": "685 Market Street,Las Vegas, LA 95820,United States.",
+        "account": "Account",
+        "myAccount": "My Account",
+        "loginRegister": "Login / Register",
+        "cart": "Cart",
+        "wishlist": "Wishlist",
+        "shop": "Shop",
+        "quickLink": "Quick Link",
+        "privacyPolicy": "Privacy Policy",
+        "refundPolicy": "Refund Policy",
+        "termsOfUse": "Terms of Use",
+        "faqs": "FAQ’s",
+        "contact": "Contact",
+        "downloadApp": "Download App",
+        "saveWithApp": "Save $3 With App & New User only",
+        "downloadOn": "Download on the",
+        "appStore": "App Store",
+        "getInOn": "Get in On",
+        "googlePlay": "Google Play",
+        "rightsReserved": "All rights reserved by PimjoLabs.",
+        "weAccept": "We Accept:"
+    },
+    "Auth": {
+        "signinTitle": "Sign In to Your Account",
+        "signinDetail": "Enter your detail below",
+        "email": "Email",
+        "emailPlaceholder": "Enter your email",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "signinButton": "Sign in to account",
+        "forgotPassword": "Forget your password?",
+        "or": "Or",
+        "signinGoogle": "Sign In with Google",
+        "signupGithub": "Sign Up with Github",
+        "noAccount": "Don't have an account?",
+        "signupNow": "Sign Up Now!"
+    },
+    "Shop": {
+        "exploreProducts": "Explore All Products",
+        "filters": "Filters:",
+        "cleanAll": "Clean All",
+        "showing": "Showing",
+        "of": "of",
+        "products": "Products"
+    },
+    "Metadata": {
+        "shopTitle": "Shop Page | Listopad",
+        "shopDescription": "This is Shop Page for Listopad",
+        "signinTitle": "Signin Page | Listopad",
+        "signinDescription": "This is Signin Page for Listopad",
+        "homeTitle": "NextCommerce | Nextjs E-commerce template",
+        "homeDescription": "This is Home for NextCommerce Template"
+    },
+    "Home": {
+        "Hero": {
+            "limitedOffer": "limited time offer"
+        },
+        "Categories": {
+            "subtitle": "Categories",
+            "title": "Browse by Category"
+        },
+        "NewArrival": {
+            "subtitle": "This Week’s",
+            "title": "New Arrivals",
+            "viewAll": "View All"
+        },
+        "Promo": {
+            "iphoneTitle": "Apple iPhone 14 Plus",
+            "iphoneDiscount": "UP TO 30% OFF",
+            "iphoneDesc": "iPhone 14 has the same superspeedy chip that’s in iPhone 13 Pro, A15 Bionic, with a 5‑core GPU, powers all the latest features.",
+            "buyNow": "Buy Now",
+            "treadmillTitle": "Foldable Motorised Treadmill",
+            "treadmillSubtitle": "Workout At Home",
+            "treadmillDiscount": "Flat 20% off",
+            "grabNow": "Grab Now",
+            "watchTitle": "Apple Watch Ultra",
+            "watchDiscountPrefix": "Up to",
+            "watchDiscountSuffix": "off",
+            "watchDesc": "The aerospace-grade titanium case strikes the perfect balance of everything."
+        },
+        "BestSeller": {
+            "subtitle": "This Month",
+            "title": "Best Sellers",
+            "viewAll": "View All"
+        },
+        "Countdown": {
+            "subtitle": "Don’t Miss!!",
+            "title": "Enhance Your Music Experience",
+            "desc": "The Havit H206d is a wired PC headphone.",
+            "days": "Days",
+            "hours": "Hours",
+            "minutes": "Minutes",
+            "seconds": "Seconds",
+            "checkItOut": "Check it Out!"
+        },
+        "Testimonials": {
+            "subtitle": "Testimonials",
+            "title": "User Feedbacks"
+        }
+    },
+    "Newsletter": {
+        "title": "Don't Miss Out Latest Trends & Offers",
+        "desc": "Register to receive news about the latest offers & discount codes",
+        "placeholder": "Enter your email",
+        "subscribe": "Subscribe"
+    },
+    "Breadcrumb": {
+        "home": "Home /"
+    },
+    "ProductItem": {
+        "viewOnSeller": "View on seller website"
+    }
+}

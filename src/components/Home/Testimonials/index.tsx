@@ -9,7 +9,12 @@ import "swiper/css/navigation";
 import "swiper/css";
 import SingleItem from "./SingleItem";
 
+import { useTranslations } from "next-intl";
+
+// ... imports
+
 const Testimonials = () => {
+  const t = useTranslations("Home.Testimonials");
   const sliderRef = useRef(null);
 
   const handlePrev = useCallback(() => {
@@ -37,10 +42,10 @@ const Testimonials = () => {
                     width={17}
                     height={17}
                   />
-                  Testimonials
+                  {t("subtitle")}
                 </span>
                 <h2 className="font-semibold text-xl xl:text-heading-5 text-dark">
-                  User Feedbacks
+                  {t("title")}
                 </h2>
               </div>
 

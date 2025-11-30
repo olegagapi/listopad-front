@@ -2,11 +2,17 @@ import Home from "@/components/Home";
 import { Metadata } from "next";
 import { listCategories, listProducts } from "@/lib/supabase-data";
 
-export const metadata: Metadata = {
-  title: "NextCommerce | Nextjs E-commerce template",
-  description: "This is Home for NextCommerce Template",
-  // other metadata
-};
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+
+  return {
+    title: t("homeTitle"),
+    description: t("homeDescription"),
+  };
+}
 
 export const revalidate = 60; // Revalidate every 60 seconds
 

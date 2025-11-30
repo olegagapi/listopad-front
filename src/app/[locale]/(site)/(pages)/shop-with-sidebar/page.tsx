@@ -2,12 +2,17 @@ import React from "react";
 import ShopWithSidebar from "@/components/ShopWithSidebar";
 import { listProducts, listCategories, getColors, getGenders } from "@/lib/supabase-data";
 
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Shop Page | NextCommerce Nextjs E-commerce template",
-  description: "This is Shop Page for NextCommerce Template",
-  // other metadata
-};
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+
+  return {
+    title: t("shopTitle"),
+    description: t("shopDescription"),
+  };
+}
 
 export const revalidate = 60;
 

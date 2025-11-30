@@ -11,6 +11,7 @@ import SingleGridItem from "../Shop/SingleGridItem";
 import SingleListItem from "../Shop/SingleListItem";
 import { Product } from "@/types/product";
 import { Category } from "@/types/category";
+import { useTranslations } from "next-intl";
 
 interface ShopWithSidebarProps {
   products: Product[];
@@ -20,6 +21,7 @@ interface ShopWithSidebarProps {
 }
 
 const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSidebarProps) => {
+  const t = useTranslations("Shop");
   const [productStyle, setProductStyle] = useState("grid");
   const [productSidebar, setProductSidebar] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
@@ -75,7 +77,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
   return (
     <>
       <Breadcrumb
-        title={"Explore All Products"}
+        title={t("exploreProducts")}
         pages={["shop", "/", "shop with sidebar"]}
       />
       <section className="overflow-hidden relative pb-20 pt-5 lg:pt-20 xl:pt-28 bg-[#f3f4f6]">
@@ -124,8 +126,8 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                   {/* <!-- filter box --> */}
                   <div className="bg-white shadow-1 rounded-lg py-4 px-5">
                     <div className="flex items-center justify-between">
-                      <p>Filters:</p>
-                      <button className="text-blue">Clean All</button>
+                      <p>{t("filters")}</p>
+                      <button className="text-blue">{t("cleanAll")}</button>
                     </div>
                   </div>
 
@@ -157,8 +159,8 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                     <CustomSelect options={options} />
 
                     <p>
-                      Showing <span className="text-dark">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} of {totalProducts}</span>{" "}
-                      Products
+                      {t("showing")} <span className="text-dark">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
+                      {t("products")}
                     </p>
                   </div>
 

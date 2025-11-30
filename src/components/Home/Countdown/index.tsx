@@ -2,7 +2,12 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
+import { useTranslations } from "next-intl";
+
+// ... imports
+
 const CounDown = () => {
+  const t = useTranslations("Home.Countdown");
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -32,14 +37,14 @@ const CounDown = () => {
         <div className="relative overflow-hidden z-1 rounded-lg bg-[#D0E9F3] p-4 sm:p-7.5 lg:p-10 xl:p-15">
           <div className="max-w-[422px] w-full">
             <span className="block font-medium text-custom-1 text-blue mb-2.5">
-              Don’t Miss!!
+              {t("subtitle")}
             </span>
 
             <h2 className="font-bold text-dark text-xl lg:text-heading-4 xl:text-heading-3 mb-3">
-              Enhance Your Music Experience
+              {t("title")}
             </h2>
 
-            <p>The Havit H206d is a wired PC headphone.</p>
+            <p>{t("desc")}</p>
 
             {/* <!-- Countdown timer --> */}
             <div
@@ -57,7 +62,7 @@ const CounDown = () => {
                   {days < 10 ? "0" + days : days}{" "}
                 </span>
                 <span className="block text-custom-sm text-dark text-center">
-                  Days
+                  {t("days")}
                 </span>
               </div>
 
@@ -71,7 +76,7 @@ const CounDown = () => {
                   {hours < 10 ? "0" + hours : hours}{" "}
                 </span>
                 <span className="block text-custom-sm text-dark text-center">
-                  Hours
+                  {t("hours")}
                 </span>
               </div>
 
@@ -84,7 +89,7 @@ const CounDown = () => {
                   {minutes < 10 ? "0" + minutes : minutes}{" "}
                 </span>
                 <span className="block text-custom-sm text-dark text-center">
-                  Minutes
+                  {t("minutes")}
                 </span>
               </div>
 
@@ -97,7 +102,7 @@ const CounDown = () => {
                   {seconds < 10 ? "0" + seconds : seconds}{" "}
                 </span>
                 <span className="block text-custom-sm text-dark text-center">
-                  Seconds
+                  {t("seconds")}
                 </span>
               </div>
             </div>
@@ -107,7 +112,7 @@ const CounDown = () => {
               href="#"
               className="inline-flex font-medium text-custom-sm text-white bg-blue py-3 px-9.5 rounded-md ease-out duration-200 hover:bg-blue-dark mt-7.5"
             >
-              Check it Out!
+              {t("checkItOut")}
             </a>
           </div>
 

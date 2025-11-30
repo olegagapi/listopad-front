@@ -1,13 +1,16 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import CustomSelect from "./CustomSelect";
 import { menuData } from "./menuData";
 import Dropdown from "./Dropdown";
 import Image from "next/image";
 import { Category } from "@/types/category";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = ({ categories }: { categories: Category[] }) => {
+  const t = useTranslations("Header");
   const [searchQuery, setSearchQuery] = useState("");
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
@@ -26,9 +29,9 @@ const Header = ({ categories }: { categories: Category[] }) => {
   });
 
   const options = [
-    { label: "All Categories", value: "0" },
+    { label: t("allCategories"), value: "0" },
     ...(categories || []).map((category) => ({
-      label: category.name || category.title || "Unknown",
+      label: category.name || category.title || t("unknown"),
       value: category.id.toString(),
     })),
   ];
@@ -64,7 +67,7 @@ const Header = ({ categories }: { categories: Category[] }) => {
                       type="search"
                       name="search"
                       id="search"
-                      placeholder="I am shopping for..."
+                      placeholder={t("searchPlaceholder")}
                       autoComplete="off"
                       className="custom-search w-full rounded-r-[5px] bg-gray-1 !border-l-0 border border-gray-3 py-2.5 pl-4 pr-10 outline-none ease-in duration-200"
                     />
@@ -96,6 +99,7 @@ const Header = ({ categories }: { categories: Category[] }) => {
 
           {/* <!-- header top right --> */}
           <div className="flex w-full lg:w-auto items-center gap-7.5">
+            <LanguageSwitcher />
             <div className="hidden xl:flex items-center gap-3.5">
               <svg
                 width="24"
@@ -116,7 +120,7 @@ const Header = ({ categories }: { categories: Category[] }) => {
                 />
               </svg>
               <div>
-                <span className="block text-2xs text-dark-4 uppercase">24/7 SUPPORT</span>
+                <span className="block text-2xs text-dark-4 uppercase">{t("support")}</span>
                 <p className="font-medium text-custom-sm text-dark">(+965) 7492-3477</p>
               </div>
             </div>
@@ -217,7 +221,7 @@ const Header = ({ categories }: { categories: Category[] }) => {
                           className={`hover:text-blue text-custom-sm font-medium text-dark flex ${stickyMenu ? "xl:py-4" : "xl:py-6"
                             }`}
                         >
-                          {menuItem.title}
+                          {t(menuItem.title)}
                         </Link>
                       </li>
                     ),
@@ -253,7 +257,7 @@ const Header = ({ categories }: { categories: Category[] }) => {
                         fill=""
                       />
                     </svg>
-                    Recently Viewed
+                    {t("recentlyViewed")}
                   </a>
                 </li>
 
@@ -275,7 +279,7 @@ const Header = ({ categories }: { categories: Category[] }) => {
                         fill=""
                       />
                     </svg>
-                    Wishlist
+                    {t("wishlist")}
                   </Link>
                 </li>
               </ul>
