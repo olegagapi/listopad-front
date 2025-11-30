@@ -93,36 +93,4 @@ export const menuData: Menu[] = [
       },
     ],
   },
-  {
-    id: 7,
-    title: "menu.blogs",
-    newTab: false,
-    path: "/",
-    submenu: [
-      {
-        id: 71,
-        title: "menu.blogGridWithSidebar",
-        newTab: false,
-        path: "/blogs/blog-grid-with-sidebar",
-      },
-      {
-        id: 72,
-        title: "menu.blogGrid",
-        newTab: false,
-        path: "/blogs/blog-grid",
-      },
-      {
-        id: 73,
-        title: "menu.blogDetailsWithSidebar",
-        newTab: false,
-        path: "/blogs/blog-details-with-sidebar",
-      },
-      {
-        id: 74,
-        title: "menu.blogDetails",
-        newTab: false,
-        path: "/blogs/blog-details",
-      },
-    ],
-  },
 ];
