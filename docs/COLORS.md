@@ -139,9 +139,10 @@ Always run `pnpm build` after color changes to catch CSS errors.
 ### 3. Pure White vs Off-White
 
 Not everything should be off-white. Keep pure `bg-white` for:
-- Small icon buttons (need contrast against cards)
 - Slider/range thumbs (functional elements)
 - Checkbox unchecked states
+
+Use `bg-lavender` for small icon buttons (Quick View, Wishlist icons) - they stand out better against cards.
 
 Use `bg-champagne-50` for:
 - Cards and panels
@@ -174,8 +175,7 @@ For internal actions (View All, Add to Wishlist), use lavender buttons to distin
 
 **Design rationale:**
 - **Green (spring)**: External actions (View on seller website, Buy)
-- **Lavender**: Internal actions (Add to Wishlist, View All navigation)
-- **White**: Small icon buttons (need contrast against cards)
+- **Lavender**: Internal actions (Add to Wishlist, View All, icon buttons)
 
 ### 5. SVG Icon Colors
 

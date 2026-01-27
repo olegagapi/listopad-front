@@ -52,7 +52,7 @@ const SingleListItem = ({ item }: { item: Product }) => {
               }}
               aria-label="button for quick view"
               data-testid="quick-view-btn"
-              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-darkslate"
+              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
             >
               <svg
                 className="fill-current"
@@ -90,7 +90,7 @@ const SingleListItem = ({ item }: { item: Product }) => {
               onClick={() => handleItemToWishList()}
               aria-label="button for favorite select"
               data-testid="wishlist-toggle"
-              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-darkslate"
+              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
             >
               <svg
                 className="fill-current"

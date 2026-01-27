@@ -78,7 +78,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             aria-label="button for quick view"
             id="bestOne"
             data-testid="quick-view-btn"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-white hover:bg-spring"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
           >
             <svg
               className="fill-current"
@@ -109,7 +109,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             rel="noopener noreferrer"
             aria-label="view on seller website"
             id="addCartOne"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-white hover:bg-spring"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
           >
             <svg
               className="fill-current"
@@ -147,7 +147,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             aria-label="button for add to fav"
             id="addFavOne"
             data-testid="wishlist-toggle"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-white hover:bg-spring"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
           >
             <svg
               className="fill-current"
