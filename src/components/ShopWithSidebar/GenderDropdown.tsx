@@ -8,6 +8,7 @@ const GenderItem = ({ category }) => {
       className={`${selected && "text-blue"
         } group flex items-center justify-between ease-out duration-200 hover:text-blue `}
       onClick={() => setSelected(!selected)}
+      data-testid="gender-option"
     >
       <div className="flex items-center gap-2">
         <div
@@ -42,7 +43,7 @@ const GenderDropdown = ({ genders }: { genders: string[] }) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
   return (
-    <div className="bg-white shadow-1 rounded-lg">
+    <div className="bg-white shadow-1 rounded-lg" data-testid="gender-filter">
       <div
         onClick={() => setToggleDropdown(!toggleDropdown)}
         className={`cursor-pointer flex items-center justify-between py-3 pl-6 pr-5.5 ${toggleDropdown && "shadow-filter"

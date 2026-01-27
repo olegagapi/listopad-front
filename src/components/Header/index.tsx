@@ -74,6 +74,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                       id="search"
                       placeholder={t("searchPlaceholder")}
                       autoComplete="off"
+                      data-testid="search-input"
                       className="custom-search w-full rounded-r-[5px] bg-gray-1 !border-l-0 border border-gray-3 py-2.5 pl-4 pr-10 outline-none ease-in duration-200"
                     />
 
@@ -275,6 +276,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                 <li className="py-4">
                   <Link
                     href="/wishlist"
+                    data-testid="wishlist-link"
                     className="flex items-center gap-1.5 font-medium text-custom-sm text-dark hover:text-blue"
                   >
                     <svg

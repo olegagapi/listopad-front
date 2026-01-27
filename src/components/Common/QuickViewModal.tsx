@@ -60,12 +60,14 @@ const QuickViewModal = () => {
     <div
       className={`${isModalOpen ? "z-99999" : "hidden"
         } fixed top-0 left-0 overflow-y-auto no-scrollbar w-full h-screen sm:py-20 xl:py-25 2xl:py-[230px] bg-dark/70 sm:px-8 px-4 py-5`}
+      data-testid="quick-view-modal"
     >
       <div className="flex items-center justify-center ">
         <div className="w-full max-w-[1100px] rounded-xl shadow-3 bg-white p-7.5 relative modal-content">
           <button
             onClick={() => closeModal()}
             aria-label="button for close modal"
+            data-testid="modal-close"
             className="absolute top-0 right-0 sm:top-6 sm:right-6 flex items-center justify-center w-10 h-10 rounded-full ease-in duration-150 bg-meta text-body hover:text-dark"
           >
             <svg
@@ -383,6 +385,7 @@ const QuickViewModal = () => {
                 <button
                   disabled={quantity === 0 && true}
                   onClick={() => handleAddToCart()}
+                  data-testid="modal-external-link"
                   className={`inline-flex font-medium text-white bg-blue py-3 px-7 rounded-md ease-out duration-200 hover:bg-blue-dark
                   `}
                 >

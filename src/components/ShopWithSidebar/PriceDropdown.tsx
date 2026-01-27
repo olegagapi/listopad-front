@@ -11,7 +11,7 @@ const PriceDropdown = () => {
   });
 
   return (
-    <div className="bg-white shadow-1 rounded-lg">
+    <div className="bg-white shadow-1 rounded-lg" data-testid="price-filter">
       <div
         onClick={() => setToggleDropdown(!toggleDropdown)}
         className="cursor-pointer flex items-center justify-between py-3 pl-6 pr-5.5"
@@ -64,7 +64,7 @@ const PriceDropdown = () => {
                 <span className="block border-r border-gray-3/80 px-2.5 py-1.5">
                   $
                 </span>
-                <span id="minAmount" className="block px-3 py-1.5">
+                <span id="minAmount" className="block px-3 py-1.5" data-testid="price-min">
                   {selectedPrice.from}
                 </span>
               </div>
@@ -73,7 +73,7 @@ const PriceDropdown = () => {
                 <span className="block border-r border-gray-3/80 px-2.5 py-1.5">
                   $
                 </span>
-                <span id="maxAmount" className="block px-3 py-1.5">
+                <span id="maxAmount" className="block px-3 py-1.5" data-testid="price-max">
                   {selectedPrice.to}
                 </span>
               </div>

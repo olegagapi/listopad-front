@@ -40,7 +40,7 @@ const ProductItem = ({ item }: { item: Product }) => {
   };
 
   return (
-    <div className="group">
+    <div className="group" data-testid="product-item">
       <div className="relative overflow-hidden flex items-center justify-center rounded-lg bg-[#F6F7FB] min-h-[270px] mb-4">
         {/* ... image and quick view button */}
         <Image src={item.imgs.previews[0]} alt="" width={250} height={250} />
@@ -53,6 +53,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             }}
             id="newOne"
             aria-label="button for quick view"
+            data-testid="quick-view-btn"
             className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-blue"
           >
             <svg
@@ -92,6 +93,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             onClick={() => handleItemToWishList()}
             aria-label="button for favorite select"
             id="favOne"
+            data-testid="wishlist-toggle"
             className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-blue"
           >
             <svg
@@ -129,10 +131,12 @@ const ProductItem = ({ item }: { item: Product }) => {
         className="font-medium text-dark ease-out duration-200 hover:text-blue mb-1.5"
         onClick={() => handleProductDetails()}
       >
-        <Link href="/shop-details"> {item.title} </Link>
+        <Link href="/shop-details" data-testid="product-link">
+          <span data-testid="product-title">{item.title}</span>
+        </Link>
       </h3>
 
-      <span className="flex items-center gap-2 font-medium text-lg">
+      <span className="flex items-center gap-2 font-medium text-lg" data-testid="product-price">
         <span className="text-dark">${item.discountedPrice}</span>
         <span className="text-dark-4 line-through">${item.price}</span>
       </span>

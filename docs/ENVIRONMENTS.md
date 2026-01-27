@@ -44,17 +44,6 @@ This project uses separate Supabase projects for development and production to p
    pnpm dev
    ```
 
-## Creating a Dev Supabase Project
-
-If you don't have a dev Supabase project yet:
-
-1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
-2. Click **New project**
-3. Name it `listopad-dev` (or similar - must contain "dev" for seed script safety)
-4. Choose the same region as production for consistency
-5. Wait for the project to be created
-6. Run the schema SQL from `docs/DATABASE-SEEDING.md` in the SQL Editor
-
 ## Environment Variables
 
 ### Required Variables

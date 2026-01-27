@@ -91,6 +91,9 @@ pnpm lint       # Run ESLint
 
 See [docs/DATABASE-SEEDING.md](docs/DATABASE-SEEDING.md) for table creation and sample data SQL.
 
+## PLANNER AGENT INSTRUCTIONS
+For planning, follow the instructions in [docs/PLANNER.md](docs/PLANNER.md).
+
 ## Testing
 
 See [docs/TESTING.md](docs/TESTING.md) for testing setup and conventions.

@@ -121,7 +121,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                 {/* <!-- product content --> */}
                 <div className="max-w-[539px] w-full">
                   <div className="flex items-center justify-between mb-3">
-                    <h2 className="font-semibold text-xl sm:text-2xl xl:text-custom-3 text-dark">
+                    <h2 className="font-semibold text-xl sm:text-2xl xl:text-custom-3 text-dark" data-testid="product-title">
                       {product.title}
                     </h2>
                   </div>
@@ -156,7 +156,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                     </div>
                   </div>
 
-                  <h3 className="font-medium text-custom-1 mb-4.5">
+                  <h3 className="font-medium text-custom-1 mb-4.5" data-testid="product-price">
                     <span className="text-sm sm:text-base text-dark">
                       {product.price} {product.currency}
                     </span>
@@ -168,7 +168,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   </h3>
 
                   {product.shortDescription && (
-                    <p className="text-dark-4 mb-6">
+                    <p className="text-dark-4 mb-6" data-testid="product-description">
                       {product.shortDescription}
                     </p>
                   )}
@@ -220,6 +220,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                         href={product.externalUrl || "#"}
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-testid="external-link"
                         className="inline-flex font-medium text-white bg-blue py-3 px-7 rounded-md ease-out duration-200 hover:bg-blue-dark"
                       >
                         Buy on seller website

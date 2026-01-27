@@ -13,6 +13,7 @@ const CategoryItem = ({ category, level = 0 }: { category: Category & { children
           } group flex items-center justify-between ease-out duration-200 hover:text-blue mb-3`}
         style={{ paddingLeft: `${level * 16}px` }}
         onClick={() => setSelected(!selected)}
+        data-testid="category-option"
       >
         <div className="flex items-center gap-2">
           <div
@@ -87,7 +88,7 @@ const CategoryDropdown = ({ categories }: { categories: Category[] }) => {
   }, [categories]);
 
   return (
-    <div className="bg-white shadow-1 rounded-lg">
+    <div className="bg-white shadow-1 rounded-lg" data-testid="category-filter">
       <div
         onClick={(e) => {
           e.preventDefault();
