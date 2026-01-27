@@ -11,11 +11,11 @@ const SizeDropdown = () => {
           toggleDropdown && "shadow-filter"
         }`}
       >
-        <p className="text-dark">Size</p>
+        <p className="text-onyx">Size</p>
         <button
           onClick={() => setToggleDropdown(!toggleDropdown)}
           aria-label="button for size dropdown"
-          className={`text-dark ease-out duration-200 ${
+          className={`text-onyx ease-out duration-200 ${
             toggleDropdown && "rotate-180"
           }`}
         >
@@ -45,7 +45,7 @@ const SizeDropdown = () => {
       >
         <label
           htmlFor="sizeM"
-          className="cursor-pointer select-none flex items-center rounded-md bg-blue text-white hover:bg-blue hover:text-white"
+          className="cursor-pointer select-none flex items-center rounded-md bg-spring text-onyx hover:bg-spring hover:text-onyx"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeM" className="sr-only" />
@@ -57,7 +57,7 @@ const SizeDropdown = () => {
 
         <label
           htmlFor="sizeL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white"
+          className="cursor-pointer select-none flex items-center rounded-md hover:bg-spring hover:text-onyx"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeL" className="sr-only" />
@@ -69,7 +69,7 @@ const SizeDropdown = () => {
 
         <label
           htmlFor="sizeXL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white"
+          className="cursor-pointer select-none flex items-center rounded-md hover:bg-spring hover:text-onyx"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeXL" className="sr-only" />
@@ -81,7 +81,7 @@ const SizeDropdown = () => {
 
         <label
           htmlFor="sizeXXL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-blue hover:text-white"
+          className="cursor-pointer select-none flex items-center rounded-md hover:bg-spring hover:text-onyx"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeXXL" className="sr-only" />

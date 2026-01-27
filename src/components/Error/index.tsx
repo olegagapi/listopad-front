@@ -7,7 +7,7 @@ const Error = () => {
   return (
     <>
       <Breadcrumb title={"Error"} pages={["error"]} />
-      <section className="overflow-hidden py-20 bg-gray-2">
+      <section className="overflow-hidden py-20 bg-champagne-200">
         <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
           <div className="bg-white rounded-xl shadow-1 px-4 py-10 sm:py-15 lg:py-20 xl:py-25">
             <div className="text-center">
@@ -19,7 +19,7 @@ const Error = () => {
                 height={190}
               />
 
-              <h2 className="font-medium text-dark text-xl sm:text-2xl mb-3">
+              <h2 className="font-medium text-onyx text-xl sm:text-2xl mb-3">
                 Sorry, the page can’t be found
               </h2>
 
@@ -30,7 +30,7 @@ const Error = () => {
 
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 font-medium text-white bg-blue py-3 px-6 rounded-md ease-out duration-200 hover:bg-blue-dark"
+                className="inline-flex items-center gap-2 font-medium text-onyx bg-spring py-3 px-6 rounded-md ease-out duration-200 hover:bg-spring-dark"
               >
                 <svg
                   className="fill-current"

@@ -61,12 +61,12 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
             <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
               <div className="flex flex-col lg:flex-row gap-7.5 xl:gap-17.5">
                 <div className="lg:max-w-[570px] w-full">
-                  <div className="lg:min-h-[512px] rounded-lg shadow-1 bg-gray-2 p-4 sm:p-7.5 relative flex items-center justify-center">
+                  <div className="lg:min-h-[512px] rounded-lg shadow-1 bg-champagne-200 p-4 sm:p-7.5 relative flex items-center justify-center">
                     <div>
                       <button
                         onClick={handlePreviewSlider}
                         aria-label="button for zoom"
-                        className="gallery__Image w-11 h-11 rounded-[5px] bg-gray-1 shadow-1 flex items-center justify-center ease-out duration-200 text-dark hover:text-blue absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
+                        className="gallery__Image w-11 h-11 rounded-[5px] bg-champagne shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-onyxslate absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
                       >
                         <svg
                           className="fill-current"
@@ -99,8 +99,8 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                       <button
                         onClick={() => setPreviewImg(key)}
                         key={key}
-                        className={`flex items-center justify-center w-15 sm:w-25 h-15 sm:h-25 overflow-hidden rounded-lg bg-gray-2 shadow-1 ease-out duration-200 border-2 hover:border-blue ${key === previewImg
-                          ? "border-blue"
+                        className={`flex items-center justify-center w-15 sm:w-25 h-15 sm:h-25 overflow-hidden rounded-lg bg-champagne-200 shadow-1 ease-out duration-200 border-2 hover:border-spring ${key === previewImg
+                          ? "border-spring"
                           : "border-transparent"
                           }`}
                       >
@@ -118,7 +118,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                 {/* <!-- product content --> */}
                 <div className="max-w-[539px] w-full">
                   <div className="flex items-center justify-between mb-3">
-                    <h2 className="font-semibold text-xl sm:text-2xl xl:text-custom-3 text-dark" data-testid="product-title">
+                    <h2 className="font-semibold text-xl sm:text-2xl xl:text-custom-3 text-onyx" data-testid="product-title">
                       {product.title}
                     </h2>
                   </div>
@@ -154,7 +154,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   </div>
 
                   <h3 className="font-medium text-custom-1 mb-4.5" data-testid="product-price">
-                    <span className="text-sm sm:text-base text-dark">
+                    <span className="text-sm sm:text-base text-onyx">
                       {product.price} {product.currency}
                     </span>
                     {product.discountedPrice && product.discountedPrice < product.price && (
@@ -165,18 +165,18 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   </h3>
 
                   {product.shortDescription && (
-                    <p className="text-dark-4 mb-6" data-testid="product-description">
+                    <p className="text-onyx-4 mb-6" data-testid="product-description">
                       {product.shortDescription}
                     </p>
                   )}
 
                   <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="flex flex-col gap-4.5 border-y border-gray-3 mt-7.5 mb-9 py-9">
+                    <div className="flex flex-col gap-4.5 border-y border-champagne-400 mt-7.5 mb-9 py-9">
                       {/* <!-- Color selector --> */}
                       {product.colors && product.colors.length > 0 && (
                         <div className="flex items-center gap-4">
                           <div className="min-w-[65px]">
-                            <h4 className="font-medium text-dark">Color:</h4>
+                            <h4 className="font-medium text-onyx">Color:</h4>
                           </div>
 
                           <div className="flex items-center gap-2.5">
@@ -218,14 +218,14 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         data-testid="external-link"
-                        className="inline-flex font-medium text-white bg-blue py-3 px-7 rounded-md ease-out duration-200 hover:bg-blue-dark"
+                        className="inline-flex font-medium text-onyx bg-spring py-3 px-7 rounded-md ease-out duration-200 hover:bg-spring-dark"
                       >
                         Buy on seller website
                       </a>
 
                       <a
                         href="#"
-                        className="flex items-center justify-center w-12 h-12 rounded-md border border-gray-3 ease-out duration-200 hover:text-white hover:bg-dark hover:border-transparent"
+                        className="flex items-center justify-center w-12 h-12 rounded-md border border-champagne-400 ease-out duration-200 hover:text-white hover:bg-onyx hover:border-transparent"
                       >
                         <svg
                           className="fill-current"
@@ -250,7 +250,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
             </div>
           </section>
 
-          <section className="overflow-hidden bg-gray-2 py-20">
+          <section className="overflow-hidden bg-champagne-200 py-20">
             <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
               {/* <!--== tab header start ==--> */}
               <div className="flex flex-wrap items-center bg-white rounded-[10px] shadow-1 gap-5 xl:gap-12.5 py-4.5 px-4 sm:px-6">
@@ -258,9 +258,9 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(item.id)}
-                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-blue relative before:h-0.5 before:bg-blue before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
-                      ? "text-blue before:w-full"
-                      : "text-dark before:w-0"
+                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-onyxslate relative before:h-0.5 before:bg-spring before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
+                      ? "text-spring before:w-full"
+                      : "text-onyx before:w-0"
                       }`}
                   >
                     {item.title}
@@ -277,16 +277,16 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                     }`}
                 >
                   <div className="max-w-full w-full">
-                    <h2 className="font-medium text-2xl text-dark mb-7">
+                    <h2 className="font-medium text-2xl text-onyx mb-7">
                       Description
                     </h2>
 
                     {product.description ? (
-                      <p className="text-dark-4 whitespace-pre-line">
+                      <p className="text-onyx-4 whitespace-pre-line">
                         {product.description}
                       </p>
                     ) : (
-                      <p className="text-dark-4">
+                      <p className="text-onyx-4">
                         No description available for this product.
                       </p>
                     )}
@@ -303,23 +303,23 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                 >
                   {/* <!-- Brand --> */}
                   {product.brandName && (
-                    <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
+                    <div className="rounded-md even:bg-champagne flex py-4 px-4 sm:px-5">
                       <div className="max-w-[450px] min-w-[140px] w-full">
-                        <p className="text-sm sm:text-base text-dark">Brand</p>
+                        <p className="text-sm sm:text-base text-onyx">Brand</p>
                       </div>
                       <div className="w-full">
-                        <p className="text-sm sm:text-base text-dark">{product.brandName}</p>
+                        <p className="text-sm sm:text-base text-onyx">{product.brandName}</p>
                       </div>
                     </div>
                   )}
 
                   {/* <!-- Gender --> */}
-                  <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
+                  <div className="rounded-md even:bg-champagne flex py-4 px-4 sm:px-5">
                     <div className="max-w-[450px] min-w-[140px] w-full">
-                      <p className="text-sm sm:text-base text-dark">Gender</p>
+                      <p className="text-sm sm:text-base text-onyx">Gender</p>
                     </div>
                     <div className="w-full">
-                      <p className="text-sm sm:text-base text-dark capitalize">
+                      <p className="text-sm sm:text-base text-onyx capitalize">
                         {product.gender || "Unisex"}
                       </p>
                     </div>
@@ -327,12 +327,12 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
 
                   {/* <!-- Categories --> */}
                   {product.categoryNames && product.categoryNames.length > 0 && (
-                    <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
+                    <div className="rounded-md even:bg-champagne flex py-4 px-4 sm:px-5">
                       <div className="max-w-[450px] min-w-[140px] w-full">
-                        <p className="text-sm sm:text-base text-dark">Category</p>
+                        <p className="text-sm sm:text-base text-onyx">Category</p>
                       </div>
                       <div className="w-full">
-                        <p className="text-sm sm:text-base text-dark">
+                        <p className="text-sm sm:text-base text-onyx">
                           {product.categoryNames.join(", ")}
                         </p>
                       </div>
@@ -341,12 +341,12 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
 
                   {/* <!-- Colors --> */}
                   {product.colors && product.colors.length > 0 && (
-                    <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
+                    <div className="rounded-md even:bg-champagne flex py-4 px-4 sm:px-5">
                       <div className="max-w-[450px] min-w-[140px] w-full">
-                        <p className="text-sm sm:text-base text-dark">Available Colors</p>
+                        <p className="text-sm sm:text-base text-onyx">Available Colors</p>
                       </div>
                       <div className="w-full">
-                        <p className="text-sm sm:text-base text-dark capitalize">
+                        <p className="text-sm sm:text-base text-onyx capitalize">
                           {product.colors.join(", ")}
                         </p>
                       </div>
@@ -355,12 +355,12 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
 
                   {/* <!-- Tags --> */}
                   {product.tags && product.tags.length > 0 && (
-                    <div className="rounded-md even:bg-gray-1 flex py-4 px-4 sm:px-5">
+                    <div className="rounded-md even:bg-champagne flex py-4 px-4 sm:px-5">
                       <div className="max-w-[450px] min-w-[140px] w-full">
-                        <p className="text-sm sm:text-base text-dark">Tags</p>
+                        <p className="text-sm sm:text-base text-onyx">Tags</p>
                       </div>
                       <div className="w-full">
-                        <p className="text-sm sm:text-base text-dark">
+                        <p className="text-sm sm:text-base text-onyx">
                           {product.tags.join(", ")}
                         </p>
                       </div>

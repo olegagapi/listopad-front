@@ -5,14 +5,14 @@ const GenderItem = ({ category }) => {
   const [selected, setSelected] = useState(false);
   return (
     <button
-      className={`${selected && "text-blue"
-        } group flex items-center justify-between ease-out duration-200 hover:text-blue `}
+      className={`${selected && "text-darkslate"
+        } group flex items-center justify-between ease-out duration-200 hover:text-darkslate `}
       onClick={() => setSelected(!selected)}
       data-testid="gender-option"
     >
       <div className="flex items-center gap-2">
         <div
-          className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-blue bg-blue" : "bg-white border-gray-3"
+          className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-spring bg-spring" : "bg-white border-champagne-400"
             }`}
         >
           <svg
@@ -49,11 +49,11 @@ const GenderDropdown = ({ genders }: { genders: string[] }) => {
         className={`cursor-pointer flex items-center justify-between py-3 pl-6 pr-5.5 ${toggleDropdown && "shadow-filter"
           }`}
       >
-        <p className="text-dark">Gender</p>
+        <p className="text-onyx">Gender</p>
         <button
           onClick={() => setToggleDropdown(!toggleDropdown)}
           aria-label="button for gender dropdown"
-          className={`text-dark ease-out duration-200 ${toggleDropdown && "rotate-180"
+          className={`text-onyx ease-out duration-200 ${toggleDropdown && "rotate-180"
             }`}
         >
           <svg

@@ -41,7 +41,7 @@ const ProductItem = ({ item }: { item: Product }) => {
 
   return (
     <div className="group" data-testid="product-item">
-      <div className="relative overflow-hidden flex items-center justify-center rounded-lg bg-[#F6F7FB] min-h-[270px] mb-4">
+      <div className="relative overflow-hidden flex items-center justify-center rounded-lg bg-champagne-200 min-h-[270px] mb-4">
         {/* ... image and quick view button */}
         <Image src={item.imgs.previews[0]} alt="" width={250} height={250} />
 
@@ -54,7 +54,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             id="newOne"
             aria-label="button for quick view"
             data-testid="quick-view-btn"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-blue"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-onyxslate"
           >
             <svg
               className="fill-current"
@@ -84,7 +84,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             href={item.externalUrl || "/shop-details"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex font-medium text-custom-sm py-[7px] px-5 rounded-[5px] bg-blue text-white ease-out duration-200 hover:bg-blue-dark"
+            className="inline-flex font-medium text-custom-sm py-[7px] px-5 rounded-[5px] bg-spring text-onyx ease-out duration-200 hover:bg-spring-dark"
           >
             {t("viewOnSeller")}
           </a>
@@ -94,7 +94,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             aria-label="button for favorite select"
             id="favOne"
             data-testid="wishlist-toggle"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-blue"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-onyxslate"
           >
             <svg
               className="fill-current"
@@ -128,7 +128,7 @@ const ProductItem = ({ item }: { item: Product }) => {
       </div>
 
       <h3
-        className="font-medium text-dark ease-out duration-200 hover:text-blue mb-1.5"
+        className="font-medium text-onyx ease-out duration-200 hover:text-onyxslate mb-1.5"
         onClick={() => handleProductDetails()}
       >
         <Link href="/shop-details" data-testid="product-link">
@@ -137,8 +137,8 @@ const ProductItem = ({ item }: { item: Product }) => {
       </h3>
 
       <span className="flex items-center gap-2 font-medium text-lg" data-testid="product-price">
-        <span className="text-dark">${item.discountedPrice}</span>
-        <span className="text-dark-4 line-through">${item.price}</span>
+        <span className="text-onyx">${item.discountedPrice}</span>
+        <span className="text-onyx-4 line-through">${item.price}</span>
       </span>
     </div>
   );

@@ -9,15 +9,15 @@ const CategoryItem = ({ category, level = 0 }: { category: Category & { children
   return (
     <div className="flex flex-col">
       <button
-        className={`${selected && "text-blue"
-          } group flex items-center justify-between ease-out duration-200 hover:text-blue mb-3`}
+        className={`${selected && "text-darkslate"
+          } group flex items-center justify-between ease-out duration-200 hover:text-darkslate mb-3`}
         style={{ paddingLeft: `${level * 16}px` }}
         onClick={() => setSelected(!selected)}
         data-testid="category-option"
       >
         <div className="flex items-center gap-2">
           <div
-            className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-blue bg-blue" : "bg-white border-gray-3"
+            className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-spring bg-spring" : "bg-white border-champagne-400"
               }`}
           >
             <svg
@@ -42,8 +42,8 @@ const CategoryItem = ({ category, level = 0 }: { category: Category & { children
         </div>
 
         <span
-          className={`${selected ? "text-white bg-blue" : "bg-gray-2"
-            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-white group-hover:bg-blue`}
+          className={`${selected ? "text-onyx bg-spring" : "bg-champagne-200"
+            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-spring`}
         >
           {category.productCount || 0}
         </span>
@@ -97,10 +97,10 @@ const CategoryDropdown = ({ categories }: { categories: Category[] }) => {
         className={`cursor-pointer flex items-center justify-between py-3 pl-6 pr-5.5 ${toggleDropdown && "shadow-filter"
           }`}
       >
-        <p className="text-dark">Category</p>
+        <p className="text-onyx">Category</p>
         <button
           aria-label="button for category dropdown"
-          className={`text-dark ease-out duration-200 ${toggleDropdown && "rotate-180"
+          className={`text-onyx ease-out duration-200 ${toggleDropdown && "rotate-180"
             }`}
         >
           <svg

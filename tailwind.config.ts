@@ -23,77 +23,133 @@ const config: Config = {
       current: "currentColor",
       transparent: "transparent",
       white: "#FFFFFF",
-      body: "#6C6F93",
+
+      // === WARM BACKGROUNDS ===
+      champagne: {
+        DEFAULT: "#FAF8F5",
+        50: "#FDFCFA",
+        100: "#FAF8F5",
+        200: "#F5F0E8",
+        300: "#EBE4D8",
+        400: "#E0D6C5",
+      },
+
+      // === PRIMARY ACCENT (CTAs) ===
+      spring: {
+        DEFAULT: "#31E981",
+        dark: "#28C96E",
+        darker: "#1FAA5A",
+        light: "#5EF09D",
+        lighter: "#A3F7C6",
+        muted: "#E8FCF0",
+      },
+
+      // === SOFT ACCENT ===
+      lavender: {
+        DEFAULT: "#D8E4FF",
+        dark: "#B5C8F5",
+        light: "#E8EEFF",
+        muted: "#F2F5FF",
+      },
+
+      // === PRIMARY TEXT ===
+      onyx: {
+        DEFAULT: "#00120B",
+        soft: "#1A2920",
+      },
+
+      // === SECONDARY TEXT / NEUTRAL ===
+      slate: {
+        DEFAULT: "#6B818C",
+        light: "#8A9BA5",
+        dark: "#4A5C64",
+      },
+
+      // === SECONDARY ACCENT (hover, borders) ===
+      darkslate: {
+        DEFAULT: "#35605A",
+        light: "#4A7A72",
+        dark: "#2A4D48",
+        muted: "#E8EFED",
+      },
+
+      // === LEGACY COLORS (keeping for backward compatibility during transition) ===
+      body: "#6B818C", // maps to slate
       meta: {
-        DEFAULT: "#F7F9FC",
-        2: "#495270",
-        3: "#606882",
-        4: "#8D93A5",
-        5: "#BBBEC9",
+        DEFAULT: "#FAF8F5", // maps to champagne
+        2: "#4A5C64",
+        3: "#6B818C",
+        4: "#8A9BA5",
+        5: "#E0D6C5",
       },
       dark: {
-        DEFAULT: "#1C274C",
-        2: "#495270",
-        3: "#606882",
-        4: "#8D93A5",
-        5: "#BBBEC9",
+        DEFAULT: "#00120B", // maps to onyx
+        2: "#1A2920",
+        3: "#6B818C", // maps to slate
+        4: "#8A9BA5",
+        5: "#E0D6C5",
       },
       gray: {
-        DEFAULT: "#F3F5F6",
-        1: "#F9FAFB",
-        2: "#F3F4F6",
-        3: "#E5E7EB",
-        4: "#D1D5DB",
-        5: "#9CA3AF",
-        6: "#6B7280",
-        7: "#374151",
+        DEFAULT: "#F5F0E8", // maps to champagne-200
+        1: "#FAF8F5", // maps to champagne
+        2: "#F5F0E8",
+        3: "#E0D6C5", // maps to champagne-400
+        4: "#E0D6C5",
+        5: "#8A9BA5",
+        6: "#6B818C",
+        7: "#4A5C64",
       },
       blue: {
-        DEFAULT: "#3C50E0",
-        dark: "#1C3FB7",
-        light: "#5475E5",
-        "light-2": "#8099EC",
-        "light-3": "#ADBCF2",
-        "light-4": "#C3CEF6",
-        "light-5": "#E1E8FF",
+        DEFAULT: "#31E981", // maps to spring (primary CTA)
+        dark: "#28C96E",
+        light: "#5EF09D",
+        "light-2": "#A3F7C6",
+        "light-3": "#A3F7C6",
+        "light-4": "#E8FCF0",
+        "light-5": "#E8FCF0",
       },
       red: {
-        DEFAULT: "#F23030",
-        dark: "#E10E0E",
-        light: "#F56060",
-        "light-2": "#F89090",
-        "light-3": "#FBC0C0",
-        "light-4": "#FDD8D8",
-        "light-5": "#FEEBEB",
-        "light-6": "#FEF3F3",
+        DEFAULT: "#E53935",
+        dark: "#C62828",
+        light: "#EF5350",
+        "light-2": "#E57373",
+        "light-3": "#EF9A9A",
+        "light-4": "#FFCDD2",
+        "light-5": "#FFEBEE",
+        "light-6": "#FFF5F5",
       },
       green: {
-        DEFAULT: "#22AD5C",
-        dark: "#1A8245",
-        light: "#2CD673",
-        "light-2": "#57DE8F",
-        "light-3": "#82E6AC",
-        "light-4": "#ACEFC8",
-        "light-5": "#C2F3D6",
-        "light-6": "#DAF8E6",
+        DEFAULT: "#31E981", // maps to spring
+        dark: "#28C96E",
+        light: "#5EF09D",
+        "light-2": "#A3F7C6",
+        "light-3": "#A3F7C6",
+        "light-4": "#E8FCF0",
+        "light-5": "#E8FCF0",
+        "light-6": "#E8FCF0",
       },
       yellow: {
-        DEFAULT: "#FBBF24",
-        dark: "#F59E0B",
-        "dark-2": "#D97706",
-        light: "#FCD34D",
-        "light-1": "#FDE68A",
-        "light-2": "#FEF3C7",
-        "light-4": "#FFFBEB",
+        DEFAULT: "#FFA726",
+        dark: "#FB8C00",
+        "dark-2": "#EF6C00",
+        light: "#FFCC80",
+        "light-1": "#FFE0B2",
+        "light-2": "#FFF3E0",
+        "light-4": "#FFFAF5",
       },
       teal: {
-        DEFAULT: "#02AAA4",
-        dark: "#06A09B",
+        DEFAULT: "#35605A", // maps to darkslate
+        dark: "#2A4D48",
       },
       orange: {
-        DEFAULT: "#F27430",
-        dark: "#E1580E",
+        DEFAULT: "#FFA726",
+        dark: "#FB8C00",
       },
+
+      // === SEMANTIC ===
+      success: "#31E981",
+      error: "#E53935",
+      warning: "#FFA726",
     },
     extend: {
       screens: {
@@ -238,7 +294,7 @@ const config: Config = {
           "0px 0px 1px 0px rgba(33, 37, 41, 0.08), 0px 2px 2px 0px rgba(33, 37, 41, 0.06)",
         filter: "0px 1px 0px 0px #E5E7EB",
         list: "1px 0px 0px 0px #E5E7EB",
-        input: "inset 0 0 0 2px #3C50E0",
+        input: "inset 0 0 0 2px #D8E4FF",
       },
     },
   },

@@ -127,7 +127,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                   <div className="bg-white shadow-1 rounded-lg py-4 px-5">
                     <div className="flex items-center justify-between">
                       <p>{t("filters")}</p>
-                      <button className="text-blue">{t("cleanAll")}</button>
+                      <button className="text-darkslate">{t("cleanAll")}</button>
                     </div>
                   </div>
 
@@ -159,7 +159,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                     <CustomSelect options={options} />
 
                     <p>
-                      {t("showing")} <span className="text-dark">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
+                      {t("showing")} <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
                       {t("products")}
                     </p>
                   </div>
@@ -170,9 +170,9 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                       onClick={() => setProductStyle("grid")}
                       aria-label="button for product grid tab"
                       className={`${productStyle === "grid"
-                        ? "bg-blue border-blue text-white"
-                        : "text-dark bg-gray-1 border-gray-3"
-                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-blue hover:border-blue hover:text-white`}
+                        ? "bg-spring border-spring text-onyx"
+                        : "text-onyx bg-champagne border-champagne-400"
+                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-spring hover:border-spring hover:text-onyx`}
                     >
                       <svg
                         className="fill-current"
@@ -213,9 +213,9 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                       onClick={() => setProductStyle("list")}
                       aria-label="button for product list tab"
                       className={`${productStyle === "list"
-                        ? "bg-blue border-blue text-white"
-                        : "text-dark bg-gray-1 border-gray-3"
-                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-blue hover:border-blue hover:text-white`}
+                        ? "bg-spring border-spring text-onyx"
+                        : "text-onyx bg-champagne border-champagne-400"
+                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-spring hover:border-spring hover:text-onyx`}
                     >
                       <svg
                         className="fill-current"
@@ -270,7 +270,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                         disabled={currentPage === 1}
                         aria-label="button for pagination left"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-blue hover:text-white disabled:hover:bg-transparent disabled:hover:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-spring hover:text-onyx disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
@@ -293,8 +293,8 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                         <button
                           onClick={() => paginate(i + 1)}
                           className={`flex py-1.5 px-3.5 duration-200 rounded-[3px] ${currentPage === i + 1
-                            ? "bg-blue text-white"
-                            : "hover:text-white hover:bg-blue"
+                            ? "bg-spring text-onyx"
+                            : "hover:text-onyx hover:bg-spring"
                             }`}
                         >
                           {i + 1}
@@ -308,7 +308,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                         disabled={currentPage === totalPages}
                         aria-label="button for pagination right"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-white hover:bg-blue disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-onyx hover:bg-spring disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"

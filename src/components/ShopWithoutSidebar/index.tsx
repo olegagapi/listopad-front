@@ -53,7 +53,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                     <CustomSelect options={options} />
 
                     <p>
-                      Showing <span className="text-dark">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} of {totalProducts}</span>{" "}
+                      Showing <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} of {totalProducts}</span>{" "}
                       Products
                     </p>
                   </div>
@@ -64,9 +64,9 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                       onClick={() => setProductStyle("grid")}
                       aria-label="button for product grid tab"
                       className={`${productStyle === "grid"
-                        ? "bg-blue border-blue text-white"
-                        : "text-dark bg-gray-1 border-gray-3"
-                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-blue hover:border-blue hover:text-white`}
+                        ? "bg-spring border-spring text-onyx"
+                        : "text-onyx bg-champagne border-champagne-400"
+                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-spring hover:border-spring hover:text-onyx`}
                     >
                       <svg
                         className="fill-current"
@@ -107,9 +107,9 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                       onClick={() => setProductStyle("list")}
                       aria-label="button for product list tab"
                       className={`${productStyle === "list"
-                        ? "bg-blue border-blue text-white"
-                        : "text-dark bg-gray-1 border-gray-3"
-                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-blue hover:border-blue hover:text-white`}
+                        ? "bg-spring border-spring text-onyx"
+                        : "text-onyx bg-champagne border-champagne-400"
+                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-spring hover:border-spring hover:text-onyx`}
                     >
                       <svg
                         className="fill-current"
@@ -164,7 +164,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                         disabled={currentPage === 1}
                         aria-label="button for pagination left"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-blue hover:text-white disabled:hover:bg-transparent disabled:hover:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-spring hover:text-onyx disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
@@ -187,8 +187,8 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                         <button
                           onClick={() => paginate(i + 1)}
                           className={`flex py-1.5 px-3.5 duration-200 rounded-[3px] ${currentPage === i + 1
-                              ? "bg-blue text-white"
-                              : "hover:text-white hover:bg-blue"
+                              ? "bg-spring text-onyx"
+                              : "hover:text-onyx hover:bg-spring"
                             }`}
                         >
                           {i + 1}
@@ -202,7 +202,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
                         disabled={currentPage === totalPages}
                         aria-label="button for pagination right"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-white hover:bg-blue disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-onyx hover:bg-spring disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
