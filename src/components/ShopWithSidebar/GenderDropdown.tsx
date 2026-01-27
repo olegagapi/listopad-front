@@ -43,7 +43,7 @@ const GenderDropdown = ({ genders }: { genders: string[] }) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
   return (
-    <div className="bg-white shadow-1 rounded-lg" data-testid="gender-filter">
+    <div className="bg-champagne-50 shadow-1 rounded-lg" data-testid="gender-filter">
       <div
         onClick={() => setToggleDropdown(!toggleDropdown)}
         className={`cursor-pointer flex items-center justify-between py-3 pl-6 pr-5.5 ${toggleDropdown && "shadow-filter"

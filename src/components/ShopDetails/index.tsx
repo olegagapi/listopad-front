@@ -253,7 +253,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
           <section className="overflow-hidden bg-champagne-200 py-20">
             <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
               {/* <!--== tab header start ==--> */}
-              <div className="flex flex-wrap items-center bg-white rounded-[10px] shadow-1 gap-5 xl:gap-12.5 py-4.5 px-4 sm:px-6">
+              <div className="flex flex-wrap items-center bg-champagne-50 rounded-[10px] shadow-1 gap-5 xl:gap-12.5 py-4.5 px-4 sm:px-6">
                 {tabs.map((item, key) => (
                   <button
                     key={key}
@@ -298,7 +298,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
               {/* <!-- tab content two: Additional Information --> */}
               <div>
                 <div
-                  className={`rounded-xl bg-white shadow-1 p-4 sm:p-6 mt-10 ${activeTab === "tabTwo" ? "block" : "hidden"
+                  className={`rounded-xl bg-champagne-50 shadow-1 p-4 sm:p-6 mt-10 ${activeTab === "tabTwo" ? "block" : "hidden"
                     }`}
                 >
                   {/* <!-- Brand --> */}

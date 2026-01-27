@@ -88,7 +88,7 @@ const CategoryDropdown = ({ categories }: { categories: Category[] }) => {
   }, [categories]);
 
   return (
-    <div className="bg-white shadow-1 rounded-lg" data-testid="category-filter">
+    <div className="bg-champagne-50 shadow-1 rounded-lg" data-testid="category-filter">
       <div
         onClick={(e) => {
           e.preventDefault();

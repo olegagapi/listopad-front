@@ -86,14 +86,14 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
             {/* <!-- Sidebar Start --> */}
             <div
               className={`sidebar-content fixed xl:z-1 z-9999 left-0 top-0 xl:translate-x-0 xl:static max-w-[310px] xl:max-w-[270px] w-full ease-out duration-200 ${productSidebar
-                ? "translate-x-0 bg-white p-5 h-screen overflow-y-auto"
+                ? "translate-x-0 bg-champagne-50 p-5 h-screen overflow-y-auto"
                 : "-translate-x-full"
                 }`}
             >
               <button
                 onClick={() => setProductSidebar(!productSidebar)}
                 aria-label="button for product sidebar toggle"
-                className={`xl:hidden absolute -right-12.5 sm:-right-8 flex items-center justify-center w-8 h-8 rounded-md bg-white shadow-1 ${stickyMenu
+                className={`xl:hidden absolute -right-12.5 sm:-right-8 flex items-center justify-center w-8 h-8 rounded-md bg-champagne-50 shadow-1 ${stickyMenu
                   ? "lg:top-20 sm:top-34.5 top-35"
                   : "lg:top-24 sm:top-39 top-37"
                   }`}
@@ -124,7 +124,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
               <form onSubmit={(e) => e.preventDefault()}>
                 <div className="flex flex-col gap-6">
                   {/* <!-- filter box --> */}
-                  <div className="bg-white shadow-1 rounded-lg py-4 px-5">
+                  <div className="bg-champagne-50 shadow-1 rounded-lg py-4 px-5">
                     <div className="flex items-center justify-between">
                       <p>{t("filters")}</p>
                       <button className="text-darkslate">{t("cleanAll")}</button>
@@ -152,7 +152,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
 
             {/* // <!-- Content Start --> */}
             <div className="xl:max-w-[870px] w-full">
-              <div className="rounded-lg bg-white shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
+              <div className="rounded-lg bg-champagne-50 shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
@@ -262,7 +262,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
 
               {/* <!-- Products Pagination Start --> */}
               <div className="flex justify-center mt-15">
-                <div className="bg-white shadow-1 rounded-md p-2">
+                <div className="bg-champagne-50 shadow-1 rounded-md p-2">
                   <ul className="flex items-center">
                     <li>
                       <button

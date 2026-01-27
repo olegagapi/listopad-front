@@ -17,7 +17,7 @@ export const Wishlist = () => {
             <button className="text-darkslate" data-testid="clear-wishlist">Clear Wishlist Cart</button>
           </div>
 
-          <div className="bg-white rounded-[10px] shadow-1">
+          <div className="bg-champagne-50 rounded-[10px] shadow-1">
             <div className="w-full overflow-x-auto">
               <div className="min-w-[1170px]">
                 {/* <!-- table header --> */}

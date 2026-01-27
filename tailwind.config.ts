@@ -24,14 +24,14 @@ const config: Config = {
       transparent: "transparent",
       white: "#FFFFFF",
 
-      // === WARM BACKGROUNDS ===
+      // === WARM BACKGROUNDS (subtle warmth) ===
       champagne: {
-        DEFAULT: "#FAF8F5",
-        50: "#FDFCFA",
-        100: "#FAF8F5",
-        200: "#F5F0E8",
-        300: "#EBE4D8",
-        400: "#E0D6C5",
+        DEFAULT: "#FAFAF8",    // Very subtle warm white - main page bg
+        50: "#FEFEFD",         // Barely off-white - cards
+        100: "#FAFAF8",        // Same as default
+        200: "#F7F6F3",        // Subtle warm - product image bg
+        300: "#F0EFEB",        // Section dividers
+        400: "#E8E6E2",        // Borders, subtle lines
       },
 
       // === PRIMARY ACCENT (CTAs) ===
@@ -76,25 +76,25 @@ const config: Config = {
       // === LEGACY COLORS (keeping for backward compatibility during transition) ===
       body: "#6B818C", // maps to slate
       meta: {
-        DEFAULT: "#FAF8F5", // maps to champagne
+        DEFAULT: "#FAFAF8", // maps to champagne
         2: "#4A5C64",
         3: "#6B818C",
         4: "#8A9BA5",
-        5: "#E0D6C5",
+        5: "#E8E6E2",
       },
       dark: {
         DEFAULT: "#00120B", // maps to onyx
         2: "#1A2920",
         3: "#6B818C", // maps to slate
         4: "#8A9BA5",
-        5: "#E0D6C5",
+        5: "#E8E6E2",
       },
       gray: {
-        DEFAULT: "#F5F0E8", // maps to champagne-200
-        1: "#FAF8F5", // maps to champagne
-        2: "#F5F0E8",
-        3: "#E0D6C5", // maps to champagne-400
-        4: "#E0D6C5",
+        DEFAULT: "#F7F6F3", // maps to champagne-200
+        1: "#FAFAF8", // maps to champagne
+        2: "#F7F6F3",
+        3: "#E8E6E2", // maps to champagne-400
+        4: "#E8E6E2",
         5: "#8A9BA5",
         6: "#6B818C",
         7: "#4A5C64",
@@ -289,11 +289,11 @@ const config: Config = {
         3: "0px 2px 16px 0px rgba(13, 10, 44, 0.12)",
         testimonial:
           "0px 0px 4px 0px rgba(148, 163, 184, 0.10), 0px 6px 12px 0px rgba(224, 227, 238, 0.45)",
-        breadcrumb: "0px 1px 0px 0px #E0D6C5, 0px -1px 0px 0px #E0D6C5",
+        breadcrumb: "0px 1px 0px 0px #E8E6E2, 0px -1px 0px 0px #E8E6E2",
         range:
           "0px 0px 1px 0px rgba(33, 37, 41, 0.08), 0px 2px 2px 0px rgba(33, 37, 41, 0.06)",
-        filter: "0px 1px 0px 0px #E0D6C5",
-        list: "1px 0px 0px 0px #E0D6C5",
+        filter: "0px 1px 0px 0px #E8E6E2",
+        list: "1px 0px 0px 0px #E8E6E2",
         input: "inset 0 0 0 2px #D8E4FF",
       },
     },

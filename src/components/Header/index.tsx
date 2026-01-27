@@ -43,7 +43,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed left-0 top-0 w-full z-9999 bg-white transition-all ease-in-out duration-300 ${stickyMenu && "shadow"
+      className={`fixed left-0 top-0 w-full z-9999 bg-champagne-50 transition-all ease-in-out duration-300 ${stickyMenu && "shadow"
         }`}
     >
       <div className="max-w-[1170px] mx-auto px-4 sm:px-7.5 xl:px-0">
@@ -214,7 +214,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
             {/* <!--=== Main Nav Start ===--> */}
             <div
               className={`w-[288px] absolute right-4 top-full xl:static xl:w-auto h-0 xl:h-auto invisible xl:visible xl:flex items-center justify-between ${navigationOpen &&
-                `!visible bg-white shadow-lg border border-champagne-400 !h-auto max-h-[400px] overflow-y-scroll rounded-md p-5`
+                `!visible bg-champagne-50 shadow-lg border border-champagne-400 !h-auto max-h-[400px] overflow-y-scroll rounded-md p-5`
                 }`}
             >
               {/* <!-- Main Nav Start --> */}

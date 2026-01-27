@@ -46,7 +46,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
           <div className="flex gap-7.5">
             {/* // <!-- Content Start --> */}
             <div className="w-full">
-              <div className="rounded-lg bg-white shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
+              <div className="rounded-lg bg-champagne-50 shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
@@ -156,7 +156,7 @@ const ShopWithoutSidebar = ({ products }: ShopWithoutSidebarProps) => {
 
               {/* <!-- Products Pagination Start --> */}
               <div className="flex justify-center mt-15">
-                <div className="bg-white shadow-1 rounded-md p-2">
+                <div className="bg-champagne-50 shadow-1 rounded-md p-2">
                   <ul className="flex items-center">
                     <li>
                       <button
