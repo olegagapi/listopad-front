@@ -114,7 +114,7 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook Social Link"
-                      className="flex ease-out duration-200 hover:text-darkslate"
+                      className="flex ease-out duration-200 hover:text-malachite"
                     >
                       <svg
                         className="fill-current"
@@ -138,7 +138,7 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Twitter Social Link"
-                      className="flex ease-out duration-200 hover:text-darkslate"
+                      className="flex ease-out duration-200 hover:text-malachite"
                     >
                       <svg
                         className="fill-current"
@@ -162,7 +162,7 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram Social Link"
-                      className="flex ease-out duration-200 hover:text-darkslate"
+                      className="flex ease-out duration-200 hover:text-malachite"
                     >
                       <svg
                         className="fill-current"
@@ -201,7 +201,7 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="YouTube Social Link"
-                      className="flex ease-out duration-200 hover:text-darkslate"
+                      className="flex ease-out duration-200 hover:text-malachite"
                     >
                       <svg
                         className="fill-current"
@@ -225,7 +225,7 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="TikTok Social Link"
-                      className="flex ease-out duration-200 hover:text-darkslate"
+                      className="flex ease-out duration-200 hover:text-malachite"
                     >
                       <svg
                         className="fill-current"
@@ -255,22 +255,22 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
 
             <ul className="flex flex-col gap-3.5">
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("myAccount")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("loginRegister")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("wishlist")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("shop")}
                 </a>
               </li>
@@ -284,27 +284,27 @@ const Footer = ({ contact, socialLinks }: FooterProps) => {
 
             <ul className="flex flex-col gap-3">
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("privacyPolicy")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("refundPolicy")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("termsOfUse")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("faqs")}
                 </a>
               </li>
               <li>
-                <a className="ease-out duration-200 hover:text-darkslate" href="#">
+                <a className="ease-out duration-200 hover:text-malachite" href="#">
                   {t("contact")}
                 </a>
               </li>

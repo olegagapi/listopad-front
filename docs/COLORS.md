@@ -80,7 +80,7 @@ Colors are defined in `tailwind.config.ts`. The configuration includes:
 </div>
 
 // Link with hover
-<a className="text-darkslate hover:text-darkslate-light">
+<a className="text-onyx hover:text-malachite">
   Learn more
 </a>
 
@@ -132,7 +132,7 @@ grep -r "bg-\[#" src/components/
 
 During search-and-replace operations, typos can create invalid classes:
 - `text-onyx-4` (doesn't exist - should be `text-slate`)
-- `hover:text-onyxslate` (typo - should be `hover:text-darkslate`)
+- `hover:text-onyxslate` (typo - should be `hover:text-malachite`)
 
 Always run `pnpm build` after color changes to catch CSS errors.
 
@@ -192,7 +192,7 @@ Footer and header icons may have hardcoded `fill="#..."` attributes. These need 
 Prefer `fill="currentColor"` with a text color class for flexibility:
 
 ```tsx
-<svg className="fill-current text-darkslate">
+<svg className="fill-current text-malachite">
 ```
 
 ### 6. Contrast Ratios

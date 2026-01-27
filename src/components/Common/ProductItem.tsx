@@ -128,7 +128,7 @@ const ProductItem = ({ item }: { item: Product }) => {
       </div>
 
       <h3
-        className="font-medium text-onyx ease-out duration-200 hover:text-darkslate mb-1.5"
+        className="font-medium text-onyx ease-out duration-200 hover:text-malachite mb-1.5"
         onClick={() => handleProductDetails()}
       >
         <Link href="/shop-details" data-testid="product-link">

@@ -5,8 +5,8 @@ const GenderItem = ({ category }) => {
   const [selected, setSelected] = useState(false);
   return (
     <button
-      className={`${selected && "text-darkslate"
-        } group flex items-center justify-between ease-out duration-200 hover:text-darkslate `}
+      className={`${selected && "text-malachite"
+        } group flex items-center justify-between ease-out duration-200 hover:text-malachite `}
       onClick={() => setSelected(!selected)}
       data-testid="gender-option"
     >

@@ -66,7 +66,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                       <button
                         onClick={handlePreviewSlider}
                         aria-label="button for zoom"
-                        className="gallery__Image w-11 h-11 rounded-[5px] bg-champagne shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-darkslate absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
+                        className="gallery__Image w-11 h-11 rounded-[5px] bg-champagne shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-malachite absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
                       >
                         <svg
                           className="fill-current"
@@ -258,7 +258,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(item.id)}
-                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-darkslate relative before:h-0.5 before:bg-malachite before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
+                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-malachite relative before:h-0.5 before:bg-malachite before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
                       ? "text-malachite before:w-full"
                       : "text-onyx before:w-0"
                       }`}

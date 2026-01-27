@@ -260,7 +260,7 @@ const MyAccount = () => {
                   </p>
 
                   <button
-                    className="text-onyx ease-out duration-200 hover:text-darkslate"
+                    className="text-onyx ease-out duration-200 hover:text-malachite"
                     onClick={openAddressModal}
                   >
                     <svg
@@ -392,7 +392,7 @@ const MyAccount = () => {
                   </p>
 
                   <button
-                    className="text-onyx ease-out duration-200 hover:text-darkslate"
+                    className="text-onyx ease-out duration-200 hover:text-malachite"
                     onClick={openAddressModal}
                   >
                     <svg

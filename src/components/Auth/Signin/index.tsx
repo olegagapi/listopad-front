@@ -138,7 +138,7 @@ const Signin = () => {
                   {t("noAccount")}
                   <Link
                     href="/signup"
-                    className="text-onyx ease-out duration-200 hover:text-darkslate pl-2"
+                    className="text-onyx ease-out duration-200 hover:text-malachite pl-2"
                   >
                     {t("signupNow")}
                   </Link>

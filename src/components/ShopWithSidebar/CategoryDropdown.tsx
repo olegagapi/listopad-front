@@ -9,8 +9,8 @@ const CategoryItem = ({ category, level = 0 }: { category: Category & { children
   return (
     <div className="flex flex-col">
       <button
-        className={`${selected && "text-darkslate"
-          } group flex items-center justify-between ease-out duration-200 hover:text-darkslate mb-3`}
+        className={`${selected && "text-malachite"
+          } group flex items-center justify-between ease-out duration-200 hover:text-malachite mb-3`}
         style={{ paddingLeft: `${level * 16}px` }}
         onClick={() => setSelected(!selected)}
         data-testid="category-option"

@@ -14,7 +14,7 @@ const SingleItem = ({ item }: { item: Category }) => {
       </div>
 
       <div className="flex justify-center">
-        <h3 className="inline-block font-medium text-center text-onyx bg-gradient-to-r from-darkslate to-darkslate bg-[length:0px_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_1px] group-hover:text-darkslate">
+        <h3 className="inline-block font-medium text-center text-onyx bg-gradient-to-r from-malachite to-malachite bg-[length:0px_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_1px] group-hover:text-malachite">
           {item.title}
         </h3>
       </div>

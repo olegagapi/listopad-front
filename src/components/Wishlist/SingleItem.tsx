@@ -60,7 +60,7 @@ const SingleItem = ({ item }) => {
             </div>
 
             <div>
-              <h3 className="text-onyx ease-out duration-200 hover:text-darkslate">
+              <h3 className="text-onyx ease-out duration-200 hover:text-malachite">
                 <a href="#"> {item.title} </a>
               </h3>
             </div>

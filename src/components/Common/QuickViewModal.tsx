@@ -111,7 +111,7 @@ const QuickViewModal = () => {
                     <button
                       onClick={handlePreviewSlider}
                       aria-label="button for zoom"
-                      className="gallery__Image w-10 h-10 rounded-[5px] bg-white shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-darkslate absolute top-4 lg:top-8 right-4 lg:right-8 z-50"
+                      className="gallery__Image w-10 h-10 rounded-[5px] bg-white shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-malachite absolute top-4 lg:top-8 right-4 lg:right-8 z-50"
                     >
                       <svg
                         className="fill-current"

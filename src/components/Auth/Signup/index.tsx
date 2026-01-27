@@ -157,7 +157,7 @@ const Signup = () => {
                   Already have an account?
                   <Link
                     href="/signin"
-                    className="text-onyx ease-out duration-200 hover:text-darkslate pl-2"
+                    className="text-onyx ease-out duration-200 hover:text-malachite pl-2"
                   >
                     Sign in Now
                   </Link>

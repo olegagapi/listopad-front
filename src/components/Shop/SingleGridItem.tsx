@@ -123,7 +123,7 @@ const SingleGridItem = ({ item }: { item: Product }) => {
         <p className="text-custom-sm">({item.reviews})</p>
       </div>
 
-      <h3 className="font-medium text-onyx ease-out duration-200 hover:text-darkslate mb-1.5">
+      <h3 className="font-medium text-onyx ease-out duration-200 hover:text-malachite mb-1.5">
         <Link href="/shop-details" data-testid="product-link">
           <span data-testid="product-title">{item.title}</span>
         </Link>

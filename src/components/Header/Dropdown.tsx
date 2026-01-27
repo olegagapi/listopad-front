@@ -16,8 +16,8 @@ const Dropdown = ({ menuItem, stickyMenu }) => {
     >
       <a
         href="#"
-        className={`hover:text-darkslate text-custom-sm font-medium text-onyx flex items-center gap-1.5 capitalize ${stickyMenu ? "xl:py-4" : "xl:py-6"
-          } ${pathUrl.includes(menuItem.path) && "!text-darkslate"}`}
+        className={`hover:text-malachite text-custom-sm font-medium text-onyx flex items-center gap-1.5 capitalize ${stickyMenu ? "xl:py-4" : "xl:py-6"
+          } ${pathUrl.includes(menuItem.path) && "!text-malachite"}`}
       >
         {t(menuItem.title)}
         <svg
@@ -48,7 +48,7 @@ const Dropdown = ({ menuItem, stickyMenu }) => {
           <li key={i}>
             <Link
               href={item.path}
-              className={`flex text-custom-sm hover:text-darkslate hover:bg-champagne py-[7px] px-4.5 ${pathUrl === item.path && "text-darkslate bg-champagne"
+              className={`flex text-custom-sm hover:text-malachite hover:bg-champagne py-[7px] px-4.5 ${pathUrl === item.path && "text-malachite bg-champagne"
                 } `}
             >
               {t(item.title)}
