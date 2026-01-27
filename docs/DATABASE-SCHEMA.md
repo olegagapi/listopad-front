@@ -38,6 +38,37 @@
 | marketing_desc | text | Description |
 | parent_category | integer | FK for hierarchy (self-referencing) |
 
+## promotions
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | integer | Primary key |
+| title_uk | text | Title in Ukrainian |
+| title_en | text | Title in English |
+| subtitle_uk | text | Subtitle in Ukrainian |
+| subtitle_en | text | Subtitle in English |
+| discount_text | text | Discount label (e.g., "-20%") |
+| image_url | text | Promotion image URL |
+| link_url | text | Link to product/page |
+| display_order | integer | Sort order (default 0) |
+| is_active | boolean | Whether promotion is active |
+| start_date | timestamp | Optional start date |
+| end_date | timestamp | Optional end date |
+| created_at | timestamp | Creation timestamp |
+
+## site_settings
+
+| Column | Type | Description |
+|--------|------|-------------|
+| key | text | Primary key (e.g., "contact", "social_links") |
+| value | jsonb | JSON value for settings |
+| updated_at | timestamp | Last update timestamp |
+
+### Predefined Keys
+
+- `contact`: `{ phone, email, address }`
+- `social_links`: `{ instagram, facebook, twitter, youtube, tiktok }`
+
 ## Relationships
 
 ```

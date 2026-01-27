@@ -2,7 +2,10 @@ import { supabase } from "@/lib/supabase";
 import { Brand } from "@/types/brand";
 import { Category } from "@/types/category";
 import { Product } from "@/types/product";
+import { Promotion } from "@/types/promotion";
 import { generateSlug, getIdFromSlug } from "@/lib/slug";
+
+type Result<T> = { data: T; error: null } | { data: null; error: string };
 
 export type ListProductsOptions = {
     limit?: number;
@@ -201,4 +204,38 @@ export async function countProducts(options: ListProductsOptions = {}): Promise<
     }
 
     return count || 0;
+}
+
+export async function listPromotions(): Promise<Result<Promotion[]>> {
+    const now = new Date().toISOString();
+
+    const { data, error } = await supabase
+        .from('promotions')
+        .select('*')
+        .eq('is_active', true)
+        .or(`start_date.is.null,start_date.lte.${now}`)
+        .or(`end_date.is.null,end_date.gte.${now}`)
+        .order('display_order');
+
+    if (error) {
+        console.error('Error fetching promotions:', error);
+        return { data: null, error: error.message };
+    }
+
+    return { data: data as Promotion[], error: null };
+}
+
+export async function getSiteSetting<T>(key: string): Promise<Result<T>> {
+    const { data, error } = await supabase
+        .from('site_settings')
+        .select('value')
+        .eq('key', key)
+        .single();
+
+    if (error) {
+        console.error(`Error fetching site setting '${key}':`, error);
+        return { data: null, error: error.message };
+    }
+
+    return { data: data?.value as T, error: null };
 }

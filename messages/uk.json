@@ -87,7 +87,7 @@
     },
     "Home": {
         "Hero": {
-            "limitedOffer": "обмежена пропозиція"
+            "shopNow": "До магазину"
         },
         "Categories": {
             "subtitle": "Категорії",
@@ -98,38 +98,10 @@
             "title": "Нові надходження",
             "viewAll": "Дивитися всі"
         },
-        "Promo": {
-            "iphoneTitle": "Apple iPhone 14 Plus",
-            "iphoneDiscount": "ЗНИЖКА ДО 30%",
-            "iphoneDesc": "iPhone 14 має той самий надшвидкий чіп, що й iPhone 13 Pro, A15 Bionic, з 5-ядерним графічним процесором, забезпечує роботу всіх новітніх функцій.",
-            "buyNow": "Купити зараз",
-            "treadmillTitle": "Складна моторизована бігова доріжка",
-            "treadmillSubtitle": "Тренування вдома",
-            "treadmillDiscount": "Знижка 20%",
-            "grabNow": "Хапай зараз",
-            "watchTitle": "Apple Watch Ultra",
-            "watchDiscountPrefix": "До",
-            "watchDiscountSuffix": "знижки",
-            "watchDesc": "Корпус з аерокосмічного титану вражає ідеальним балансом усього."
-        },
         "BestSeller": {
             "subtitle": "Цього місяця",
             "title": "Хіти продажу",
             "viewAll": "Дивитися всі"
-        },
-        "Countdown": {
-            "subtitle": "Не пропустіть!!",
-            "title": "Покращте свій музичний досвід",
-            "desc": "Havit H206d - це дротові навушники для ПК.",
-            "days": "Днів",
-            "hours": "Годин",
-            "minutes": "Хвилин",
-            "seconds": "Секунд",
-            "checkItOut": "Перевірте це!"
-        },
-        "Testimonials": {
-            "subtitle": "Відгуки",
-            "title": "Відгуки користувачів"
         }
     },
     "Newsletter": {

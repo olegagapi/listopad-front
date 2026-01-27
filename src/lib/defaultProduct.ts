@@ -7,7 +7,7 @@ export const defaultProduct: Product = {
   reviews: 0,
   price: 0,
   discountedPrice: 0,
-  currency: "USD",
+  currency: "UAH",
   brandId: undefined,
   brandName: undefined,
   categoryIds: [],
