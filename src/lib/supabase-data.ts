@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabase";
 import { Brand } from "@/types/brand";
 import { Category } from "@/types/category";
 import { Product } from "@/types/product";
+import { generateSlug, getIdFromSlug } from "@/lib/slug";
 
 export type ListProductsOptions = {
     limit?: number;
@@ -10,16 +11,8 @@ export type ListProductsOptions = {
     search?: string;
 };
 
-// Helper to generate slug
-function generateSlug(name: string, id: number | string): string {
-    return `${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-${id}`;
-}
-
-// Helper to parse id from slug
-function getIdFromSlug(slug: string): string | null {
-    const parts = slug.split('-');
-    return parts[parts.length - 1] || null;
-}
+// Re-export slug utilities for convenience
+export { generateSlug, getIdFromSlug };
 
 export async function listBrands(): Promise<Brand[]> {
     const { data, error } = await supabase
