@@ -3,7 +3,10 @@
     "allow": [
       "Bash(find:*)",
       "Bash(pnpm test:*)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(ls:*)",
+      "Bash(pnpm validate-env:*)",
+      "Bash(pnpm lint:*)"
     ]
   }
 }
