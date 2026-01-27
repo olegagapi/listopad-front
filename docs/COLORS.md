@@ -163,6 +163,20 @@ blue: {
 
 When writing new code, prefer the semantic names (`spring`, `champagne`, etc.).
 
+### Secondary Button Pattern
+
+For internal actions (View All, Add to Wishlist), use lavender buttons to distinguish from primary green CTAs:
+
+| State | Classes |
+|-------|---------|
+| Default | `bg-lavender text-onyx border border-lavender-dark` |
+| Hover | `hover:bg-lavender-dark hover:border-lavender-dark` |
+
+**Design rationale:**
+- **Green (spring)**: External actions (View on seller website, Buy)
+- **Lavender**: Internal actions (Add to Wishlist, View All navigation)
+- **White**: Small icon buttons (need contrast against cards)
+
 ### 5. SVG Icon Colors
 
 Footer and header icons may have hardcoded `fill="#..."` attributes. These need manual updates:

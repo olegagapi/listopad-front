@@ -208,7 +208,7 @@ const QuickViewModal = () => {
                 </button>
 
                 <button
-                  className={`inline-flex items-center gap-2 font-medium text-white bg-onyx py-3 px-6 rounded-md ease-out duration-200 hover:bg-opacity-95 `}
+                  className={`inline-flex items-center gap-2 font-medium text-onyx bg-lavender py-3 px-6 rounded-md border border-lavender-dark ease-out duration-200 hover:bg-lavender-dark hover:border-lavender-dark`}
                 >
                   <svg
                     className="fill-current"

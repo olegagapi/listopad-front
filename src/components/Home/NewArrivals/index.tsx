@@ -50,7 +50,7 @@ const NewArrival = ({ products }: NewArrivalProps) => {
 
           <Link
             href="/shop-with-sidebar"
-            className="inline-flex font-medium text-custom-sm py-2.5 px-7 rounded-md border-champagne-400 border bg-champagne text-onyx ease-out duration-200 hover:bg-onyx hover:text-white hover:border-transparent"
+            className="inline-flex font-medium text-custom-sm py-2.5 px-7 rounded-md border-lavender-dark border bg-lavender text-onyx ease-out duration-200 hover:bg-lavender-dark hover:border-lavender-dark"
           >
             {t("viewAll")}
           </Link>
