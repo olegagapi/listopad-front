@@ -92,7 +92,7 @@ const QuickViewModal = () => {
                     <button
                       onClick={() => setActivePreview(key)}
                       key={key}
-                      className={`flex items-center justify-center w-20 h-20 overflow-hidden rounded-lg bg-champagne ease-out duration-200 hover:border-2 hover:border-spring ${activePreview === key && "border-2 border-spring"
+                      className={`flex items-center justify-center w-20 h-20 overflow-hidden rounded-lg bg-champagne ease-out duration-200 hover:border-2 hover:border-malachite ${activePreview === key && "border-2 border-malachite"
                         }`}
                     >
                       <Image
@@ -201,7 +201,7 @@ const QuickViewModal = () => {
                 <button
                   onClick={() => handleAddToCart()}
                   data-testid="modal-external-link"
-                  className={`inline-flex font-medium text-onyx bg-spring py-3 px-7 rounded-md ease-out duration-200 hover:bg-spring-dark
+                  className={`inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark
                   `}
                 >
                   View on seller website

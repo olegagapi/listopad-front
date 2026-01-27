@@ -106,7 +106,7 @@ const SingleItem = ({ item }) => {
           href={item.externalUrl || "/shop-details"}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex text-onyx hover:text-white bg-champagne border border-champagne-400 py-2.5 px-6 rounded-md ease-out duration-200 hover:bg-spring hover:border-champagne-400"
+          className="inline-flex text-onyx hover:text-white bg-champagne border border-champagne-400 py-2.5 px-6 rounded-md ease-out duration-200 hover:bg-malachite hover:border-champagne-400"
         >
           View on seller website
         </a>

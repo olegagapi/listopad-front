@@ -136,7 +136,7 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .hero-carousel .swiper-pagination-bullet-active {
-  @apply w-5.5 bg-spring;
+  @apply w-5.5 bg-malachite;
 }
 
 @media (min-width: 1280px) {
@@ -152,7 +152,7 @@ input[type='search']::-webkit-search-results-decoration {
 
 .common-carousel .swiper-button-next,
 .common-carousel .swiper-button-prev {
-  @apply !static h-9 w-9 rounded-lg bg-champagne-50 text-onyx border border-champagne-400 m-0 ease-out duration-200 hover:bg-spring hover:text-onyx hover:border-spring;
+  @apply !static h-9 w-9 rounded-lg bg-champagne-50 text-onyx border border-champagne-400 m-0 ease-out duration-200 hover:bg-malachite hover:text-onyx hover:border-malachite;
 }
 
 .common-carousel .swiper-button-next svg,
@@ -178,11 +178,11 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .priceSlide .noUi-connect {
-  @apply h-1 rounded-full bg-spring;
+  @apply h-1 rounded-full bg-malachite;
 }
 
 .priceSlide .noUi-horizontal .noUi-handle {
-  @apply -top-3 h-7 w-7 rounded-full border border-champagne-400 bg-white shadow-range before:block before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-4 before:h-4 before:rounded-full before:bg-spring;
+  @apply -top-3 h-7 w-7 rounded-full border border-champagne-400 bg-white shadow-range before:block before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-4 before:h-4 before:rounded-full before:bg-malachite;
 }
 
 .priceSlide .noUi-tooltip {
@@ -196,15 +196,15 @@ input[type='search']::-webkit-search-results-decoration {
 
 
 .range-slider {
-  @apply w-full !h-[4px] rounded-md bg-spring relative mb-3;
+  @apply w-full !h-[4px] rounded-md bg-malachite relative mb-3;
 }
 
 .slider .thumb {
-  @apply w-6 h-6 bg-spring-dark rounded-full absolute -top-2 border-[5px] border-spring-muted;
+  @apply w-6 h-6 bg-malachite-dark rounded-full absolute -top-2 border-[5px] border-malachite-muted;
 }
 
 .range-slider__thumb {
-  @apply !bg-white border-[1px] border-spring-muted flex justify-center items-center !w-7 !h-7;
+  @apply !bg-white border-[1px] border-malachite-muted flex justify-center items-center !w-7 !h-7;
 }
 
 .range-slider__thumb::after {
@@ -214,9 +214,9 @@ input[type='search']::-webkit-search-results-decoration {
   display: block;
   border-radius: 100%;
   position: absolute;
-  @apply bg-spring;
+  @apply bg-malachite;
 }
 
 .range-slider__range {
-  @apply !bg-spring;
+  @apply !bg-malachite;
 }

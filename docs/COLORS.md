@@ -7,9 +7,9 @@ This document describes the Listopad color palette, design rationale, and practi
 The palette was designed to feel **warm, fashion-forward, and sophisticated** rather than corporate/tech-leaning. Key principles:
 
 - **Warm neutrals** instead of cool grays (fashion brands like Zara, COS use warm tones)
-- **Unexpected green accent** - Spring Green is fresh and bold while remaining elegant
+- **Unexpected green accent** - Malachite Green is fresh and bold while remaining elegant
 - **Subtle warmth** - backgrounds have barely-perceptible warmth, not obviously tinted
-- **Cohesive harmony** - green undertones run through the palette (Spring, Onyx, Dark Slate)
+- **Cohesive harmony** - green undertones run through the palette (Malachite, Onyx, Dark Slate)
 
 ## Color Palette
 
@@ -17,7 +17,7 @@ The palette was designed to feel **warm, fashion-forward, and sophisticated** ra
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Spring** | `#31E981` | Primary CTAs, active states, highlights |
+| **Malachite** | `#0BDA51` | Primary CTAs, active states, highlights |
 | **Onyx** | `#00120B` | Primary text, headings, button text |
 | **Dark Slate** | `#35605A` | Hover states, secondary accents, links |
 
@@ -45,9 +45,9 @@ The palette was designed to feel **warm, fashion-forward, and sophisticated** ra
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Spring** | `#31E981` | Primary buttons, active indicators |
-| **Spring-dark** | `#28C96E` | Hover state for spring buttons |
-| **Spring-muted** | `#E8FCF0` | Very light green tint backgrounds |
+| **Malachite** | `#0BDA51` | Primary buttons, active indicators |
+| **Malachite-dark** | `#09B844` | Hover state for malachite buttons |
+| **Malachite-muted** | `#E6FCF0` | Very light green tint backgrounds |
 | **Lavender** | `#D8E4FF` | Focus rings, selection backgrounds |
 | **Lavender-muted** | `#F2F5FF` | Subtle accent backgrounds |
 
@@ -55,7 +55,7 @@ The palette was designed to feel **warm, fashion-forward, and sophisticated** ra
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Success** | `#31E981` | Same as Spring |
+| **Success** | `#0BDA51` | Same as Malachite |
 | **Error** | `#E53935` | Error states, validation |
 | **Warning** | `#FFA726` | Warning messages |
 
@@ -63,14 +63,14 @@ The palette was designed to feel **warm, fashion-forward, and sophisticated** ra
 
 Colors are defined in `tailwind.config.ts`. The configuration includes:
 
-1. **New semantic colors** (champagne, spring, lavender, onyx, slate, darkslate)
+1. **New semantic colors** (champagne, malachite, lavender, onyx, slate, darkslate)
 2. **Legacy mappings** for backward compatibility during transition
 
 ### Using Colors in Components
 
 ```tsx
 // Primary button
-<button className="bg-spring text-onyx hover:bg-spring-dark">
+<button className="bg-malachite text-onyx hover:bg-malachite-dark">
   View on Seller
 </button>
 
@@ -156,13 +156,13 @@ The config maintains legacy color names (`blue`, `gray`, `dark`, etc.) that map 
 
 ```typescript
 blue: {
-  DEFAULT: "#31E981", // maps to spring
-  dark: "#28C96E",
+  DEFAULT: "#0BDA51", // maps to malachite
+  dark: "#09B844",
   // ...
 }
 ```
 
-When writing new code, prefer the semantic names (`spring`, `champagne`, etc.).
+When writing new code, prefer the semantic names (`malachite`, `champagne`, etc.).
 
 ### Secondary Button Pattern
 
@@ -174,7 +174,7 @@ For internal actions (View All, Add to Wishlist), use lavender buttons to distin
 | Hover | `hover:bg-lavender-dark hover:border-lavender-dark` |
 
 **Design rationale:**
-- **Green (spring)**: External actions (View on seller website, Buy)
+- **Green (malachite)**: External actions (View on seller website, Buy)
 - **Lavender**: Internal actions (Add to Wishlist, View All, icon buttons)
 
 ### 5. SVG Icon Colors
@@ -200,11 +200,11 @@ Prefer `fill="currentColor"` with a text color class for flexibility:
 | Combination | Ratio | WCAG |
 |-------------|-------|------|
 | Onyx on Champagne | ~19:1 | AAA |
-| Spring on Champagne | ~3.5:1 | AA (large text) |
-| Spring on Onyx | ~9:1 | AAA |
+| Malachite on Champagne | ~4:1 | AA (large text) |
+| Malachite on Onyx | ~10:1 | AAA |
 | Slate on Champagne | ~4.6:1 | AA |
 
-Spring Green on light backgrounds meets large text requirements. For small text on spring backgrounds, use Onyx (dark text).
+Malachite Green on light backgrounds meets large text requirements. For small text on malachite backgrounds, use Onyx (dark text).
 
 ### 7. Subtlety is Key
 

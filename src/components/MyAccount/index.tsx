@@ -48,8 +48,8 @@ const MyAccount = () => {
                   <div className="flex flex-wrap xl:flex-nowrap xl:flex-col gap-4">
                     <button
                       onClick={() => setActiveTab("dashboard")}
-                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-spring hover:text-onyx ${activeTab === "dashboard"
-                        ? "text-onyx bg-spring"
+                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-malachite hover:text-onyx ${activeTab === "dashboard"
+                        ? "text-onyx bg-malachite"
                         : "text-dark-2 bg-champagne"
                         }`}
                     >
@@ -92,8 +92,8 @@ const MyAccount = () => {
 
                     <button
                       onClick={() => setActiveTab("downloads")}
-                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-spring hover:text-onyx ${activeTab === "downloads"
-                        ? "text-onyx bg-spring"
+                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-malachite hover:text-onyx ${activeTab === "downloads"
+                        ? "text-onyx bg-malachite"
                         : "text-dark-2 bg-champagne"
                         }`}
                     >
@@ -119,8 +119,8 @@ const MyAccount = () => {
 
                     <button
                       onClick={() => setActiveTab("addresses")}
-                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-spring hover:text-onyx ${activeTab === "addresses"
-                        ? "text-onyx bg-spring"
+                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-malachite hover:text-onyx ${activeTab === "addresses"
+                        ? "text-onyx bg-malachite"
                         : "text-dark-2 bg-champagne"
                         }`}
                     >
@@ -148,8 +148,8 @@ const MyAccount = () => {
 
                     <button
                       onClick={() => setActiveTab("account-details")}
-                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-spring hover:text-onyx ${activeTab === "account-details"
-                        ? "text-onyx bg-spring"
+                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-malachite hover:text-onyx ${activeTab === "account-details"
+                        ? "text-onyx bg-malachite"
                         : "text-dark-2 bg-champagne"
                         }`}
                     >
@@ -179,8 +179,8 @@ const MyAccount = () => {
 
                     <button
                       onClick={() => setActiveTab("logout")}
-                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-spring hover:text-onyx ${activeTab === "logout"
-                        ? "text-onyx bg-spring"
+                      className={`flex items-center rounded-md gap-2.5 py-3 px-4.5 ease-out duration-200 hover:bg-malachite hover:text-onyx ${activeTab === "logout"
+                        ? "text-onyx bg-malachite"
                         : "text-dark-2 bg-champagne"
                         }`}
                     >
@@ -592,7 +592,7 @@ const MyAccount = () => {
 
                   <button
                     type="submit"
-                    className="inline-flex font-medium text-onyx bg-spring py-3 px-7 rounded-md ease-out duration-200 hover:bg-spring-dark"
+                    className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
                   >
                     Save Changes
                   </button>
@@ -655,7 +655,7 @@ const MyAccount = () => {
 
                   <button
                     type="submit"
-                    className="inline-flex font-medium text-onyx bg-spring py-3 px-7 rounded-md ease-out duration-200 hover:bg-spring-dark"
+                    className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
                   >
                     Change Password
                   </button>

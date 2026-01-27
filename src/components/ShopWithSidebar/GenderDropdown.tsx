@@ -12,7 +12,7 @@ const GenderItem = ({ category }) => {
     >
       <div className="flex items-center gap-2">
         <div
-          className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-spring bg-spring" : "bg-white border-champagne-400"
+          className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-malachite bg-malachite" : "bg-white border-champagne-400"
             }`}
         >
           <svg

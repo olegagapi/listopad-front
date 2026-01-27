@@ -75,7 +75,7 @@ const HeroCarousel = ({ promotions = [], locale = "uk" }: HeroCarouselProps) => 
               {promo.link_url && (
                 <a
                   href={promo.link_url}
-                  className="inline-flex font-medium text-white text-custom-sm rounded-md bg-dark py-3 px-9 ease-out duration-200 hover:bg-spring mt-10"
+                  className="inline-flex font-medium text-white text-custom-sm rounded-md bg-dark py-3 px-9 ease-out duration-200 hover:bg-malachite mt-10"
                 >
                   {t("shopNow") || "Shop Now"}
                 </a>

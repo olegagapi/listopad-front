@@ -35,13 +35,10 @@ const config: Config = {
       },
 
       // === PRIMARY ACCENT (CTAs) ===
-      spring: {
-        DEFAULT: "#31E981",
-        dark: "#28C96E",
-        darker: "#1FAA5A",
-        light: "#5EF09D",
-        lighter: "#A3F7C6",
-        muted: "#E8FCF0",
+      malachite: {
+        DEFAULT: "#0BDA51",
+        dark: "#09B844",
+        muted: "#E6FCF0",
       },
 
       // === SOFT ACCENT ===
@@ -100,13 +97,13 @@ const config: Config = {
         7: "#4A5C64",
       },
       blue: {
-        DEFAULT: "#31E981", // maps to spring (primary CTA)
-        dark: "#28C96E",
-        light: "#5EF09D",
-        "light-2": "#A3F7C6",
-        "light-3": "#A3F7C6",
-        "light-4": "#E8FCF0",
-        "light-5": "#E8FCF0",
+        DEFAULT: "#0BDA51", // maps to malachite (primary CTA)
+        dark: "#09B844",
+        light: "#0BDA51",
+        "light-2": "#0BDA51",
+        "light-3": "#0BDA51",
+        "light-4": "#E6FCF0",
+        "light-5": "#E6FCF0",
       },
       red: {
         DEFAULT: "#E53935",
@@ -119,14 +116,14 @@ const config: Config = {
         "light-6": "#FFF5F5",
       },
       green: {
-        DEFAULT: "#31E981", // maps to spring
-        dark: "#28C96E",
-        light: "#5EF09D",
-        "light-2": "#A3F7C6",
-        "light-3": "#A3F7C6",
-        "light-4": "#E8FCF0",
-        "light-5": "#E8FCF0",
-        "light-6": "#E8FCF0",
+        DEFAULT: "#0BDA51", // maps to malachite
+        dark: "#09B844",
+        light: "#0BDA51",
+        "light-2": "#0BDA51",
+        "light-3": "#0BDA51",
+        "light-4": "#E6FCF0",
+        "light-5": "#E6FCF0",
+        "light-6": "#E6FCF0",
       },
       yellow: {
         DEFAULT: "#FFA726",
@@ -147,7 +144,7 @@ const config: Config = {
       },
 
       // === SEMANTIC ===
-      success: "#31E981",
+      success: "#0BDA51",
       error: "#E53935",
       warning: "#FFA726",
     },

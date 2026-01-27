@@ -17,7 +17,7 @@ const CategoryItem = ({ category, level = 0 }: { category: Category & { children
       >
         <div className="flex items-center gap-2">
           <div
-            className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-spring bg-spring" : "bg-white border-champagne-400"
+            className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-malachite bg-malachite" : "bg-white border-champagne-400"
               }`}
           >
             <svg
@@ -42,8 +42,8 @@ const CategoryItem = ({ category, level = 0 }: { category: Category & { children
         </div>
 
         <span
-          className={`${selected ? "text-onyx bg-spring" : "bg-champagne-200"
-            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-spring`}
+          className={`${selected ? "text-onyx bg-malachite" : "bg-champagne-200"
+            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-malachite`}
         >
           {category.productCount || 0}
         </span>

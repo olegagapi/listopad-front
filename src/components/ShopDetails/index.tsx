@@ -99,8 +99,8 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                       <button
                         onClick={() => setPreviewImg(key)}
                         key={key}
-                        className={`flex items-center justify-center w-15 sm:w-25 h-15 sm:h-25 overflow-hidden rounded-lg bg-champagne-200 shadow-1 ease-out duration-200 border-2 hover:border-spring ${key === previewImg
-                          ? "border-spring"
+                        className={`flex items-center justify-center w-15 sm:w-25 h-15 sm:h-25 overflow-hidden rounded-lg bg-champagne-200 shadow-1 ease-out duration-200 border-2 hover:border-malachite ${key === previewImg
+                          ? "border-malachite"
                           : "border-transparent"
                           }`}
                       >
@@ -218,7 +218,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         data-testid="external-link"
-                        className="inline-flex font-medium text-onyx bg-spring py-3 px-7 rounded-md ease-out duration-200 hover:bg-spring-dark"
+                        className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
                       >
                         Buy on seller website
                       </a>
@@ -258,8 +258,8 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(item.id)}
-                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-darkslate relative before:h-0.5 before:bg-spring before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
-                      ? "text-spring before:w-full"
+                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-darkslate relative before:h-0.5 before:bg-malachite before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
+                      ? "text-malachite before:w-full"
                       : "text-onyx before:w-0"
                       }`}
                   >

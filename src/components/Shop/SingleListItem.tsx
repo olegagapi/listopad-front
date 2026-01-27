@@ -81,7 +81,7 @@ const SingleListItem = ({ item }: { item: Product }) => {
               href={item.externalUrl || "/shop-details"}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex font-medium text-custom-sm py-[7px] px-5 rounded-[5px] bg-spring text-onyx ease-out duration-200 hover:bg-spring-dark"
+              className="inline-flex font-medium text-custom-sm py-[7px] px-5 rounded-[5px] bg-malachite text-onyx ease-out duration-200 hover:bg-malachite-dark"
             >
               View on seller website
             </a>
