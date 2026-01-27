@@ -14,7 +14,6 @@ interface ShopDetailsProps {
 }
 
 const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
-  const [activeColor, setActiveColor] = useState("");
   const { openPreviewModal } = usePreviewSlider();
   const [previewImg, setPreviewImg] = useState(0);
 
@@ -38,15 +37,13 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
 
   const product = alreadyExist ? JSON.parse(alreadyExist) : productFromStorage;
 
+  const [activeColor, setActiveColor] = useState(() =>
+    product?.colors?.[0] ?? ""
+  );
+
   useEffect(() => {
     localStorage.setItem("productDetails", JSON.stringify(product));
   }, [product]);
-
-  useEffect(() => {
-    if (product.colors && product.colors.length > 0) {
-      setActiveColor(product.colors[0]);
-    }
-  }, [product.colors]);
 
   const handlePreviewSlider = () => {
     openPreviewModal();

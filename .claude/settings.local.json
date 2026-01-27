@@ -6,7 +6,9 @@
       "Bash(pnpm build:*)",
       "Bash(ls:*)",
       "Bash(pnpm validate-env:*)",
-      "Bash(pnpm lint:*)"
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm add:*)",
+      "Bash(npx eslint:*)"
     ]
   }
 }
