@@ -8,7 +8,8 @@
       "Bash(pnpm validate-env:*)",
       "Bash(pnpm lint:*)",
       "Bash(pnpm add:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(pnpm exec playwright install:*)"
     ]
   }
 }

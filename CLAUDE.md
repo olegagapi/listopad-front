@@ -66,15 +66,15 @@ See [docs/DATABASE-SCHEMA.md](docs/DATABASE-SCHEMA.md) for full schema documenta
 
 ## Environment Variables
 
-Create `.env.local`:
+Create `.env.local` or pull from Vercel (`vercel env pull`):
 
 ```env
 # Required (client-side)
-NEXT_PUBLIC_LISTOPAD__SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY=your-anon-key
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 
 # Optional (server-side, for admin operations)
-LISTOPAD__SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ```
 
 ## Development
