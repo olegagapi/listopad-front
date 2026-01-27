@@ -30,14 +30,14 @@ test.describe('Internationalization', () => {
 
   test('preserves path when switching language', async ({ page }) => {
     // Start on Ukrainian shop page
-    await page.goto('/uk/shop');
+    await page.goto('/uk/shop-with-sidebar');
 
     // Switch to English
     const languageSelect = page.locator('[data-testid="language-select"]');
     await languageSelect.selectOption('en');
 
     // Should be on English shop page
-    await expect(page).toHaveURL(/\/en\/shop/);
+    await expect(page).toHaveURL(/\/en\/shop-with-sidebar/);
   });
 
   test('language switcher is visible in header', async ({ page }) => {

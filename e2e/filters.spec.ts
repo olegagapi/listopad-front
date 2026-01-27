@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Shop Filters', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/uk/shop');
+    await page.goto('/uk/shop-with-sidebar');
   });
 
   test('category filter expands and collapses', async ({ page }) => {

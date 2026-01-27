@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Product Detail Page', () => {
   test('displays product information', async ({ page }) => {
     // Navigate to shop and click first product
-    await page.goto('/uk/shop');
+    await page.goto('/uk/shop-with-sidebar');
     await page.click('[data-testid="product-link"]:first-child');
 
     // Wait for navigation
@@ -15,7 +15,7 @@ test.describe('Product Detail Page', () => {
   });
 
   test('external link has href and target="_blank"', async ({ page }) => {
-    await page.goto('/uk/shop');
+    await page.goto('/uk/shop-with-sidebar');
     await page.click('[data-testid="product-link"]:first-child');
 
     await page.waitForLoadState('domcontentloaded');
@@ -33,7 +33,7 @@ test.describe('Product Detail Page', () => {
   });
 
   test('product description is shown when available', async ({ page }) => {
-    await page.goto('/uk/shop');
+    await page.goto('/uk/shop-with-sidebar');
     await page.click('[data-testid="product-link"]:first-child');
 
     await page.waitForLoadState('domcontentloaded');

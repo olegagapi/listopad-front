@@ -38,7 +38,7 @@ const SingleItem = ({ item }: { item: Product }) => {
   };
 
   return (
-    <div className="group">
+    <div className="group" data-testid="product-item">
       <div className="relative overflow-hidden rounded-lg bg-[#F6F7FB] min-h-[403px]">
         <div className="text-center px-4 py-7.5">
           <div className="flex items-center justify-center gap-2.5 mb-2">
@@ -54,10 +54,12 @@ const SingleItem = ({ item }: { item: Product }) => {
           </div>
 
           <h3 className="font-medium text-dark ease-out duration-200 hover:text-blue mb-1.5">
-            <Link href="/shop-details"> {item.title} </Link>
+            <Link href="/shop-details" data-testid="product-link">
+              <span data-testid="product-title">{item.title}</span>
+            </Link>
           </h3>
 
-          <span className="flex items-center justify-center gap-2 font-medium text-lg">
+          <span className="flex items-center justify-center gap-2 font-medium text-lg" data-testid="product-price">
             <span className="text-dark">${item.discountedPrice}</span>
             <span className="text-dark-4 line-through">${item.price}</span>
           </span>
@@ -75,6 +77,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             }}
             aria-label="button for quick view"
             id="bestOne"
+            data-testid="quick-view-btn"
             className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-blue"
           >
             <svg
@@ -143,6 +146,7 @@ const SingleItem = ({ item }: { item: Product }) => {
             }}
             aria-label="button for add to fav"
             id="addFavOne"
+            data-testid="wishlist-toggle"
             className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-dark bg-white hover:text-white hover:bg-blue"
           >
             <svg

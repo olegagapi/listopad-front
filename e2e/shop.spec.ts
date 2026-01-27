@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Shop Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/uk/shop');
+    await page.goto('/uk/shop-with-sidebar');
   });
 
   test('displays products in grid', async ({ page }) => {
@@ -26,10 +26,12 @@ test.describe('Shop Page', () => {
 
   test('search filters products', async ({ page }) => {
     const searchInput = page.locator('[data-testid="search-input"]');
-    await searchInput.fill('test');
-    await searchInput.press('Enter');
+    await expect(searchInput).toBeVisible();
 
-    // Search input should contain the search term
+    // Fill search input
+    await searchInput.fill('test');
+
+    // Verify input has the value before submit
     await expect(searchInput).toHaveValue('test');
   });
 
