@@ -1,6 +1,5 @@
 import Home from "@/components/Home";
-import { Metadata } from "next";
-import { listCategories, listProducts, listPromotions } from "@/lib/supabase-data";
+import { listCategories, listProducts, listPromotions, Locale } from "@/lib/supabase-data";
 
 import { getTranslations } from "next-intl/server";
 
@@ -18,11 +17,12 @@ export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const categories = await listCategories();
-  const newArrivals = await listProducts({ limit: 8 });
-  const bestSellers = await listProducts({ limit: 6 });
+  const dataLocale = (locale === 'uk' || locale === 'en' ? locale : 'uk') as Locale;
+  const categories = await listCategories(dataLocale);
+  const newArrivals = await listProducts({ limit: 8, locale: dataLocale });
+  const bestSellers = await listProducts({ limit: 6, locale: dataLocale });
   const promotionsResult = await listPromotions();
-  const promotions = promotionsResult.data || [];
+  const promotions = promotionsResult.data ?? [];
 
   return (
     <>

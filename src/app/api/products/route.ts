@@ -1,9 +1,14 @@
-import { listProducts, ListProductsOptions } from "@/lib/supabase-data";
+import { listProducts, ListProductsOptions, Locale } from "@/lib/supabase-data";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const options: ListProductsOptions = {};
+
+  const localeParam = searchParams.get("locale");
+  if (localeParam === 'uk' || localeParam === 'en') {
+    options.locale = localeParam as Locale;
+  }
 
   const limitParam = searchParams.get("limit");
   if (limitParam) {

@@ -5,11 +5,13 @@
 | Column | Type | Description |
 |--------|------|-------------|
 | id | integer | Primary key |
-| name | text | Product name |
+| name_uk | text | Product name (Ukrainian) |
+| name_en | text | Product name (English) |
 | price | numeric | Price in UAH |
 | brand_id | integer | FK to brands |
 | category_id | integer | FK to categories |
-| product_description | text | Full description |
+| product_description_uk | text | Full description (Ukrainian) |
+| product_description_en | text | Full description (English) |
 | preview_image | text | Main image URL (Supabase Storage) |
 | images | text[] | Array of image URLs |
 | colors | text[] | Product colors |
@@ -23,8 +25,10 @@
 | Column | Type | Description |
 |--------|------|-------------|
 | id | integer | Primary key |
-| name | text | Brand name |
-| marketing_desc | text | Description |
+| name_uk | text | Brand name (Ukrainian) |
+| name_en | text | Brand name (English) |
+| marketing_desc_uk | text | Description (Ukrainian) |
+| marketing_desc_en | text | Description (English) |
 | internal_url | text | Internal page URL |
 | external_url | text | Brand website |
 | inst_url | text | Instagram URL |
@@ -34,8 +38,10 @@
 | Column | Type | Description |
 |--------|------|-------------|
 | id | integer | Primary key |
-| name | text | Category name |
-| marketing_desc | text | Description |
+| name_uk | text | Category name (Ukrainian) |
+| name_en | text | Category name (English) |
+| marketing_desc_uk | text | Description (Ukrainian) |
+| marketing_desc_en | text | Description (English) |
 | parent_category | integer | FK for hierarchy (self-referencing) |
 
 ## promotions

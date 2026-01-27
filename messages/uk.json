@@ -80,6 +80,8 @@
     "Metadata": {
         "shopTitle": "Магазин | Listopad",
         "shopDescription": "Це сторінка магазину для Listopad",
+        "shopDetailsTitle": "Деталі товару | Listopad",
+        "shopDetailsDescription": "Сторінка деталей товару для Listopad",
         "signinTitle": "Вхід | Listopad",
         "signinDescription": "Це сторінка входу для Listopad",
         "homeTitle": "NextCommerce | Nextjs E-commerce template",

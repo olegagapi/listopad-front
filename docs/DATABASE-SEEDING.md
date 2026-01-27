@@ -6,16 +6,20 @@
 -- Categories table
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  marketing_desc TEXT,
+  name_uk TEXT NOT NULL,
+  name_en TEXT NOT NULL,
+  marketing_desc_uk TEXT,
+  marketing_desc_en TEXT,
   parent_category INTEGER REFERENCES categories(id)
 );
 
 -- Brands table
 CREATE TABLE brands (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  marketing_desc TEXT,
+  name_uk TEXT NOT NULL,
+  name_en TEXT NOT NULL,
+  marketing_desc_uk TEXT,
+  marketing_desc_en TEXT,
   internal_url TEXT,
   external_url TEXT,
   inst_url TEXT
@@ -24,11 +28,13 @@ CREATE TABLE brands (
 -- Products table
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name_uk TEXT NOT NULL,
+  name_en TEXT NOT NULL,
   price NUMERIC NOT NULL,
   brand_id INTEGER REFERENCES brands(id),
   category_id INTEGER REFERENCES categories(id),
-  product_description TEXT,
+  product_description_uk TEXT,
+  product_description_en TEXT,
   preview_image TEXT,
   images TEXT[],
   colors TEXT[],
@@ -67,18 +73,18 @@ CREATE TABLE site_settings (
 
 ```sql
 -- Sample categories
-INSERT INTO categories (name, marketing_desc) VALUES
-  ('Одяг', 'Жіночий та чоловічий одяг'),
-  ('Взуття', 'Стильне взуття'),
-  ('Аксесуари', 'Модні аксесуари');
+INSERT INTO categories (name_uk, name_en, marketing_desc_uk, marketing_desc_en) VALUES
+  ('Одяг', 'Clothing', 'Жіночий та чоловічий одяг', 'Women''s and men''s clothing'),
+  ('Взуття', 'Footwear', 'Стильне взуття', 'Stylish footwear'),
+  ('Аксесуари', 'Accessories', 'Модні аксесуари', 'Fashion accessories');
 
 -- Sample brand
-INSERT INTO brands (name, marketing_desc, external_url, inst_url) VALUES
-  ('Sample Brand', 'Український бренд', 'https://example.com', 'https://instagram.com/example');
+INSERT INTO brands (name_uk, name_en, marketing_desc_uk, marketing_desc_en, external_url, inst_url) VALUES
+  ('Зразковий бренд', 'Sample Brand', 'Український бренд', 'Ukrainian brand', 'https://example.com', 'https://instagram.com/example');
 
 -- Sample product
-INSERT INTO products (name, price, brand_id, category_id, product_description, preview_image, colors, gender, external_url) VALUES
-  ('Сукня літня', 2500, 1, 1, 'Легка літня сукня', 'https://example.com/image.jpg', ARRAY['white', 'blue'], 'female', 'https://example.com/product');
+INSERT INTO products (name_uk, name_en, price, brand_id, category_id, product_description_uk, product_description_en, preview_image, colors, gender, external_url) VALUES
+  ('Сукня літня', 'Summer Dress', 2500, 1, 1, 'Легка літня сукня', 'Light summer dress', 'https://example.com/image.jpg', ARRAY['white', 'blue'], 'female', 'https://example.com/product');
 
 -- Default site settings
 INSERT INTO site_settings (key, value) VALUES

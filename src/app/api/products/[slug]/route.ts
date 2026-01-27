@@ -1,4 +1,4 @@
-import { getProductBySlug } from "@/lib/supabase-data";
+import { getProductBySlug, Locale } from "@/lib/supabase-data";
 import { NextResponse } from "next/server";
 
 type RouteContext = {
@@ -7,10 +7,14 @@ type RouteContext = {
   }>;
 };
 
-export async function GET(_request: Request, context: RouteContext) {
+export async function GET(request: Request, context: RouteContext) {
+  const { searchParams } = new URL(request.url);
+  const localeParam = searchParams.get("locale");
+  const locale: Locale = localeParam === 'uk' || localeParam === 'en' ? localeParam : 'uk';
+
   try {
     const { slug } = await context.params;
-    const product = await getProductBySlug(slug);
+    const product = await getProductBySlug(slug, locale);
 
     if (!product) {
       return NextResponse.json({ product: null }, { status: 404 });
