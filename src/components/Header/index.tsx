@@ -81,7 +81,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                     <button
                       id="search-btn"
                       aria-label="Search"
-                      className="flex items-center justify-center absolute right-3 top-1/2 -translate-y-1/2 ease-in duration-200 hover:text-onyxslate"
+                      className="flex items-center justify-center absolute right-3 top-1/2 -translate-y-1/2 ease-in duration-200 hover:text-darkslate"
                     >
                       <svg
                         className="fill-current"
@@ -128,8 +128,8 @@ const Header = ({ categories, phone }: HeaderProps) => {
                     />
                   </svg>
                   <div>
-                    <span className="block text-2xs text-onyx-4 uppercase">{t("support")}</span>
-                    <a href={`tel:${phone}`} className="font-medium text-custom-sm text-onyx hover:text-onyxslate">
+                    <span className="block text-2xs text-slate uppercase">{t("support")}</span>
+                    <a href={`tel:${phone}`} className="font-medium text-custom-sm text-onyx hover:text-darkslate">
                       {phone}
                     </a>
                   </div>
@@ -230,7 +230,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                       >
                         <Link
                           href={menuItem.path}
-                          className={`hover:text-onyxslate text-custom-sm font-medium text-onyx flex ${stickyMenu ? "xl:py-4" : "xl:py-6"
+                          className={`hover:text-darkslate text-custom-sm font-medium text-onyx flex ${stickyMenu ? "xl:py-4" : "xl:py-6"
                             }`}
                         >
                           {t(menuItem.title)}
@@ -250,7 +250,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                 <li className="py-4">
                   <a
                     href="#"
-                    className="flex items-center gap-1.5 font-medium text-custom-sm text-onyx hover:text-onyxslate"
+                    className="flex items-center gap-1.5 font-medium text-custom-sm text-onyx hover:text-darkslate"
                   >
                     <svg
                       className="fill-current"
@@ -277,7 +277,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                   <Link
                     href="/wishlist"
                     data-testid="wishlist-link"
-                    className="flex items-center gap-1.5 font-medium text-custom-sm text-onyx hover:text-onyxslate"
+                    className="flex items-center gap-1.5 font-medium text-custom-sm text-onyx hover:text-darkslate"
                   >
                     <svg
                       className="fill-current"

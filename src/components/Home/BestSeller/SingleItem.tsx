@@ -61,7 +61,7 @@ const SingleItem = ({ item }: { item: Product }) => {
 
           <span className="flex items-center justify-center gap-2 font-medium text-lg" data-testid="product-price">
             <span className="text-onyx">${item.discountedPrice}</span>
-            <span className="text-onyx-4 line-through">${item.price}</span>
+            <span className="text-slate line-through">${item.price}</span>
           </span>
         </div>
 

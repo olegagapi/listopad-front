@@ -54,7 +54,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             id="newOne"
             aria-label="button for quick view"
             data-testid="quick-view-btn"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-onyxslate"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-darkslate"
           >
             <svg
               className="fill-current"
@@ -94,7 +94,7 @@ const ProductItem = ({ item }: { item: Product }) => {
             aria-label="button for favorite select"
             id="favOne"
             data-testid="wishlist-toggle"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-onyxslate"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-white hover:text-darkslate"
           >
             <svg
               className="fill-current"
@@ -128,7 +128,7 @@ const ProductItem = ({ item }: { item: Product }) => {
       </div>
 
       <h3
-        className="font-medium text-onyx ease-out duration-200 hover:text-onyxslate mb-1.5"
+        className="font-medium text-onyx ease-out duration-200 hover:text-darkslate mb-1.5"
         onClick={() => handleProductDetails()}
       >
         <Link href="/shop-details" data-testid="product-link">
@@ -138,7 +138,7 @@ const ProductItem = ({ item }: { item: Product }) => {
 
       <span className="flex items-center gap-2 font-medium text-lg" data-testid="product-price">
         <span className="text-onyx">${item.discountedPrice}</span>
-        <span className="text-onyx-4 line-through">${item.price}</span>
+        <span className="text-slate line-through">${item.price}</span>
       </span>
     </div>
   );

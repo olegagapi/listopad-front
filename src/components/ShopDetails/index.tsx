@@ -66,7 +66,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                       <button
                         onClick={handlePreviewSlider}
                         aria-label="button for zoom"
-                        className="gallery__Image w-11 h-11 rounded-[5px] bg-champagne shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-onyxslate absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
+                        className="gallery__Image w-11 h-11 rounded-[5px] bg-champagne shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-darkslate absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
                       >
                         <svg
                           className="fill-current"
@@ -165,7 +165,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   </h3>
 
                   {product.shortDescription && (
-                    <p className="text-onyx-4 mb-6" data-testid="product-description">
+                    <p className="text-slate mb-6" data-testid="product-description">
                       {product.shortDescription}
                     </p>
                   )}
@@ -258,7 +258,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                   <button
                     key={key}
                     onClick={() => setActiveTab(item.id)}
-                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-onyxslate relative before:h-0.5 before:bg-spring before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
+                    className={`font-medium lg:text-lg ease-out duration-200 hover:text-darkslate relative before:h-0.5 before:bg-spring before:absolute before:left-0 before:bottom-0 before:ease-out before:duration-200 hover:before:w-full ${activeTab === item.id
                       ? "text-spring before:w-full"
                       : "text-onyx before:w-0"
                       }`}
@@ -282,11 +282,11 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                     </h2>
 
                     {product.description ? (
-                      <p className="text-onyx-4 whitespace-pre-line">
+                      <p className="text-slate whitespace-pre-line">
                         {product.description}
                       </p>
                     ) : (
-                      <p className="text-onyx-4">
+                      <p className="text-slate">
                         No description available for this product.
                       </p>
                     )}
