@@ -14,8 +14,11 @@
  *   - MEILISEARCH_ADMIN_API_KEY
  */
 
-import "dotenv/config";
+import { config } from "dotenv";
 import { createClient } from "@supabase/supabase-js";
+
+// Load .env.local (Next.js convention)
+config({ path: ".env.local" });
 import { MeiliSearch } from "meilisearch";
 
 // Validate environment

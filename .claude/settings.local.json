@@ -14,7 +14,9 @@
       "Bash(pnpm tsc:*)",
       "WebSearch",
       "WebFetch(domain:www.meilisearch.com)",
-      "Bash(pnpm exec tsc:*)"
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm tsx:*)",
+      "Bash(curl:*)"
     ]
   }
 }

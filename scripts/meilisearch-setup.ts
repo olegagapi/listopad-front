@@ -13,8 +13,11 @@
  *   - OPENAI_API_KEY (optional, for hybrid search)
  */
 
-import "dotenv/config";
+import { config } from "dotenv";
 import { MeiliSearch } from "meilisearch";
+
+// Load .env.local (Next.js convention)
+config({ path: ".env.local" });
 
 const MEILISEARCH_HOST = process.env.MEILISEARCH_HOST;
 const MEILISEARCH_ADMIN_API_KEY = process.env.MEILISEARCH_ADMIN_API_KEY;
