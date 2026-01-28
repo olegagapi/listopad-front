@@ -104,6 +104,34 @@ See [docs/API.md](docs/API.md) for full API documentation. All routes are **read
 
 ## Important Patterns
 
+### Icon Components
+
+Reusable SVG icons at `src/components/Icons/`.
+
+#### Usage
+
+```tsx
+import { EyeIcon, HeartIcon } from '@/components/Icons';
+
+<EyeIcon />                           // Default size (16px)
+<HeartIcon size={24} />               // Custom size
+<SearchIcon className="text-malachite" />  // Custom color
+<EyeIcon label="Quick view" />        // Accessible
+```
+
+#### Adding New Icons
+
+1. Create `src/components/Icons/NewIcon.tsx`
+2. Use `IconProps` interface from `types.ts`
+3. Use `currentColor` for fill (unless semantic/brand)
+4. Export from `index.ts`
+
+#### Color Rules
+
+- Most icons use `currentColor` - apply color via `className`
+- Status icons (CheckCircleIcon, WarningCircleIcon) have semantic defaults
+- Brand icons (GoogleIcon, GithubIcon) keep brand colors
+
 ### Slug Format
 Products use slugs in format: `{name-lowercase}-{id}`
 - Example: `summer-dress-123` for product "Summer Dress" with id 123
