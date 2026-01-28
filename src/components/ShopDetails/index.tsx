@@ -6,6 +6,7 @@ import Newsletter from "../Common/Newsletter";
 import RecentlyViewdItems from "./RecentlyViewd";
 import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { useAppSelector } from "@/redux/store";
+import { useTranslations } from "next-intl";
 
 import { Product } from "@/types/product";
 
@@ -16,6 +17,7 @@ interface ShopDetailsProps {
 const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
   const { openPreviewModal } = usePreviewSlider();
   const [previewImg, setPreviewImg] = useState(0);
+  const t = useTranslations("ProductItem");
 
   const [activeTab, setActiveTab] = useState("tabOne");
 
@@ -220,7 +222,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                         data-testid="external-link"
                         className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
                       >
-                        Buy on seller website
+                        {t("visitShop")}
                       </a>
 
                       <a

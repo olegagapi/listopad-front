@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import { removeItemFromWishlist } from "@/redux/features/wishlist-slice";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const SingleItem = ({ item }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const t = useTranslations("ProductItem");
 
   const handleRemoveFromWishlist = () => {
     dispatch(removeItemFromWishlist(item.id));
@@ -108,7 +110,7 @@ const SingleItem = ({ item }) => {
           rel="noopener noreferrer"
           className="inline-flex text-onyx hover:text-white bg-champagne border border-champagne-400 py-2.5 px-6 rounded-md ease-out duration-200 hover:bg-malachite hover:border-champagne-400"
         >
-          View on seller website
+          {t("visitShop")}
         </a>
       </div>
     </div>

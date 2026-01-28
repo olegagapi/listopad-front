@@ -8,10 +8,12 @@ import Image from "next/image";
 import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { resetQuickView } from "@/redux/features/quickView-slice";
 import { updateproductDetails } from "@/redux/features/product-details";
+import { useTranslations } from "next-intl";
 
 const QuickViewModal = () => {
   const { isModalOpen, closeModal } = useModalContext();
   const { openPreviewModal } = usePreviewSlider();
+  const t = useTranslations("ProductItem");
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -204,7 +206,7 @@ const QuickViewModal = () => {
                   className={`inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark
                   `}
                 >
-                  View on seller website
+                  {t("visitShop")}
                 </button>
 
                 <button
