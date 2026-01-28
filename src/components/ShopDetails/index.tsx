@@ -66,7 +66,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                       <button
                         onClick={handlePreviewSlider}
                         aria-label="button for zoom"
-                        className="gallery__Image w-11 h-11 rounded-[5px] bg-champagne shadow-1 flex items-center justify-center ease-out duration-200 text-onyx hover:text-malachite absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
+                        className="gallery__Image w-11 h-11 rounded-[5px] bg-lavender flex items-center justify-center ease-out duration-200 text-onyx hover:text-malachite absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
                       >
                         <svg
                           className="fill-current"
