@@ -10,7 +10,8 @@
       "Bash(pnpm add:*)",
       "Bash(npx eslint:*)",
       "Bash(pnpm exec playwright install:*)",
-      "Bash(pnpm exec playwright test:*)"
+      "Bash(pnpm exec playwright test:*)",
+      "Bash(pnpm tsc:*)"
     ]
   }
 }

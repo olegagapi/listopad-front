@@ -1,9 +1,30 @@
 "use client";
-import React, { useState } from "react";
 
-const ColorsDropdwon = ({ colors }: { colors: string[] }) => {
+import React, { useState } from "react";
+import { PrimeColor } from "@/types/product";
+import { ChevronDownIcon } from "@/components/Icons";
+
+interface ColorsDropdownProps {
+  colors: string[];
+  selectedColors: PrimeColor[];
+  onColorChange: (colors: PrimeColor[]) => void;
+}
+
+const ColorsDropdwon = ({
+  colors,
+  selectedColors,
+  onColorChange,
+}: ColorsDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
-  const [activeColor, setActiveColor] = useState("");
+
+  const handleColorToggle = (color: PrimeColor) => {
+    const isSelected = selectedColors.includes(color);
+    if (isSelected) {
+      onColorChange(selectedColors.filter(c => c !== color));
+    } else {
+      onColorChange([...selectedColors, color]);
+    }
+  };
 
   return (
     <div className="bg-champagne-50 shadow-1 rounded-lg" data-testid="color-filter">
@@ -14,61 +35,44 @@ const ColorsDropdwon = ({ colors }: { colors: string[] }) => {
       >
         <p className="text-dark">Colors</p>
         <button
+          type="button"
           aria-label="button for colors dropdown"
           className={`text-dark ease-out duration-200 ${toggleDropdown && "rotate-180"
             }`}
         >
-          <svg
-            className="fill-current"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M4.43057 8.51192C4.70014 8.19743 5.17361 8.161 5.48811 8.43057L12 14.0122L18.5119 8.43057C18.8264 8.16101 19.2999 8.19743 19.5695 8.51192C19.839 8.82642 19.8026 9.29989 19.4881 9.56946L12.4881 15.5695C12.2072 15.8102 11.7928 15.8102 11.5119 15.5695L4.51192 9.56946C4.19743 9.29989 4.161 8.82641 4.43057 8.51192Z"
-              fill=""
-            />
-          </svg>
+          <ChevronDownIcon />
         </button>
       </div>
 
-      {/* <!-- dropdown menu --> */}
       <div
         className={`flex-wrap gap-2.5 p-6 ${toggleDropdown ? "flex" : "hidden"
           }`}
       >
-        {colors.map((color, key) => (
-          <label
-            key={key}
-            htmlFor={color}
-            className="cursor-pointer select-none flex items-center"
-            data-testid="color-option"
-          >
-            <div className="relative">
-              <input
-                type="radio"
-                name="color"
-                id={color}
-                className="sr-only"
-                onChange={() => setActiveColor(color)}
-              />
+        {colors.map((color) => {
+          const isSelected = selectedColors.includes(color as PrimeColor);
+          return (
+            <button
+              key={color}
+              type="button"
+              onClick={() => handleColorToggle(color as PrimeColor)}
+              className="cursor-pointer select-none flex items-center"
+              data-testid="color-option"
+              aria-label={`Filter by ${color}`}
+              aria-pressed={isSelected}
+            >
               <div
-                className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${activeColor === color && "border"
+                className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${isSelected && "border-2"
                   }`}
-                style={{ borderColor: `${color}` }}
+                style={{ borderColor: isSelected ? color : "transparent" }}
               >
                 <span
                   className="block w-3 h-3 rounded-full"
-                  style={{ backgroundColor: `${color}` }}
+                  style={{ backgroundColor: color }}
                 ></span>
               </div>
-            </div>
-          </label>
-        ))}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

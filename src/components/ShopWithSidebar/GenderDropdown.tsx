@@ -1,34 +1,61 @@
 "use client";
+
 import React, { useState } from "react";
 import { ChevronDownIcon, CheckIcon } from "@/components/Icons";
+import { Gender } from "@/types/product";
 
-const GenderItem = ({ category }) => {
-  const [selected, setSelected] = useState(false);
+interface GenderItemProps {
+  gender: Gender;
+  isSelected: boolean;
+  onToggle: () => void;
+}
+
+const GenderItem = ({ gender, isSelected, onToggle }: GenderItemProps) => {
   return (
     <button
-      className={`${selected && "text-malachite"
+      type="button"
+      className={`${isSelected && "text-malachite"
         } group flex items-center justify-between ease-out duration-200 hover:text-malachite `}
-      onClick={() => setSelected(!selected)}
+      onClick={onToggle}
       data-testid="gender-option"
     >
       <div className="flex items-center gap-2">
         <div
-          className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${selected ? "border-malachite bg-malachite" : "bg-white border-champagne-400"
+          className={`cursor-pointer flex items-center justify-center rounded w-4 h-4 border ${isSelected ? "border-malachite bg-malachite" : "bg-white border-champagne-400"
             }`}
         >
-          <span className={selected ? "block" : "hidden"}>
+          <span className={isSelected ? "block" : "hidden"}>
             <CheckIcon />
           </span>
         </div>
 
-        <span className="capitalize">{category}</span>
+        <span className="capitalize">{gender}</span>
       </div>
     </button>
   );
 };
 
-const GenderDropdown = ({ genders }: { genders: string[] }) => {
+interface GenderDropdownProps {
+  genders: string[];
+  selectedGenders: Gender[];
+  onGenderChange: (genders: Gender[]) => void;
+}
+
+const GenderDropdown = ({
+  genders,
+  selectedGenders,
+  onGenderChange,
+}: GenderDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
+
+  const handleGenderToggle = (gender: Gender) => {
+    const isSelected = selectedGenders.includes(gender);
+    if (isSelected) {
+      onGenderChange(selectedGenders.filter(g => g !== gender));
+    } else {
+      onGenderChange([...selectedGenders, gender]);
+    }
+  };
 
   return (
     <div className="bg-champagne-50 shadow-1 rounded-lg" data-testid="gender-filter">
@@ -39,7 +66,11 @@ const GenderDropdown = ({ genders }: { genders: string[] }) => {
       >
         <p className="text-onyx">Gender</p>
         <button
-          onClick={() => setToggleDropdown(!toggleDropdown)}
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setToggleDropdown(!toggleDropdown);
+          }}
           aria-label="button for gender dropdown"
           className={`text-onyx ease-out duration-200 ${toggleDropdown && "rotate-180"
             }`}
@@ -48,13 +79,17 @@ const GenderDropdown = ({ genders }: { genders: string[] }) => {
         </button>
       </div>
 
-      {/* <!-- dropdown menu --> */}
       <div
         className={`flex-col gap-3 py-6 pl-6 pr-5.5 ${toggleDropdown ? "flex" : "hidden"
           }`}
       >
-        {genders.map((gender, key) => (
-          <GenderItem key={key} category={gender} />
+        {genders.map((gender) => (
+          <GenderItem
+            key={gender}
+            gender={gender as Gender}
+            isSelected={selectedGenders.includes(gender as Gender)}
+            onToggle={() => handleGenderToggle(gender as Gender)}
+          />
         ))}
       </div>
     </div>

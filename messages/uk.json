@@ -76,7 +76,8 @@
         "cleanAll": "Очистити все",
         "showing": "Показано",
         "of": "з",
-        "products": "товарів"
+        "products": "товарів",
+        "noProductsFound": "Товарів не знайдено за вашими фільтрами"
     },
     "Metadata": {
         "shopTitle": "Магазин | Listopad",

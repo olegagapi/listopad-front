@@ -3,6 +3,7 @@ import { Brand } from "@/types/brand";
 import { Category } from "@/types/category";
 import { Product, PrimeColor, Gender } from "@/types/product";
 import { Promotion } from "@/types/promotion";
+import { PriceRange } from "@/types/filters";
 import { generateSlug, getIdFromSlug } from "@/lib/slug";
 
 type Result<T> = { data: T; error: null } | { data: null; error: string };
@@ -76,6 +77,24 @@ export async function getColors(): Promise<string[]> {
 
 export async function getGenders(): Promise<string[]> {
     return ["male", "female", "unisex"];
+}
+
+export async function getPriceRange(): Promise<PriceRange> {
+    const { data, error } = await supabase
+        .from('products')
+        .select('price')
+        .order('price', { ascending: true });
+
+    if (error || !data || data.length === 0) {
+        console.error('Error fetching price range:', error);
+        return { min: 0, max: 10000 };
+    }
+
+    const prices = data.map((p: Record<string, unknown>) => p.price as number);
+    const minPrice = prices[0] ?? 0;
+    const maxPrice = prices[prices.length - 1] ?? 10000;
+
+    return { min: minPrice, max: maxPrice };
 }
 
 export async function listProducts(options: ListProductsOptions = {}): Promise<Product[]> {

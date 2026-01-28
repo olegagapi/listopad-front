@@ -76,7 +76,8 @@
         "cleanAll": "Clean All",
         "showing": "Showing",
         "of": "of",
-        "products": "Products"
+        "products": "Products",
+        "noProductsFound": "No products found matching your filters"
     },
     "Metadata": {
         "shopTitle": "Shop Page | Listopad",
