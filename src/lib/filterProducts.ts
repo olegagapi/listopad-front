@@ -11,16 +11,24 @@ import { FilterState } from "@/types/filters";
  * - Price: Range filter (product price must be within min/max bounds)
  *
  * Between filter types, AND logic applies (all active filters must pass).
+ *
+ * @param products - Array of products to filter
+ * @param filters - Current filter state
+ * @param expandedCategories - Optional expanded category IDs (includes descendants).
+ *   If provided, used instead of filters.categories for category matching.
  */
 export function filterProducts(
   products: Product[],
-  filters: FilterState
+  filters: FilterState,
+  expandedCategories?: string[]
 ): Product[] {
+  const categoryFilter = expandedCategories ?? filters.categories;
+
   return products.filter((product) => {
     // Category filter (OR logic)
-    if (filters.categories.length > 0) {
+    if (categoryFilter.length > 0) {
       const hasMatchingCategory = product.categoryIds.some((catId) =>
-        filters.categories.includes(String(catId))
+        categoryFilter.includes(String(catId))
       );
       if (!hasMatchingCategory) return false;
     }

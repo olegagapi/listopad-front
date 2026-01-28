@@ -74,6 +74,37 @@ describe("filterProducts", () => {
       expect(result).toHaveLength(1);
       expect(result[0]?.id).toBe("1");
     });
+
+    it("uses expandedCategories when provided", () => {
+      const products = [
+        createProduct({ id: "1", categoryIds: ["1"] }),
+        createProduct({ id: "2", categoryIds: ["2"] }),
+        createProduct({ id: "3", categoryIds: ["3"] }),
+      ];
+      const filters: FilterState = {
+        ...emptyFilters,
+        categories: ["1"], // Only parent selected
+      };
+      // Expanded includes children
+      const expandedCategories = ["1", "2"];
+      const result = filterProducts(products, filters, expandedCategories);
+      expect(result).toHaveLength(2);
+      expect(result.map((p) => p.id)).toEqual(["1", "2"]);
+    });
+
+    it("ignores filters.categories when expandedCategories is empty array", () => {
+      const products = [
+        createProduct({ id: "1", categoryIds: ["1"] }),
+        createProduct({ id: "2", categoryIds: ["2"] }),
+      ];
+      const filters: FilterState = {
+        ...emptyFilters,
+        categories: ["1"],
+      };
+      // Empty expanded categories means no category filter
+      const result = filterProducts(products, filters, []);
+      expect(result).toHaveLength(2);
+    });
   });
 
   describe("gender filter", () => {

@@ -8,9 +8,10 @@ interface GenderItemProps {
   gender: Gender;
   isSelected: boolean;
   onToggle: () => void;
+  count: number;
 }
 
-const GenderItem = ({ gender, isSelected, onToggle }: GenderItemProps) => {
+const GenderItem = ({ gender, isSelected, onToggle, count }: GenderItemProps) => {
   return (
     <button
       type="button"
@@ -31,6 +32,13 @@ const GenderItem = ({ gender, isSelected, onToggle }: GenderItemProps) => {
 
         <span className="capitalize">{gender}</span>
       </div>
+
+      <span
+        className={`${isSelected ? "text-onyx bg-malachite" : "bg-champagne-200"
+          } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-malachite`}
+      >
+        {count}
+      </span>
     </button>
   );
 };
@@ -39,12 +47,14 @@ interface GenderDropdownProps {
   genders: string[];
   selectedGenders: Gender[];
   onGenderChange: (genders: Gender[]) => void;
+  genderCounts: Map<Gender, number>;
 }
 
 const GenderDropdown = ({
   genders,
   selectedGenders,
   onGenderChange,
+  genderCounts,
 }: GenderDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
@@ -89,6 +99,7 @@ const GenderDropdown = ({
             gender={gender as Gender}
             isSelected={selectedGenders.includes(gender as Gender)}
             onToggle={() => handleGenderToggle(gender as Gender)}
+            count={genderCounts.get(gender as Gender) ?? 0}
           />
         ))}
       </div>

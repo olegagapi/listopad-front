@@ -16,6 +16,8 @@ import { PriceRange } from "@/types/filters";
 import { useTranslations } from "next-intl";
 import { useShopFilters } from "@/hooks/useShopFilters";
 import { filterProducts, hasActiveFilters } from "@/lib/filterProducts";
+import { buildCategoryDescendantsMap, expandCategorySelection } from "@/lib/categoryHierarchy";
+import { calculateCategoryCounts, calculateGenderCounts } from "@/lib/filterCounts";
 
 interface ShopWithSidebarProps {
   products: Product[];
@@ -48,10 +50,35 @@ const ShopWithSidebarContent = ({
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  // Filter products based on current filters
+  // Build category hierarchy map (once, based on categories)
+  const descendantsMap = useMemo(
+    () => buildCategoryDescendantsMap(categories),
+    [categories]
+  );
+
+  // Calculate static counts (once, based on all products)
+  const categoryCounts = useMemo(
+    () => calculateCategoryCounts(products, categories, descendantsMap),
+    [products, categories, descendantsMap]
+  );
+
+  const genderCounts = useMemo(
+    () => calculateGenderCounts(products),
+    [products]
+  );
+
+  // Expand selected categories to include descendants for filtering
+  const expandedCategories = useMemo(
+    () => filters.categories.length > 0
+      ? expandCategorySelection(filters.categories, descendantsMap)
+      : [],
+    [filters.categories, descendantsMap]
+  );
+
+  // Filter products based on current filters (with expanded categories)
   const filteredProducts = useMemo(
-    () => filterProducts(products, filters),
-    [products, filters]
+    () => filterProducts(products, filters, expandedCategories),
+    [products, filters, expandedCategories]
   );
 
   // Reset to page 1 when filters change
@@ -174,6 +201,7 @@ const ShopWithSidebarContent = ({
                     categories={categories}
                     selectedCategories={filters.categories}
                     onCategoryChange={setCategories}
+                    categoryCounts={categoryCounts}
                   />
 
                   {/* <!-- gender box --> */}
@@ -181,6 +209,7 @@ const ShopWithSidebarContent = ({
                     genders={genders}
                     selectedGenders={filters.genders}
                     onGenderChange={setGenders}
+                    genderCounts={genderCounts}
                   />
 
                   {/* // <!-- size box --> */}
