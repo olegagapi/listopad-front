@@ -117,6 +117,8 @@
         "home": "Home /"
     },
     "ProductItem": {
-        "viewOnSeller": "View on seller website"
+        "viewOnSeller": "View on seller website",
+        "visitShop": "Visit shop",
+        "visitShopLabel": "Visit shop"
     }
 }

@@ -80,20 +80,20 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
         title={t("exploreProducts")}
         pages={["shop", "/", "shop with sidebar"]}
       />
-      <section className="overflow-hidden relative pb-20 pt-5 lg:pt-20 xl:pt-28 bg-[#f3f4f6]">
+      <section className="overflow-hidden relative pb-20 pt-5 lg:pt-20 xl:pt-28 bg-champagne-200">
         <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
           <div className="flex gap-7.5">
             {/* <!-- Sidebar Start --> */}
             <div
               className={`sidebar-content fixed xl:z-1 z-9999 left-0 top-0 xl:translate-x-0 xl:static max-w-[310px] xl:max-w-[270px] w-full ease-out duration-200 ${productSidebar
-                ? "translate-x-0 bg-white p-5 h-screen overflow-y-auto"
+                ? "translate-x-0 bg-champagne-50 p-5 h-screen overflow-y-auto"
                 : "-translate-x-full"
                 }`}
             >
               <button
                 onClick={() => setProductSidebar(!productSidebar)}
                 aria-label="button for product sidebar toggle"
-                className={`xl:hidden absolute -right-12.5 sm:-right-8 flex items-center justify-center w-8 h-8 rounded-md bg-white shadow-1 ${stickyMenu
+                className={`xl:hidden absolute -right-12.5 sm:-right-8 flex items-center justify-center w-8 h-8 rounded-md bg-champagne-50 shadow-1 ${stickyMenu
                   ? "lg:top-20 sm:top-34.5 top-35"
                   : "lg:top-24 sm:top-39 top-37"
                   }`}
@@ -124,10 +124,10 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
               <form onSubmit={(e) => e.preventDefault()}>
                 <div className="flex flex-col gap-6">
                   {/* <!-- filter box --> */}
-                  <div className="bg-white shadow-1 rounded-lg py-4 px-5">
+                  <div className="bg-champagne-50 shadow-1 rounded-lg py-4 px-5">
                     <div className="flex items-center justify-between">
                       <p>{t("filters")}</p>
-                      <button className="text-blue">{t("cleanAll")}</button>
+                      <button className="text-darkslate">{t("cleanAll")}</button>
                     </div>
                   </div>
 
@@ -152,14 +152,14 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
 
             {/* // <!-- Content Start --> */}
             <div className="xl:max-w-[870px] w-full">
-              <div className="rounded-lg bg-white shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
+              <div className="rounded-lg bg-champagne-50 shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
                     <CustomSelect options={options} />
 
                     <p>
-                      {t("showing")} <span className="text-dark">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
+                      {t("showing")} <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
                       {t("products")}
                     </p>
                   </div>
@@ -170,9 +170,9 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                       onClick={() => setProductStyle("grid")}
                       aria-label="button for product grid tab"
                       className={`${productStyle === "grid"
-                        ? "bg-blue border-blue text-white"
-                        : "text-dark bg-gray-1 border-gray-3"
-                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-blue hover:border-blue hover:text-white`}
+                        ? "bg-malachite border-malachite text-onyx"
+                        : "text-onyx bg-champagne border-champagne-400"
+                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-malachite hover:border-malachite hover:text-onyx`}
                     >
                       <svg
                         className="fill-current"
@@ -213,9 +213,9 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                       onClick={() => setProductStyle("list")}
                       aria-label="button for product list tab"
                       className={`${productStyle === "list"
-                        ? "bg-blue border-blue text-white"
-                        : "text-dark bg-gray-1 border-gray-3"
-                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-blue hover:border-blue hover:text-white`}
+                        ? "bg-malachite border-malachite text-onyx"
+                        : "text-onyx bg-champagne border-champagne-400"
+                        } flex items-center justify-center w-10.5 h-9 rounded-[5px] border ease-out duration-200 hover:bg-malachite hover:border-malachite hover:text-onyx`}
                     >
                       <svg
                         className="fill-current"
@@ -262,7 +262,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
 
               {/* <!-- Products Pagination Start --> */}
               <div className="flex justify-center mt-15">
-                <div className="bg-white shadow-1 rounded-md p-2">
+                <div className="bg-champagne-50 shadow-1 rounded-md p-2">
                   <ul className="flex items-center">
                     <li>
                       <button
@@ -270,7 +270,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                         disabled={currentPage === 1}
                         aria-label="button for pagination left"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-blue hover:text-white disabled:hover:bg-transparent disabled:hover:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] disabled:text-gray-4 hover:bg-malachite hover:text-onyx disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
@@ -293,8 +293,8 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                         <button
                           onClick={() => paginate(i + 1)}
                           className={`flex py-1.5 px-3.5 duration-200 rounded-[3px] ${currentPage === i + 1
-                            ? "bg-blue text-white"
-                            : "hover:text-white hover:bg-blue"
+                            ? "bg-malachite text-onyx"
+                            : "hover:text-onyx hover:bg-malachite"
                             }`}
                         >
                           {i + 1}
@@ -308,7 +308,7 @@ const ShopWithSidebar = ({ products, categories, colors, genders }: ShopWithSide
                         disabled={currentPage === totalPages}
                         aria-label="button for pagination right"
                         type="button"
-                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-white hover:bg-blue disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
+                        className="flex items-center justify-center w-8 h-9 ease-out duration-200 rounded-[3px] hover:text-onyx hover:bg-malachite disabled:text-gray-4 disabled:hover:bg-transparent disabled:hover:text-gray-4"
                       >
                         <svg
                           className="fill-current"
