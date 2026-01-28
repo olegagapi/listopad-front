@@ -7,7 +7,7 @@ describe('getBaseUrl', () => {
 
   beforeEach(() => {
     process.env = { ...originalEnv };
-    // @ts-expect-error - mocking window
+    // @ts-ignore - mocking window
     delete global.window;
   });
 

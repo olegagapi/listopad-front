@@ -11,6 +11,7 @@ interface CategoryItemProps {
   level?: number;
   selectedCategories: string[];
   onCategoryChange: (categoryId: string) => void;
+  facetCounts?: Record<string, number>;
 }
 
 const CategoryItem = ({
@@ -18,8 +19,10 @@ const CategoryItem = ({
   level = 0,
   selectedCategories,
   onCategoryChange,
+  facetCounts,
 }: CategoryItemProps) => {
   const isSelected = selectedCategories.includes(String(category.id));
+  const count = facetCounts?.[String(category.id)] ?? category.productCount ?? 0;
 
   return (
     <div className="flex flex-col">
@@ -48,7 +51,7 @@ const CategoryItem = ({
           className={`${isSelected ? "text-onyx bg-malachite" : "bg-champagne-200"
             } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-malachite`}
         >
-          {category.productCount || 0}
+          {count}
         </span>
       </button>
 
@@ -61,6 +64,7 @@ const CategoryItem = ({
               level={level + 1}
               selectedCategories={selectedCategories}
               onCategoryChange={onCategoryChange}
+              facetCounts={facetCounts}
             />
           ))}
         </div>
@@ -73,12 +77,14 @@ interface CategoryDropdownProps {
   categories: Category[];
   selectedCategories: string[];
   onCategoryChange: (categories: string[]) => void;
+  facetCounts?: Record<string, number>;
 }
 
 const CategoryDropdown = ({
   categories,
   selectedCategories,
   onCategoryChange,
+  facetCounts,
 }: CategoryDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
@@ -146,6 +152,7 @@ const CategoryDropdown = ({
             category={category}
             selectedCategories={selectedCategories}
             onCategoryChange={handleCategoryToggle}
+            facetCounts={facetCounts}
           />
         ))}
       </div>

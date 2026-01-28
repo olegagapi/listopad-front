@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Link } from "@/i18n/routing";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useRouter } from "@/i18n/routing";
 import CustomSelect from "./CustomSelect";
+import SearchDropdown from "./SearchDropdown";
 import { menuData } from "./menuData";
 import Dropdown from "./Dropdown";
 import Image from "next/image";
@@ -9,6 +10,7 @@ import { Category } from "@/types/category";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { SearchIcon, PhoneIcon, UserIcon, RefreshIcon, HeartIcon } from "@/components/Icons";
+import { useInstantSearch } from "@/hooks/useSearch";
 
 interface HeaderProps {
   categories: Category[];
@@ -17,9 +19,55 @@ interface HeaderProps {
 
 const Header = ({ categories, phone }: HeaderProps) => {
   const t = useTranslations("Header");
-  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
   const [navigationOpen, setNavigationOpen] = useState(false);
   const [stickyMenu, setStickyMenu] = useState(false);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const searchContainerRef = useRef<HTMLDivElement>(null);
+
+  const {
+    results: searchResults,
+    isLoading: isSearchLoading,
+    search: performSearch,
+    clear: clearSearch,
+    query: searchQuery,
+  } = useInstantSearch(300);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    performSearch(value);
+    setIsDropdownVisible(true);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setIsDropdownVisible(false);
+      router.push(`/shop-with-sidebar?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
+  const handleCloseDropdown = () => {
+    setIsDropdownVisible(false);
+    clearSearch();
+  };
 
   // Sticky menu
   const handleStickyMenu = () => {
@@ -59,8 +107,8 @@ const Header = ({ categories, phone }: HeaderProps) => {
               <Image src="/images/logo/logo.svg" alt="Logo" width={219} height={36} />
             </Link>
 
-            <div className="max-w-[475px] w-full">
-              <form>
+            <div className="max-w-[475px] w-full" ref={searchContainerRef}>
+              <form onSubmit={handleSearchSubmit}>
                 <div className="flex items-center">
                   <CustomSelect options={options} />
 
@@ -68,7 +116,8 @@ const Header = ({ categories, phone }: HeaderProps) => {
                     {/* <!-- divider --> */}
                     <span className="absolute left-0 top-1/2 -translate-y-1/2 inline-block w-px h-5.5 bg-champagne-400"></span>
                     <input
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={handleSearchChange}
+                      onFocus={() => searchQuery && setIsDropdownVisible(true)}
                       value={searchQuery}
                       type="search"
                       name="search"
@@ -80,12 +129,22 @@ const Header = ({ categories, phone }: HeaderProps) => {
                     />
 
                     <button
+                      type="submit"
                       id="search-btn"
                       aria-label="Search"
                       className="flex items-center justify-center absolute right-3 top-1/2 -translate-y-1/2 ease-in duration-200 hover:text-malachite"
                     >
                       <SearchIcon />
                     </button>
+
+                    <SearchDropdown
+                      results={searchResults}
+                      totalHits={searchResults.length}
+                      query={searchQuery}
+                      isLoading={isSearchLoading}
+                      isVisible={isDropdownVisible}
+                      onClose={handleCloseDropdown}
+                    />
                   </div>
                 </div>
               </form>

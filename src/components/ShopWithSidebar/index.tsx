@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import CustomSelect from "./CustomSelect";
 import CategoryDropdown from "./CategoryDropdown";
@@ -15,7 +15,9 @@ import { Category } from "@/types/category";
 import { PriceRange } from "@/types/filters";
 import { useTranslations } from "next-intl";
 import { useShopFilters } from "@/hooks/useShopFilters";
-import { filterProducts, hasActiveFilters } from "@/lib/filterProducts";
+import { useSearch } from "@/hooks/useSearch";
+import { hasActiveFilters } from "@/lib/filterProducts";
+import type { SortOption } from "@/types/search";
 
 interface ShopWithSidebarProps {
   products: Product[];
@@ -23,6 +25,7 @@ interface ShopWithSidebarProps {
   colors: string[];
   genders: string[];
   priceRange: PriceRange;
+  useMeilisearch?: boolean;
 }
 
 const ShopWithSidebarContent = ({
@@ -31,15 +34,19 @@ const ShopWithSidebarContent = ({
   colors,
   genders,
   priceRange,
+  useMeilisearch = true,
 }: ShopWithSidebarProps) => {
   const t = useTranslations("Shop");
+  const tSearch = useTranslations("Search");
   const {
     filters,
     clearFilters,
+    setQuery,
     setCategories,
     setGenders,
     setColors,
     setPrice,
+    setSort,
   } = useShopFilters();
 
   const [productStyle, setProductStyle] = useState("grid");
@@ -48,23 +55,45 @@ const ShopWithSidebarContent = ({
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  // Filter products based on current filters
-  const filteredProducts = useMemo(
-    () => filterProducts(products, filters),
-    [products, filters]
-  );
+  // Use Meilisearch for search and filtering
+  const {
+    results: searchResults,
+    totalHits,
+    totalPages: searchTotalPages,
+    page: searchPage,
+    facets,
+    isLoading,
+    error,
+  } = useSearch({
+    query: filters.query,
+    categoryIds: filters.categories,
+    genders: filters.genders,
+    colors: filters.colors,
+    minPrice: filters.price.from ?? undefined,
+    maxPrice: filters.price.to ?? undefined,
+    sort: filters.sort,
+    page: currentPage,
+    limit: productsPerPage,
+  });
+
+  // Use Meilisearch results or fall back to static products
+  const displayProducts = useMeilisearch ? searchResults : products;
+  const totalProducts = useMeilisearch ? totalHits : products.length;
+  const totalPages = useMeilisearch
+    ? searchTotalPages
+    : Math.ceil(totalProducts / productsPerPage);
+
+  // For non-Meilisearch mode, compute current products from static list
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = useMeilisearch
+    ? displayProducts
+    : products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [filters]);
-
-  const totalProducts = filteredProducts.length;
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
-
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  }, [filters.query, filters.categories, filters.genders, filters.colors, filters.price, filters.sort]);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const nextPage = () => setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
@@ -78,11 +107,15 @@ const ShopWithSidebarContent = ({
     }
   };
 
-  const options = [
-    { label: "Latest Products", value: "0" },
-    { label: "Best Selling", value: "1" },
-    { label: "Old Products", value: "2" },
+  const sortOptions = [
+    { label: t("sortRelevance"), value: "relevance" },
+    { label: t("sortPriceLow"), value: "price:asc" },
+    { label: t("sortPriceHigh"), value: "price:desc" },
   ];
+
+  const handleSortChange = (value: string) => {
+    setSort(value as SortOption);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
@@ -174,6 +207,7 @@ const ShopWithSidebarContent = ({
                     categories={categories}
                     selectedCategories={filters.categories}
                     onCategoryChange={setCategories}
+                    facetCounts={facets.categoryIds}
                   />
 
                   {/* <!-- gender box --> */}
@@ -181,6 +215,7 @@ const ShopWithSidebarContent = ({
                     genders={genders}
                     selectedGenders={filters.genders}
                     onGenderChange={setGenders}
+                    facetCounts={facets.gender}
                   />
 
                   {/* // <!-- size box --> */}
@@ -191,6 +226,7 @@ const ShopWithSidebarContent = ({
                     colors={colors}
                     selectedColors={filters.colors}
                     onColorChange={setColors}
+                    facetCounts={facets.colors}
                   />
 
                   {/* // <!-- price range box --> */}
@@ -206,15 +242,43 @@ const ShopWithSidebarContent = ({
 
             {/* // <!-- Content Start --> */}
             <div className="xl:max-w-[870px] w-full">
+              {/* Search query display */}
+              {filters.query && (
+                <div className="bg-champagne-50 shadow-1 rounded-lg p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-onyx">
+                      {tSearch("resultsFor")}: <span className="font-medium">&quot;{filters.query}&quot;</span>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setQuery("")}
+                      className="text-sm text-malachite hover:underline"
+                    >
+                      {t("cleanAll")}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               <div className="rounded-lg bg-champagne-50 shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
-                    <CustomSelect options={options} />
+                    <CustomSelect
+                      options={sortOptions}
+                      defaultValue={filters.sort}
+                      onChange={handleSortChange}
+                    />
 
                     <p>
-                      {t("showing")} <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
-                      {t("products")}
+                      {isLoading ? (
+                        <span className="text-slate">{tSearch("searching")}</span>
+                      ) : (
+                        <>
+                          {t("showing")} <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
+                          {t("products")}
+                        </>
+                      )}
                     </p>
                   </div>
 
@@ -298,7 +362,22 @@ const ShopWithSidebarContent = ({
               </div>
 
               {/* <!-- Products Grid Tab Content Start --> */}
-              {currentProducts.length > 0 ? (
+              {error ? (
+                <div className="flex flex-col items-center justify-center py-20 text-center">
+                  <p className="text-lg text-red-500 mb-4">{error}</p>
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="text-malachite hover:underline"
+                  >
+                    {t("cleanAll")}
+                  </button>
+                </div>
+              ) : isLoading ? (
+                <div className="flex items-center justify-center py-20">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-malachite"></div>
+                </div>
+              ) : currentProducts.length > 0 ? (
                 <div
                   className={`${productStyle === "grid"
                     ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7.5 gap-y-9"
@@ -315,7 +394,11 @@ const ShopWithSidebarContent = ({
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <p className="text-lg text-darkslate mb-4">{t("noProductsFound")}</p>
+                  <p className="text-lg text-darkslate mb-4">
+                    {filters.query
+                      ? tSearch("noResults", { query: filters.query })
+                      : t("noProductsFound")}
+                  </p>
                   <button
                     type="button"
                     onClick={clearFilters}

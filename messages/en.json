@@ -77,7 +77,17 @@
         "showing": "Showing",
         "of": "of",
         "products": "Products",
-        "noProductsFound": "No products found matching your filters"
+        "noProductsFound": "No products found matching your filters",
+        "sortRelevance": "Most Relevant",
+        "sortPriceLow": "Price: Low to High",
+        "sortPriceHigh": "Price: High to Low"
+    },
+    "Search": {
+        "placeholder": "Search products...",
+        "noResults": "No results found for \"{query}\"",
+        "viewAll": "View all {count} results",
+        "searching": "Searching...",
+        "resultsFor": "Results for"
     },
     "Metadata": {
         "shopTitle": "Shop Page | Listopad",

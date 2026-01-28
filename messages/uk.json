@@ -77,7 +77,17 @@
         "showing": "Показано",
         "of": "з",
         "products": "товарів",
-        "noProductsFound": "Товарів не знайдено за вашими фільтрами"
+        "noProductsFound": "Товарів не знайдено за вашими фільтрами",
+        "sortRelevance": "За релевантністю",
+        "sortPriceLow": "Ціна: від низької до високої",
+        "sortPriceHigh": "Ціна: від високої до низької"
+    },
+    "Search": {
+        "placeholder": "Пошук товарів...",
+        "noResults": "Нічого не знайдено за запитом \"{query}\"",
+        "viewAll": "Переглянути всі {count} результатів",
+        "searching": "Шукаємо...",
+        "resultsFor": "Результати за запитом"
     },
     "Metadata": {
         "shopTitle": "Магазин | Listopad",
