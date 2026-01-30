@@ -328,6 +328,9 @@ Focus on pure functions in `src/lib/`:
 | `formatPrice.ts` | Currency formatting, edge cases (0, negative, large numbers) |
 | `supabase-data.ts` | `generateSlug`, `getIdFromSlug` helpers (mock Supabase for data functions) |
 | `getBaseUrl.ts` | Different environment scenarios |
+| `apiValidation.ts` | Parameter parsing, validation (locales, sort options, genders, colors) |
+| `categoryHierarchy.ts` | Category tree building, descendant expansion |
+| `filterCounts.ts` | Category and gender count calculations |
 
 ### Example: `src/lib/formatPrice.test.ts`
 

@@ -143,6 +143,13 @@ Products use slugs in format: `{name-lowercase}-{id}`
 - `getProductBySlug(slug)` - fetch single product
 - `listBrands()` / `listCategories()` - fetch all brands/categories
 
+### Shop Page Dual-Mode Architecture
+The shop page uses two different backends:
+- **Search mode** (`useSearch` hook): Uses Meilisearch via `/api/search` when user enters a search query
+- **Browse mode** (`useFilteredProducts` hook): Uses Supabase via `/api/products` when filtering without search
+
+Both return the same structure: products, pagination, and facet counts. The `ShopWithSidebar` component switches automatically.
+
 ### Caching
 - Pages use ISR with `revalidate = 60` (60 seconds)
 - API routes use `next: { revalidate: 120 }`

@@ -269,11 +269,16 @@ Before completing a task:
 | Purpose | File |
 |---------|------|
 | Data fetching | `src/lib/supabase-data.ts` |
+| API validation | `src/lib/apiValidation.ts` |
+| Category hierarchy | `src/lib/categoryHierarchy.ts` |
+| Search hook | `src/hooks/useSearch.ts` |
+| Browse hook | `src/hooks/useFilteredProducts.ts` |
 | Type definitions | `src/types/*.ts` |
 | Redux state | `src/redux/features/*.ts` |
 | Translations | `messages/uk.json`, `messages/en.json` |
 | Testing docs | `docs/TESTING.md` |
 | Database schema | `docs/DATABASE-SCHEMA.md` |
+| Meilisearch docs | `docs/MEILISEARCH.md` |
 
 ---
 

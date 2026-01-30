@@ -24,12 +24,26 @@ Listopad uses [Meilisearch](https://www.meilisearch.com/) for fast, typo-toleran
 |-----------|----------|---------|
 | Search Client | `src/lib/meilisearch.ts` | Search operations, filter building |
 | Sync Functions | `src/lib/meilisearch-sync.ts` | Product indexing, document transformation |
-| Search API | `src/app/api/search/route.ts` | Public search endpoint |
+| Search API | `src/app/api/search/route.ts` | Public search endpoint (Meilisearch) |
+| Products API | `src/app/api/products/route.ts` | Browse endpoint (Supabase) |
 | Sync Webhook | `src/app/api/webhooks/supabase-sync/route.ts` | Realtime product sync |
 | Setup Script | `scripts/meilisearch-setup.ts` | Index configuration |
 | Sync Script | `scripts/meilisearch-sync.ts` | Bulk product import |
-| Search Hook | `src/hooks/useSearch.ts` | React hook for search UI |
+| Search Hook | `src/hooks/useSearch.ts` | React hook for search mode |
+| Browse Hook | `src/hooks/useFilteredProducts.ts` | React hook for browse mode |
+| API Validation | `src/lib/apiValidation.ts` | Shared validation for both APIs |
 | Types | `src/types/search.ts` | TypeScript definitions |
+
+### Dual-Mode Architecture
+
+The shop page uses two different backends depending on user action:
+
+| User Action | Hook | API | Backend |
+|-------------|------|-----|---------|
+| Enters search query | `useSearch` | `/api/search` | Meilisearch |
+| Browses/filters only | `useFilteredProducts` | `/api/products` | Supabase |
+
+Both return the same structure: products, pagination info, and facet counts. The `ShopWithSidebar` component switches between modes automatically based on whether a search query exists.
 
 ---
 
@@ -298,6 +312,62 @@ function SearchDropdown() {
     </div>
   );
 }
+```
+
+### useFilteredProducts
+
+Hook for browse mode (when no search query). Uses Supabase via `/api/products`.
+
+```tsx
+import { useFilteredProducts } from "@/hooks/useFilteredProducts";
+
+function BrowsePage() {
+  const {
+    results,
+    totalHits,
+    totalPages,
+    page,
+    counts,      // { categories, genders, colors }
+    isLoading,
+    error,
+    refetch,
+  } = useFilteredProducts({
+    categoryIds: ["1"],
+    genders: ["female"],
+    colors: ["black"],
+    minPrice: 500,
+    sort: "price:asc",
+    page: 1,
+    limit: 24,
+    enabled: true,  // Set to false to disable fetching
+  });
+
+  return (
+    <div>
+      <p>Found {totalHits} products</p>
+      {results.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  );
+}
+```
+
+### Switching Between Modes
+
+The `ShopWithSidebar` component automatically switches:
+
+```tsx
+const hasSearchQuery = Boolean(filters.query?.trim());
+
+// Search mode: Meilisearch
+const searchResult = useSearch({ ...options });
+
+// Browse mode: Supabase
+const browseResult = useFilteredProducts({ ...options, enabled: !hasSearchQuery });
+
+// Use whichever is active
+const { products, counts } = hasSearchQuery ? searchResult : browseResult;
 ```
 
 ---

@@ -1,10 +1,17 @@
 import { NextRequest } from "next/server";
 import { supabase } from "@/lib/supabase";
-import { listCategories, type Locale } from "@/lib/supabase-data";
+import { listCategories } from "@/lib/supabase-data";
 import { buildCategoryDescendantsMap, expandCategorySelection } from "@/lib/categoryHierarchy";
 import { generateSlug } from "@/lib/slug";
+import {
+  parseCommaSeparated,
+  parseNumber,
+  validateLocale,
+  validateSort,
+  validateGenders,
+  validateColors,
+} from "@/lib/apiValidation";
 import type { Product, Gender, PrimeColor } from "@/types/product";
-import type { SortOption } from "@/types/search";
 
 type ProductsResponse = {
   data: {
@@ -23,54 +30,6 @@ type ProductsResponse = {
   data: null;
   error: string;
 };
-
-const VALID_LOCALES = ["uk", "en"] as const;
-const VALID_SORT_OPTIONS: SortOption[] = [
-  "relevance",
-  "price:asc",
-  "price:desc",
-  "discountedPrice:asc",
-  "discountedPrice:desc",
-];
-const VALID_GENDERS: Gender[] = ["male", "female", "unisex"];
-const VALID_COLORS: PrimeColor[] = [
-  "white", "black", "grey", "red", "green", "blue",
-  "yellow", "brown", "orange", "cyan", "magenta",
-  "indigo", "silver", "gold",
-];
-
-function parseCommaSeparated(value: string | null): string[] {
-  if (!value) return [];
-  return value.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
-}
-
-function parseNumber(value: string | null): number | undefined {
-  if (!value) return undefined;
-  const num = Number(value);
-  return isNaN(num) ? undefined : num;
-}
-
-function validateLocale(value: string | null): Locale {
-  if (value && VALID_LOCALES.includes(value as Locale)) {
-    return value as Locale;
-  }
-  return "uk";
-}
-
-function validateSort(value: string | null): SortOption {
-  if (value && VALID_SORT_OPTIONS.includes(value as SortOption)) {
-    return value as SortOption;
-  }
-  return "relevance";
-}
-
-function validateGenders(values: string[]): Gender[] {
-  return values.filter((v) => VALID_GENDERS.includes(v as Gender)) as Gender[];
-}
-
-function validateColors(values: string[]): PrimeColor[] {
-  return values.filter((v) => VALID_COLORS.includes(v as PrimeColor)) as PrimeColor[];
-}
 
 export async function GET(request: NextRequest): Promise<Response> {
   try {
