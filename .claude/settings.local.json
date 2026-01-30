@@ -11,7 +11,13 @@
       "Bash(npx eslint:*)",
       "Bash(pnpm exec playwright install:*)",
       "Bash(pnpm exec playwright test:*)",
-      "Bash(pnpm tsc:*)"
+      "Bash(pnpm tsc:*)",
+      "WebSearch",
+      "WebFetch(domain:www.meilisearch.com)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm tsx:*)",
+      "Bash(curl:*)",
+      "Bash(pnpm eslint:*)"
     ]
   }
 }

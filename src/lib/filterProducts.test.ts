@@ -297,6 +297,7 @@ describe("filterProducts", () => {
         createProduct({ id: "5", categoryIds: ["1"], gender: "female", colors: ["black"], price: 2000 }),
       ];
       const filters: FilterState = {
+        ...emptyFilters,
         categories: ["1"],
         genders: ["female"],
         colors: ["black"],

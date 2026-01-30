@@ -8,12 +8,14 @@ interface ColorsDropdownProps {
   colors: string[];
   selectedColors: PrimeColor[];
   onColorChange: (colors: PrimeColor[]) => void;
+  facetCounts?: Record<PrimeColor, number>;
 }
 
 const ColorsDropdwon = ({
   colors,
   selectedColors,
   onColorChange,
+  facetCounts,
 }: ColorsDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
@@ -50,15 +52,17 @@ const ColorsDropdwon = ({
       >
         {colors.map((color) => {
           const isSelected = selectedColors.includes(color as PrimeColor);
+          const count = facetCounts?.[color as PrimeColor];
           return (
             <button
               key={color}
               type="button"
               onClick={() => handleColorToggle(color as PrimeColor)}
-              className="cursor-pointer select-none flex items-center"
+              className="cursor-pointer select-none flex items-center gap-1"
               data-testid="color-option"
-              aria-label={`Filter by ${color}`}
+              aria-label={`Filter by ${color}${count !== undefined ? ` (${count})` : ""}`}
               aria-pressed={isSelected}
+              title={count !== undefined ? `${color} (${count})` : color}
             >
               <div
                 className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${isSelected && "border-2"
@@ -70,6 +74,9 @@ const ColorsDropdwon = ({
                   style={{ backgroundColor: color }}
                 ></span>
               </div>
+              {count !== undefined && (
+                <span className="text-2xs text-slate">{count}</span>
+              )}
             </button>
           );
         })}

@@ -8,7 +8,7 @@ interface GenderItemProps {
   gender: Gender;
   isSelected: boolean;
   onToggle: () => void;
-  count: number;
+  count?: number;
 }
 
 const GenderItem = ({ gender, isSelected, onToggle, count }: GenderItemProps) => {
@@ -16,7 +16,7 @@ const GenderItem = ({ gender, isSelected, onToggle, count }: GenderItemProps) =>
     <button
       type="button"
       className={`${isSelected && "text-malachite"
-        } group flex items-center justify-between ease-out duration-200 hover:text-malachite `}
+        } group flex items-center justify-between ease-out duration-200 hover:text-malachite w-full`}
       onClick={onToggle}
       data-testid="gender-option"
     >
@@ -33,12 +33,14 @@ const GenderItem = ({ gender, isSelected, onToggle, count }: GenderItemProps) =>
         <span className="capitalize">{gender}</span>
       </div>
 
-      <span
-        className={`${isSelected ? "text-onyx bg-malachite" : "bg-champagne-200"
-          } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-malachite`}
-      >
-        {count}
-      </span>
+      {count !== undefined && (
+        <span
+          className={`${isSelected ? "text-onyx bg-malachite" : "bg-champagne-200"
+            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-malachite`}
+        >
+          {count}
+        </span>
+      )}
     </button>
   );
 };
@@ -47,14 +49,14 @@ interface GenderDropdownProps {
   genders: string[];
   selectedGenders: Gender[];
   onGenderChange: (genders: Gender[]) => void;
-  genderCounts: Map<Gender, number>;
+  facetCounts?: Record<Gender, number>;
 }
 
 const GenderDropdown = ({
   genders,
   selectedGenders,
   onGenderChange,
-  genderCounts,
+  facetCounts,
 }: GenderDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
@@ -99,7 +101,7 @@ const GenderDropdown = ({
             gender={gender as Gender}
             isSelected={selectedGenders.includes(gender as Gender)}
             onToggle={() => handleGenderToggle(gender as Gender)}
-            count={genderCounts.get(gender as Gender) ?? 0}
+            count={facetCounts?.[gender as Gender]}
           />
         ))}
       </div>

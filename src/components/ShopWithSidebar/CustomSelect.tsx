@@ -1,13 +1,42 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 
-const CustomSelect = ({ options }) => {
+interface Option {
+  label: string;
+  value: string;
+}
+
+interface CustomSelectProps {
+  options: Option[];
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+}
+
+const CustomSelect = ({ options, defaultValue, onChange }: CustomSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  const defaultOption = useMemo(() => {
+    if (defaultValue) {
+      return options.find((opt) => opt.value === defaultValue) ?? options[0];
+    }
+    return options[0];
+  }, [options, defaultValue]);
+
+  const [selectedOption, setSelectedOption] = useState<Option | undefined>(defaultOption);
+
+  // Update selected option when defaultValue changes
+  useEffect(() => {
+    if (defaultValue) {
+      const option = options.find((opt) => opt.value === defaultValue);
+      if (option) {
+        setSelectedOption(option);
+      }
+    }
+  }, [defaultValue, options]);
 
   // Function to close the dropdown when a click occurs outside the component
-  const handleClickOutside = (event) => {
-    if (selectRef.current && !selectRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -26,9 +55,12 @@ const CustomSelect = ({ options }) => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option: Option) => {
     setSelectedOption(option);
     toggleDropdown();
+    if (onChange) {
+      onChange(option.value);
+    }
   };
 
   return (
@@ -42,7 +74,7 @@ const CustomSelect = ({ options }) => {
         }`}
         onClick={toggleDropdown}
       >
-        {selectedOption.label}
+        {selectedOption?.label}
       </div>
       <div className={`select-items ${isOpen ? "" : "select-hide"}`}>
         {options.slice(1).map((option, index) => (

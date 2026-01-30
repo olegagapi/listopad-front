@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useMemo } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import CustomSelect from "./CustomSelect";
 import CategoryDropdown from "./CategoryDropdown";
@@ -15,9 +15,11 @@ import { Category } from "@/types/category";
 import { PriceRange } from "@/types/filters";
 import { useTranslations } from "next-intl";
 import { useShopFilters } from "@/hooks/useShopFilters";
-import { filterProducts, hasActiveFilters } from "@/lib/filterProducts";
-import { buildCategoryDescendantsMap, expandCategorySelection } from "@/lib/categoryHierarchy";
-import { calculateCategoryCounts, calculateGenderCounts } from "@/lib/filterCounts";
+import { useSearch } from "@/hooks/useSearch";
+import { useFilteredProducts } from "@/hooks/useFilteredProducts";
+import { hasActiveFilters } from "@/lib/filterProducts";
+import type { SortOption, FacetDistribution } from "@/types/search";
+import type { FilteredProductsCounts } from "@/hooks/useFilteredProducts";
 
 interface ShopWithSidebarProps {
   products: Product[];
@@ -28,20 +30,22 @@ interface ShopWithSidebarProps {
 }
 
 const ShopWithSidebarContent = ({
-  products,
   categories,
   colors,
   genders,
   priceRange,
 }: ShopWithSidebarProps) => {
   const t = useTranslations("Shop");
+  const tSearch = useTranslations("Search");
   const {
     filters,
     clearFilters,
+    setQuery,
     setCategories,
     setGenders,
     setColors,
     setPrice,
+    setSort,
   } = useShopFilters();
 
   const [productStyle, setProductStyle] = useState("grid");
@@ -50,48 +54,83 @@ const ShopWithSidebarContent = ({
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-  // Build category hierarchy map (once, based on categories)
-  const descendantsMap = useMemo(
-    () => buildCategoryDescendantsMap(categories),
-    [categories]
-  );
+  // Determine mode: search (with query) or browse (no query)
+  const hasSearchQuery = Boolean(filters.query?.trim());
 
-  // Calculate static counts (once, based on all products)
-  const categoryCounts = useMemo(
-    () => calculateCategoryCounts(products, categories, descendantsMap),
-    [products, categories, descendantsMap]
-  );
+  // Search mode: use Meilisearch
+  const searchResult = useSearch({
+    query: filters.query,
+    categoryIds: filters.categories,
+    genders: filters.genders,
+    colors: filters.colors,
+    minPrice: filters.price.from ?? undefined,
+    maxPrice: filters.price.to ?? undefined,
+    sort: filters.sort,
+    page: currentPage,
+    limit: productsPerPage,
+  });
 
-  const genderCounts = useMemo(
-    () => calculateGenderCounts(products),
-    [products]
-  );
+  // Browse mode: use server-side Supabase filtering
+  const browseResult = useFilteredProducts({
+    categoryIds: filters.categories,
+    genders: filters.genders,
+    colors: filters.colors,
+    minPrice: filters.price.from ?? undefined,
+    maxPrice: filters.price.to ?? undefined,
+    sort: filters.sort,
+    page: currentPage,
+    limit: productsPerPage,
+    enabled: !hasSearchQuery,
+  });
 
-  // Expand selected categories to include descendants for filtering
-  const expandedCategories = useMemo(
-    () => filters.categories.length > 0
-      ? expandCategorySelection(filters.categories, descendantsMap)
-      : [],
-    [filters.categories, descendantsMap]
-  );
+  // Unified results based on mode
+  const {
+    currentProducts,
+    totalHits,
+    totalPages,
+    isLoading,
+    error,
+    facetCounts,
+  } = useMemo(() => {
+    if (hasSearchQuery) {
+      // Search mode: use Meilisearch results
+      return {
+        currentProducts: searchResult.results,
+        totalHits: searchResult.totalHits,
+        totalPages: searchResult.totalPages,
+        isLoading: searchResult.isLoading,
+        error: searchResult.error,
+        facetCounts: {
+          categories: searchResult.facets.categoryIds ?? {},
+          genders: searchResult.facets.gender ?? ({} as Record<string, number>),
+          colors: searchResult.facets.colors ?? ({} as Record<string, number>),
+        },
+      };
+    } else {
+      // Browse mode: use Supabase results
+      return {
+        currentProducts: browseResult.results,
+        totalHits: browseResult.totalHits,
+        totalPages: browseResult.totalPages,
+        isLoading: browseResult.isLoading,
+        error: browseResult.error,
+        facetCounts: {
+          categories: browseResult.counts.categories,
+          genders: browseResult.counts.genders as Record<string, number>,
+          colors: browseResult.counts.colors as Record<string, number>,
+        },
+      };
+    }
+  }, [hasSearchQuery, searchResult, browseResult]);
 
-  // Filter products based on current filters (with expanded categories)
-  const filteredProducts = useMemo(
-    () => filterProducts(products, filters, expandedCategories),
-    [products, filters, expandedCategories]
-  );
+  // Calculate pagination display values
+  const indexOfFirstProduct = (currentPage - 1) * productsPerPage;
+  const indexOfLastProduct = indexOfFirstProduct + currentProducts.length;
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [filters]);
-
-  const totalProducts = filteredProducts.length;
-  const totalPages = Math.ceil(totalProducts / productsPerPage);
-
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  }, [filters.query, filters.categories, filters.genders, filters.colors, filters.price, filters.sort]);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const nextPage = () => setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
@@ -105,11 +144,15 @@ const ShopWithSidebarContent = ({
     }
   };
 
-  const options = [
-    { label: "Latest Products", value: "0" },
-    { label: "Best Selling", value: "1" },
-    { label: "Old Products", value: "2" },
+  const sortOptions = [
+    { label: t("sortRelevance"), value: "relevance" },
+    { label: t("sortPriceLow"), value: "price:asc" },
+    { label: t("sortPriceHigh"), value: "price:desc" },
   ];
+
+  const handleSortChange = (value: string) => {
+    setSort(value as SortOption);
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
@@ -201,7 +244,7 @@ const ShopWithSidebarContent = ({
                     categories={categories}
                     selectedCategories={filters.categories}
                     onCategoryChange={setCategories}
-                    categoryCounts={categoryCounts}
+                    facetCounts={facetCounts.categories}
                   />
 
                   {/* <!-- gender box --> */}
@@ -209,7 +252,7 @@ const ShopWithSidebarContent = ({
                     genders={genders}
                     selectedGenders={filters.genders}
                     onGenderChange={setGenders}
-                    genderCounts={genderCounts}
+                    facetCounts={facetCounts.genders as Record<"male" | "female" | "unisex", number>}
                   />
 
                   {/* // <!-- size box --> */}
@@ -220,6 +263,7 @@ const ShopWithSidebarContent = ({
                     colors={colors}
                     selectedColors={filters.colors}
                     onColorChange={setColors}
+                    facetCounts={facetCounts.colors as FacetDistribution["colors"]}
                   />
 
                   {/* // <!-- price range box --> */}
@@ -235,15 +279,43 @@ const ShopWithSidebarContent = ({
 
             {/* // <!-- Content Start --> */}
             <div className="xl:max-w-[870px] w-full">
+              {/* Search query display */}
+              {filters.query && (
+                <div className="bg-champagne-50 shadow-1 rounded-lg p-4 mb-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-onyx">
+                      {tSearch("resultsFor")}: <span className="font-medium">&quot;{filters.query}&quot;</span>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setQuery("")}
+                      className="text-sm text-malachite hover:underline"
+                    >
+                      {t("cleanAll")}
+                    </button>
+                  </div>
+                </div>
+              )}
+
               <div className="rounded-lg bg-champagne-50 shadow-1 pl-3 pr-2.5 py-2.5 mb-6">
                 <div className="flex items-center justify-between">
                   {/* <!-- top bar left --> */}
                   <div className="flex flex-wrap items-center gap-4">
-                    <CustomSelect options={options} />
+                    <CustomSelect
+                      options={sortOptions}
+                      defaultValue={filters.sort}
+                      onChange={handleSortChange}
+                    />
 
                     <p>
-                      {t("showing")} <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{Math.min(indexOfLastProduct, totalProducts)} {t("of")} {totalProducts}</span>{" "}
-                      {t("products")}
+                      {isLoading ? (
+                        <span className="text-slate">{tSearch("searching")}</span>
+                      ) : (
+                        <>
+                          {t("showing")} <span className="text-onyx">{currentProducts.length > 0 ? indexOfFirstProduct + 1 : 0}-{indexOfLastProduct} {t("of")} {totalHits}</span>{" "}
+                          {t("products")}
+                        </>
+                      )}
                     </p>
                   </div>
 
@@ -327,7 +399,22 @@ const ShopWithSidebarContent = ({
               </div>
 
               {/* <!-- Products Grid Tab Content Start --> */}
-              {currentProducts.length > 0 ? (
+              {error ? (
+                <div className="flex flex-col items-center justify-center py-20 text-center">
+                  <p className="text-lg text-red-500 mb-4">{error}</p>
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="text-malachite hover:underline"
+                  >
+                    {t("cleanAll")}
+                  </button>
+                </div>
+              ) : isLoading ? (
+                <div className="flex items-center justify-center py-20">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-malachite"></div>
+                </div>
+              ) : currentProducts.length > 0 ? (
                 <div
                   className={`${productStyle === "grid"
                     ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-7.5 gap-y-9"
@@ -344,7 +431,11 @@ const ShopWithSidebarContent = ({
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <p className="text-lg text-darkslate mb-4">{t("noProductsFound")}</p>
+                  <p className="text-lg text-darkslate mb-4">
+                    {filters.query
+                      ? tSearch("noResults", { query: filters.query })
+                      : t("noProductsFound")}
+                  </p>
                   <button
                     type="button"
                     onClick={clearFilters}
