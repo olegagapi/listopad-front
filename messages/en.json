@@ -131,5 +131,9 @@
         "viewOnSeller": "View on seller website",
         "visitShop": "Visit shop",
         "visitShopLabel": "Visit shop"
+    },
+    "Product": {
+        "notFound": "Product not found",
+        "backToShop": "Back to shop"
     }
 }

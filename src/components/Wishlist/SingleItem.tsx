@@ -5,23 +5,32 @@ import { useDispatch } from "react-redux";
 import { removeItemFromWishlist } from "@/redux/features/wishlist-slice";
 
 import Image from "next/image";
+import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { RemoveCircleIcon, WarningCircleIcon } from "@/components/Icons";
 
-const SingleItem = ({ item }) => {
+interface WishlistItem {
+  id: string | number;
+  slug: string;
+  title: string;
+  price: number;
+  discountedPrice: number;
+  quantity: number;
+  currency?: string;
+  status?: string;
+  externalUrl?: string | null;
+  imgs?: {
+    thumbnails: string[];
+    previews: string[];
+  };
+}
+
+const SingleItem = ({ item }: { item: WishlistItem }) => {
   const dispatch = useDispatch<AppDispatch>();
   const t = useTranslations("ProductItem");
 
   const handleRemoveFromWishlist = () => {
     dispatch(removeItemFromWishlist(item.id));
-  };
-
-  // view on seller website
-  const handleAddToCart = () => {
-    const url = item.externalUrl || "/shop-details";
-    if (typeof window !== "undefined" && url) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
   };
 
   return (
@@ -46,7 +55,7 @@ const SingleItem = ({ item }) => {
 
             <div>
               <h3 className="text-onyx ease-out duration-200 hover:text-malachite">
-                <a href="#"> {item.title} </a>
+                <Link href={`/products/${item.slug}`}>{item.title}</Link>
               </h3>
             </div>
           </div>
@@ -54,7 +63,7 @@ const SingleItem = ({ item }) => {
       </div>
 
       <div className="min-w-[205px]">
-        <p className="text-onyx">${item.discountedPrice}</p>
+        <p className="text-onyx">{item.discountedPrice} {item.currency}</p>
       </div>
 
       <div className="min-w-[265px]">

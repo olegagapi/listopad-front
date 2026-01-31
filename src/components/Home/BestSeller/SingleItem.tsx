@@ -7,7 +7,7 @@ import { AppDispatch } from "@/redux/store";
 import { updateQuickView } from "@/redux/features/quickView-slice";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { addItemToWishlist } from "@/redux/features/wishlist-slice";
 import { EyeIcon, CartIcon, HeartIcon } from "@/components/Icons";
 
@@ -55,14 +55,14 @@ const SingleItem = ({ item }: { item: Product }) => {
           </div>
 
           <h3 className="font-medium text-onyx ease-out duration-200 hover:text-malachite mb-1.5">
-            <Link href="/shop-details" data-testid="product-link">
+            <Link href={`/products/${item.slug}`} data-testid="product-link">
               <span data-testid="product-title">{item.title}</span>
             </Link>
           </h3>
 
           <span className="flex items-center justify-center gap-2 font-medium text-lg" data-testid="product-price">
-            <span className="text-onyx">${item.discountedPrice}</span>
-            <span className="text-slate line-through">${item.price}</span>
+            <span className="text-onyx">{item.discountedPrice} {item.currency}</span>
+            <span className="text-slate line-through">{item.price} {item.currency}</span>
           </span>
         </div>
 

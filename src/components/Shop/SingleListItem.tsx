@@ -8,7 +8,7 @@ import { updateQuickView } from "@/redux/features/quickView-slice";
 import { addItemToWishlist } from "@/redux/features/wishlist-slice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { EyeIcon, CartIcon, HeartIcon } from "@/components/Icons";
@@ -84,14 +84,14 @@ const SingleListItem = ({ item }: { item: Product }) => {
         <div className="w-full flex flex-col gap-5 sm:flex-row sm:items-center justify-center sm:justify-between py-5 px-4 sm:px-7.5 lg:pl-11 lg:pr-12">
           <div>
             <h3 className="font-medium text-onyx ease-out duration-200 hover:text-malachite mb-1.5">
-              <Link href="/shop-details" data-testid="product-link">
+              <Link href={`/products/${item.slug}`} data-testid="product-link">
                 <span data-testid="product-title">{item.title}</span>
               </Link>
             </h3>
 
             <span className="flex items-center gap-2 font-medium text-lg" data-testid="product-price">
-              <span className="text-onyx">${item.discountedPrice}</span>
-              <span className="text-slate line-through">${item.price}</span>
+              <span className="text-onyx">{item.discountedPrice} {item.currency}</span>
+              <span className="text-slate line-through">{item.price} {item.currency}</span>
             </span>
           </div>
 
