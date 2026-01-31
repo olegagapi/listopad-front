@@ -139,5 +139,13 @@
     "Wishlist": {
         "addToWishlist": "Додати до списку бажань",
         "removeFromWishlist": "Видалити зі списку бажань"
+    },
+    "Brand": {
+        "products": "Товари",
+        "visitWebsite": "Перейти на сайт",
+        "visitInstagram": "Перейти в Instagram",
+        "noProducts": "Товарів від цього бренду немає",
+        "notFound": "Бренд не знайдено",
+        "backToShop": "Повернутися до магазину"
     }
 }

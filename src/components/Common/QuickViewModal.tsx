@@ -11,6 +11,8 @@ import { useTranslations } from "next-intl";
 import { CloseIcon, ZoomIcon, CheckCircleIcon, ImagePlaceholderIcon } from "@/components/Icons";
 import WishlistButton from "@/components/Common/WishlistButton";
 import { Product } from "@/types/product";
+import { Link } from "@/i18n/routing";
+import { generateSlug } from "@/lib/supabase-data";
 
 const QuickViewModal = () => {
   const { isModalOpen, closeModal } = useModalContext();
@@ -128,9 +130,19 @@ const QuickViewModal = () => {
                 SALE 20% OFF
               </span>
 
-              <h3 className="font-semibold text-xl xl:text-heading-5 text-onyx mb-4">
+              <h3 className="font-semibold text-xl xl:text-heading-5 text-onyx mb-2">
                 {product.title}
               </h3>
+
+              {product.brandId && product.brandName && (
+                <Link
+                  href={`/brands/${generateSlug(product.brandName, Number(product.brandId))}`}
+                  className="text-malachite hover:underline mb-4 inline-block"
+                  onClick={() => closeModal()}
+                >
+                  {product.brandName}
+                </Link>
+              )}
 
               <div className="flex flex-wrap items-center gap-5 mb-6">
                 <div className="flex items-center gap-2">

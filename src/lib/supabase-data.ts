@@ -283,3 +283,31 @@ export async function getSiteSetting<T>(key: string): Promise<Result<T>> {
 
     return { data: data?.value as T, error: null };
 }
+
+export async function getBrandBySlug(slug: string, locale: Locale = 'uk'): Promise<Brand | null> {
+    const id = getIdFromSlug(slug);
+    if (!id) return null;
+
+    const { data: brand, error } = await supabase
+        .from('brands')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    if (error || !brand) {
+        console.error('Error fetching brand by slug:', error);
+        return null;
+    }
+
+    const brandRecord = brand as Record<string, unknown>;
+    return {
+        id: String(brandRecord.id),
+        name: locale === 'uk' ? String(brandRecord.name_uk ?? '') : String(brandRecord.name_en ?? ''),
+        description: locale === 'uk' ? (brandRecord.marketing_desc_uk as string | null) : (brandRecord.marketing_desc_en as string | null),
+        internalUrl: brandRecord.internal_url as string | null,
+        externalUrl: brandRecord.external_url as string | null,
+        instagramUrl: brandRecord.inst_url as string | null,
+        productCount: 0,
+        averageProductPrice: 0,
+    };
+}

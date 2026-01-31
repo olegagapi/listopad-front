@@ -139,5 +139,13 @@
     "Wishlist": {
         "addToWishlist": "Add to wishlist",
         "removeFromWishlist": "Remove from wishlist"
+    },
+    "Brand": {
+        "products": "Products",
+        "visitWebsite": "Visit Website",
+        "visitInstagram": "Visit Instagram",
+        "noProducts": "No products available from this brand",
+        "notFound": "Brand not found",
+        "backToShop": "Back to shop"
     }
 }

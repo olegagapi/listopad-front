@@ -8,6 +8,8 @@ import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { useTranslations } from "next-intl";
 import { ZoomIcon, CheckCircleIcon } from "@/components/Icons";
 import WishlistButton from "@/components/Common/WishlistButton";
+import { Link } from "@/i18n/routing";
+import { generateSlug } from "@/lib/supabase-data";
 
 import { Product } from "@/types/product";
 
@@ -235,13 +237,18 @@ const ProductDetails = ({ product, relatedProducts }: ProductDetailsProps) => {
                 }`}
             >
               {/* <!-- Brand --> */}
-              {product.brandName && (
+              {product.brandName && product.brandId && (
                 <div className="rounded-md even:bg-champagne flex py-4 px-4 sm:px-5">
                   <div className="max-w-[450px] min-w-[140px] w-full">
                     <p className="text-sm sm:text-base text-onyx">Brand</p>
                   </div>
                   <div className="w-full">
-                    <p className="text-sm sm:text-base text-onyx">{product.brandName}</p>
+                    <Link
+                      href={`/brands/${generateSlug(product.brandName, Number(product.brandId))}`}
+                      className="text-sm sm:text-base text-malachite hover:underline"
+                    >
+                      {product.brandName}
+                    </Link>
                   </div>
                 </div>
               )}

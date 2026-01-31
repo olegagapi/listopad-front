@@ -19,7 +19,8 @@
       "Bash(curl:*)",
       "Bash(pnpm eslint:*)",
       "Bash(pnpm test:e2e:*)",
-      "Bash(pnpm outdated:*)"
+      "Bash(pnpm outdated:*)",
+      "Bash(pnpm meilisearch:sync:*)"
     ]
   }
 }
