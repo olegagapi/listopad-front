@@ -6,10 +6,11 @@ import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
-import { resetQuickView } from "@/redux/features/quickView-slice";
 import { updateproductDetails } from "@/redux/features/product-details";
 import { useTranslations } from "next-intl";
-import { CloseIcon, ZoomIcon, CheckCircleIcon, HeartIcon, ImagePlaceholderIcon } from "@/components/Icons";
+import { CloseIcon, ZoomIcon, CheckCircleIcon, ImagePlaceholderIcon } from "@/components/Icons";
+import WishlistButton from "@/components/Common/WishlistButton";
+import { Product } from "@/types/product";
 
 const QuickViewModal = () => {
   const { isModalOpen, closeModal } = useModalContext();
@@ -165,12 +166,7 @@ const QuickViewModal = () => {
                   {t("visitShop")}
                 </button>
 
-                <button
-                  className={`inline-flex items-center gap-2 font-medium text-onyx bg-lavender py-3 px-6 rounded-md border border-lavender-dark ease-out duration-200 hover:bg-lavender-dark hover:border-lavender-dark`}
-                >
-                  <HeartIcon size={20} />
-                  Add to Wishlist
-                </button>
+                <WishlistButton product={product as Product} size="large" />
               </div>
             </div>
           </div>

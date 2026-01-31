@@ -7,7 +7,8 @@ import RecentlyViewdItems from "./RecentlyViewd";
 import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { useAppSelector } from "@/redux/store";
 import { useTranslations } from "next-intl";
-import { ZoomIcon, CheckCircleIcon, HeartIcon } from "@/components/Icons";
+import { ZoomIcon, CheckCircleIcon } from "@/components/Icons";
+import WishlistButton from "@/components/Common/WishlistButton";
 
 import { Product } from "@/types/product";
 
@@ -189,12 +190,7 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                         {t("visitShop")}
                       </a>
 
-                      <a
-                        href="#"
-                        className="flex items-center justify-center w-12 h-12 rounded-md border border-champagne-400 ease-out duration-200 hover:text-white hover:bg-onyx hover:border-transparent"
-                      >
-                        <HeartIcon size={24} />
-                      </a>
+                      <WishlistButton product={product as Product} size="large" />
                     </div>
                   </form>
                 </div>

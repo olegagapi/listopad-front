@@ -3,13 +3,13 @@ import React from "react";
 import { Product } from "@/types/product";
 import { useModalContext } from "@/app/context/QuickViewModalContext";
 import { updateQuickView } from "@/redux/features/quickView-slice";
-import { addItemToWishlist } from "@/redux/features/wishlist-slice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { EyeIcon, CartIcon, HeartIcon } from "@/components/Icons";
+import { EyeIcon, CartIcon } from "@/components/Icons";
+import WishlistButton from "@/components/Common/WishlistButton";
 
 const SingleGridItem = ({ item }: { item: Product }) => {
   const { openModal } = useModalContext();
@@ -22,23 +22,6 @@ const SingleGridItem = ({ item }: { item: Product }) => {
     dispatch(updateQuickView({ ...item }));
   };
 
-  // view on seller website
-  const handleAddToCart = () => {
-    const url = item.externalUrl || "/shop-details";
-    if (url) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  const handleItemToWishList = () => {
-    dispatch(
-      addItemToWishlist({
-        ...item,
-        status: "available",
-        quantity: 1,
-      }),
-    );
-  };
 
   return (
     <div className="group" data-testid="product-item">
@@ -69,15 +52,7 @@ const SingleGridItem = ({ item }: { item: Product }) => {
             <CartIcon />
           </a>
 
-          <button
-            onClick={() => handleItemToWishList()}
-            aria-label="button for favorite select"
-            id="favOne"
-            data-testid="wishlist-toggle"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
-          >
-            <HeartIcon />
-          </button>
+          <WishlistButton product={item} size="small" />
         </div>
       </div>
 

@@ -135,5 +135,9 @@
     "Product": {
         "notFound": "Product not found",
         "backToShop": "Back to shop"
+    },
+    "Wishlist": {
+        "addToWishlist": "Add to wishlist",
+        "removeFromWishlist": "Remove from wishlist"
     }
 }

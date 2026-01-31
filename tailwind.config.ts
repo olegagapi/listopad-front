@@ -49,6 +49,12 @@ const config: Config = {
         muted: "#F2F5FF",
       },
 
+      // === WISHLIST ACCENT ===
+      lipstick: {
+        DEFAULT: "#C41E3A",
+        dark: "#A01830",
+      },
+
       // === PRIMARY TEXT ===
       onyx: {
         DEFAULT: "#00120B",

@@ -10,6 +10,7 @@ import { ReduxProvider } from "@/redux/provider";
 import QuickViewModal from "@/components/Common/QuickViewModal";
 import { PreviewSliderProvider } from "@/app/context/PreviewSliderContext";
 import PreviewSliderModal from "@/components/Common/PreviewSlider";
+import WishlistPersistenceProvider from "@/components/Common/WishlistPersistenceProvider";
 
 import ScrollToTop from "@/components/Common/ScrollToTop";
 import PreLoader from "@/components/Common/PreLoader";
@@ -48,15 +49,17 @@ export default function RootLayout({
       ) : (
         <>
           <ReduxProvider>
-            <ModalProvider>
-              <PreviewSliderProvider>
-                <Header categories={categories} />
-                {children}
+            <WishlistPersistenceProvider>
+              <ModalProvider>
+                <PreviewSliderProvider>
+                  <Header categories={categories} />
+                  {children}
 
-                <QuickViewModal />
-                <PreviewSliderModal />
-              </PreviewSliderProvider>
-            </ModalProvider>
+                  <QuickViewModal />
+                  <PreviewSliderModal />
+                </PreviewSliderProvider>
+              </ModalProvider>
+            </WishlistPersistenceProvider>
           </ReduxProvider>
           <ScrollToTop />
           <Footer />

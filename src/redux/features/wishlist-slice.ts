@@ -4,7 +4,7 @@ type InitialState = {
   items: WishListItem[];
 };
 
-type WishListItem = {
+export type WishListItem = {
   id: string | number;
   slug: string;
   title: string;
@@ -58,6 +58,21 @@ export const wishlist = createSlice({
     removeAllItemsFromWishlist: (state) => {
       state.items = [];
     },
+
+    toggleWishlistItem: (state, action: PayloadAction<WishListItem>) => {
+      const itemId = action.payload.id;
+      const existingIndex = state.items.findIndex((item) => item.id === itemId);
+
+      if (existingIndex >= 0) {
+        state.items.splice(existingIndex, 1);
+      } else {
+        state.items.push(action.payload);
+      }
+    },
+
+    hydrateWishlist: (state, action: PayloadAction<WishListItem[]>) => {
+      state.items = action.payload;
+    },
   },
 });
 
@@ -65,5 +80,7 @@ export const {
   addItemToWishlist,
   removeItemFromWishlist,
   removeAllItemsFromWishlist,
+  toggleWishlistItem,
+  hydrateWishlist,
 } = wishlist.actions;
 export default wishlist.reducer;

@@ -135,5 +135,9 @@
     "Product": {
         "notFound": "Товар не знайдено",
         "backToShop": "Повернутися до магазину"
+    },
+    "Wishlist": {
+        "addToWishlist": "Додати до списку бажань",
+        "removeFromWishlist": "Видалити зі списку бажань"
     }
 }
