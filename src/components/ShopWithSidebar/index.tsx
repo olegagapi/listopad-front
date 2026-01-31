@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense, useMemo } from "react";
+import React, { useState, useEffect, Suspense, useMemo, useCallback } from "react";
 import Breadcrumb from "../Common/Breadcrumb";
 import CustomSelect from "./CustomSelect";
 import CategoryDropdown from "./CategoryDropdown";
@@ -10,7 +10,7 @@ import ColorsDropdwon from "./ColorsDropdwon";
 import PriceDropdown from "./PriceDropdown";
 import SingleGridItem from "../Shop/SingleGridItem";
 import SingleListItem from "../Shop/SingleListItem";
-import { Product } from "@/types/product";
+import { Product, Gender, PrimeColor } from "@/types/product";
 import { Category } from "@/types/category";
 import { PriceRange } from "@/types/filters";
 import { useTranslations } from "next-intl";
@@ -53,6 +53,42 @@ const ShopWithSidebarContent = ({
   const [stickyMenu, setStickyMenu] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
+
+  // Wrap filter setters to reset page when filters change
+  const handleQueryChange = useCallback((query: string) => {
+    setQuery(query);
+    setCurrentPage(1);
+  }, [setQuery]);
+
+  const handleCategoryChange = useCallback((categories: string[]) => {
+    setCategories(categories);
+    setCurrentPage(1);
+  }, [setCategories]);
+
+  const handleGenderChange = useCallback((genders: Gender[]) => {
+    setGenders(genders);
+    setCurrentPage(1);
+  }, [setGenders]);
+
+  const handleColorChange = useCallback((colors: PrimeColor[]) => {
+    setColors(colors);
+    setCurrentPage(1);
+  }, [setColors]);
+
+  const handlePriceChange = useCallback((from: number | null, to: number | null) => {
+    setPrice(from, to);
+    setCurrentPage(1);
+  }, [setPrice]);
+
+  const handleSortChange = useCallback((value: string) => {
+    setSort(value as SortOption);
+    setCurrentPage(1);
+  }, [setSort]);
+
+  const handleClearFilters = useCallback(() => {
+    clearFilters();
+    setCurrentPage(1);
+  }, [clearFilters]);
 
   // Determine mode: search (with query) or browse (no query)
   const hasSearchQuery = Boolean(filters.query?.trim());
@@ -127,11 +163,6 @@ const ShopWithSidebarContent = ({
   const indexOfFirstProduct = (currentPage - 1) * productsPerPage;
   const indexOfLastProduct = indexOfFirstProduct + currentProducts.length;
 
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters.query, filters.categories, filters.genders, filters.colors, filters.price, filters.sort]);
-
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   const nextPage = () => setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
   const prevPage = () => setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
@@ -150,10 +181,8 @@ const ShopWithSidebarContent = ({
     { label: t("sortPriceHigh"), value: "price:desc" },
   ];
 
-  const handleSortChange = (value: string) => {
-    setSort(value as SortOption);
-  };
-
+  // Note: There's still one remaining useEffect for scroll/click listeners
+  // This is acceptable as it doesn't set state based on props/state changes
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
 
@@ -230,7 +259,7 @@ const ShopWithSidebarContent = ({
                       <p>{t("filters")}</p>
                       <button
                         type="button"
-                        onClick={clearFilters}
+                        onClick={handleClearFilters}
                         className={`text-darkslate ${showActiveFilters ? 'hover:text-malachite' : 'opacity-50 cursor-not-allowed'}`}
                         disabled={!showActiveFilters}
                       >
@@ -243,7 +272,7 @@ const ShopWithSidebarContent = ({
                   <CategoryDropdown
                     categories={categories}
                     selectedCategories={filters.categories}
-                    onCategoryChange={setCategories}
+                    onCategoryChange={handleCategoryChange}
                     facetCounts={facetCounts.categories}
                   />
 
@@ -251,7 +280,7 @@ const ShopWithSidebarContent = ({
                   <GenderDropdown
                     genders={genders}
                     selectedGenders={filters.genders}
-                    onGenderChange={setGenders}
+                    onGenderChange={handleGenderChange}
                     facetCounts={facetCounts.genders as Record<"male" | "female" | "unisex", number>}
                   />
 
@@ -262,7 +291,7 @@ const ShopWithSidebarContent = ({
                   <ColorsDropdwon
                     colors={colors}
                     selectedColors={filters.colors}
-                    onColorChange={setColors}
+                    onColorChange={handleColorChange}
                     facetCounts={facetCounts.colors as FacetDistribution["colors"]}
                   />
 
@@ -270,7 +299,7 @@ const ShopWithSidebarContent = ({
                   <PriceDropdown
                     priceRange={priceRange}
                     selectedPrice={filters.price}
-                    onPriceChange={setPrice}
+                    onPriceChange={handlePriceChange}
                   />
                 </div>
               </form>
@@ -288,7 +317,7 @@ const ShopWithSidebarContent = ({
                     </p>
                     <button
                       type="button"
-                      onClick={() => setQuery("")}
+                      onClick={() => handleQueryChange("")}
                       className="text-sm text-malachite hover:underline"
                     >
                       {t("cleanAll")}
@@ -404,7 +433,7 @@ const ShopWithSidebarContent = ({
                   <p className="text-lg text-red-500 mb-4">{error}</p>
                   <button
                     type="button"
-                    onClick={clearFilters}
+                    onClick={handleClearFilters}
                     className="text-malachite hover:underline"
                   >
                     {t("cleanAll")}
@@ -438,7 +467,7 @@ const ShopWithSidebarContent = ({
                   </p>
                   <button
                     type="button"
-                    onClick={clearFilters}
+                    onClick={handleClearFilters}
                     className="text-malachite hover:underline"
                   >
                     {t("cleanAll")}

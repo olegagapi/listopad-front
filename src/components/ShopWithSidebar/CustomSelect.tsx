@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 
 interface Option {
   label: string;
@@ -15,31 +15,20 @@ const CustomSelect = ({ options, defaultValue, onChange }: CustomSelectProps) =>
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
-  const defaultOption = useMemo(() => {
+  // Derive selected option from defaultValue - fully controlled by parent
+  const selectedOption = useMemo(() => {
     if (defaultValue) {
       return options.find((opt) => opt.value === defaultValue) ?? options[0];
     }
     return options[0];
   }, [options, defaultValue]);
 
-  const [selectedOption, setSelectedOption] = useState<Option | undefined>(defaultOption);
-
-  // Update selected option when defaultValue changes
-  useEffect(() => {
-    if (defaultValue) {
-      const option = options.find((opt) => opt.value === defaultValue);
-      if (option) {
-        setSelectedOption(option);
-      }
-    }
-  }, [defaultValue, options]);
-
   // Function to close the dropdown when a click occurs outside the component
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent) => {
     if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     // Add a click event listener to the document
@@ -49,14 +38,13 @@ const CustomSelect = ({ options, defaultValue, onChange }: CustomSelectProps) =>
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleOptionClick = (option: Option) => {
-    setSelectedOption(option);
     toggleDropdown();
     if (onChange) {
       onChange(option.value);

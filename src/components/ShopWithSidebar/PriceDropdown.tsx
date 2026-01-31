@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import { ChevronDownIcon } from '@/components/Icons';
@@ -21,22 +21,23 @@ const PriceDropdown = ({
 }: PriceDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
-  // Local state for immediate UI feedback
-  const [localPrice, setLocalPrice] = useState({
-    from: selectedPrice.from ?? priceRange.min,
-    to: selectedPrice.to ?? priceRange.max,
-  });
+  // Track if user is actively dragging the slider
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragValue, setDragValue] = useState<{ from: number; to: number } | null>(null);
 
   // Debounce timer ref
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Sync local state when external selectedPrice changes
-  useEffect(() => {
-    setLocalPrice({
+  // Compute displayed price: use drag value when dragging, otherwise derive from props
+  const localPrice = useMemo(() => {
+    if (isDragging && dragValue) {
+      return dragValue;
+    }
+    return {
       from: selectedPrice.from ?? priceRange.min,
       to: selectedPrice.to ?? priceRange.max,
-    });
-  }, [selectedPrice.from, selectedPrice.to, priceRange.min, priceRange.max]);
+    };
+  }, [isDragging, dragValue, selectedPrice.from, selectedPrice.to, priceRange.min, priceRange.max]);
 
   const debouncedPriceChange = useCallback(
     (from: number, to: number) => {
@@ -49,6 +50,9 @@ const PriceDropdown = ({
         const fromValue = from === priceRange.min ? null : from;
         const toValue = to === priceRange.max ? null : to;
         onPriceChange(fromValue, toValue);
+        // Reset dragging state after debounce completes
+        setIsDragging(false);
+        setDragValue(null);
       }, DEBOUNCE_MS);
     },
     [onPriceChange, priceRange.min, priceRange.max]
@@ -67,7 +71,8 @@ const PriceDropdown = ({
     const from = Math.floor(values[0] ?? priceRange.min);
     const to = Math.ceil(values[1] ?? priceRange.max);
 
-    setLocalPrice({ from, to });
+    setIsDragging(true);
+    setDragValue({ from, to });
     debouncedPriceChange(from, to);
   };
 

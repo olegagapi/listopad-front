@@ -27,6 +27,7 @@ export { CheckIcon } from './CheckIcon';
 // Status Icons (with semantic colors)
 export { CheckCircleIcon } from './CheckCircleIcon';
 export { WarningCircleIcon } from './WarningCircleIcon';
+export { ImagePlaceholderIcon } from './ImagePlaceholderIcon';
 
 // Contact Icons
 export { PhoneIcon } from './PhoneIcon';

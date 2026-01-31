@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useLocale } from "next-intl";
 import type { Product, Gender, PrimeColor } from "@/types/product";
 import type { SortOption } from "@/types/search";
@@ -73,9 +73,15 @@ export function useFilteredProducts(
 
   const abortControllerRef = useRef<AbortController | null>(null);
 
+  // Stabilize filter dependencies to avoid complex expressions in useEffect deps
+  const categoryFilter = useMemo(() => options.categoryIds?.join(",") ?? "", [options.categoryIds]);
+  const genderFilter = useMemo(() => options.genders?.join(",") ?? "", [options.genders]);
+  const colorFilter = useMemo(() => options.colors?.join(",") ?? "", [options.colors]);
+  const { minPrice, maxPrice, sort, page: optionsPage, limit, enabled } = options;
+
   const fetchProducts = useCallback(async () => {
     // Skip if disabled
-    if (options.enabled === false) {
+    if (enabled === false) {
       return;
     }
 
@@ -94,29 +100,29 @@ export function useFilteredProducts(
       const params = new URLSearchParams();
       params.set("locale", locale);
 
-      if (options.categoryIds && options.categoryIds.length > 0) {
-        params.set("category", options.categoryIds.join(","));
+      if (categoryFilter) {
+        params.set("category", categoryFilter);
       }
-      if (options.genders && options.genders.length > 0) {
-        params.set("gender", options.genders.join(","));
+      if (genderFilter) {
+        params.set("gender", genderFilter);
       }
-      if (options.colors && options.colors.length > 0) {
-        params.set("color", options.colors.join(","));
+      if (colorFilter) {
+        params.set("color", colorFilter);
       }
-      if (options.minPrice !== undefined) {
-        params.set("minPrice", String(options.minPrice));
+      if (minPrice !== undefined) {
+        params.set("minPrice", String(minPrice));
       }
-      if (options.maxPrice !== undefined) {
-        params.set("maxPrice", String(options.maxPrice));
+      if (maxPrice !== undefined) {
+        params.set("maxPrice", String(maxPrice));
       }
-      if (options.sort) {
-        params.set("sort", options.sort);
+      if (sort) {
+        params.set("sort", sort);
       }
-      if (options.page) {
-        params.set("page", String(options.page));
+      if (optionsPage) {
+        params.set("page", String(optionsPage));
       }
-      if (options.limit) {
-        params.set("limit", String(options.limit));
+      if (limit) {
+        params.set("limit", String(limit));
       }
 
       const response = await fetch(`/api/products?${params.toString()}`, {
@@ -151,7 +157,7 @@ export function useFilteredProducts(
     } finally {
       setIsLoading(false);
     }
-  }, [locale, options]);
+  }, [locale, categoryFilter, genderFilter, colorFilter, minPrice, maxPrice, sort, optionsPage, limit, enabled]);
 
   const refetch = useCallback(() => {
     fetchProducts();
@@ -160,18 +166,7 @@ export function useFilteredProducts(
   // Fetch when options change
   useEffect(() => {
     fetchProducts();
-  }, [
-    locale,
-    options.categoryIds?.join(","),
-    options.genders?.join(","),
-    options.colors?.join(","),
-    options.minPrice,
-    options.maxPrice,
-    options.sort,
-    options.page,
-    options.limit,
-    options.enabled,
-  ]);
+  }, [fetchProducts]);
 
   // Cleanup on unmount
   useEffect(() => {

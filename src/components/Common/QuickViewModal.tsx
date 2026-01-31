@@ -9,7 +9,7 @@ import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { resetQuickView } from "@/redux/features/quickView-slice";
 import { updateproductDetails } from "@/redux/features/product-details";
 import { useTranslations } from "next-intl";
-import { CloseIcon, ZoomIcon, CheckCircleIcon, HeartIcon } from "@/components/Icons";
+import { CloseIcon, ZoomIcon, CheckCircleIcon, HeartIcon, ImagePlaceholderIcon } from "@/components/Icons";
 
 const QuickViewModal = () => {
   const { isModalOpen, closeModal } = useModalContext();
@@ -105,12 +105,18 @@ const QuickViewModal = () => {
                       <ZoomIcon />
                     </button>
 
-                    <Image
-                      src={product?.imgs?.previews?.[activePreview]}
-                      alt="products-details"
-                      width={400}
-                      height={400}
-                    />
+                    {product?.imgs?.previews?.[activePreview] ? (
+                      <Image
+                        src={product.imgs.previews[activePreview]}
+                        alt="products-details"
+                        width={400}
+                        height={400}
+                      />
+                    ) : (
+                      <div className="w-[400px] h-[400px] flex items-center justify-center">
+                        <ImagePlaceholderIcon size={64} className="text-slate opacity-50" />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

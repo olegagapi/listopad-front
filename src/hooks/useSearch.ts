@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useLocale } from "next-intl";
 import type { SearchResult, FacetDistribution, SortOption } from "@/types/search";
 import type { Product, Gender, PrimeColor } from "@/types/product";
@@ -55,6 +55,13 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
 
   const debounceMs = options.debounceMs ?? DEFAULT_DEBOUNCE_MS;
 
+  // Stabilize filter dependencies to avoid complex expressions in useEffect deps
+  const categoryFilter = useMemo(() => options.categoryIds?.join(",") ?? "", [options.categoryIds]);
+  const brandFilter = useMemo(() => options.brandIds?.join(",") ?? "", [options.brandIds]);
+  const genderFilter = useMemo(() => options.genders?.join(",") ?? "", [options.genders]);
+  const colorFilter = useMemo(() => options.colors?.join(",") ?? "", [options.colors]);
+  const { query: optionsQuery, minPrice, maxPrice, sort, page: optionsPage, limit, hybrid } = options;
+
   const performSearch = useCallback(
     async (query: string) => {
       // Cancel any pending request
@@ -75,34 +82,34 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
         if (query) {
           params.set("q", query);
         }
-        if (options.categoryIds && options.categoryIds.length > 0) {
-          params.set("category", options.categoryIds.join(","));
+        if (categoryFilter) {
+          params.set("category", categoryFilter);
         }
-        if (options.brandIds && options.brandIds.length > 0) {
-          params.set("brand", options.brandIds.join(","));
+        if (brandFilter) {
+          params.set("brand", brandFilter);
         }
-        if (options.genders && options.genders.length > 0) {
-          params.set("gender", options.genders.join(","));
+        if (genderFilter) {
+          params.set("gender", genderFilter);
         }
-        if (options.colors && options.colors.length > 0) {
-          params.set("color", options.colors.join(","));
+        if (colorFilter) {
+          params.set("color", colorFilter);
         }
-        if (options.minPrice !== undefined) {
-          params.set("minPrice", String(options.minPrice));
+        if (minPrice !== undefined) {
+          params.set("minPrice", String(minPrice));
         }
-        if (options.maxPrice !== undefined) {
-          params.set("maxPrice", String(options.maxPrice));
+        if (maxPrice !== undefined) {
+          params.set("maxPrice", String(maxPrice));
         }
-        if (options.sort) {
-          params.set("sort", options.sort);
+        if (sort) {
+          params.set("sort", sort);
         }
-        if (options.page) {
-          params.set("page", String(options.page));
+        if (optionsPage) {
+          params.set("page", String(optionsPage));
         }
-        if (options.limit) {
-          params.set("limit", String(options.limit));
+        if (limit) {
+          params.set("limit", String(limit));
         }
-        if (options.hybrid) {
+        if (hybrid) {
           params.set("hybrid", "true");
         }
 
@@ -143,7 +150,7 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
         setIsLoading(false);
       }
     },
-    [locale, options]
+    [locale, categoryFilter, brandFilter, genderFilter, colorFilter, minPrice, maxPrice, sort, optionsPage, limit, hybrid]
   );
 
   const search = useCallback(
@@ -169,20 +176,8 @@ export function useSearch(options: UseSearchOptions = {}): UseSearchReturn {
 
   // Initial search and search when options change
   useEffect(() => {
-    performSearch(options.query ?? "");
-  }, [
-    locale,
-    options.categoryIds?.join(","),
-    options.brandIds?.join(","),
-    options.genders?.join(","),
-    options.colors?.join(","),
-    options.minPrice,
-    options.maxPrice,
-    options.sort,
-    options.page,
-    options.limit,
-    options.hybrid,
-  ]);
+    performSearch(optionsQuery ?? "");
+  }, [performSearch, optionsQuery]);
 
   // Cleanup on unmount
   useEffect(() => {
