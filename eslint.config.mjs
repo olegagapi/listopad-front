@@ -1,5 +1,10 @@
 import coreWebVitals from "eslint-config-next/core-web-vitals";
 
-const eslintConfig = [...coreWebVitals];
+const eslintConfig = [
+  {
+    ignores: ["playwright-report/**", "test-results/**"],
+  },
+  ...coreWebVitals,
+];
 
 export default eslintConfig;

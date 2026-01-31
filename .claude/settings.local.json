@@ -17,7 +17,9 @@
       "Bash(pnpm exec tsc:*)",
       "Bash(pnpm tsx:*)",
       "Bash(curl:*)",
-      "Bash(pnpm eslint:*)"
+      "Bash(pnpm eslint:*)",
+      "Bash(pnpm test:e2e:*)",
+      "Bash(pnpm outdated:*)"
     ]
   }
 }
