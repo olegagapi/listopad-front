@@ -188,6 +188,8 @@
                 "brandNameUk": "Назва бренду українською",
                 "brandNameEn": "Назва бренду англійською",
                 "description": "Розкажіть про свій бренд...",
+                "descriptionUk": "Розкажіть про свій бренд українською...",
+                "descriptionEn": "Розкажіть про свій бренд англійською...",
                 "websiteUrl": "https://yourbrand.com",
                 "instagramUrl": "https://instagram.com/yourbrand"
             },
@@ -199,13 +201,19 @@
                 "next": "Далі",
                 "back": "Назад",
                 "register": "Зареєструватися",
-                "submitting": "Реєстрація..."
+                "submitting": "Реєстрація...",
+                "completeRegistration": "Завершити реєстрацію"
             },
             "signUpWithGoogle": "Зареєструватися через Google",
             "or": "або",
             "errors": {
                 "registrationFailed": "Помилка реєстрації. Спробуйте ще раз."
-            }
+            },
+            "completePageTitle": "Завершення реєстрації",
+            "completePageDescription": "Завершіть реєстрацію вашого бренду на Listopad",
+            "completeHeading": "Завершіть реєстрацію бренду",
+            "completeSubheading": "Ви увійшли як {email}. Тепер розкажіть про свій бренд.",
+            "signedInAs": "Увійшли як"
         },
         "login": {
             "pageTitle": "Вхід для брендів",
@@ -236,7 +244,11 @@
                 "loginFailed": "Помилка входу. Спробуйте ще раз.",
                 "notBrandManager": "Акаунт не є менеджером бренду",
                 "accountSuspended": "Акаунт призупинено",
-                "accountPending": "Акаунт очікує на підтвердження email"
+                "accountPending": "Акаунт очікує на підтвердження email",
+                "oauthNoCode": "Помилка автентифікації. Спробуйте ще раз.",
+                "oauthConfig": "Автентифікацію не налаштовано належним чином.",
+                "oauthExchangeFailed": "Не вдалося завершити автентифікацію. Спробуйте ще раз.",
+                "oauthNoUser": "Не вдалося отримати інформацію про користувача. Спробуйте ще раз."
             }
         },
         "nav": {

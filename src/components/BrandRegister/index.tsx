@@ -103,3 +103,5 @@ export function BrandRegistration(): React.ReactElement {
     </RegistrationProvider>
   );
 }
+
+export { CompleteBrandRegistration } from "./CompleteBrandRegistration";

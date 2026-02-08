@@ -188,6 +188,8 @@
                 "brandNameUk": "Brand name in Ukrainian",
                 "brandNameEn": "Brand name in English",
                 "description": "Tell us about your brand...",
+                "descriptionUk": "Tell us about your brand in Ukrainian...",
+                "descriptionEn": "Tell us about your brand in English...",
                 "websiteUrl": "https://yourbrand.com",
                 "instagramUrl": "https://instagram.com/yourbrand"
             },
@@ -199,13 +201,19 @@
                 "next": "Next",
                 "back": "Back",
                 "register": "Register",
-                "submitting": "Registering..."
+                "submitting": "Registering...",
+                "completeRegistration": "Complete Registration"
             },
             "signUpWithGoogle": "Sign up with Google",
             "or": "or",
             "errors": {
                 "registrationFailed": "Registration failed. Please try again."
-            }
+            },
+            "completePageTitle": "Complete Registration",
+            "completePageDescription": "Complete your brand registration on Listopad",
+            "completeHeading": "Complete Your Brand Registration",
+            "completeSubheading": "Signed in as {email}. Now tell us about your brand.",
+            "signedInAs": "Signed in as"
         },
         "login": {
             "pageTitle": "Brand Login",
@@ -236,7 +244,11 @@
                 "loginFailed": "Login failed. Please try again.",
                 "notBrandManager": "Account is not a brand manager",
                 "accountSuspended": "Account has been suspended",
-                "accountPending": "Account is pending email verification"
+                "accountPending": "Account is pending email verification",
+                "oauthNoCode": "Authentication failed. Please try again.",
+                "oauthConfig": "Authentication is not configured properly.",
+                "oauthExchangeFailed": "Failed to complete authentication. Please try again.",
+                "oauthNoUser": "Could not retrieve user information. Please try again."
             }
         },
         "nav": {

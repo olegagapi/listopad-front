@@ -18,16 +18,39 @@ type LoginInput = z.infer<typeof loginSchema>;
 
 type BrandLoginProps = {
   showRegisteredMessage?: boolean;
+  oauthError?: string;
+};
+
+const OAUTH_ERROR_KEYS: Record<string, string> = {
+  no_code: "oauthNoCode",
+  config: "oauthConfig",
+  exchange_failed: "oauthExchangeFailed",
+  no_user: "oauthNoUser",
+  not_brand_manager: "notBrandManager",
+  suspended: "accountSuspended",
+  pending: "accountPending",
 };
 
 export function BrandLogin({
   showRegisteredMessage = false,
+  oauthError,
 }: BrandLoginProps): React.ReactElement {
   const t = useTranslations("Cabinet.login");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+
+  // Map OAuth error codes to translated messages
+  const getInitialError = (): string | null => {
+    if (!oauthError) return null;
+    const errorKey = OAUTH_ERROR_KEYS[oauthError];
+    if (errorKey) {
+      return t(`errors.${errorKey}`);
+    }
+    return t("errors.loginFailed");
+  };
+
+  const [error, setError] = useState<string | null>(getInitialError);
 
   const {
     register,

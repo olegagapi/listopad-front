@@ -22,10 +22,10 @@ export default async function BrandLoginPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ registered?: string }>;
+  searchParams: Promise<{ registered?: string; error?: string }>;
 }) {
   const { locale } = await params;
-  const { registered } = await searchParams;
+  const { registered, error } = await searchParams;
   const t = await getTranslations({ locale, namespace: "Cabinet.login" });
 
   const showRegisteredMessage = registered === "true";
@@ -43,7 +43,7 @@ export default async function BrandLoginPage({
             <p className="text-gray-600 max-w-2xl mx-auto">{t("subheading")}</p>
           </div>
 
-          <BrandLogin showRegisteredMessage={showRegisteredMessage} />
+          <BrandLogin showRegisteredMessage={showRegisteredMessage} oauthError={error} />
         </div>
       </section>
     </main>
