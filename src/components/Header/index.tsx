@@ -175,7 +175,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
 
             <div className="flex w-full lg:w-auto justify-between items-center gap-5">
               <div className="flex items-center gap-5">
-                <Link href="/signin" className="flex items-center gap-2.5 text-malachite">
+                <Link href="/brand-login" className="flex items-center gap-2.5 text-malachite">
                   <UserIcon />
                 </Link>
               </div>

@@ -22,6 +22,8 @@
             "wishlist": "Список бажань",
             "signin": "Вхід",
             "signup": "Реєстрація",
+            "brandLogin": "Вхід для брендів",
+            "brandRegister": "Реєстрація бренду",
             "myAccount": "Мій акаунт",
             "error": "Помилка",
             "mailSuccess": "Лист надіслано",
@@ -66,7 +68,6 @@
         "forgotPassword": "Забули пароль?",
         "or": "Або",
         "signinGoogle": "Увійти через Google",
-        "signupGithub": "Зареєструватися через Github",
         "noAccount": "Немає акаунту?",
         "signupNow": "Зареєструватися зараз!"
     },
@@ -147,5 +148,208 @@
         "noProducts": "Товарів від цього бренду немає",
         "notFound": "Бренд не знайдено",
         "backToShop": "Повернутися до магазину"
+    },
+    "Cabinet": {
+        "register": {
+            "pageTitle": "Реєстрація бренду",
+            "pageDescription": "Зареєструйте свій бренд на Listopad",
+            "heading": "Зареєструйте свій бренд",
+            "subheading": "Почніть продавати свої товари на Listopad вже сьогодні",
+            "steps": {
+                "account": "Акаунт",
+                "brandBasics": "Бренд",
+                "brandDetails": "Опис",
+                "linksLogo": "Посилання"
+            },
+            "titles": {
+                "account": "Створіть свій акаунт",
+                "brandBasics": "Основна інформація про бренд",
+                "brandDetails": "Опис вашого бренду",
+                "linksLogo": "Посилання та логотип"
+            },
+            "fields": {
+                "fullName": "Повне ім'я",
+                "email": "Email",
+                "password": "Пароль",
+                "confirmPassword": "Підтвердження пароля",
+                "brandNameUk": "Назва бренду (українською)",
+                "brandNameEn": "Назва бренду (англійською)",
+                "descriptionUk": "Опис (українською)",
+                "descriptionEn": "Опис (англійською)",
+                "websiteUrl": "Посилання на сайт",
+                "instagramUrl": "Посилання на Instagram",
+                "logo": "Логотип"
+            },
+            "placeholders": {
+                "fullName": "Введіть ваше ім'я",
+                "email": "you@example.com",
+                "password": "Мінімум 8 символів",
+                "confirmPassword": "Повторіть пароль",
+                "brandNameUk": "Назва бренду українською",
+                "brandNameEn": "Назва бренду англійською",
+                "description": "Розкажіть про свій бренд...",
+                "websiteUrl": "https://yourbrand.com",
+                "instagramUrl": "https://instagram.com/yourbrand"
+            },
+            "passwordHint": "Мінімум 8 символів, включаючи велику літеру, малу літеру та цифру",
+            "optional": "Необов'язково",
+            "uploadLogo": "Завантажити",
+            "logoHint": "JPEG, PNG або WebP, до 5MB",
+            "buttons": {
+                "next": "Далі",
+                "back": "Назад",
+                "register": "Зареєструватися",
+                "submitting": "Реєстрація..."
+            },
+            "signUpWithGoogle": "Зареєструватися через Google",
+            "or": "або",
+            "errors": {
+                "registrationFailed": "Помилка реєстрації. Спробуйте ще раз."
+            }
+        },
+        "login": {
+            "pageTitle": "Вхід для брендів",
+            "pageDescription": "Увійдіть до кабінету бренду",
+            "heading": "Вхід до кабінету бренду",
+            "subheading": "Керуйте своїми товарами та профілем бренду",
+            "fields": {
+                "email": "Email",
+                "password": "Пароль"
+            },
+            "placeholders": {
+                "email": "you@example.com",
+                "password": "Введіть пароль"
+            },
+            "buttons": {
+                "login": "Увійти",
+                "loggingIn": "Вхід..."
+            },
+            "forBrandsOnly": "Тільки для менеджерів брендів",
+            "signInWithGoogle": "Увійти через Google",
+            "or": "або",
+            "noAccount": "Немає акаунту?",
+            "registerLink": "Зареєструватися",
+            "registrationSuccess": "Реєстрація успішна! Перевірте email для підтвердження акаунту.",
+            "errors": {
+                "invalidCredentials": "Невірний email або пароль",
+                "emailNotVerified": "Підтвердіть email перед входом",
+                "loginFailed": "Помилка входу. Спробуйте ще раз.",
+                "notBrandManager": "Акаунт не є менеджером бренду",
+                "accountSuspended": "Акаунт призупинено",
+                "accountPending": "Акаунт очікує на підтвердження email"
+            }
+        },
+        "nav": {
+            "dashboard": "Панель управління",
+            "products": "Товари",
+            "profile": "Профіль бренду",
+            "signOut": "Вийти",
+            "signedInAs": "Увійшли як",
+            "viewStore": "Переглянути магазин"
+        },
+        "dashboard": {
+            "title": "Панель управління",
+            "welcome": "Вітаємо, {name}!",
+            "subtitle": "Керуйте своїми товарами та профілем бренду",
+            "totalProducts": "Всього товарів",
+            "accountStatus": "Статус акаунту",
+            "memberSince": "Учасник з",
+            "addProduct": "Додати товар",
+            "addProductDesc": "Створіть новий товар для вашого бренду",
+            "editProfile": "Редагувати профіль",
+            "editProfileDesc": "Оновіть інформацію про ваш бренд",
+            "recentProducts": "Останні товари",
+            "viewAll": "Переглянути всі",
+            "noProducts": "У вас ще немає товарів",
+            "addFirstProduct": "Додати перший товар"
+        },
+        "products": {
+            "title": "Товари",
+            "addProduct": "Додати товар",
+            "newProduct": "Новий товар",
+            "editProduct": "Редагувати товар",
+            "noProducts": "Товарів немає",
+            "noProductsDesc": "Створіть свій перший товар, щоб почати продавати",
+            "addFirst": "Додати перший товар",
+            "table": {
+                "product": "Товар",
+                "category": "Категорія",
+                "price": "Ціна",
+                "actions": "Дії"
+            },
+            "actions": {
+                "edit": "Редагувати",
+                "delete": "Видалити"
+            },
+            "deleteModal": {
+                "title": "Видалити товар?",
+                "message": "Ви впевнені, що хочете видалити \"{name}\"?",
+                "warning": "Цю дію неможливо скасувати.",
+                "cancel": "Скасувати",
+                "confirm": "Видалити",
+                "deleting": "Видалення..."
+            },
+            "form": {
+                "basicInfo": "Основна інформація",
+                "nameUk": "Назва (українською)",
+                "nameEn": "Назва (англійською)",
+                "price": "Ціна",
+                "discountedPrice": "Ціна зі знижкою",
+                "category": "Категорія",
+                "selectCategory": "Виберіть категорію",
+                "gender": "Стать",
+                "genders": {
+                    "male": "Чоловіча",
+                    "female": "Жіноча",
+                    "unisex": "Унісекс"
+                },
+                "descriptions": "Описи",
+                "descriptionUk": "Опис (українською)",
+                "descriptionEn": "Опис (англійською)",
+                "colors": "Кольори",
+                "tags": "Теги",
+                "tagPlaceholder": "Введіть тег та натисніть Enter",
+                "tagHint": "Натисніть Enter, щоб додати тег",
+                "images": "Зображення",
+                "previewImage": "Головне",
+                "addImage": "Додати",
+                "imageHint": "Максимум {max} зображень. JPEG, PNG або WebP, до 5MB кожне.",
+                "externalLinks": "Зовнішні посилання",
+                "externalUrl": "Посилання на товар",
+                "instagramUrl": "Посилання на Instagram",
+                "create": "Створити товар",
+                "update": "Зберегти зміни"
+            },
+            "errors": {
+                "createFailed": "Не вдалося створити товар",
+                "updateFailed": "Не вдалося оновити товар",
+                "fetchFailed": "Не вдалося завантажити товар",
+                "notFound": "Товар не знайдено"
+            }
+        },
+        "profile": {
+            "title": "Профіль бренду",
+            "success": "Профіль успішно оновлено",
+            "form": {
+                "logo": "Логотип бренду",
+                "uploadLogo": "Завантажити",
+                "logoHint": "JPEG, PNG або WebP, до 5MB",
+                "brandName": "Назва бренду",
+                "nameUk": "Назва (українською)",
+                "nameEn": "Назва (англійською)",
+                "descriptions": "Описи",
+                "descriptionUk": "Опис (українською)",
+                "descriptionEn": "Опис (англійською)",
+                "externalLinks": "Зовнішні посилання",
+                "websiteUrl": "Посилання на сайт",
+                "instagramUrl": "Посилання на Instagram",
+                "save": "Зберегти зміни"
+            },
+            "errors": {
+                "fetchFailed": "Не вдалося завантажити дані бренду",
+                "updateFailed": "Не вдалося оновити профіль",
+                "noBrand": "Бренд не знайдено"
+            }
+        }
     }
 }

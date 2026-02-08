@@ -32,6 +32,22 @@
 | internal_url | text | Internal page URL |
 | external_url | text | Brand website |
 | inst_url | text | Instagram URL |
+| logo_url | text | Brand logo URL (Supabase Storage) |
+| created_at | timestamp | Creation timestamp |
+| updated_at | timestamp | Last update timestamp |
+
+## brand_managers
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | uuid | Primary key |
+| user_id | uuid | FK to auth.users |
+| brand_id | integer | FK to brands |
+| full_name | text | Manager's full name |
+| phone | text | Contact phone |
+| status | text | pending/active/suspended |
+| created_at | timestamp | Creation timestamp |
+| updated_at | timestamp | Last update timestamp |
 
 ## categories
 
@@ -81,6 +97,8 @@
 products.brand_id → brands.id
 products.category_id → categories.id
 categories.parent_category → categories.id
+brand_managers.user_id → auth.users.id
+brand_managers.brand_id → brands.id
 ```
 
 ## Notes

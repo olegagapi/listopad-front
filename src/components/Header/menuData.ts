@@ -57,15 +57,15 @@ export const menuData: Menu[] = [
       },
       {
         id: 67,
-        title: "menu.signin",
+        title: "menu.brandLogin",
         newTab: false,
-        path: "/signin",
+        path: "/brand-login",
       },
       {
         id: 68,
-        title: "menu.signup",
+        title: "menu.brandRegister",
         newTab: false,
-        path: "/signup",
+        path: "/brand-register",
       },
       {
         id: 69,

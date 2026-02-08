@@ -20,7 +20,10 @@
       "Bash(pnpm eslint:*)",
       "Bash(pnpm test:e2e:*)",
       "Bash(pnpm outdated:*)",
-      "Bash(pnpm meilisearch:sync:*)"
+      "Bash(pnpm meilisearch:sync:*)",
+      "Bash(xargs:*)",
+      "Bash(cat:*)",
+      "Bash(git:*)"
     ]
   }
 }

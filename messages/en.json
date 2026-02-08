@@ -22,6 +22,8 @@
             "wishlist": "Wishlist",
             "signin": "Sign in",
             "signup": "Sign up",
+            "brandLogin": "Brand Login",
+            "brandRegister": "Register Brand",
             "myAccount": "My Account",
             "error": "Error",
             "mailSuccess": "Mail Success",
@@ -66,7 +68,6 @@
         "forgotPassword": "Forget your password?",
         "or": "Or",
         "signinGoogle": "Sign In with Google",
-        "signupGithub": "Sign Up with Github",
         "noAccount": "Don't have an account?",
         "signupNow": "Sign Up Now!"
     },
@@ -147,5 +148,208 @@
         "noProducts": "No products available from this brand",
         "notFound": "Brand not found",
         "backToShop": "Back to shop"
+    },
+    "Cabinet": {
+        "register": {
+            "pageTitle": "Brand Registration",
+            "pageDescription": "Register your brand on Listopad",
+            "heading": "Register Your Brand",
+            "subheading": "Start selling your products on Listopad today",
+            "steps": {
+                "account": "Account",
+                "brandBasics": "Brand",
+                "brandDetails": "Details",
+                "linksLogo": "Links"
+            },
+            "titles": {
+                "account": "Create Your Account",
+                "brandBasics": "Basic Brand Information",
+                "brandDetails": "Tell Us About Your Brand",
+                "linksLogo": "Links & Logo"
+            },
+            "fields": {
+                "fullName": "Full Name",
+                "email": "Email",
+                "password": "Password",
+                "confirmPassword": "Confirm Password",
+                "brandNameUk": "Brand Name (Ukrainian)",
+                "brandNameEn": "Brand Name (English)",
+                "descriptionUk": "Description (Ukrainian)",
+                "descriptionEn": "Description (English)",
+                "websiteUrl": "Website URL",
+                "instagramUrl": "Instagram URL",
+                "logo": "Logo"
+            },
+            "placeholders": {
+                "fullName": "Enter your full name",
+                "email": "you@example.com",
+                "password": "Minimum 8 characters",
+                "confirmPassword": "Repeat your password",
+                "brandNameUk": "Brand name in Ukrainian",
+                "brandNameEn": "Brand name in English",
+                "description": "Tell us about your brand...",
+                "websiteUrl": "https://yourbrand.com",
+                "instagramUrl": "https://instagram.com/yourbrand"
+            },
+            "passwordHint": "Minimum 8 characters, including uppercase, lowercase, and a number",
+            "optional": "Optional",
+            "uploadLogo": "Upload",
+            "logoHint": "JPEG, PNG or WebP, up to 5MB",
+            "buttons": {
+                "next": "Next",
+                "back": "Back",
+                "register": "Register",
+                "submitting": "Registering..."
+            },
+            "signUpWithGoogle": "Sign up with Google",
+            "or": "or",
+            "errors": {
+                "registrationFailed": "Registration failed. Please try again."
+            }
+        },
+        "login": {
+            "pageTitle": "Brand Login",
+            "pageDescription": "Sign in to your brand cabinet",
+            "heading": "Brand Cabinet Login",
+            "subheading": "Manage your products and brand profile",
+            "fields": {
+                "email": "Email",
+                "password": "Password"
+            },
+            "placeholders": {
+                "email": "you@example.com",
+                "password": "Enter your password"
+            },
+            "buttons": {
+                "login": "Sign In",
+                "loggingIn": "Signing in..."
+            },
+            "forBrandsOnly": "For Brand Managers Only",
+            "signInWithGoogle": "Sign in with Google",
+            "or": "or",
+            "noAccount": "Don't have an account?",
+            "registerLink": "Register now",
+            "registrationSuccess": "Registration successful! Please check your email to verify your account.",
+            "errors": {
+                "invalidCredentials": "Invalid email or password",
+                "emailNotVerified": "Please verify your email before signing in",
+                "loginFailed": "Login failed. Please try again.",
+                "notBrandManager": "Account is not a brand manager",
+                "accountSuspended": "Account has been suspended",
+                "accountPending": "Account is pending email verification"
+            }
+        },
+        "nav": {
+            "dashboard": "Dashboard",
+            "products": "Products",
+            "profile": "Brand Profile",
+            "signOut": "Sign Out",
+            "signedInAs": "Signed in as",
+            "viewStore": "View Store"
+        },
+        "dashboard": {
+            "title": "Dashboard",
+            "welcome": "Welcome, {name}!",
+            "subtitle": "Manage your products and brand profile",
+            "totalProducts": "Total Products",
+            "accountStatus": "Account Status",
+            "memberSince": "Member Since",
+            "addProduct": "Add Product",
+            "addProductDesc": "Create a new product for your brand",
+            "editProfile": "Edit Profile",
+            "editProfileDesc": "Update your brand information",
+            "recentProducts": "Recent Products",
+            "viewAll": "View All",
+            "noProducts": "You don't have any products yet",
+            "addFirstProduct": "Add Your First Product"
+        },
+        "products": {
+            "title": "Products",
+            "addProduct": "Add Product",
+            "newProduct": "New Product",
+            "editProduct": "Edit Product",
+            "noProducts": "No Products",
+            "noProductsDesc": "Create your first product to start selling",
+            "addFirst": "Add Your First Product",
+            "table": {
+                "product": "Product",
+                "category": "Category",
+                "price": "Price",
+                "actions": "Actions"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            },
+            "deleteModal": {
+                "title": "Delete Product?",
+                "message": "Are you sure you want to delete \"{name}\"?",
+                "warning": "This action cannot be undone.",
+                "cancel": "Cancel",
+                "confirm": "Delete",
+                "deleting": "Deleting..."
+            },
+            "form": {
+                "basicInfo": "Basic Information",
+                "nameUk": "Name (Ukrainian)",
+                "nameEn": "Name (English)",
+                "price": "Price",
+                "discountedPrice": "Discounted Price",
+                "category": "Category",
+                "selectCategory": "Select a category",
+                "gender": "Gender",
+                "genders": {
+                    "male": "Male",
+                    "female": "Female",
+                    "unisex": "Unisex"
+                },
+                "descriptions": "Descriptions",
+                "descriptionUk": "Description (Ukrainian)",
+                "descriptionEn": "Description (English)",
+                "colors": "Colors",
+                "tags": "Tags",
+                "tagPlaceholder": "Enter a tag and press Enter",
+                "tagHint": "Press Enter to add a tag",
+                "images": "Images",
+                "previewImage": "Preview",
+                "addImage": "Add",
+                "imageHint": "Maximum {max} images. JPEG, PNG or WebP, up to 5MB each.",
+                "externalLinks": "External Links",
+                "externalUrl": "Product Link",
+                "instagramUrl": "Instagram Link",
+                "create": "Create Product",
+                "update": "Save Changes"
+            },
+            "errors": {
+                "createFailed": "Failed to create product",
+                "updateFailed": "Failed to update product",
+                "fetchFailed": "Failed to load product",
+                "notFound": "Product not found"
+            }
+        },
+        "profile": {
+            "title": "Brand Profile",
+            "success": "Profile updated successfully",
+            "form": {
+                "logo": "Brand Logo",
+                "uploadLogo": "Upload",
+                "logoHint": "JPEG, PNG or WebP, up to 5MB",
+                "brandName": "Brand Name",
+                "nameUk": "Name (Ukrainian)",
+                "nameEn": "Name (English)",
+                "descriptions": "Descriptions",
+                "descriptionUk": "Description (Ukrainian)",
+                "descriptionEn": "Description (English)",
+                "externalLinks": "External Links",
+                "websiteUrl": "Website URL",
+                "instagramUrl": "Instagram URL",
+                "save": "Save Changes"
+            },
+            "errors": {
+                "fetchFailed": "Failed to load brand data",
+                "updateFailed": "Failed to update profile",
+                "noBrand": "Brand not found"
+            }
+        }
     }
 }
