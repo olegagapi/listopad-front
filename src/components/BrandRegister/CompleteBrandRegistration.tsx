@@ -128,7 +128,13 @@ export function CompleteBrandRegistration({
         throw new Error(result.error || t("errors.registrationFailed"));
       }
 
-      router.push("/cabinet");
+      // Redirect based on email confirmation status
+      if (result.data?.isEmailConfirmed) {
+        router.push("/cabinet");
+      } else {
+        // Email not confirmed, redirect to login with message
+        router.push("/brand-login?registered=true");
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : t("errors.registrationFailed"));
     } finally {

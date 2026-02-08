@@ -1,6 +1,8 @@
 import React from "react";
 import { getTranslations } from "next-intl/server";
-import { BrandRegistration } from "@/components/BrandRegister";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase-server";
+import { AccountRegistration } from "@/components/BrandRegister/AccountRegistration";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 
 export async function generateMetadata({
@@ -25,6 +27,29 @@ export default async function BrandRegisterPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Cabinet.register" });
 
+  // Check if user is already authenticated
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    // Check if user already has a brand
+    const { data: existingManager } = await supabase
+      .from("brand_managers")
+      .select("brand_id")
+      .eq("user_id", user.id)
+      .single();
+
+    if (existingManager?.brand_id) {
+      // Already has a brand, redirect to cabinet
+      redirect(`/${locale}/cabinet`);
+    } else {
+      // Has account but no brand, redirect to complete
+      redirect(`/${locale}/brand-register/complete`);
+    }
+  }
+
   return (
     <main>
       <Breadcrumb title={t("pageTitle")} pages={["/", t("pageTitle")]} />
@@ -38,7 +63,7 @@ export default async function BrandRegisterPage({
             <p className="text-gray-600 max-w-2xl mx-auto">{t("subheading")}</p>
           </div>
 
-          <BrandRegistration />
+          <AccountRegistration />
         </div>
       </section>
     </main>

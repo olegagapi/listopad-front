@@ -99,6 +99,11 @@ export async function POST(request: NextRequest): Promise<Response> {
       );
     }
 
+    // Determine status based on email confirmation
+    // OAuth users have confirmed emails, email+password users need to verify
+    const isEmailConfirmed = user.email_confirmed_at != null;
+    const newStatus = isEmailConfirmed ? "active" : "pending";
+
     if (existingManager) {
       // Update existing brand manager with brand ID
       const { error: updateError } = await supabaseService
@@ -106,7 +111,7 @@ export async function POST(request: NextRequest): Promise<Response> {
         .update({
           brand_id: brandData.id,
           full_name: fullName,
-          status: "active",
+          status: newStatus,
         })
         .eq("id", existingManager.id);
 
@@ -120,14 +125,14 @@ export async function POST(request: NextRequest): Promise<Response> {
         );
       }
     } else {
-      // Create new brand manager
+      // Create new brand manager (OAuth flow - no existing manager record)
       const { error: managerError } = await supabaseService
         .from("brand_managers")
         .insert({
           user_id: user.id,
           brand_id: brandData.id,
           full_name: fullName,
-          status: "active", // Active immediately for OAuth users
+          status: newStatus,
         });
 
       if (managerError) {
@@ -141,8 +146,16 @@ export async function POST(request: NextRequest): Promise<Response> {
       }
     }
 
+    // Return different message based on email confirmation status
+    const message = isEmailConfirmed
+      ? "Registration completed successfully"
+      : "Registration completed. Please verify your email to activate your account.";
+
     return NextResponse.json({
-      data: { message: "Registration completed successfully" },
+      data: {
+        message,
+        isEmailConfirmed,
+      },
       error: null,
     });
   } catch (error) {

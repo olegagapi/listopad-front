@@ -202,10 +202,13 @@
                 "back": "Назад",
                 "register": "Зареєструватися",
                 "submitting": "Реєстрація...",
-                "completeRegistration": "Завершити реєстрацію"
+                "completeRegistration": "Завершити реєстрацію",
+                "continue": "Продовжити"
             },
             "signUpWithGoogle": "Зареєструватися через Google",
             "or": "або",
+            "haveAccount": "Вже маєте акаунт?",
+            "loginLink": "Увійти",
             "errors": {
                 "registrationFailed": "Помилка реєстрації. Спробуйте ще раз."
             },

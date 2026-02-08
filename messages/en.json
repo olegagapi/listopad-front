@@ -202,10 +202,13 @@
                 "back": "Back",
                 "register": "Register",
                 "submitting": "Registering...",
-                "completeRegistration": "Complete Registration"
+                "completeRegistration": "Complete Registration",
+                "continue": "Continue"
             },
             "signUpWithGoogle": "Sign up with Google",
             "or": "or",
+            "haveAccount": "Already have an account?",
+            "loginLink": "Sign in",
             "errors": {
                 "registrationFailed": "Registration failed. Please try again."
             },
