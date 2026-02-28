@@ -9,6 +9,10 @@
         "wishlist": "Список бажань",
         "allCategories": "Всі категорії",
         "unknown": "Невідомо",
+        "brandLogin": "Вхід для брендів",
+        "brandRegister": "Реєстрація бренду",
+        "brandCabinet": "Кабінет бренду",
+        "signOut": "Вийти",
         "menu": {
             "popular": "Популярне",
             "shop": "Магазин",

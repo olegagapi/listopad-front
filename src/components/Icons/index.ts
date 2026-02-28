@@ -34,6 +34,7 @@ export { PhoneIcon } from './PhoneIcon';
 export { LocationIcon } from './LocationIcon';
 export { EmailIcon } from './EmailIcon';
 export { UserIcon } from './UserIcon';
+export { LogoutIcon } from './LogoutIcon';
 
 // Auth Icons (with brand colors)
 export { GoogleIcon } from './GoogleIcon';

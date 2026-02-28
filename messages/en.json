@@ -9,6 +9,10 @@
         "wishlist": "Wishlist",
         "allCategories": "All Categories",
         "unknown": "Unknown",
+        "brandLogin": "Brand Login",
+        "brandRegister": "Register Brand",
+        "brandCabinet": "Brand Cabinet",
+        "signOut": "Sign Out",
         "menu": {
             "popular": "Popular",
             "shop": "Shop",

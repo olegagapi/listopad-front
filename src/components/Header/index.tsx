@@ -9,7 +9,8 @@ import Image from "next/image";
 import { Category } from "@/types/category";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { SearchIcon, PhoneIcon, UserIcon, RefreshIcon, HeartIcon } from "@/components/Icons";
+import { SearchIcon, PhoneIcon, RefreshIcon, HeartIcon } from "@/components/Icons";
+import AccountDropdown from "./AccountDropdown";
 import { useInstantSearch } from "@/hooks/useSearch";
 
 interface HeaderProps {
@@ -175,9 +176,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
 
             <div className="flex w-full lg:w-auto justify-between items-center gap-5">
               <div className="flex items-center gap-5">
-                <Link href="/brand-login" className="flex items-center gap-2.5 text-malachite">
-                  <UserIcon />
-                </Link>
+                <AccountDropdown />
               </div>
 
               {/* <!-- Hamburger Toggle BTN --> */}
