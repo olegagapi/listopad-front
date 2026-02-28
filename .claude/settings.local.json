@@ -27,7 +27,8 @@
       "Bash(npx tsc:*)",
       "WebFetch(domain:listopad-front-oleg-agapi.vercel.app)",
       "Bash(pnpm exec tsx:*)",
-      "Bash(node --env-file=.env.local -e:*)"
+      "Bash(node --env-file=.env.local -e:*)",
+      "Bash(pnpm list:*)"
     ]
   }
 }
