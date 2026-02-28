@@ -56,6 +56,7 @@ export async function GET(
       images: product.images ?? [],
       externalUrl: product.external_url,
       instagramUrl: product.inst_url,
+      isActive: product.is_active ?? true,
     };
 
     return NextResponse.json({
@@ -136,6 +137,7 @@ export async function PUT(
         images: body.images?.slice(1) || [],
         external_url: body.externalUrl || null,
         inst_url: body.instagramUrl || null,
+        is_active: body.isActive ?? true,
       })
       .eq("id", id);
 

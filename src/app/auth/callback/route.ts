@@ -81,9 +81,8 @@ export async function GET(request: NextRequest): Promise<Response> {
   } else {
     // Login flow
     if (!existingManager) {
-      // Not a brand manager - sign out and show error
-      await supabase.auth.signOut();
-      return NextResponse.redirect(new URL("/brand-login?error=not_brand_manager", origin));
+      // Not a brand manager yet - redirect to complete registration
+      return NextResponse.redirect(new URL("/brand-register/complete", origin));
     }
 
     // Check if brand registration is incomplete

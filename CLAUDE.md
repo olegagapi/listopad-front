@@ -160,6 +160,14 @@ Both return the same structure: products, pagination, and facet counts. The `Sho
 ### Currency
 Default currency is **UAH** (Ukrainian Hryvnia)
 
+## Code Reuse Rules (MANDATORY)
+
+- **Before writing ANY new UI element, search `src/components/Common/` and `src/components/Icons/` for existing components.** Reuse them. Do not duplicate.
+- **Never inline SVGs.** Always use or create an Icon component following the pattern in `src/components/Icons/` (use `IconProps` from `types.ts`, export from `index.ts`).
+- **Before writing code, search the codebase for existing patterns that solve the same problem.** If a pattern exists, use it. If it exists but is repeated in multiple places, extract it into a shared component/utility first.
+- **No copy-pasting markup across files.** If you need the same UI in more than one place, create a reusable component in `src/components/Common/`.
+- **Use existing shared components:** `ErrorAlert` for error messages, `Breadcrumb` for breadcrumbs, etc. Check what exists before creating anything new.
+
 ## Code Style & Conventions
 
 - Use clear, descriptive variable and function names that convey intent

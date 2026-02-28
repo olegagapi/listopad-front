@@ -83,6 +83,7 @@ export async function getPriceRange(): Promise<PriceRange> {
     const { data, error } = await supabase
         .from('products')
         .select('price')
+        .eq('is_active', true)
         .order('price', { ascending: true });
 
     if (error || !data || data.length === 0) {
@@ -105,7 +106,7 @@ export async function listProducts(options: ListProductsOptions = {}): Promise<P
     *,
     brands (name_uk, name_en, logo_url),
     categories (name_uk, name_en)
-  `);
+  `).eq('is_active', true);
 
     if (options.brandId) {
         query = query.eq('brand_id', options.brandId);
@@ -182,6 +183,7 @@ export async function getProductBySlug(slug: string, locale: Locale = 'uk'): Pro
       categories (name_uk, name_en)
     `)
         .eq('id', id)
+        .eq('is_active', true)
         .single();
 
     if (error || !prod) {
@@ -232,7 +234,8 @@ export async function countProducts(options: ListProductsOptions = {}): Promise<
     const locale = options.locale ?? 'uk';
     const nameField = locale === 'uk' ? 'name_uk' : 'name_en';
 
-    let query = supabase.from('products').select('*', { count: 'exact', head: true });
+    let query = supabase.from('products').select('*', { count: 'exact', head: true })
+        .eq('is_active', true);
 
     if (options.brandId) {
         query = query.eq('brand_id', options.brandId);

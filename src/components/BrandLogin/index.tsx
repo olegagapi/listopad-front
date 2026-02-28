@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase-browser";
 import { GoogleIcon } from "@/components/Icons";
+import { ErrorAlert } from "@/components/Common/ErrorAlert";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -238,11 +239,7 @@ export function BrandLogin({
             )}
           </div>
 
-          {error && (
-            <div className="p-3 bg-red-100 rounded-md" role="alert">
-              <p className="text-sm text-red-700 font-medium">{error}</p>
-            </div>
-          )}
+          {error && <ErrorAlert message={error} />}
 
           <button
             type="submit"

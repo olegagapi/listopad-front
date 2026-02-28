@@ -6,6 +6,7 @@ import { AppDispatch, useAppSelector } from "@/redux/store";
 import { toggleWishlistItem } from "@/redux/features/wishlist-slice";
 import { HeartIcon } from "@/components/Icons";
 import { Product } from "@/types/product";
+import { trackEvent } from "@/lib/analytics";
 
 interface WishlistButtonProps {
   product: Product;
@@ -23,6 +24,14 @@ export default function WishlistButton({
   const isInWishlist = wishlistItems.some((item) => item.id === product.id);
 
   const handleToggle = (): void => {
+    if (!isInWishlist && product.brandId) {
+      trackEvent({
+        eventType: "wishlist_add",
+        brandId: Number(product.brandId),
+        productId: Number(product.id),
+      });
+    }
+
     dispatch(
       toggleWishlistItem({
         id: product.id,

@@ -6,6 +6,7 @@ import BrandHeader from "./BrandHeader";
 import BrandProductGrid from "./BrandProductGrid";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import Newsletter from "@/components/Common/Newsletter";
+import { useTrackPageView } from "@/hooks/useTrackPageView";
 
 interface BrandPageProps {
   brand: Brand;
@@ -13,6 +14,11 @@ interface BrandPageProps {
 }
 
 const BrandPage = ({ brand, products }: BrandPageProps) => {
+  useTrackPageView({
+    eventType: "brand_page_view",
+    brandId: Number(brand.id),
+  });
+
   return (
     <>
       <Breadcrumb title={brand.name} pages={["brands", brand.name]} />

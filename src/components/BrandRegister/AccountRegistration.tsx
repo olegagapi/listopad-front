@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing";
 import { accountStepSchema, type AccountStepInput } from "@/lib/brand-registration";
 import { createClient } from "@/lib/supabase-browser";
 import { GoogleIcon } from "@/components/Icons";
+import { ErrorAlert } from "@/components/Common/ErrorAlert";
 
 export function AccountRegistration(): React.ReactElement {
   const t = useTranslations("Cabinet.register");
@@ -210,11 +211,7 @@ export function AccountRegistration(): React.ReactElement {
             )}
           </div>
 
-          {error && (
-            <div className="p-3 bg-red-100 rounded-md" role="alert">
-              <p className="text-sm text-red-700 font-medium">{error}</p>
-            </div>
-          )}
+          {error && <ErrorAlert message={error} />}
 
           <button
             type="submit"

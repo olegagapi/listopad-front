@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Brand } from "@/types/brand";
+import { trackEvent } from "@/lib/analytics";
 
 interface BrandHeaderProps {
   brand: Brand;
@@ -9,6 +10,13 @@ interface BrandHeaderProps {
 
 const BrandHeader = ({ brand }: BrandHeaderProps) => {
   const t = useTranslations("Brand");
+
+  const handleExternalClick = (): void => {
+    trackEvent({
+      eventType: "external_click",
+      brandId: Number(brand.id),
+    });
+  };
 
   const firstLetter = brand.name.charAt(0).toUpperCase();
 
@@ -36,6 +44,7 @@ const BrandHeader = ({ brand }: BrandHeaderProps) => {
             href={brand.externalUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleExternalClick}
             className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
           >
             {t("visitWebsite")}
@@ -46,6 +55,7 @@ const BrandHeader = ({ brand }: BrandHeaderProps) => {
             href={brand.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleExternalClick}
             className="inline-flex font-medium text-onyx bg-lavender py-3 px-7 rounded-md ease-out duration-200 hover:bg-lavender-dark"
           >
             {t("visitInstagram")}

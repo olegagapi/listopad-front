@@ -6,6 +6,7 @@ import { useRouter } from "@/i18n/routing";
 import { useAuth } from "@/app/context/AuthContext";
 import { CabinetTopBar } from "@/components/Cabinet/CabinetTopBar";
 import { ProductForm } from "@/components/Cabinet/Products/ProductForm";
+import { ErrorAlert } from "@/components/Common/ErrorAlert";
 
 export default function NewProductPage() {
   const t = useTranslations("Cabinet.products");
@@ -58,11 +59,7 @@ export default function NewProductPage() {
       <CabinetTopBar title={t("newProduct")} />
 
       <div className="p-6">
-        {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-sm text-red-600">{error}</p>
-          </div>
-        )}
+        {error && <ErrorAlert message={error} className="mb-6" />}
 
         <ProductForm
           onSubmit={handleSubmit}

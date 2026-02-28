@@ -257,6 +257,7 @@
         "nav": {
             "dashboard": "Dashboard",
             "products": "Products",
+            "analytics": "Analytics",
             "profile": "Brand Profile",
             "signOut": "Sign Out",
             "signedInAs": "Signed in as",
@@ -276,7 +277,14 @@
             "recentProducts": "Recent Products",
             "viewAll": "View All",
             "noProducts": "You don't have any products yet",
-            "addFirstProduct": "Add Your First Product"
+            "addFirstProduct": "Add Your First Product",
+            "brandPageViews": "Brand Page Views",
+            "productViews": "Product Views",
+            "externalClicks": "External Clicks",
+            "wishlistAdds": "Wishlist Adds",
+            "last7Days": "Last 7 days",
+            "viewAnalytics": "View Analytics",
+            "viewAnalyticsDesc": "See detailed engagement metrics"
         },
         "products": {
             "title": "Products",
@@ -290,11 +298,14 @@
                 "product": "Product",
                 "category": "Category",
                 "price": "Price",
+                "status": "Status",
                 "actions": "Actions"
             },
             "actions": {
                 "edit": "Edit",
-                "delete": "Delete"
+                "delete": "Delete",
+                "activate": "Activate",
+                "deactivate": "Deactivate"
             },
             "deleteModal": {
                 "title": "Delete Product?",
@@ -365,6 +376,20 @@
                 "updateFailed": "Failed to update profile",
                 "noBrand": "Brand not found"
             }
+        },
+        "analytics": {
+            "title": "Analytics",
+            "brandPageViews": "Brand Page Views",
+            "productViews": "Product Views",
+            "externalClicks": "External Clicks",
+            "wishlistAdds": "Wishlist Adds",
+            "viewsChart": "Views Over Time",
+            "engagementChart": "Engagement Over Time",
+            "last7Days": "Last 7 days",
+            "last14Days": "Last 14 days",
+            "last30Days": "Last 30 days",
+            "last90Days": "Last 90 days",
+            "noData": "No analytics data available for this period"
         }
     }
 }

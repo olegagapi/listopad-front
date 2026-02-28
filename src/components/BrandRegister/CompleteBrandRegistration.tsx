@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
+import { ErrorAlert } from "@/components/Common/ErrorAlert";
 
 const urlOrEmpty = z
   .string()
@@ -359,11 +360,7 @@ export function CompleteBrandRegistration({
             <p className="mt-1 text-xs text-gray-500">{t("logoHint")}</p>
           </div>
 
-          {error && (
-            <div className="p-3 bg-red-100 rounded-md" role="alert">
-              <p className="text-sm text-red-700 font-medium">{error}</p>
-            </div>
-          )}
+          {error && <ErrorAlert message={error} />}
 
           <button
             type="submit"

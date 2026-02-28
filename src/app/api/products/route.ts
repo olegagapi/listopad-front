@@ -59,7 +59,7 @@ export async function GET(request: NextRequest): Promise<Response> {
       *,
       brands (name_uk, name_en),
       categories (name_uk, name_en)
-    `);
+    `).eq("is_active", true);
 
     // Apply category filter
     if (expandedCategoryIds.length > 0) {
@@ -104,7 +104,8 @@ export async function GET(request: NextRequest): Promise<Response> {
     }
 
     // Get total count with same filters
-    let countQuery = supabase.from("products").select("*", { count: "exact", head: true });
+    let countQuery = supabase.from("products").select("*", { count: "exact", head: true })
+      .eq("is_active", true);
 
     if (expandedCategoryIds.length > 0) {
       countQuery = countQuery.in("category_id", expandedCategoryIds);
@@ -232,7 +233,8 @@ async function calculateFacetCounts(
   // Fetch all products for counting (only need category_id, gender, colors fields)
   const { data: allProducts, error } = await supabase
     .from("products")
-    .select("category_id, gender, colors");
+    .select("category_id, gender, colors")
+    .eq("is_active", true);
 
   if (error || !allProducts) {
     console.error("Error fetching products for counts:", error);

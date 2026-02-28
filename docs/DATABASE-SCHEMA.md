@@ -19,6 +19,7 @@
 | gender | text | male/female/unisex |
 | external_url | text | Link to seller website |
 | inst_url | text | Link to Instagram |
+| is_active | boolean | Whether product is visible on public listings (default true) |
 
 ## brands
 
@@ -91,6 +92,21 @@
 - `contact`: `{ phone, email, address }`
 - `social_links`: `{ instagram, facebook, twitter, youtube, tiktok }`
 
+## analytics_events
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | bigserial | Primary key |
+| event_type | text | Event type (brand_page_view, product_view, external_click, wishlist_add) |
+| brand_id | integer | FK to brands |
+| product_id | integer | FK to products (nullable) |
+| created_at | timestamptz | Event timestamp (default now()) |
+
+### Indexes
+
+- `idx_analytics_brand_date` on (brand_id, created_at)
+- `idx_analytics_type` on (event_type)
+
 ## Relationships
 
 ```
@@ -99,6 +115,8 @@ products.category_id → categories.id
 categories.parent_category → categories.id
 brand_managers.user_id → auth.users.id
 brand_managers.brand_id → brands.id
+analytics_events.brand_id → brands.id
+analytics_events.product_id → products.id
 ```
 
 ## Notes

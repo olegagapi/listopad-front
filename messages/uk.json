@@ -257,6 +257,7 @@
         "nav": {
             "dashboard": "Панель управління",
             "products": "Товари",
+            "analytics": "Аналітика",
             "profile": "Профіль бренду",
             "signOut": "Вийти",
             "signedInAs": "Увійшли як",
@@ -276,7 +277,14 @@
             "recentProducts": "Останні товари",
             "viewAll": "Переглянути всі",
             "noProducts": "У вас ще немає товарів",
-            "addFirstProduct": "Додати перший товар"
+            "addFirstProduct": "Додати перший товар",
+            "brandPageViews": "Перегляди бренду",
+            "productViews": "Перегляди товарів",
+            "externalClicks": "Зовнішні кліки",
+            "wishlistAdds": "Додано в обране",
+            "last7Days": "Останні 7 днів",
+            "viewAnalytics": "Переглянути аналітику",
+            "viewAnalyticsDesc": "Детальна статистика взаємодії"
         },
         "products": {
             "title": "Товари",
@@ -290,11 +298,14 @@
                 "product": "Товар",
                 "category": "Категорія",
                 "price": "Ціна",
+                "status": "Статус",
                 "actions": "Дії"
             },
             "actions": {
                 "edit": "Редагувати",
-                "delete": "Видалити"
+                "delete": "Видалити",
+                "activate": "Активувати",
+                "deactivate": "Деактивувати"
             },
             "deleteModal": {
                 "title": "Видалити товар?",
@@ -365,6 +376,20 @@
                 "updateFailed": "Не вдалося оновити профіль",
                 "noBrand": "Бренд не знайдено"
             }
+        },
+        "analytics": {
+            "title": "Аналітика",
+            "brandPageViews": "Перегляди бренду",
+            "productViews": "Перегляди товарів",
+            "externalClicks": "Зовнішні кліки",
+            "wishlistAdds": "Додано в обране",
+            "viewsChart": "Перегляди за часом",
+            "engagementChart": "Взаємодія за часом",
+            "last7Days": "Останні 7 днів",
+            "last14Days": "Останні 14 днів",
+            "last30Days": "Останні 30 днів",
+            "last90Days": "Останні 90 днів",
+            "noData": "Немає даних аналітики за цей період"
         }
     }
 }

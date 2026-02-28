@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing";
 import { generateSlug } from "@/lib/supabase-data";
 import { ProductView } from "./ProductView";
 import { Product } from "@/types/product";
+import { useTrackPageView } from "@/hooks/useTrackPageView";
 
 interface ProductDetailsProps {
   product: Product;
@@ -21,6 +22,12 @@ const ProductDetails = ({
 }: ProductDetailsProps): React.ReactElement => {
   const { openPreviewModal } = usePreviewSlider();
   const [activeTab, setActiveTab] = useState("tabOne");
+
+  useTrackPageView({
+    eventType: "product_view",
+    brandId: product.brandId ? Number(product.brandId) : 0,
+    productId: Number(product.id),
+  });
 
   const tabs = [
     {

@@ -12,18 +12,23 @@ type Product = {
   discountedPrice?: number | null;
   categoryName?: string;
   previewImage?: string | null;
+  isActive: boolean;
 };
 
 type ProductsTableProps = {
   products: Product[];
   onDelete: (id: number) => void;
   isDeleting: number | null;
+  onToggleActive: (id: number) => void;
+  isTogglingActive: number | null;
 };
 
 export function ProductsTable({
   products,
   onDelete,
   isDeleting,
+  onToggleActive,
+  isTogglingActive,
 }: ProductsTableProps): React.ReactElement {
   const t = useTranslations("Cabinet.products");
 
@@ -84,6 +89,9 @@ export function ProductsTable({
             <th className="text-left py-3 px-4 text-sm font-medium text-gray-500">
               {t("table.price")}
             </th>
+            <th className="text-center py-3 px-4 text-sm font-medium text-gray-500">
+              {t("table.status")}
+            </th>
             <th className="text-right py-3 px-4 text-sm font-medium text-gray-500">
               {t("table.actions")}
             </th>
@@ -91,7 +99,7 @@ export function ProductsTable({
         </thead>
         <tbody className="divide-y divide-gray-100">
           {products.map((product) => (
-            <tr key={product.id} className="hover:bg-gray-50">
+            <tr key={product.id} className={`hover:bg-gray-50 ${!product.isActive ? "opacity-60" : ""}`}>
               <td className="py-4 px-4">
                 <div className="flex items-center gap-3">
                   {product.previewImage ? (
@@ -137,6 +145,22 @@ export function ProductsTable({
                     </span>
                   )}
                 </div>
+              </td>
+              <td className="py-4 px-4 text-center">
+                <button
+                  onClick={() => onToggleActive(product.id)}
+                  disabled={isTogglingActive === product.id}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none disabled:opacity-50 ${
+                    product.isActive ? "bg-malachite" : "bg-gray-300"
+                  }`}
+                  title={product.isActive ? t("actions.deactivate") : t("actions.activate")}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
+                      product.isActive ? "translate-x-6" : "translate-x-1"
+                    }`}
+                  />
+                </button>
               </td>
               <td className="py-4 px-4 text-right">
                 <div className="flex items-center justify-end gap-2">

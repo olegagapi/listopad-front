@@ -3,8 +3,6 @@ import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase-server";
 import { CompleteBrandRegistration } from "@/components/BrandRegister/CompleteBrandRegistration";
-import Breadcrumb from "@/components/Common/Breadcrumb";
-
 export async function generateMetadata({
   params,
 }: {
@@ -58,8 +56,6 @@ export default async function CompleteRegistrationPage({
 
   return (
     <main>
-      <Breadcrumb title={t("completePageTitle")} pages={["/", t("completePageTitle")]} />
-
       <section className="py-12 lg:py-20">
         <div className="max-w-[1170px] w-full mx-auto px-4 sm:px-8 xl:px-0">
           <div className="mb-8 text-center">

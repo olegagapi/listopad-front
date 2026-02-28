@@ -15,6 +15,7 @@ type Product = {
   discountedPrice?: number | null;
   categoryName?: string;
   previewImage?: string | null;
+  isActive: boolean;
 };
 
 export default function ProductsPage() {
@@ -25,6 +26,7 @@ export default function ProductsPage() {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
+  const [isTogglingActive, setIsTogglingActive] = useState<number | null>(null);
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -43,6 +45,27 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  const handleToggleActive = async (id: number) => {
+    setIsTogglingActive(id);
+    try {
+      const response = await fetch(`/api/cabinet/products/${id}/toggle-active`, {
+        method: "PATCH",
+      });
+      const result = await response.json();
+      if (result.data) {
+        setProducts((prev) =>
+          prev.map((p) =>
+            p.id === id ? { ...p, isActive: result.data.isActive as boolean } : p
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Failed to toggle product status:", error);
+    } finally {
+      setIsTogglingActive(null);
+    }
+  };
 
   const handleDeleteClick = (id: number) => {
     const product = products.find((p) => p.id === id);
@@ -119,6 +142,8 @@ export default function ProductsPage() {
             products={products}
             onDelete={handleDeleteClick}
             isDeleting={isDeleting}
+            onToggleActive={handleToggleActive}
+            isTogglingActive={isTogglingActive}
           />
         </div>
       </div>

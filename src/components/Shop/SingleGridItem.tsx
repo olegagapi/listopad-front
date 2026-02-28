@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { EyeIcon, CartIcon } from "@/components/Icons";
 import WishlistButton from "@/components/Common/WishlistButton";
+import { trackEvent } from "@/lib/analytics";
 
 const SingleGridItem = ({ item }: { item: Product }) => {
   const { openModal } = useModalContext();
@@ -47,6 +48,15 @@ const SingleGridItem = ({ item }: { item: Product }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("visitShopLabel")}
+            onClick={() => {
+              if (item.brandId) {
+                trackEvent({
+                  eventType: "external_click",
+                  brandId: Number(item.brandId),
+                  productId: Number(item.id),
+                });
+              }
+            }}
             className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
           >
             <CartIcon />

@@ -6,6 +6,7 @@ import { useRouter } from "@/i18n/routing";
 import { useAuth } from "@/app/context/AuthContext";
 import { CabinetTopBar } from "@/components/Cabinet/CabinetTopBar";
 import { ProductForm } from "@/components/Cabinet/Products/ProductForm";
+import { ErrorAlert } from "@/components/Common/ErrorAlert";
 
 type ProductData = {
   id: number;
@@ -104,9 +105,7 @@ export default function EditProductPage({
       <div>
         <CabinetTopBar title={t("editProduct")} />
         <div className="p-6">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-            <p className="text-red-600">{error || t("errors.notFound")}</p>
-          </div>
+          <ErrorAlert message={error || t("errors.notFound")} centered />
         </div>
       </div>
     );
@@ -123,11 +122,7 @@ export default function EditProductPage({
       <CabinetTopBar title={t("editProduct")} />
 
       <div className="p-6">
-        {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-sm text-red-600">{error}</p>
-          </div>
-        )}
+        {error && <ErrorAlert message={error} className="mb-6" />}
 
         <ProductForm
           initialData={{

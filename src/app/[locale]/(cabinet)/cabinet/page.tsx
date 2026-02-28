@@ -15,10 +15,18 @@ type DashboardStats = {
   }>;
 };
 
+type AnalyticsTotals = {
+  brandPageViews: number;
+  productViews: number;
+  externalClicks: number;
+  wishlistAdds: number;
+};
+
 export default function CabinetDashboard() {
   const t = useTranslations("Cabinet.dashboard");
   const { brandManager, isLoading } = useAuth();
   const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [analyticsTotals, setAnalyticsTotals] = useState<AnalyticsTotals | null>(null);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
 
   useEffect(() => {
@@ -29,14 +37,22 @@ export default function CabinetDashboard() {
       }
 
       try {
-        const response = await fetch(`/api/cabinet/products?limit=5`);
-        const result = await response.json();
+        const [productsRes, analyticsRes] = await Promise.all([
+          fetch(`/api/cabinet/products?limit=5`),
+          fetch(`/api/cabinet/analytics?days=7`),
+        ]);
 
-        if (result.data) {
+        const productsResult = await productsRes.json();
+        if (productsResult.data) {
           setStats({
-            totalProducts: result.data.total ?? 0,
-            recentProducts: result.data.products ?? [],
+            totalProducts: productsResult.data.total ?? 0,
+            recentProducts: productsResult.data.products ?? [],
           });
+        }
+
+        const analyticsResult = await analyticsRes.json();
+        if (analyticsResult.data?.totals) {
+          setAnalyticsTotals(analyticsResult.data.totals as AnalyticsTotals);
         }
       } catch (error) {
         console.error("Failed to fetch stats:", error);
@@ -158,8 +174,40 @@ export default function CabinetDashboard() {
           </div>
         </div>
 
+        {/* Analytics Stats (Last 7 Days) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+            <p className="text-xs text-gray-500 mb-1">{t("brandPageViews")}</p>
+            <p className="text-xl font-bold text-malachite">
+              {isLoadingStats ? "..." : (analyticsTotals?.brandPageViews ?? 0)}
+            </p>
+            <p className="text-xs text-gray-400 mt-1">{t("last7Days")}</p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+            <p className="text-xs text-gray-500 mb-1">{t("productViews")}</p>
+            <p className="text-xl font-bold text-blue-600">
+              {isLoadingStats ? "..." : (analyticsTotals?.productViews ?? 0)}
+            </p>
+            <p className="text-xs text-gray-400 mt-1">{t("last7Days")}</p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+            <p className="text-xs text-gray-500 mb-1">{t("externalClicks")}</p>
+            <p className="text-xl font-bold text-orange-600">
+              {isLoadingStats ? "..." : (analyticsTotals?.externalClicks ?? 0)}
+            </p>
+            <p className="text-xs text-gray-400 mt-1">{t("last7Days")}</p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+            <p className="text-xs text-gray-500 mb-1">{t("wishlistAdds")}</p>
+            <p className="text-xl font-bold text-pink-600">
+              {isLoadingStats ? "..." : (analyticsTotals?.wishlistAdds ?? 0)}
+            </p>
+            <p className="text-xs text-gray-400 mt-1">{t("last7Days")}</p>
+          </div>
+        </div>
+
         {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Link
             href="/cabinet/products/new"
             className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:border-malachite transition-colors group"
@@ -210,6 +258,33 @@ export default function CabinetDashboard() {
               <div>
                 <h3 className="font-medium text-gray-900">{t("editProfile")}</h3>
                 <p className="text-sm text-gray-500">{t("editProfileDesc")}</p>
+              </div>
+            </div>
+          </Link>
+
+          <Link
+            href="/cabinet/analytics"
+            className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:border-malachite transition-colors group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-malachite/10 rounded-lg flex items-center justify-center group-hover:bg-malachite/20 transition-colors">
+                <svg
+                  className="w-6 h-6 text-malachite"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">{t("viewAnalytics")}</h3>
+                <p className="text-sm text-gray-500">{t("viewAnalyticsDesc")}</p>
               </div>
             </div>
           </Link>

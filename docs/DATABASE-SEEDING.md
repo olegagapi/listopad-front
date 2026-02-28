@@ -44,7 +44,8 @@ CREATE TABLE products (
   tags TEXT[],
   gender TEXT CHECK (gender IN ('male', 'female', 'unisex')),
   external_url TEXT,
-  inst_url TEXT
+  inst_url TEXT,
+  is_active BOOLEAN NOT NULL DEFAULT true
 );
 
 -- Promotions table (for hero carousel)
@@ -63,6 +64,18 @@ CREATE TABLE promotions (
   end_date TIMESTAMP,
   created_at TIMESTAMP DEFAULT NOW()
 );
+
+-- Analytics events table (for tracking brand/product engagement)
+CREATE TABLE analytics_events (
+  id BIGSERIAL PRIMARY KEY,
+  event_type TEXT NOT NULL,
+  brand_id INTEGER NOT NULL REFERENCES brands(id),
+  product_id INTEGER REFERENCES products(id),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_analytics_brand_date ON analytics_events (brand_id, created_at);
+CREATE INDEX idx_analytics_type ON analytics_events (event_type);
 
 -- Site settings table (for contact info, social links, etc.)
 CREATE TABLE site_settings (

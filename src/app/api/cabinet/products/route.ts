@@ -52,6 +52,7 @@ export async function GET(request: NextRequest): Promise<Response> {
       previewImage: p.preview_image,
       colors: p.colors ?? [],
       gender: p.gender,
+      isActive: p.is_active ?? true,
     }));
 
     return NextResponse.json({
@@ -119,6 +120,7 @@ export async function POST(request: NextRequest): Promise<Response> {
         images: body.images?.slice(1) || [],
         external_url: body.externalUrl || null,
         inst_url: body.instagramUrl || null,
+        is_active: body.isActive ?? true,
       })
       .select()
       .single();
