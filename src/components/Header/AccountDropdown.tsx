@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -19,10 +19,12 @@ export default function AccountDropdown(): React.JSX.Element {
   const [brandInfo, setBrandInfo] = useState<BrandInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
-  const fetchBrandInfo = useCallback(
-    async (userId: string): Promise<void> => {
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchBrandInfo = async (userId: string): Promise<void> => {
       const { data } = await supabase
         .from("brand_managers")
         .select("brand_id")
@@ -44,12 +46,7 @@ export default function AccountDropdown(): React.JSX.Element {
         logoUrl: (brand?.logo_url as string | null) ?? null,
         brandId: data.brand_id as number,
       });
-    },
-    [supabase]
-  );
-
-  useEffect(() => {
-    let isMounted = true;
+    };
 
     const init = async () => {
       const {
@@ -86,7 +83,7 @@ export default function AccountDropdown(): React.JSX.Element {
       isMounted = false;
       subscription.unsubscribe();
     };
-  }, [supabase, fetchBrandInfo]);
+  }, [supabase]);
 
   // Close dropdown on outside click
   useEffect(() => {
