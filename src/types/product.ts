@@ -31,6 +31,7 @@ export type Product = {
   currency: string;
   brandId?: string;
   brandName?: string;
+  brandLogoUrl?: string | null;
   categoryIds: string[];
   categoryNames: string[];
   tags: string[];

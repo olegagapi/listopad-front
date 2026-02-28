@@ -25,7 +25,9 @@
       "Bash(cat:*)",
       "Bash(git:*)",
       "Bash(npx tsc:*)",
-      "WebFetch(domain:listopad-front-oleg-agapi.vercel.app)"
+      "WebFetch(domain:listopad-front-oleg-agapi.vercel.app)",
+      "Bash(pnpm exec tsx:*)",
+      "Bash(node --env-file=.env.local -e:*)"
     ]
   }
 }

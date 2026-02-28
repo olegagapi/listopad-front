@@ -22,7 +22,10 @@ CREATE TABLE brands (
   marketing_desc_en TEXT,
   internal_url TEXT,
   external_url TEXT,
-  inst_url TEXT
+  inst_url TEXT,
+  logo_url TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Products table
@@ -110,15 +113,15 @@ INSERT INTO categories (name_uk, name_en, marketing_desc_uk, marketing_desc_en, 
 -- BRANDS
 -- ===========================================
 
-INSERT INTO brands (name_uk, name_en, marketing_desc_uk, marketing_desc_en, external_url, inst_url) VALUES
-  ('Лелека', 'Leleka', 'Сучасний український бренд жіночого одягу', 'Modern Ukrainian women''s clothing brand', 'https://leleka.ua', 'https://instagram.com/leleka_ua'),
-  ('Вишиванка Модерн', 'Vyshyvanka Modern', 'Традиції в сучасному стилі', 'Traditions in modern style', 'https://vyshyvanka-modern.ua', 'https://instagram.com/vyshyvanka_modern'),
-  ('Степова', 'Stepova', 'Мінімалізм та якість', 'Minimalism and quality', 'https://stepova.com', 'https://instagram.com/stepova_brand'),
-  ('Карпати Стайл', 'Karpaty Style', 'Натхненні горами', 'Inspired by mountains', 'https://karpaty-style.ua', 'https://instagram.com/karpaty_style'),
-  ('Київ Колекшн', 'Kyiv Collection', 'Міська мода', 'Urban fashion', 'https://kyiv-collection.com', 'https://instagram.com/kyiv_collection'),
-  ('Борисфен', 'Borysfen', 'Чоловічий одяг преміум класу', 'Premium men''s clothing', 'https://borysfen.ua', 'https://instagram.com/borysfen_ua'),
-  ('Сонячна', 'Soniachna', 'Яскраві літні колекції', 'Bright summer collections', 'https://soniachna.com', 'https://instagram.com/soniachna'),
-  ('Оберіг', 'Oberih', 'Аксесуари ручної роботи', 'Handmade accessories', 'https://oberih.ua', 'https://instagram.com/oberih_ua');
+INSERT INTO brands (name_uk, name_en, marketing_desc_uk, marketing_desc_en, external_url, inst_url, logo_url) VALUES
+  ('Лелека', 'Leleka', 'Сучасний український бренд жіночого одягу', 'Modern Ukrainian women''s clothing brand', 'https://leleka.ua', 'https://instagram.com/leleka_ua', 'https://picsum.photos/seed/leleka-logo/200/200'),
+  ('Вишиванка Модерн', 'Vyshyvanka Modern', 'Традиції в сучасному стилі', 'Traditions in modern style', 'https://vyshyvanka-modern.ua', 'https://instagram.com/vyshyvanka_modern', 'https://picsum.photos/seed/vyshyvanka-logo/200/200'),
+  ('Степова', 'Stepova', 'Мінімалізм та якість', 'Minimalism and quality', 'https://stepova.com', 'https://instagram.com/stepova_brand', 'https://picsum.photos/seed/stepova-logo/200/200'),
+  ('Карпати Стайл', 'Karpaty Style', 'Натхненні горами', 'Inspired by mountains', 'https://karpaty-style.ua', 'https://instagram.com/karpaty_style', 'https://picsum.photos/seed/karpaty-logo/200/200'),
+  ('Київ Колекшн', 'Kyiv Collection', 'Міська мода', 'Urban fashion', 'https://kyiv-collection.com', 'https://instagram.com/kyiv_collection', 'https://picsum.photos/seed/kyiv-logo/200/200'),
+  ('Борисфен', 'Borysfen', 'Чоловічий одяг преміум класу', 'Premium men''s clothing', 'https://borysfen.ua', 'https://instagram.com/borysfen_ua', 'https://picsum.photos/seed/borysfen-logo/200/200'),
+  ('Сонячна', 'Soniachna', 'Яскраві літні колекції', 'Bright summer collections', 'https://soniachna.com', 'https://instagram.com/soniachna', 'https://picsum.photos/seed/soniachna-logo/200/200'),
+  ('Оберіг', 'Oberih', 'Аксесуари ручної роботи', 'Handmade accessories', 'https://oberih.ua', 'https://instagram.com/oberih_ua', 'https://picsum.photos/seed/oberih-logo/200/200');
 
 -- ===========================================
 -- PRODUCTS

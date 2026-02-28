@@ -80,14 +80,14 @@ const subcategories = [
 ];
 
 const brands = [
-  { id: 1, name_uk: 'Лелека', name_en: 'Leleka', marketing_desc_uk: 'Сучасний український бренд жіночого одягу', marketing_desc_en: "Modern Ukrainian women's clothing brand", external_url: 'https://leleka.ua', inst_url: 'https://instagram.com/leleka_ua' },
-  { id: 2, name_uk: 'Вишиванка Модерн', name_en: 'Vyshyvanka Modern', marketing_desc_uk: 'Традиції в сучасному стилі', marketing_desc_en: 'Traditions in modern style', external_url: 'https://vyshyvanka-modern.ua', inst_url: 'https://instagram.com/vyshyvanka_modern' },
-  { id: 3, name_uk: 'Степова', name_en: 'Stepova', marketing_desc_uk: 'Мінімалізм та якість', marketing_desc_en: 'Minimalism and quality', external_url: 'https://stepova.com', inst_url: 'https://instagram.com/stepova_brand' },
-  { id: 4, name_uk: 'Карпати Стайл', name_en: 'Karpaty Style', marketing_desc_uk: 'Натхненні горами', marketing_desc_en: 'Inspired by mountains', external_url: 'https://karpaty-style.ua', inst_url: 'https://instagram.com/karpaty_style' },
-  { id: 5, name_uk: 'Київ Колекшн', name_en: 'Kyiv Collection', marketing_desc_uk: 'Міська мода', marketing_desc_en: 'Urban fashion', external_url: 'https://kyiv-collection.com', inst_url: 'https://instagram.com/kyiv_collection' },
-  { id: 6, name_uk: 'Борисфен', name_en: 'Borysfen', marketing_desc_uk: 'Чоловічий одяг преміум класу', marketing_desc_en: "Premium men's clothing", external_url: 'https://borysfen.ua', inst_url: 'https://instagram.com/borysfen_ua' },
-  { id: 7, name_uk: 'Сонячна', name_en: 'Soniachna', marketing_desc_uk: 'Яскраві літні колекції', marketing_desc_en: 'Bright summer collections', external_url: 'https://soniachna.com', inst_url: 'https://instagram.com/soniachna' },
-  { id: 8, name_uk: 'Оберіг', name_en: 'Oberih', marketing_desc_uk: 'Аксесуари ручної роботи', marketing_desc_en: 'Handmade accessories', external_url: 'https://oberih.ua', inst_url: 'https://instagram.com/oberih_ua' },
+  { id: 1, name_uk: 'Лелека', name_en: 'Leleka', marketing_desc_uk: 'Сучасний український бренд жіночого одягу', marketing_desc_en: "Modern Ukrainian women's clothing brand", external_url: 'https://leleka.ua', inst_url: 'https://instagram.com/leleka_ua', logo_url: 'https://picsum.photos/seed/leleka-logo/200/200' },
+  { id: 2, name_uk: 'Вишиванка Модерн', name_en: 'Vyshyvanka Modern', marketing_desc_uk: 'Традиції в сучасному стилі', marketing_desc_en: 'Traditions in modern style', external_url: 'https://vyshyvanka-modern.ua', inst_url: 'https://instagram.com/vyshyvanka_modern', logo_url: 'https://picsum.photos/seed/vyshyvanka-logo/200/200' },
+  { id: 3, name_uk: 'Степова', name_en: 'Stepova', marketing_desc_uk: 'Мінімалізм та якість', marketing_desc_en: 'Minimalism and quality', external_url: 'https://stepova.com', inst_url: 'https://instagram.com/stepova_brand', logo_url: 'https://picsum.photos/seed/stepova-logo/200/200' },
+  { id: 4, name_uk: 'Карпати Стайл', name_en: 'Karpaty Style', marketing_desc_uk: 'Натхненні горами', marketing_desc_en: 'Inspired by mountains', external_url: 'https://karpaty-style.ua', inst_url: 'https://instagram.com/karpaty_style', logo_url: 'https://picsum.photos/seed/karpaty-logo/200/200' },
+  { id: 5, name_uk: 'Київ Колекшн', name_en: 'Kyiv Collection', marketing_desc_uk: 'Міська мода', marketing_desc_en: 'Urban fashion', external_url: 'https://kyiv-collection.com', inst_url: 'https://instagram.com/kyiv_collection', logo_url: 'https://picsum.photos/seed/kyiv-logo/200/200' },
+  { id: 6, name_uk: 'Борисфен', name_en: 'Borysfen', marketing_desc_uk: 'Чоловічий одяг преміум класу', marketing_desc_en: "Premium men's clothing", external_url: 'https://borysfen.ua', inst_url: 'https://instagram.com/borysfen_ua', logo_url: 'https://picsum.photos/seed/borysfen-logo/200/200' },
+  { id: 7, name_uk: 'Сонячна', name_en: 'Soniachna', marketing_desc_uk: 'Яскраві літні колекції', marketing_desc_en: 'Bright summer collections', external_url: 'https://soniachna.com', inst_url: 'https://instagram.com/soniachna', logo_url: 'https://picsum.photos/seed/soniachna-logo/200/200' },
+  { id: 8, name_uk: 'Оберіг', name_en: 'Oberih', marketing_desc_uk: 'Аксесуари ручної роботи', marketing_desc_en: 'Handmade accessories', external_url: 'https://oberih.ua', inst_url: 'https://instagram.com/oberih_ua', logo_url: 'https://picsum.photos/seed/oberih-logo/200/200' },
 ];
 
 const products = [

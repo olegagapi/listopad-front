@@ -103,7 +103,7 @@ export async function listProducts(options: ListProductsOptions = {}): Promise<P
 
     let query = supabase.from('products').select(`
     *,
-    brands (name_uk, name_en),
+    brands (name_uk, name_en, logo_url),
     categories (name_uk, name_en)
   `);
 
@@ -134,15 +134,17 @@ export async function listProducts(options: ListProductsOptions = {}): Promise<P
         const images = (prod.images as string[] | null) ?? [];
         const preview = prod.preview_image ? [prod.preview_image as string] : [];
         const productName = locale === 'uk' ? String(prod.name_uk ?? '') : String(prod.name_en ?? '');
+        const productNameEn = String(prod.name_en ?? ''); // Always use English for slugs
         const description = locale === 'uk' ? (prod.product_description_uk as string | null) : (prod.product_description_en as string | null);
         const brands = prod.brands as Record<string, unknown> | null;
         const categories = prod.categories as Record<string, unknown> | null;
         const brandName = brands ? (locale === 'uk' ? String(brands.name_uk ?? '') : String(brands.name_en ?? '')) : undefined;
+        const brandLogoUrl = brands?.logo_url as string | null | undefined;
         const categoryName = categories ? (locale === 'uk' ? String(categories.name_uk ?? '') : String(categories.name_en ?? '')) : undefined;
 
         return {
             id: String(prod.id),
-            slug: generateSlug(productName, prod.id as number),
+            slug: generateSlug(productNameEn, prod.id as number),
             title: productName,
             reviews: 0,
             price: prod.price as number,
@@ -150,6 +152,7 @@ export async function listProducts(options: ListProductsOptions = {}): Promise<P
             currency: "UAH",
             brandId: prod.brand_id ? String(prod.brand_id) : undefined,
             brandName,
+            brandLogoUrl: brandLogoUrl ?? null,
             categoryIds: prod.category_id ? [String(prod.category_id)] : [],
             categoryNames: categoryName ? [categoryName] : [],
             tags: (prod.tags as string[] | null) ?? [],
@@ -175,7 +178,7 @@ export async function getProductBySlug(slug: string, locale: Locale = 'uk'): Pro
         .from('products')
         .select(`
       *,
-      brands (name_uk, name_en),
+      brands (name_uk, name_en, logo_url),
       categories (name_uk, name_en)
     `)
         .eq('id', id)
@@ -190,15 +193,17 @@ export async function getProductBySlug(slug: string, locale: Locale = 'uk'): Pro
     const images = (prodRecord.images as string[] | null) ?? [];
     const preview = prodRecord.preview_image ? [prodRecord.preview_image as string] : [];
     const productName = locale === 'uk' ? String(prodRecord.name_uk ?? '') : String(prodRecord.name_en ?? '');
+    const productNameEn = String(prodRecord.name_en ?? ''); // Always use English for slugs
     const description = locale === 'uk' ? (prodRecord.product_description_uk as string | null) : (prodRecord.product_description_en as string | null);
     const brands = prodRecord.brands as Record<string, unknown> | null;
     const categories = prodRecord.categories as Record<string, unknown> | null;
     const brandName = brands ? (locale === 'uk' ? String(brands.name_uk ?? '') : String(brands.name_en ?? '')) : undefined;
+    const brandLogoUrl = brands?.logo_url as string | null | undefined;
     const categoryName = categories ? (locale === 'uk' ? String(categories.name_uk ?? '') : String(categories.name_en ?? '')) : undefined;
 
     return {
         id: String(prodRecord.id),
-        slug: generateSlug(productName, prodRecord.id as number),
+        slug: generateSlug(productNameEn, prodRecord.id as number),
         title: productName,
         reviews: 0,
         price: prodRecord.price as number,
@@ -206,6 +211,7 @@ export async function getProductBySlug(slug: string, locale: Locale = 'uk'): Pro
         currency: "UAH",
         brandId: prodRecord.brand_id ? String(prodRecord.brand_id) : undefined,
         brandName,
+        brandLogoUrl: brandLogoUrl ?? null,
         categoryIds: prodRecord.category_id ? [String(prodRecord.category_id)] : [],
         categoryNames: categoryName ? [categoryName] : [],
         tags: (prodRecord.tags as string[] | null) ?? [],
