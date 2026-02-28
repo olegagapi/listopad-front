@@ -239,8 +239,8 @@ export function BrandLogin({
           </div>
 
           {error && (
-            <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-sm text-red-600">{error}</p>
+            <div className="p-3 bg-red-100 rounded-md" role="alert">
+              <p className="text-sm text-red-700 font-medium">{error}</p>
             </div>
           )}
 

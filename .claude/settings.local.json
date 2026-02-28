@@ -23,7 +23,9 @@
       "Bash(pnpm meilisearch:sync:*)",
       "Bash(xargs:*)",
       "Bash(cat:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:listopad-front-oleg-agapi.vercel.app)"
     ]
   }
 }

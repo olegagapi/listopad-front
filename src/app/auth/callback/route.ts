@@ -86,6 +86,12 @@ export async function GET(request: NextRequest): Promise<Response> {
       return NextResponse.redirect(new URL("/brand-login?error=not_brand_manager", origin));
     }
 
+    // Check if brand registration is incomplete
+    if (!existingManager.brand_id) {
+      // Has manager record but no brand - redirect to complete registration
+      return NextResponse.redirect(new URL("/brand-register/complete", origin));
+    }
+
     if (existingManager.status === "suspended") {
       await supabase.auth.signOut();
       return NextResponse.redirect(new URL("/brand-login?error=suspended", origin));

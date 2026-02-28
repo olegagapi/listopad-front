@@ -160,8 +160,18 @@ export async function POST(request: NextRequest): Promise<Response> {
     });
   } catch (error) {
     console.error("Complete registration error:", error);
+
+    if (error instanceof Error) {
+      if (error.message.includes("SUPABASE_SERVICE_ROLE_KEY")) {
+        return NextResponse.json(
+          { data: null, error: "Server configuration error. Please contact support." },
+          { status: 500 }
+        );
+      }
+    }
+
     return NextResponse.json(
-      { data: null, error: "Internal server error" },
+      { data: null, error: "Registration failed. Please try again later." },
       { status: 500 }
     );
   }
