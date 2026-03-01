@@ -8,11 +8,13 @@ async function getBrandManager(supabase: Awaited<ReturnType<typeof createClient>
 
   const { data, error } = await supabase
     .from("brand_managers")
-    .select("*")
+    .select("*, brands(logo_url)")
     .eq("user_id", user.id)
     .single();
 
   if (error || !data) return null;
+
+  const brands = data.brands as { logo_url: string | null } | null;
 
   return {
     id: data.id as string,
@@ -23,6 +25,7 @@ async function getBrandManager(supabase: Awaited<ReturnType<typeof createClient>
     status: data.status as BrandManager["status"],
     createdAt: data.created_at as string,
     updatedAt: data.updated_at as string,
+    brandLogoUrl: brands?.logo_url ?? null,
   };
 }
 

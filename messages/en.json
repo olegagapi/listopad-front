@@ -395,5 +395,18 @@
             "last90Days": "Last 90 days",
             "noData": "No analytics data available for this period"
         }
+    },
+    "Toast": {
+        "loggedOut": "You have been logged out",
+        "productCreated": "Product created successfully",
+        "productUpdated": "Product updated successfully",
+        "productDeleted": "Product deleted successfully",
+        "productActivated": "Product activated",
+        "productDeactivated": "Product deactivated",
+        "profileUpdated": "Profile updated successfully",
+        "uploadFailed": "File upload failed",
+        "wishlistAdded": "Added to wishlist",
+        "wishlistRemoved": "Removed from wishlist",
+        "error": "Something went wrong"
     }
 }

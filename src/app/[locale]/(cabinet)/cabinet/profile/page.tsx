@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 import { useAuth } from "@/app/context/AuthContext";
 import { CabinetTopBar } from "@/components/Cabinet/CabinetTopBar";
 import { ErrorAlert } from "@/components/Common/ErrorAlert";
@@ -20,12 +21,12 @@ type BrandData = {
 
 export default function ProfilePage() {
   const t = useTranslations("Cabinet.profile");
+  const tToast = useTranslations("Toast");
   const { isLoading: authLoading } = useAuth();
   const [brand, setBrand] = useState<BrandData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const fetchBrand = async () => {
@@ -51,7 +52,6 @@ export default function ProfilePage() {
   const handleSubmit = async (data: Record<string, unknown> & { logoUrl: string | null }) => {
     setIsSubmitting(true);
     setError(null);
-    setSuccess(false);
 
     try {
       const response = await fetch("/api/cabinet/brand", {
@@ -68,15 +68,13 @@ export default function ProfilePage() {
         throw new Error(result.error || t("errors.updateFailed"));
       }
 
-      setSuccess(true);
+      toast.success(tToast("profileUpdated"));
 
       // Update local state
       setBrand((prev) => (prev ? { ...prev, ...data } : null));
-
-      // Clear success message after 3 seconds
-      setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
       setError(err instanceof Error ? err.message : t("errors.updateFailed"));
+      toast.error(tToast("error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -107,12 +105,6 @@ export default function ProfilePage() {
 
       <div className="p-6">
         {error && <ErrorAlert message={error} className="mb-6" />}
-
-        {success && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-            <p className="text-sm text-green-600">{t("success")}</p>
-          </div>
-        )}
 
         <ProfileForm
           initialData={brand}

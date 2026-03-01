@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 import { ImageUploader } from "./ImageUploader";
 import type { Category } from "@/types/category";
 import type { PrimeColor, Gender } from "@/types/product";
@@ -48,6 +49,7 @@ export function ProductForm({
   submitLabel,
 }: ProductFormProps): React.ReactElement {
   const t = useTranslations("Cabinet.products.form");
+  const tToast = useTranslations("Toast");
   const [categories, setCategories] = useState<Category[]>([]);
   const [images, setImages] = useState<string[]>(initialData?.images ?? []);
   const [isUploadingImage, setIsUploadingImage] = useState(false);
@@ -137,6 +139,7 @@ export function ProductForm({
       }
       return null;
     } catch {
+      toast.error(tToast("uploadFailed"));
       return null;
     } finally {
       setIsUploadingImage(false);

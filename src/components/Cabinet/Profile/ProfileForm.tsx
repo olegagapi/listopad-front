@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 
 const profileSchema = z.object({
   nameUk: z.string().min(2, "Name must be at least 2 characters"),
@@ -30,6 +31,7 @@ export function ProfileForm({
   isSubmitting,
 }: ProfileFormProps): React.ReactElement {
   const t = useTranslations("Cabinet.profile.form");
+  const tToast = useTranslations("Toast");
   const [logoUrl, setLogoUrl] = useState<string | null>(initialData.logoUrl ?? null);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -68,8 +70,8 @@ export function ProfileForm({
       if (result.data?.url) {
         setLogoUrl(result.data.url);
       }
-    } catch (error) {
-      console.error("Logo upload failed:", error);
+    } catch {
+      toast.error(tToast("uploadFailed"));
     } finally {
       setIsUploadingLogo(false);
       if (fileInputRef.current) {

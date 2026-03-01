@@ -24,13 +24,14 @@ export async function GET(): Promise<Response> {
     // Fetch brand manager data
     const { data: managerData, error: managerError } = await supabase
       .from("brand_managers")
-      .select("*")
+      .select("*, brands(logo_url)")
       .eq("user_id", user.id)
       .single();
 
     let brandManager: BrandManager | null = null;
 
     if (!managerError && managerData) {
+      const brands = managerData.brands as { logo_url: string | null } | null;
       brandManager = {
         id: managerData.id as string,
         userId: managerData.user_id as string,
@@ -40,6 +41,7 @@ export async function GET(): Promise<Response> {
         status: managerData.status as BrandManager["status"],
         createdAt: managerData.created_at as string,
         updatedAt: managerData.updated_at as string,
+        brandLogoUrl: brands?.logo_url ?? null,
       };
     }
 

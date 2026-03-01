@@ -1,89 +1,19 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { createClient } from "@/lib/supabase-browser";
+import toast from "react-hot-toast";
+import { useAuth } from "@/app/context/AuthContext";
 import { UserIcon, LogoutIcon } from "@/components/Icons";
-
-type BrandInfo = {
-  logoUrl: string | null;
-  brandId: number | null;
-};
 
 export default function AccountDropdown(): React.JSX.Element {
   const t = useTranslations("Header");
+  const tToast = useTranslations("Toast");
+  const { isAuthenticated, brandManager, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [brandInfo, setBrandInfo] = useState<BrandInfo | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const supabase = useMemo(() => createClient(), []);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchBrandInfo = async (userId: string): Promise<void> => {
-      const { data } = await supabase
-        .from("brand_managers")
-        .select("brand_id")
-        .eq("user_id", userId)
-        .single();
-
-      if (!data?.brand_id) {
-        setBrandInfo({ logoUrl: null, brandId: null });
-        return;
-      }
-
-      const { data: brand } = await supabase
-        .from("brands")
-        .select("logo_url")
-        .eq("id", data.brand_id)
-        .single();
-
-      setBrandInfo({
-        logoUrl: (brand?.logo_url as string | null) ?? null,
-        brandId: data.brand_id as number,
-      });
-    };
-
-    const init = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      if (!isMounted) return;
-
-      if (user) {
-        setIsAuthenticated(true);
-        await fetchBrandInfo(user.id);
-      }
-
-      if (isMounted) setIsLoading(false);
-    };
-
-    init();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (!isMounted) return;
-
-      if (event === "SIGNED_IN" && session?.user) {
-        setIsAuthenticated(true);
-        await fetchBrandInfo(session.user.id);
-      } else if (event === "SIGNED_OUT") {
-        setIsAuthenticated(false);
-        setBrandInfo(null);
-      }
-    });
-
-    return () => {
-      isMounted = false;
-      subscription.unsubscribe();
-    };
-  }, [supabase]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -102,18 +32,11 @@ export default function AccountDropdown(): React.JSX.Element {
 
   const handleSignOut = async () => {
     setIsOpen(false);
-    await supabase.auth.signOut();
-    setIsAuthenticated(false);
-    setBrandInfo(null);
+    await signOut();
+    toast.success(tToast("loggedOut"));
   };
 
-  if (isLoading) {
-    return (
-      <div className="text-malachite">
-        <UserIcon />
-      </div>
-    );
-  }
+  const logoUrl = brandManager?.brandLogoUrl;
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -123,9 +46,9 @@ export default function AccountDropdown(): React.JSX.Element {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        {isAuthenticated && brandInfo?.logoUrl ? (
+        {isAuthenticated && logoUrl ? (
           <Image
-            src={brandInfo.logoUrl}
+            src={logoUrl}
             alt="Brand"
             width={28}
             height={28}

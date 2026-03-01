@@ -395,5 +395,18 @@
             "last90Days": "Останні 90 днів",
             "noData": "Немає даних аналітики за цей період"
         }
+    },
+    "Toast": {
+        "loggedOut": "Ви вийшли з акаунту",
+        "productCreated": "Товар успішно створено",
+        "productUpdated": "Товар успішно оновлено",
+        "productDeleted": "Товар успішно видалено",
+        "productActivated": "Товар активовано",
+        "productDeactivated": "Товар деактивовано",
+        "profileUpdated": "Профіль успішно оновлено",
+        "uploadFailed": "Не вдалося завантажити файл",
+        "wishlistAdded": "Додано до списку бажань",
+        "wishlistRemoved": "Видалено зі списку бажань",
+        "error": "Щось пішло не так"
     }
 }

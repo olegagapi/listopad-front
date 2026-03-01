@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
+import toast from "react-hot-toast";
 import { useAuth } from "@/app/context/AuthContext";
 
 type NavItem = {
@@ -13,6 +14,7 @@ type NavItem = {
 
 export function CabinetSidebar(): React.ReactElement {
   const t = useTranslations("Cabinet.nav");
+  const tToast = useTranslations("Toast");
   const pathname = usePathname();
   const { brandManager, signOut } = useAuth();
 
@@ -84,6 +86,7 @@ export function CabinetSidebar(): React.ReactElement {
 
   const handleSignOut = async () => {
     await signOut();
+    toast.success(tToast("loggedOut"));
     window.location.href = "/brand-login";
   };
 

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, use } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
+import toast from "react-hot-toast";
 import { useAuth } from "@/app/context/AuthContext";
 import { CabinetTopBar } from "@/components/Cabinet/CabinetTopBar";
 import { ProductForm } from "@/components/Cabinet/Products/ProductForm";
@@ -33,6 +34,7 @@ export default function EditProductPage({
 }) {
   const { id } = use(params);
   const t = useTranslations("Cabinet.products");
+  const tToast = useTranslations("Toast");
   const router = useRouter();
   const { isLoading: authLoading } = useAuth();
   const [product, setProduct] = useState<ProductData | null>(null);
@@ -84,9 +86,11 @@ export default function EditProductPage({
         throw new Error(result.error || t("errors.updateFailed"));
       }
 
+      toast.success(tToast("productUpdated"));
       router.push("/cabinet/products");
     } catch (err) {
       setError(err instanceof Error ? err.message : t("errors.updateFailed"));
+      toast.error(tToast("error"));
     } finally {
       setIsSubmitting(false);
     }

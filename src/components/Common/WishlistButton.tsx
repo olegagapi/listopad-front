@@ -2,6 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import { useTranslations } from "next-intl";
+import toast from "react-hot-toast";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { toggleWishlistItem } from "@/redux/features/wishlist-slice";
 import { HeartIcon } from "@/components/Icons";
@@ -19,6 +20,7 @@ export default function WishlistButton({
 }: WishlistButtonProps): React.JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const t = useTranslations("Wishlist");
+  const tToast = useTranslations("Toast");
 
   const wishlistItems = useAppSelector((state) => state.wishlistReducer.items);
   const isInWishlist = wishlistItems.some((item) => item.id === product.id);
@@ -46,6 +48,8 @@ export default function WishlistButton({
         imgs: product.imgs,
       })
     );
+
+    toast.success(isInWishlist ? tToast("wishlistRemoved") : tToast("wishlistAdded"));
   };
 
   const isSmall = size === "small";

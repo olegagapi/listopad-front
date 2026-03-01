@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import toast from "react-hot-toast";
 import { useAuth } from "@/app/context/AuthContext";
 import { CabinetTopBar } from "@/components/Cabinet/CabinetTopBar";
 import { ProductsTable } from "@/components/Cabinet/Products/ProductsTable";
@@ -20,6 +21,7 @@ type Product = {
 
 export default function ProductsPage() {
   const t = useTranslations("Cabinet.products");
+  const tToast = useTranslations("Toast");
   const { isLoading: authLoading } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,14 +56,16 @@ export default function ProductsPage() {
       });
       const result = await response.json();
       if (result.data) {
+        const isActive = result.data.isActive as boolean;
         setProducts((prev) =>
           prev.map((p) =>
-            p.id === id ? { ...p, isActive: result.data.isActive as boolean } : p
+            p.id === id ? { ...p, isActive } : p
           )
         );
+        toast.success(isActive ? tToast("productActivated") : tToast("productDeactivated"));
       }
-    } catch (error) {
-      console.error("Failed to toggle product status:", error);
+    } catch {
+      toast.error(tToast("error"));
     } finally {
       setIsTogglingActive(null);
     }
@@ -88,9 +92,10 @@ export default function ProductsPage() {
         setProducts((prev) => prev.filter((p) => p.id !== productToDelete.id));
         setDeleteModalOpen(false);
         setProductToDelete(null);
+        toast.success(tToast("productDeleted"));
       }
-    } catch (error) {
-      console.error("Failed to delete product:", error);
+    } catch {
+      toast.error(tToast("error"));
     } finally {
       setIsDeleting(null);
     }

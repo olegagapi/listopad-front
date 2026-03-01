@@ -6,11 +6,11 @@ import React, {
   useEffect,
   useState,
   useCallback,
+  useMemo,
   type ReactNode,
 } from "react";
 import { createClient } from "@/lib/supabase-browser";
 import type { AuthState, BrandManager, SessionResponse } from "@/types/auth";
-import type { User } from "@supabase/supabase-js";
 
 type AuthContextType = AuthState & {
   signOut: () => Promise<void>;
@@ -43,19 +43,21 @@ export function AuthProvider({
     isAuthenticated: !!initialSession?.user,
   });
 
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
 
   const fetchBrandManager = useCallback(
     async (userId: string): Promise<BrandManager | null> => {
       const { data, error } = await supabase
         .from("brand_managers")
-        .select("*")
+        .select("*, brands(logo_url)")
         .eq("user_id", userId)
         .single();
 
       if (error || !data) {
         return null;
       }
+
+      const brands = data.brands as { logo_url: string | null } | null;
 
       return {
         id: data.id as string,
@@ -66,6 +68,7 @@ export function AuthProvider({
         status: data.status as BrandManager["status"],
         createdAt: data.created_at as string,
         updatedAt: data.updated_at as string,
+        brandLogoUrl: brands?.logo_url ?? null,
       };
     },
     [supabase]

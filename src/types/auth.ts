@@ -9,6 +9,7 @@ export type BrandManager = {
   status: BrandManagerStatus;
   createdAt: string;
   updatedAt: string;
+  brandLogoUrl: string | null;
 };
 
 export type AuthState = {

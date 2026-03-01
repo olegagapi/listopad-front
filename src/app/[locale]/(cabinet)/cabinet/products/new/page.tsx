@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
+import toast from "react-hot-toast";
 import { useAuth } from "@/app/context/AuthContext";
 import { CabinetTopBar } from "@/components/Cabinet/CabinetTopBar";
 import { ProductForm } from "@/components/Cabinet/Products/ProductForm";
@@ -10,6 +11,7 @@ import { ErrorAlert } from "@/components/Common/ErrorAlert";
 
 export default function NewProductPage() {
   const t = useTranslations("Cabinet.products");
+  const tToast = useTranslations("Toast");
   const router = useRouter();
   const { isLoading: authLoading } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,9 +40,11 @@ export default function NewProductPage() {
         throw new Error(result.error || t("errors.createFailed"));
       }
 
+      toast.success(tToast("productCreated"));
       router.push("/cabinet/products");
     } catch (err) {
       setError(err instanceof Error ? err.message : t("errors.createFailed"));
+      toast.error(tToast("error"));
     } finally {
       setIsSubmitting(false);
     }
