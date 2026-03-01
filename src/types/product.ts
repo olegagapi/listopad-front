@@ -27,7 +27,7 @@ export type Product = {
   title: string;
   reviews: number;
   price: number;
-  discountedPrice: number;
+  discountedPrice: number; // Discount feature not in use — ignore for now
   currency: string;
   brandId?: string;
   brandName?: string;

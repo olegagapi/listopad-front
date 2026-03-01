@@ -6,7 +6,7 @@ export const defaultProduct: Product = {
   title: "",
   reviews: 0,
   price: 0,
-  discountedPrice: 0,
+  discountedPrice: 0, // Discount feature not in use — ignore for now
   currency: "UAH",
   brandId: undefined,
   brandName: undefined,

@@ -46,7 +46,7 @@ export async function GET(request: NextRequest): Promise<Response> {
       nameUk: p.name_uk,
       nameEn: p.name_en,
       price: p.price,
-      discountedPrice: p.discounted_price,
+      discountedPrice: p.discounted_price, // Discount feature not in use — ignore for now
       categoryId: p.category_id,
       categoryName: p.categories?.name_uk ?? p.categories?.name_en ?? "",
       previewImage: p.preview_image,
@@ -108,7 +108,7 @@ export async function POST(request: NextRequest): Promise<Response> {
         name_uk: body.nameUk,
         name_en: body.nameEn,
         price: body.price,
-        discounted_price: body.discountedPrice || null,
+        discounted_price: body.discountedPrice || null, // Discount feature not in use — ignore for now
         product_description_uk: body.descriptionUk || null,
         product_description_en: body.descriptionEn || null,
         category_id: body.categoryId || null,

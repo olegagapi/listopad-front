@@ -44,7 +44,7 @@ export async function GET(
       nameUk: product.name_uk,
       nameEn: product.name_en,
       price: product.price,
-      discountedPrice: product.discounted_price,
+      discountedPrice: product.discounted_price, // Discount feature not in use — ignore for now
       descriptionUk: product.product_description_uk,
       descriptionEn: product.product_description_en,
       categoryId: product.category_id,
@@ -126,7 +126,7 @@ export async function PUT(
         name_uk: body.nameUk,
         name_en: body.nameEn,
         price: body.price,
-        discounted_price: body.discountedPrice || null,
+        discounted_price: body.discountedPrice || null, // Discount feature not in use — ignore for now
         product_description_uk: body.descriptionUk || null,
         product_description_en: body.descriptionEn || null,
         category_id: body.categoryId || null,

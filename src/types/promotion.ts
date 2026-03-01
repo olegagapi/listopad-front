@@ -4,7 +4,7 @@ export interface Promotion {
   title_en: string;
   subtitle_uk: string | null;
   subtitle_en: string | null;
-  discount_text: string | null;
+  discount_text: string | null; // Discount feature not in use — ignore for now
   image_url: string;
   link_url: string | null;
   display_order: number;

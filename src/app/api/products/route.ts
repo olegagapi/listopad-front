@@ -92,6 +92,7 @@ export async function GET(request: NextRequest): Promise<Response> {
       case "price:desc":
         query = query.order("price", { ascending: false });
         break;
+      // Discount feature not in use — these map to price for now
       case "discountedPrice:asc":
         query = query.order("price", { ascending: true });
         break;
@@ -163,7 +164,7 @@ export async function GET(request: NextRequest): Promise<Response> {
         title: productName,
         reviews: 0,
         price: prod.price as number,
-        discountedPrice: prod.price as number,
+        discountedPrice: prod.price as number, // Discount feature not in use — ignore for now
         currency: "UAH",
         brandId: prod.brand_id ? String(prod.brand_id) : undefined,
         brandName,

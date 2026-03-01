@@ -82,9 +82,9 @@ export const INDEX_SETTINGS = {
     "colors",
     "gender",
     "price",
-    "discountedPrice",
+    "discountedPrice", // Discount feature not in use — ignore for now
   ],
-  sortableAttributes: ["price", "discountedPrice"],
+  sortableAttributes: ["price", "discountedPrice"], // Discount feature not in use — ignore for now
   typoTolerance: {
     enabled: true,
   },
@@ -138,11 +138,11 @@ export function buildFilterString(options: SearchOptions): string {
   }
 
   if (options.minPrice !== undefined) {
-    filters.push(`discountedPrice >= ${options.minPrice}`);
+    filters.push(`discountedPrice >= ${options.minPrice}`); // Discount feature not in use — always equals price
   }
 
   if (options.maxPrice !== undefined) {
-    filters.push(`discountedPrice <= ${options.maxPrice}`);
+    filters.push(`discountedPrice <= ${options.maxPrice}`); // Discount feature not in use — always equals price
   }
 
   return filters.join(" AND ");
@@ -169,7 +169,7 @@ export function documentToProduct(doc: MeilisearchProductDocument): Product {
     title: doc.title,
     reviews: 0,
     price: doc.price,
-    discountedPrice: doc.discountedPrice,
+    discountedPrice: doc.discountedPrice, // Discount feature not in use — ignore for now
     currency: "UAH",
     brandId: doc.brandId ?? undefined,
     brandName: doc.brandName ?? undefined,

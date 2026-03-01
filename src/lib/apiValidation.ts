@@ -11,8 +11,8 @@ const VALID_SORT_OPTIONS: SortOption[] = [
   "relevance",
   "price:asc",
   "price:desc",
-  "discountedPrice:asc",
-  "discountedPrice:desc",
+  "discountedPrice:asc", // Discount feature not in use — ignore for now
+  "discountedPrice:desc", // Discount feature not in use — ignore for now
 ];
 const VALID_GENDERS: Gender[] = ["male", "female", "unisex"];
 const VALID_COLORS: PrimeColor[] = [

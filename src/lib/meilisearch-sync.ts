@@ -68,7 +68,7 @@ export function transformProductToDocument(
     gender: product.gender,
     description,
     price: product.price,
-    discountedPrice: product.price,
+    discountedPrice: product.price, // Discount feature not in use — always equals price
     previewImage: product.preview_image ?? "",
   };
 }

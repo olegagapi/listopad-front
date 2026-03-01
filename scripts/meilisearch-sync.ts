@@ -100,7 +100,7 @@ type MeilisearchDocument = {
   gender: Gender | null;
   description: string | null;
   price: number;
-  discountedPrice: number;
+  discountedPrice: number; // Discount feature not in use — ignore for now
   previewImage: string;
 };
 
@@ -152,7 +152,7 @@ function transformProduct(
     gender: product.gender,
     description,
     price: product.price,
-    discountedPrice: product.price,
+    discountedPrice: product.price, // Discount feature not in use — always equals price
     previewImage: product.preview_image ?? "",
   };
 }

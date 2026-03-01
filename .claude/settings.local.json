@@ -29,7 +29,8 @@
       "Bash(pnpm exec tsx:*)",
       "Bash(node --env-file=.env.local -e:*)",
       "Bash(pnpm list:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(pnpm vitest:*)"
     ]
   }
 }

@@ -59,9 +59,9 @@ const INDEX_SETTINGS = {
     "colors",
     "gender",
     "price",
-    "discountedPrice",
+    "discountedPrice", // Discount feature not in use — ignore for now
   ],
-  sortableAttributes: ["price", "discountedPrice"],
+  sortableAttributes: ["price", "discountedPrice"], // Discount feature not in use — ignore for now
   typoTolerance: {
     enabled: true,
   },

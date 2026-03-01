@@ -16,7 +16,7 @@ export type MeilisearchProductDocument = {
   gender: Gender | null;
   description: string | null;
   price: number;
-  discountedPrice: number;
+  discountedPrice: number; // Discount feature not in use — ignore for now
   previewImage: string;
 };
 
@@ -45,8 +45,8 @@ export type SortOption =
   | "relevance"
   | "price:asc"
   | "price:desc"
-  | "discountedPrice:asc"
-  | "discountedPrice:desc";
+  | "discountedPrice:asc" // Discount feature not in use — ignore for now
+  | "discountedPrice:desc"; // Discount feature not in use — ignore for now
 
 /**
  * Facet distribution from Meilisearch

@@ -149,7 +149,7 @@ export async function listProducts(options: ListProductsOptions = {}): Promise<P
             title: productName,
             reviews: 0,
             price: prod.price as number,
-            discountedPrice: prod.price as number,
+            discountedPrice: prod.price as number, // Discount feature not in use — ignore for now
             currency: "UAH",
             brandId: prod.brand_id ? String(prod.brand_id) : undefined,
             brandName,
@@ -209,7 +209,7 @@ export async function getProductBySlug(slug: string, locale: Locale = 'uk'): Pro
         title: productName,
         reviews: 0,
         price: prodRecord.price as number,
-        discountedPrice: prodRecord.price as number,
+        discountedPrice: prodRecord.price as number, // Discount feature not in use — ignore for now
         currency: "UAH",
         brandId: prodRecord.brand_id ? String(prodRecord.brand_id) : undefined,
         brandName,
