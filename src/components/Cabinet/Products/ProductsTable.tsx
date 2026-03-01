@@ -9,7 +9,6 @@ type Product = {
   id: number;
   name: string;
   price: number;
-  discountedPrice?: number | null;
   categoryName?: string;
   previewImage?: string | null;
   isActive: boolean;
@@ -139,11 +138,6 @@ export function ProductsTable({
                   <span className="font-medium text-gray-900">
                     {product.price} UAH
                   </span>
-                  {product.discountedPrice && (
-                    <span className="ml-2 text-sm text-gray-500 line-through">
-                      {product.discountedPrice} UAH
-                    </span>
-                  )}
                 </div>
               </td>
               <td className="py-4 px-4 text-center">

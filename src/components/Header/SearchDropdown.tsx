@@ -90,7 +90,7 @@ const SearchDropdown = ({
                       </p>
                     )}
                     <p className="text-sm font-semibold text-malachite">
-                      {product.discountedPrice} {product.currency}
+                      {product.price} {product.currency}
                     </p>
                   </div>
                 </Link>

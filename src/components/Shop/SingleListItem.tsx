@@ -65,8 +65,7 @@ const SingleListItem = ({ item }: { item: Product }) => {
             </h3>
 
             <span className="flex items-center gap-2 font-medium text-lg" data-testid="product-price">
-              <span className="text-onyx">{item.discountedPrice} {item.currency}</span>
-              <span className="text-slate line-through">{item.price} {item.currency}</span>
+              <span className="text-onyx">{item.price} {item.currency}</span>
             </span>
           </div>
 

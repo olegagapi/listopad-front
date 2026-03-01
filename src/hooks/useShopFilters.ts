@@ -16,8 +16,6 @@ const VALID_SORT_OPTIONS: SortOption[] = [
   "relevance",
   "price:asc",
   "price:desc",
-  "discountedPrice:asc",
-  "discountedPrice:desc",
 ];
 
 function isValidGender(value: string): value is Gender {

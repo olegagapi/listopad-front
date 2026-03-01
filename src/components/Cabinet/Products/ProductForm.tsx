@@ -22,7 +22,6 @@ const productSchema = z.object({
   nameUk: z.string().min(2, "Name must be at least 2 characters"),
   nameEn: z.string().min(2, "Name must be at least 2 characters"),
   price: z.number().min(0, "Price must be positive"),
-  discountedPrice: z.number().min(0).nullable().optional(),
   descriptionUk: z.string().optional(),
   descriptionEn: z.string().optional(),
   categoryId: z.number().nullable().optional(),
@@ -67,7 +66,6 @@ export function ProductForm({
       nameUk: initialData?.nameUk ?? "",
       nameEn: initialData?.nameEn ?? "",
       price: initialData?.price ?? 0,
-      discountedPrice: initialData?.discountedPrice ?? null,
       descriptionUk: initialData?.descriptionUk ?? "",
       descriptionEn: initialData?.descriptionEn ?? "",
       categoryId: initialData?.categoryId ?? null,
@@ -204,19 +202,6 @@ export function ProductForm({
             {errors.price && (
               <p className="mt-1 text-sm text-red-600">{errors.price.message}</p>
             )}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t("discountedPrice")} (UAH)
-            </label>
-            <input
-              {...register("discountedPrice", { valueAsNumber: true })}
-              type="number"
-              min="0"
-              step="0.01"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-malachite focus:border-transparent"
-            />
           </div>
 
           <div>

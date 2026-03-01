@@ -13,7 +13,6 @@ type Product = {
   id: number;
   name: string;
   price: number;
-  discountedPrice?: number | null;
   categoryName?: string;
   previewImage?: string | null;
   isActive: boolean;

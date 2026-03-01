@@ -129,12 +129,6 @@ export function ProductView({
           <span className={`${isCompact ? "text-xl xl:text-heading-4 font-semibold" : "text-sm sm:text-base"} text-onyx`}>
             {product.price} {product.currency}
           </span>
-          {product.discountedPrice &&
-            product.discountedPrice < product.price && (
-              <span className="line-through ml-2">
-                {product.discountedPrice} {product.currency}
-              </span>
-            )}
         </h3>
 
         {/* Description */}

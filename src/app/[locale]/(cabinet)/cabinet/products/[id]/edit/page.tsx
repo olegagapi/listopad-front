@@ -14,7 +14,6 @@ type ProductData = {
   nameUk: string;
   nameEn: string;
   price: number;
-  discountedPrice?: number | null;
   descriptionUk?: string;
   descriptionEn?: string;
   categoryId?: number | null;

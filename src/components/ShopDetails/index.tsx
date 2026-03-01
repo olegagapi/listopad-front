@@ -7,7 +7,7 @@ import RecentlyViewdItems from "./RecentlyViewd";
 import { usePreviewSlider } from "@/app/context/PreviewSliderContext";
 import { useAppSelector } from "@/redux/store";
 import { useTranslations } from "next-intl";
-import { ZoomIcon, CheckCircleIcon } from "@/components/Icons";
+import { ZoomIcon } from "@/components/Icons";
 import WishlistButton from "@/components/Common/WishlistButton";
 
 import { Product } from "@/types/product";
@@ -113,22 +113,10 @@ const ShopDetails = ({ otherProducts }: ShopDetailsProps) => {
                     </h2>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-5.5 mb-4.5">
-                    <div className="flex items-center gap-1.5">
-                      <CheckCircleIcon />
-                      <span className="text-green"> In Stock </span>
-                    </div>
-                  </div>
-
                   <h3 className="font-medium text-custom-1 mb-4.5" data-testid="product-price">
                     <span className="text-sm sm:text-base text-onyx">
                       {product.price} {product.currency}
                     </span>
-                    {product.discountedPrice && product.discountedPrice < product.price && (
-                      <span className="line-through ml-2">
-                        {product.discountedPrice} {product.currency}
-                      </span>
-                    )}
                   </h3>
 
                   {product.shortDescription && (

@@ -7,17 +7,14 @@ import { removeItemFromWishlist } from "@/redux/features/wishlist-slice";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { RemoveCircleIcon, WarningCircleIcon } from "@/components/Icons";
+import { RemoveCircleIcon } from "@/components/Icons";
 
 interface WishlistItem {
   id: string | number;
   slug: string;
   title: string;
   price: number;
-  discountedPrice: number;
-  quantity: number;
   currency?: string;
-  status?: string;
   externalUrl?: string | null;
   imgs?: {
     thumbnails: string[];
@@ -63,14 +60,7 @@ const SingleItem = ({ item }: { item: WishlistItem }) => {
       </div>
 
       <div className="min-w-[205px]">
-        <p className="text-onyx">{item.discountedPrice} {item.currency}</p>
-      </div>
-
-      <div className="min-w-[265px]">
-        <div className="flex items-center gap-1.5">
-          <WarningCircleIcon />
-          <span className="text-red"> Out of Stock </span>
-        </div>
+        <p className="text-onyx">{item.price} {item.currency}</p>
       </div>
 
       <div className="min-w-[150px] flex justify-end">

@@ -40,10 +40,7 @@ export default function WishlistButton({
         slug: product.slug,
         title: product.title,
         price: product.price,
-        discountedPrice: product.discountedPrice,
-        quantity: 1,
         currency: product.currency,
-        status: "available",
         externalUrl: product.externalUrl,
         imgs: product.imgs,
       })

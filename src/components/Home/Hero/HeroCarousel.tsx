@@ -54,14 +54,6 @@ const HeroCarousel = ({ promotions = [], locale = "uk" }: HeroCarouselProps) => 
         <SwiperSlide key={promo.id}>
           <div className="flex items-center pt-6 sm:pt-0 flex-col-reverse sm:flex-row">
             <div className="max-w-[394px] py-10 sm:py-15 lg:py-24.5 pl-4 sm:pl-7.5 lg:pl-12.5">
-              {promo.discount_text && (
-                <div className="flex items-center gap-4 mb-7.5 sm:mb-10">
-                  <span className="block font-semibold text-heading-3 sm:text-heading-1 text-darkslate">
-                    {promo.discount_text}
-                  </span>
-                </div>
-              )}
-
               <h1 className="font-semibold text-onyx text-xl sm:text-3xl mb-3">
                 {locale === "uk" ? promo.title_uk : promo.title_en}
               </h1>
