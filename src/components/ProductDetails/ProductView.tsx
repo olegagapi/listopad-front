@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { ZoomIcon, ImagePlaceholderIcon } from "@/components/Icons";
 import WishlistButton from "@/components/Common/WishlistButton";
 import { BrandLabel } from "@/components/Common/BrandLabel";
-import { Product, PrimeColor } from "@/types/product";
+import { Product } from "@/types/product";
 
 interface ProductViewProps {
   product: Product;
@@ -23,10 +23,6 @@ export function ProductView({
 }: ProductViewProps): React.ReactElement {
   const t = useTranslations("ProductItem");
   const [previewImg, setPreviewImg] = useState(0);
-  const [activeColor, setActiveColor] = useState<PrimeColor | "">(() =>
-    product?.colors?.[0] ?? ""
-  );
-
   const isCompact = variant === "compact";
 
   // Sizing based on variant
@@ -157,34 +153,17 @@ export function ProductView({
               </div>
 
               <div className="flex items-center gap-2.5">
-                {product.colors.map((color: PrimeColor, key: number) => (
-                  <label
+                {product.colors.map((color, key) => (
+                  <div
                     key={key}
-                    htmlFor={`${variant}-${color}`}
-                    className="cursor-pointer select-none flex items-center"
+                    className="flex items-center justify-center w-5.5 h-5.5 rounded-full border"
+                    style={{ borderColor: color }}
                   >
-                    <div className="relative">
-                      <input
-                        type="radio"
-                        name={`color-${variant}`}
-                        id={`${variant}-${color}`}
-                        className="sr-only"
-                        onChange={() => setActiveColor(color)}
-                        checked={activeColor === color}
-                      />
-                      <div
-                        className={`flex items-center justify-center w-5.5 h-5.5 rounded-full ${
-                          activeColor === color && "border"
-                        }`}
-                        style={{ borderColor: `${color}` }}
-                      >
-                        <span
-                          className="block w-3 h-3 rounded-full"
-                          style={{ backgroundColor: `${color}` }}
-                        ></span>
-                      </div>
-                    </div>
-                  </label>
+                    <span
+                      className="block w-3 h-3 rounded-full"
+                      style={{ backgroundColor: color }}
+                    ></span>
+                  </div>
                 ))}
               </div>
             </div>
