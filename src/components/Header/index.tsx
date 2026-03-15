@@ -93,7 +93,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed left-0 top-0 w-full z-9999 bg-champagne-50 transition-all ease-in-out duration-300 ${stickyMenu && "shadow"
+      className={`fixed left-0 top-0 w-full z-9999 bg-gradient-to-br from-darkslate-light to-darkslate-dark transition-all ease-in-out duration-300 ${stickyMenu && "shadow"
         }`}
     >
       <div className="max-w-[1170px] mx-auto px-4 sm:px-7.5 xl:px-0">
@@ -162,15 +162,15 @@ const Header = ({ categories, phone }: HeaderProps) => {
                     <PhoneIcon />
                   </span>
                   <div>
-                    <span className="block text-2xs text-slate uppercase">{t("support")}</span>
-                    <a href={`tel:${phone}`} className="font-medium text-custom-sm text-onyx hover:text-malachite">
+                    <span className="block text-2xs text-champagne-400 uppercase">{t("support")}</span>
+                    <a href={`tel:${phone}`} className="font-medium text-custom-sm text-white hover:text-malachite">
                       {phone}
                     </a>
                   </div>
                 </div>
 
                 {/* <!-- divider --> */}
-                <span className="hidden xl:block w-px h-7.5 bg-champagne-400"></span>
+                <span className="hidden xl:block w-px h-7.5 bg-white/20"></span>
               </>
             )}
 
@@ -189,26 +189,26 @@ const Header = ({ categories, phone }: HeaderProps) => {
                 <span className="block relative cursor-pointer w-5.5 h-5.5">
                   <span className="du-block absolute right-0 w-full h-full">
                     <span
-                      className={`block relative top-0 left-0 bg-onyx rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0] ${!navigationOpen && "!w-full delay-300"
+                      className={`block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0] ${!navigationOpen && "!w-full delay-300"
                         }`}
                     ></span>
                     <span
-                      className={`block relative top-0 left-0 bg-onyx rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150 ${!navigationOpen && "!w-full delay-400"
+                      className={`block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150 ${!navigationOpen && "!w-full delay-400"
                         }`}
                     ></span>
                     <span
-                      className={`block relative top-0 left-0 bg-onyx rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200 ${!navigationOpen && "!w-full delay-500"
+                      className={`block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200 ${!navigationOpen && "!w-full delay-500"
                         }`}
                     ></span>
                   </span>
 
                   <span className="block absolute right-0 w-full h-full rotate-45">
                     <span
-                      className={`block bg-onyx rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full ${!navigationOpen && "!h-0 delay-[0] "
+                      className={`block bg-white rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full ${!navigationOpen && "!h-0 delay-[0] "
                         }`}
                     ></span>
                     <span
-                      className={`block bg-onyx rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5 ${!navigationOpen && "!h-0 dealy-200"
+                      className={`block bg-white rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5 ${!navigationOpen && "!h-0 dealy-200"
                         }`}
                     ></span>
                   </span>
@@ -221,7 +221,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
         {/* <!-- header top end --> */}
       </div>
 
-      <div className="border-t border-champagne-400">
+      <div className="border-t border-champagne-400 bg-champagne-50">
         <div className="max-w-[1170px] mx-auto px-4 sm:px-7.5 xl:px-0">
           <div className="flex items-center justify-between">
             {/* <!--=== Main Nav Start ===--> */}

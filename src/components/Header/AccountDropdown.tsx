@@ -42,7 +42,7 @@ export default function AccountDropdown(): React.JSX.Element {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2.5 text-malachite hover:opacity-80 transition-opacity"
+        className="flex items-center gap-2.5 text-white hover:text-malachite transition-colors"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -60,20 +60,20 @@ export default function AccountDropdown(): React.JSX.Element {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-48 bg-champagne-50 border border-champagne-400 rounded-md shadow-lg py-1 z-50">
+        <div className="absolute right-0 top-full mt-2 w-48 bg-darkslate border border-white/20 rounded-md shadow-lg py-1 z-50">
           {isAuthenticated ? (
             <>
               <Link
                 href="/cabinet"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2.5 px-4 py-2.5 text-custom-sm text-onyx hover:text-malachite hover:bg-champagne transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2.5 text-custom-sm text-white hover:text-malachite hover:bg-white/10 transition-colors"
               >
                 <UserIcon size={16} />
                 {t("brandCabinet")}
               </Link>
               <button
                 onClick={handleSignOut}
-                className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-custom-sm text-onyx hover:text-malachite hover:bg-champagne transition-colors"
+                className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-custom-sm text-white hover:text-malachite hover:bg-white/10 transition-colors"
               >
                 <LogoutIcon size={16} />
                 {t("signOut")}
@@ -84,14 +84,14 @@ export default function AccountDropdown(): React.JSX.Element {
               <Link
                 href="/brand-login"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2.5 px-4 py-2.5 text-custom-sm text-onyx hover:text-malachite hover:bg-champagne transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2.5 text-custom-sm text-white hover:text-malachite hover:bg-white/10 transition-colors"
               >
                 {t("brandLogin")}
               </Link>
               <Link
                 href="/brand-register"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2.5 px-4 py-2.5 text-custom-sm text-onyx hover:text-malachite hover:bg-champagne transition-colors"
+                className="flex items-center gap-2.5 px-4 py-2.5 text-custom-sm text-white hover:text-malachite hover:bg-white/10 transition-colors"
               >
                 {t("brandRegister")}
               </Link>

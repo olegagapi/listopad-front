@@ -21,7 +21,7 @@ export default function LanguageSwitcher() {
         <label className="relative inline-flex items-center cursor-pointer" data-testid="language-switcher">
             <select
                 defaultValue={locale}
-                className="bg-transparent py-2 pl-3 pr-8 text-sm font-medium outline-none appearance-none cursor-pointer"
+                className="bg-transparent py-2 pl-3 pr-8 text-sm font-medium text-white outline-none appearance-none cursor-pointer"
                 onChange={handleChange}
                 disabled={isPending}
                 data-testid="language-select"
