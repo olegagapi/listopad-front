@@ -99,13 +99,13 @@ const Header = ({ categories, phone }: HeaderProps) => {
       <div className="max-w-[1170px] mx-auto px-4 sm:px-7.5 xl:px-0">
         {/* <!-- header top start --> */}
         <div
-          className={`flex flex-col lg:flex-row gap-5 items-end lg:items-center xl:justify-between ease-out duration-200 ${stickyMenu ? "py-4" : "py-6"
+          className={`flex flex-col lg:flex-row gap-5 items-end lg:items-center xl:justify-between ease-out duration-200 ${stickyMenu ? "pt-[5px] pb-0.5" : "pt-[5px] pb-1"
             }`}
         >
           {/* <!-- header top left --> */}
           <div className="xl:w-auto flex-col sm:flex-row w-full flex sm:justify-between sm:items-center gap-5 sm:gap-10">
             <Link className="flex-shrink-0" href="/">
-              <Image src="/images/logo/logo.svg" alt="Logo" width={170} height={72} />
+              <Image src="/images/logo/logo.svg" alt="Logo" width={143} height={60} />
             </Link>
 
             <div className="max-w-[475px] w-full" ref={searchContainerRef}>
@@ -243,7 +243,7 @@ const Header = ({ categories, phone }: HeaderProps) => {
                       >
                         <Link
                           href={menuItem.path}
-                          className={`hover:text-malachite text-custom-sm font-medium text-onyx flex ${stickyMenu ? "xl:py-4" : "xl:py-6"
+                          className={`hover:text-malachite text-custom-sm font-medium text-onyx flex ${stickyMenu ? "xl:py-3" : "xl:py-3"
                             }`}
                         >
                           {t(menuItem.title)}
