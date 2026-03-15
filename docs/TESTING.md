@@ -637,8 +637,8 @@ jobs:
       - run: pnpm exec playwright install --with-deps
       - run: pnpm test:e2e
         env:
-          NEXT_PUBLIC_LISTOPAD__SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -19,17 +19,17 @@ interface EnvVar {
 
 const ENV_VARS: EnvVar[] = [
   {
-    name: 'NEXT_PUBLIC_LISTOPAD__SUPABASE_URL',
+    name: 'NEXT_PUBLIC_SUPABASE_URL',
     required: true,
     description: 'Supabase project URL',
   },
   {
-    name: 'NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY',
+    name: 'NEXT_PUBLIC_SUPABASE_ANON_KEY',
     required: true,
     description: 'Supabase anon (public) key',
   },
   {
-    name: 'LISTOPAD__SUPABASE_SERVICE_ROLE_KEY',
+    name: 'SUPABASE_SERVICE_ROLE_KEY',
     required: false,
     description: 'Supabase service role key (for admin operations)',
   },
@@ -56,9 +56,9 @@ function validateEnv(): void {
   }
 
   // Additional validation for URL format
-  const supabaseUrl = process.env.NEXT_PUBLIC_LISTOPAD__SUPABASE_URL;
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   if (supabaseUrl && !supabaseUrl.startsWith('https://')) {
-    errors.push('NEXT_PUBLIC_LISTOPAD__SUPABASE_URL must start with https://');
+    errors.push('NEXT_PUBLIC_SUPABASE_URL must start with https://');
   }
 
   console.log('');

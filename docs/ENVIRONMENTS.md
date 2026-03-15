@@ -1,14 +1,24 @@
 # Environment Configuration
 
-This project uses separate Supabase projects for development and production to prevent accidental data corruption and enable safe testing.
+This project uses **two separate Vercel projects** and **two Supabase projects** to fully isolate staging from production.
+
+## Architecture
+
+```
+main (trunk) ──push──→ listopad-stage (Vercel, auto-deploy)
+     │
+     └── tag v* ──manual──→ Vercel deploy hook ──→ listopad-prod (Vercel)
+```
 
 ## Environment Structure
 
-| Environment | Supabase Project | When Used |
-|-------------|------------------|-----------|
-| Local (dev) | `listopad-dev` | `pnpm dev` on your machine |
-| Preview | `listopad-dev` | Vercel preview deployments (PRs) |
-| Production | `listopad` | Main branch deployment |
+| Environment | Vercel Project | Trigger | Supabase | Meilisearch |
+|-------------|----------------|---------|----------|-------------|
+| Local | — | `pnpm dev` | listopad-dev | localhost / none |
+| Staging | `listopad-stage` | Push to `main` | listopad-dev | none (browse mode) |
+| Production | `listopad-prod` | Deploy hook (on tag) | listopad-prod | Meilisearch Cloud |
+
+Staging has **no Meilisearch** — search gracefully degrades to browse mode (Supabase-only filtering).
 
 ## Quick Start (Local Development)
 
@@ -25,8 +35,8 @@ This project uses separate Supabase projects for development and production to p
 
 3. **Fill in `.env.local`**
    ```env
-   NEXT_PUBLIC_LISTOPAD__SUPABASE_URL=https://your-dev-project.supabase.co
-   NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY=your-dev-anon-key
+   NEXT_PUBLIC_SUPABASE_URL=https://your-dev-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-dev-anon-key
    ```
 
 4. **Validate your setup**
@@ -46,46 +56,80 @@ This project uses separate Supabase projects for development and production to p
 
 ## Environment Variables
 
-### Required Variables
+### Required
 
 | Variable | Description |
 |----------|-------------|
-| `NEXT_PUBLIC_LISTOPAD__SUPABASE_URL` | Your Supabase project URL |
-| `NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY` | Supabase anon (public) key |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon (public) key |
 
-### Optional Variables
+### Optional
 
-| Variable | Description |
-|----------|-------------|
-| `LISTOPAD__SUPABASE_SERVICE_ROLE_KEY` | Service role key for admin operations |
+| Variable | Description | Where Used |
+|----------|-------------|------------|
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key for admin ops | Local, both Vercel projects |
+| `MEILISEARCH_HOST` | Meilisearch host URL | Local (optional), prod only |
+| `MEILISEARCH_ADMIN_API_KEY` | Admin key for indexing | Prod only |
+| `MEILISEARCH_SEARCH_API_KEY` | Read-only search key | Prod only |
+| `OPENAI_API_KEY` | OpenAI key for hybrid search | Prod only |
+| `SUPABASE_WEBHOOK_SECRET` | Webhook auth for sync | Prod only |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL | Both Vercel projects |
 
 ## Vercel Configuration
 
-Configure environment variables in **Vercel Dashboard > Project > Settings > Environment Variables**.
+### Staging (`listopad-stage`)
 
-### Production Environment
+- **Repo**: same GitLab repo
+- **Production branch**: `main`
+- **Auto-deploy**: enabled (every push to `main`)
 
-Set these for **Production** only:
+Env vars (scope: Production + Preview):
 
+| Variable | Value |
+|----------|-------|
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://<listopad-dev>.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | dev anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | dev service role key |
+| `NEXT_PUBLIC_SITE_URL` | staging domain URL |
+
+No Meilisearch vars — search falls back to browse mode automatically.
+
+### Production (`listopad-prod`)
+
+- **Repo**: same GitLab repo
+- **Production branch**: `main`
+- **Auto-deploy**: disabled — deploys only via deploy hook
+- **Deploy hook**: Settings > Git > Deploy Hooks > `production-release` (branch: `main`)
+
+Env vars (scope: Production):
+
+| Variable | Value |
+|----------|-------|
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://<listopad-prod>.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | prod anon key |
+| `SUPABASE_SERVICE_ROLE_KEY` | prod service role key |
+| `MEILISEARCH_HOST` | prod Meilisearch Cloud host |
+| `MEILISEARCH_ADMIN_API_KEY` | prod admin key |
+| `MEILISEARCH_SEARCH_API_KEY` | prod search key |
+| `OPENAI_API_KEY` | OpenAI key |
+| `SUPABASE_WEBHOOK_SECRET` | prod webhook secret |
+| `NEXT_PUBLIC_SITE_URL` | production domain URL |
+
+## Release Workflow
+
+```bash
+# 1. Work on main as usual
+git push origin main          # → auto-deploys to staging
+
+# 2. When ready to release, tag and trigger deploy
+git tag v1.2.3
+git push origin v1.2.3
+
+# 3. Trigger prod deploy via hook
+curl -X POST https://api.vercel.com/v1/integrations/deploy/<HOOK_ID>
 ```
-NEXT_PUBLIC_LISTOPAD__SUPABASE_URL = https://your-prod-project.supabase.co
-NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY = <prod-anon-key>
-LISTOPAD__SUPABASE_SERVICE_ROLE_KEY = <prod-service-role-key> (optional)
-```
 
-### Preview Environment
-
-Set these for **Preview** (and optionally Development):
-
-```
-NEXT_PUBLIC_LISTOPAD__SUPABASE_URL = https://your-dev-project.supabase.co
-NEXT_PUBLIC_LISTOPAD__SUPABASE_ANON_KEY = <dev-anon-key>
-LISTOPAD__SUPABASE_SERVICE_ROLE_KEY = <dev-service-role-key> (optional)
-```
-
-This ensures:
-- PR preview deployments use the dev database (safe to test with)
-- Production deployments use the prod database (real data)
+The deploy hook deploys the latest `main` HEAD. Create the tag and call the hook without pushing other commits in between. The tag serves as a release marker in git history.
 
 ## Scripts
 
@@ -96,15 +140,7 @@ This ensures:
 
 ### db:seed Safety
 
-The `db:seed` script has a safety check that **refuses to run** if your Supabase URL looks like production. It only runs if the URL contains one of:
-- `-dev`
-- `localhost`
-- `127.0.0.1`
-- `local`
-- `staging`
-- `test`
-
-This prevents accidentally seeding/overwriting production data.
+The `db:seed` script **refuses to run** if your Supabase URL looks like production. It only runs if the URL contains one of: `-dev`, `localhost`, `127.0.0.1`, `local`, `staging`, `test`.
 
 ## File Structure
 
@@ -125,14 +161,8 @@ This prevents accidentally seeding/overwriting production data.
 
 ### "This script refuses to run on production databases"
 
-The `db:seed` script detected a production-like URL. Either:
-- Use a dev Supabase project with "dev" in the URL
-- Create a new dev project following the steps above
+The `db:seed` script detected a production-like URL. Use a dev Supabase project with "dev" in the URL, or create a new dev project.
 
-### Preview deployment showing wrong data
+### Staging has no search
 
-Check that Vercel environment variables are configured correctly:
-1. Production should point to prod Supabase
-2. Preview should point to dev Supabase
-
-Go to **Vercel Dashboard > Project > Settings > Environment Variables** to verify.
+This is expected. Staging runs without Meilisearch — the shop page falls back to Supabase-only browse mode. Search is only available in production.
