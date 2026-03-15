@@ -34,6 +34,52 @@ type AnalyticsData = {
   days: number;
 };
 
+type MetricKey = "brandPageViews" | "productViews" | "externalClicks" | "wishlistAdds";
+
+const METRIC_CONFIG: {
+  key: MetricKey;
+  translationKey: string;
+  color: string;
+  bgClass: string;
+  textClass: string;
+  borderClass: string;
+}[] = [
+  {
+    key: "brandPageViews",
+    translationKey: "brandPageViews",
+    color: "#0BDA51",
+    bgClass: "bg-malachite/10",
+    textClass: "text-malachite",
+    borderClass: "border-malachite",
+  },
+  {
+    key: "productViews",
+    translationKey: "productViews",
+    color: "#3B82F6",
+    bgClass: "bg-blue-100",
+    textClass: "text-blue-600",
+    borderClass: "border-blue-600",
+  },
+  {
+    key: "externalClicks",
+    translationKey: "externalClicks",
+    color: "#F97316",
+    bgClass: "bg-orange-100",
+    textClass: "text-orange-600",
+    borderClass: "border-orange-600",
+  },
+  {
+    key: "wishlistAdds",
+    translationKey: "wishlistAdds",
+    color: "#EC4899",
+    bgClass: "bg-pink-100",
+    textClass: "text-pink-600",
+    borderClass: "border-pink-600",
+  },
+];
+
+const ALL_METRICS = new Set<MetricKey>(METRIC_CONFIG.map((m) => m.key));
+
 const PERIOD_OPTIONS = [7, 14, 30, 90] as const;
 
 export default function AnalyticsPage() {
@@ -42,6 +88,9 @@ export default function AnalyticsPage() {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [days, setDays] = useState<number>(30);
+  const [selectedMetrics, setSelectedMetrics] = useState<Set<MetricKey>>(
+    () => new Set(ALL_METRICS)
+  );
 
   const fetchAnalytics = useCallback(async (period: number) => {
     setIsLoading(true);
@@ -66,6 +115,18 @@ export default function AnalyticsPage() {
     setDays(Number(e.target.value));
   };
 
+  const handleMetricToggle = (key: MetricKey): void => {
+    setSelectedMetrics((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
+
   if (authLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
@@ -80,33 +141,6 @@ export default function AnalyticsPage() {
     externalClicks: 0,
     wishlistAdds: 0,
   };
-
-  const statCards = [
-    {
-      label: t("brandPageViews"),
-      value: totals.brandPageViews,
-      color: "bg-malachite/10",
-      textColor: "text-malachite",
-    },
-    {
-      label: t("productViews"),
-      value: totals.productViews,
-      color: "bg-blue-100",
-      textColor: "text-blue-600",
-    },
-    {
-      label: t("externalClicks"),
-      value: totals.externalClicks,
-      color: "bg-orange-100",
-      textColor: "text-orange-600",
-    },
-    {
-      label: t("wishlistAdds"),
-      value: totals.wishlistAdds,
-      color: "bg-pink-100",
-      textColor: "text-pink-600",
-    },
-  ];
 
   const periodLabel = (period: number): string => {
     switch (period) {
@@ -123,10 +157,9 @@ export default function AnalyticsPage() {
     }
   };
 
-  // Format date for chart display
   const chartData = (data?.daily ?? []).map((d) => ({
     ...d,
-    date: d.date.slice(5), // "MM-DD"
+    date: d.date.slice(5),
   }));
 
   return (
@@ -149,98 +182,79 @@ export default function AnalyticsPage() {
       />
 
       <div className="p-6">
-        {/* Summary Stats */}
+        {/* Toggleable Stat Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {statCards.map((card) => (
-            <div
-              key={card.label}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 p-5"
-            >
-              <div className="flex items-center gap-3">
-                <div
-                  className={`w-10 h-10 ${card.color} rounded-lg flex items-center justify-center`}
-                >
-                  <span className={`text-lg font-bold ${card.textColor}`}>
-                    {isLoading ? "..." : card.value}
-                  </span>
+          {METRIC_CONFIG.map((metric) => {
+            const isSelected = selectedMetrics.has(metric.key);
+            return (
+              <button
+                key={metric.key}
+                type="button"
+                onClick={() => handleMetricToggle(metric.key)}
+                aria-pressed={isSelected}
+                className={`bg-white rounded-xl shadow-sm border-2 p-5 text-left transition-all cursor-pointer ${
+                  isSelected
+                    ? `${metric.borderClass} shadow-md`
+                    : "border-gray-200 opacity-60"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`w-10 h-10 ${metric.bgClass} rounded-lg flex items-center justify-center`}
+                  >
+                    <span className={`text-lg font-bold ${metric.textClass}`}>
+                      {isLoading ? "..." : totals[metric.key]}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    {t(metric.translationKey)}
+                  </p>
                 </div>
-                <p className="text-sm text-gray-600">{card.label}</p>
-              </div>
-            </div>
-          ))}
+              </button>
+            );
+          })}
         </div>
 
         {isLoading ? (
           <div className="flex justify-center py-16">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-malachite" />
           </div>
-        ) : !data || chartData.length === 0 ? (
-          <div className="text-center py-16 text-gray-500">{t("noData")}</div>
         ) : (
-          <div className="space-y-8">
-            {/* Views Chart */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-medium text-gray-900 mb-4">
-                {t("viewsChart")}
-              </h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" fontSize={12} />
-                  <YAxis allowDecimals={false} fontSize={12} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="brandPageViews"
-                    name={t("brandPageViews")}
-                    stroke="#0BDA51"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="productViews"
-                    name={t("productViews")}
-                    stroke="#3B82F6"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Engagement Chart */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-medium text-gray-900 mb-4">
-                {t("engagementChart")}
-              </h3>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" fontSize={12} />
-                  <YAxis allowDecimals={false} fontSize={12} />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    dataKey="externalClicks"
-                    name={t("externalClicks")}
-                    stroke="#F97316"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="wishlistAdds"
-                    name={t("wishlistAdds")}
-                    stroke="#EC4899"
-                    strokeWidth={2}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h3 className="font-medium text-gray-900 mb-4">
+              {t("chartTitle")}
+            </h3>
+            <ResponsiveContainer width="100%" height={350}>
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" fontSize={12} />
+                <YAxis
+                  allowDecimals={false}
+                  fontSize={12}
+                  domain={[0, "auto"]}
+                />
+                <Tooltip />
+                <Legend />
+                {METRIC_CONFIG.filter((m) => selectedMetrics.has(m.key)).map(
+                  (metric) => (
+                    <Line
+                      key={metric.key}
+                      type="monotone"
+                      dataKey={metric.key}
+                      name={t(metric.translationKey)}
+                      stroke={metric.color}
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  )
+                )}
+              </LineChart>
+            </ResponsiveContainer>
+            {selectedMetrics.size === 0 && (
+              <p className="text-center text-gray-500 mt-4">
+                {t("selectMetricHint")}
+              </p>
+            )}
           </div>
         )}
       </div>

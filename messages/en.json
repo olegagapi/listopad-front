@@ -386,13 +386,12 @@
             "productViews": "Product Views",
             "externalClicks": "External Clicks",
             "wishlistAdds": "Wishlist Adds",
-            "viewsChart": "Views Over Time",
-            "engagementChart": "Engagement Over Time",
+            "chartTitle": "Metrics Over Time",
+            "selectMetricHint": "Select a metric above to display on the chart",
             "last7Days": "Last 7 days",
             "last14Days": "Last 14 days",
             "last30Days": "Last 30 days",
-            "last90Days": "Last 90 days",
-            "noData": "No analytics data available for this period"
+            "last90Days": "Last 90 days"
         }
     },
     "Toast": {
