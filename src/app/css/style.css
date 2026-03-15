@@ -12,14 +12,8 @@
 }
 
 @layer components {
-  .dropdown {
-    @apply flex-col gap-0 min-w-max mt-2 lg:mt-0 bg-champagne-50 shadow-2 ease-in duration-200 py-2.5 rounded-md border border-gray-3 left-0 hidden;
-  }
-
-  @media (min-width: 1280px) {
-    .dropdown {
-      @apply w-[193px] translate-y-10 opacity-0 invisible absolute flex group-hover:opacity-100 group-hover:visible;
-    }
+  .mega-menu {
+    @apply absolute left-0 top-full z-50 min-w-[280px] max-w-[500px] bg-champagne-50 shadow-2 border border-champagne-400 rounded-md p-5;
   }
 }
 

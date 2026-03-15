@@ -3,8 +3,7 @@
 import { useState, useMemo } from "react";
 import { Category } from "@/types/category";
 import { ChevronDownIcon, CheckIcon } from "@/components/Icons";
-
-type CategoryWithChildren = Category & { children: CategoryWithChildren[] };
+import { buildCategoryTree, type CategoryWithChildren } from "@/lib/buildCategoryTree";
 
 interface CategoryItemProps {
   category: CategoryWithChildren;
@@ -88,29 +87,7 @@ const CategoryDropdown = ({
 }: CategoryDropdownProps) => {
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
-  const categoryTree = useMemo(() => {
-    const tree: CategoryWithChildren[] = [];
-    const map = new Map<string, CategoryWithChildren>();
-
-    // First pass: create nodes
-    categories.forEach(cat => {
-      map.set(String(cat.id), { ...cat, children: [] });
-    });
-
-    // Second pass: link parents and children
-    categories.forEach(cat => {
-      const node = map.get(String(cat.id));
-      if (node) {
-        if (cat.parentId && map.has(cat.parentId)) {
-          map.get(cat.parentId)!.children.push(node);
-        } else {
-          tree.push(node);
-        }
-      }
-    });
-
-    return tree;
-  }, [categories]);
+  const categoryTree = useMemo(() => buildCategoryTree(categories), [categories]);
 
   const handleCategoryToggle = (categoryId: string) => {
     const isSelected = selectedCategories.includes(categoryId);

@@ -3,9 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useRouter } from "@/i18n/routing";
 import CustomSelect from "./CustomSelect";
 import SearchDropdown from "./SearchDropdown";
-import { menuData } from "./menuData";
-import Dropdown from "./Dropdown";
 import Image from "next/image";
+import GenderSwitch from "./GenderSwitch";
+import CategoryNav from "./CategoryNav";
+import MobileCategoryMenu from "./MobileCategoryMenu";
 import { Category } from "@/types/category";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -81,7 +82,8 @@ const Header = ({ categories, phone }: HeaderProps) => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleStickyMenu);
-  });
+    return () => window.removeEventListener("scroll", handleStickyMenu);
+  }, []);
 
   const options = [
     { label: t("allCategories"), value: "0" },
@@ -224,38 +226,20 @@ const Header = ({ categories, phone }: HeaderProps) => {
       <div className="border-t border-champagne-400 bg-champagne-50">
         <div className="max-w-[1170px] mx-auto px-4 sm:px-7.5 xl:px-0">
           <div className="flex items-center justify-between">
-            {/* <!--=== Main Nav Start ===--> */}
+            {/* <!--=== Desktop Nav ===--> */}
+            <div className="hidden xl:flex items-center">
+              <GenderSwitch />
+              <CategoryNav categories={categories} stickyMenu={stickyMenu} />
+            </div>
+
+            {/* <!--=== Mobile Nav ===--> */}
             <div
-              className={`w-[288px] absolute right-4 top-full xl:static xl:w-auto h-0 xl:h-auto invisible xl:visible xl:flex items-center justify-between ${navigationOpen &&
+              className={`w-[288px] absolute right-4 top-full xl:hidden h-0 invisible ${navigationOpen &&
                 `!visible bg-champagne-50 shadow-lg border border-champagne-400 !h-auto max-h-[400px] overflow-y-scroll rounded-md p-5`
                 }`}
             >
-              {/* <!-- Main Nav Start --> */}
-              <nav>
-                <ul className="flex xl:items-center flex-col xl:flex-row gap-5 xl:gap-6">
-                  {menuData.map((menuItem, i) =>
-                    menuItem.submenu ? (
-                      <Dropdown key={i} menuItem={menuItem} stickyMenu={stickyMenu} />
-                    ) : (
-                      <li
-                        key={i}
-                        className="group relative before:w-0 before:h-[3px] before:bg-malachite before:absolute before:left-0 before:top-0 before:rounded-b-[3px] before:ease-out before:duration-200 hover:before:w-full "
-                      >
-                        <Link
-                          href={menuItem.path}
-                          className={`hover:text-malachite text-custom-sm font-medium text-onyx flex ${stickyMenu ? "xl:py-3" : "xl:py-3"
-                            }`}
-                        >
-                          {t(menuItem.title)}
-                        </Link>
-                      </li>
-                    ),
-                  )}
-                </ul>
-              </nav>
-              {/* //   <!-- Main Nav End --> */}
+              <MobileCategoryMenu categories={categories} onNavigate={() => setNavigationOpen(false)} />
             </div>
-            {/* // <!--=== Main Nav End ===--> */}
 
             {/* // <!--=== Nav Right Start ===--> */}
             <div className="hidden xl:block">

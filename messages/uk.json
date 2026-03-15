@@ -13,29 +13,13 @@
         "brandRegister": "Реєстрація бренду",
         "brandCabinet": "Кабінет бренду",
         "signOut": "Вийти",
-        "menu": {
-            "popular": "Популярне",
-            "shop": "Магазин",
-            "contact": "Контакти",
-            "pages": "Сторінки",
-            "blogs": "Блог",
-            "shopWithSidebar": "Магазин з сайдбаром",
-            "shopWithoutSidebar": "Магазин без сайдбару",
-            "checkout": "Оформлення",
-            "cart": "Кошик",
-            "wishlist": "Список бажань",
-            "signin": "Вхід",
-            "signup": "Реєстрація",
-            "brandLogin": "Вхід для брендів",
-            "brandRegister": "Реєстрація бренду",
-            "myAccount": "Мій акаунт",
-            "error": "Помилка",
-            "mailSuccess": "Лист надіслано",
-            "blogGridWithSidebar": "Блог сітка з сайдбаром",
-            "blogGrid": "Блог сітка",
-            "blogDetailsWithSidebar": "Деталі блогу з сайдбаром",
-            "blogDetails": "Деталі блогу"
-        }
+        "genderSwitch": {
+            "women": "Жінки",
+            "men": "Чоловіки",
+            "all": "Все"
+        },
+        "shopAll": "Весь магазин",
+        "viewAllCategory": "Дивитися все {category}"
     },
     "Footer": {
         "helpSupport": "Допомога та підтримка",

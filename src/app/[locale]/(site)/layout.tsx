@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import { ModalProvider } from "@/app/context/QuickViewModalContext";
+import { GenderPreferenceProvider } from "@/app/context/GenderPreferenceContext";
 import { ReduxProvider } from "@/redux/provider";
 import QuickViewModal from "@/components/Common/QuickViewModal";
 import { PreviewSliderProvider } from "@/app/context/PreviewSliderContext";
@@ -30,8 +31,7 @@ export default function RootLayout({
         const res = await fetch("/api/categories");
         const data = await res.json();
         if (data.categories) {
-          const topLevel = data.categories.filter((c: Category) => !c.parentId);
-          setCategories(topLevel);
+          setCategories(data.categories);
         }
       } catch (error) {
         console.error("Failed to fetch categories", error);
@@ -48,19 +48,21 @@ export default function RootLayout({
         <PreLoader />
       ) : (
         <>
-          <ReduxProvider>
-            <WishlistPersistenceProvider>
-              <ModalProvider>
-                <PreviewSliderProvider>
-                  <Header categories={categories} />
-                  {children}
+          <GenderPreferenceProvider>
+            <ReduxProvider>
+              <WishlistPersistenceProvider>
+                <ModalProvider>
+                  <PreviewSliderProvider>
+                    <Header categories={categories} />
+                    {children}
 
-                  <QuickViewModal />
-                  <PreviewSliderModal />
-                </PreviewSliderProvider>
-              </ModalProvider>
-            </WishlistPersistenceProvider>
-          </ReduxProvider>
+                    <QuickViewModal />
+                    <PreviewSliderModal />
+                  </PreviewSliderProvider>
+                </ModalProvider>
+              </WishlistPersistenceProvider>
+            </ReduxProvider>
+          </GenderPreferenceProvider>
           <ScrollToTop />
           <Footer />
         </>

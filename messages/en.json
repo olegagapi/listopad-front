@@ -13,29 +13,13 @@
         "brandRegister": "Register Brand",
         "brandCabinet": "Brand Cabinet",
         "signOut": "Sign Out",
-        "menu": {
-            "popular": "Popular",
-            "shop": "Shop",
-            "contact": "Contact",
-            "pages": "Pages",
-            "blogs": "Blogs",
-            "shopWithSidebar": "Shop With Sidebar",
-            "shopWithoutSidebar": "Shop Without Sidebar",
-            "checkout": "Checkout",
-            "cart": "Cart",
-            "wishlist": "Wishlist",
-            "signin": "Sign in",
-            "signup": "Sign up",
-            "brandLogin": "Brand Login",
-            "brandRegister": "Register Brand",
-            "myAccount": "My Account",
-            "error": "Error",
-            "mailSuccess": "Mail Success",
-            "blogGridWithSidebar": "Blog Grid with sidebar",
-            "blogGrid": "Blog Grid",
-            "blogDetailsWithSidebar": "Blog details with sidebar",
-            "blogDetails": "Blog details"
-        }
+        "genderSwitch": {
+            "women": "Women",
+            "men": "Men",
+            "all": "All"
+        },
+        "shopAll": "Shop All",
+        "viewAllCategory": "View all {category}"
     },
     "Footer": {
         "helpSupport": "Help & Support",

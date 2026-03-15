@@ -25,6 +25,15 @@ TDD (Test-Driven Development) works best for:
 - Configuration file updates
 - Simple refactoring within existing test coverage
 
+### Planning Session TDD Evaluation
+
+**Every planning session MUST include a TDD decision.** During planning, explicitly state:
+1. Whether TDD applies to this task (yes/no/partial)
+2. Which parts get TDD treatment and why
+3. Which parts are UI-only and skip TDD
+
+Include this in the plan output so the decision is visible and reviewable.
+
 ### TDD Process
 
 1. **Understand** - Read related code and existing tests
@@ -233,10 +242,34 @@ pnpm exec playwright test e2e/home.spec.ts
 - Adding **new dependencies**
 - Touching **authentication** or **security** code
 
-### Verification Checklist
+### Mandatory Task Verification
+
+**Every task MUST end with these verification steps:**
+
+#### Step 1: Run Tests
+```bash
+pnpm test          # Unit tests — must pass with 0 failures
+pnpm lint          # Lint — must pass with 0 errors
+```
+If tests fail, fix them before marking the task complete. Never skip this step.
+
+#### Step 2: Manual Verification (UI changes)
+For any task that affects what the user sees in the browser:
+1. Start dev server (`pnpm dev`) if not already running
+2. Open the affected page(s) in Chrome
+3. Verify the change works as expected visually
+4. Check responsive behavior if layout is affected
+5. Report what you verified and any issues found
+
+Skip manual verification only for pure backend/utility changes with no UI impact.
+
+### Code Quality Checklist
 
 Before completing a task:
 
+- [ ] `pnpm test` passes (0 failures)
+- [ ] `pnpm lint` passes (0 errors)
+- [ ] Manual verification done for UI changes
 - [ ] Code follows existing patterns in codebase
 - [ ] No hardcoded English text (use `t()`)
 - [ ] Error handling uses Result type pattern
@@ -286,7 +319,10 @@ Before completing a task:
 
 ```
 ✅ DO:
-- Use TDD for new utilities
+- Evaluate TDD applicability in every planning session
+- Use TDD for new utilities, API routes, bug fixes
+- Run `pnpm test` and `pnpm lint` after every task
+- Manually verify UI changes in the browser
 - Ask about ambiguous requirements
 - Flag code-business mismatches
 - Use useTranslations() for UI text
@@ -295,6 +331,8 @@ Before completing a task:
 - Link externally for purchases
 
 ❌ DON'T:
+- Skip running tests before marking a task complete
+- Skip manual verification for UI changes
 - Assume business logic
 - Add cart/checkout code
 - Hardcode English strings
