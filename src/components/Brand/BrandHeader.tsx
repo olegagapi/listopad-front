@@ -56,7 +56,7 @@ const BrandHeader = ({ brand }: BrandHeaderProps) => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleExternalClick}
-            className="inline-flex font-medium text-white bg-lavender py-3 px-7 rounded-md ease-out duration-200 hover:bg-lavender-dark"
+            className="inline-flex font-medium text-onyx bg-silver py-3 px-7 rounded-md ease-out duration-200 hover:bg-silver-dark"
           >
             {t("visitInstagram")}
           </a>

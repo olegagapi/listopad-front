@@ -41,12 +41,12 @@ const config: Config = {
         muted: "#E8EFED",      // Posy Green ~10%
       },
 
-      // === SOFT ACCENT (Colonial Blue) ===
-      lavender: {
-        DEFAULT: "#2E6471",    // Colonial Blue — now dark
-        dark: "#255560",       // Hover state (darker)
-        light: "#DFEDF1",      // Light variant for subtle accents
-        muted: "#EDF4F6",      // Light variant for subtle bgs
+      // === SOFT ACCENT (neutral light) ===
+      silver: {
+        DEFAULT: "#EEEEF0",    // Light gray (champagne-300 equivalent)
+        dark: "#E3E4E6",       // Hover state (champagne-400 equivalent)
+        light: "#F5F6F7",      // Lighter variant
+        muted: "#F9FAFA",      // Barely-there bg
       },
 
       // === WISHLIST ACCENT (matches logo pink) ===
@@ -297,7 +297,7 @@ const config: Config = {
           "0px 0px 1px 0px rgba(33, 37, 41, 0.08), 0px 2px 2px 0px rgba(33, 37, 41, 0.06)",
         filter: "0px 1px 0px 0px #E3E4E6",
         list: "1px 0px 0px 0px #E3E4E6",
-        input: "inset 0 0 0 2px #2E6471",
+        input: "inset 0 0 0 2px #325B51",
       },
     },
   },

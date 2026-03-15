@@ -58,12 +58,12 @@ export default function WishlistButton({
       onClick={handleToggle}
       aria-label={isInWishlist ? t("removeFromWishlist") : t("addToWishlist")}
       data-testid="wishlist-toggle"
-      className={`flex items-center justify-center ${buttonSize} rounded-[5px] shadow-1 ease-out duration-200 bg-lavender hover:bg-lavender-dark`}
+      className={`flex items-center justify-center ${buttonSize} rounded-[5px] shadow-1 ease-out duration-200 bg-silver hover:bg-silver-dark`}
     >
       <HeartIcon
         size={iconSize}
         filled={isInWishlist}
-        className={isInWishlist ? "text-lipstick" : "text-white"}
+        className={isInWishlist ? "text-lipstick" : "text-onyx"}
       />
     </button>
   );

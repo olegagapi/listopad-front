@@ -31,7 +31,7 @@ const NewArrival = ({ products }: NewArrivalProps) => {
 
           <Link
             href="/shop-with-sidebar"
-            className="inline-flex font-medium text-custom-sm py-2.5 px-7 rounded-md border-lavender-dark border bg-lavender text-white ease-out duration-200 hover:bg-lavender-dark hover:border-lavender-dark"
+            className="inline-flex font-medium text-custom-sm py-2.5 px-7 rounded-md border-silver-dark border bg-silver text-onyx ease-out duration-200 hover:bg-silver-dark hover:border-silver-dark"
           >
             {t("viewAll")}
           </Link>
