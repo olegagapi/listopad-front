@@ -75,7 +75,7 @@ export function ProductView({
             <button
               onClick={onZoomClick}
               aria-label="button for zoom"
-              className="gallery__Image w-10 h-10 sm:w-11 sm:h-11 rounded-[5px] bg-lavender flex items-center justify-center ease-out duration-200 text-onyx hover:text-malachite absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
+              className="gallery__Image w-10 h-10 sm:w-11 sm:h-11 rounded-[5px] bg-lavender flex items-center justify-center ease-out duration-200 text-white hover:text-malachite absolute top-4 lg:top-6 right-4 lg:right-6 z-50"
             >
               <ZoomIcon />
             </button>
@@ -170,7 +170,7 @@ export function ProductView({
             <button
               onClick={handleVisitShop}
               data-testid="modal-external-link"
-              className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
+              className="inline-flex font-medium text-white bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
             >
               {t("visitShop")}
             </button>
@@ -180,7 +180,7 @@ export function ProductView({
               target="_blank"
               rel="noopener noreferrer"
               data-testid="external-link"
-              className="inline-flex font-medium text-onyx bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
+              className="inline-flex font-medium text-white bg-malachite py-3 px-7 rounded-md ease-out duration-200 hover:bg-malachite-dark"
             >
               {t("visitShop")}
             </a>

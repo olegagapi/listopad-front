@@ -37,7 +37,7 @@ const SingleListItem = ({ item }: { item: Product }) => {
               }}
               aria-label="button for quick view"
               data-testid="quick-view-btn"
-              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
+              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-white bg-lavender hover:bg-lavender-dark"
             >
               <EyeIcon />
             </button>
@@ -47,7 +47,7 @@ const SingleListItem = ({ item }: { item: Product }) => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("visitShopLabel")}
-              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
+              className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-white bg-lavender hover:bg-lavender-dark"
             >
               <CartIcon />
             </a>

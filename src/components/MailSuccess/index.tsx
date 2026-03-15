@@ -26,7 +26,7 @@ const MailSuccess = () => {
 
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 font-medium text-onyx bg-malachite py-3 px-6 rounded-md ease-out duration-200 hover:bg-malachite-dark"
+                className="inline-flex items-center gap-2 font-medium text-white bg-malachite py-3 px-6 rounded-md ease-out duration-200 hover:bg-malachite-dark"
               >
                 <ArrowLeftIcon />
                 Back to Home

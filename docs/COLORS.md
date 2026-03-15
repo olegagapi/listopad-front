@@ -4,12 +4,22 @@ This document describes the Listopad color palette, design rationale, and practi
 
 ## Design Philosophy
 
-The palette was designed to feel **warm, fashion-forward, and sophisticated** rather than corporate/tech-leaning. Key principles:
+The palette uses **PANTONE-sourced** deep greens and blues for a **sophisticated, moody** aesthetic. Key principles:
 
-- **Warm neutrals** instead of cool grays (fashion brands like Zara, COS use warm tones)
-- **Unexpected green accent** - Malachite Green is fresh and bold while remaining elegant
-- **Subtle warmth** - backgrounds have barely-perceptible warmth, not obviously tinted
-- **Cohesive harmony** - green undertones run through the palette (Malachite, Onyx, Dark Slate)
+- **Cool neutrals** — subtle cool-toned backgrounds, not warm
+- **Dark accent colors** — Posy Green and Colonial Blue are deep; white text on accent backgrounds
+- **Forest-inspired sophistication** — Pine Grove, Posy Green, and Stormy Weather evoke depth
+- **High contrast** — Carbon text on cool white backgrounds for excellent readability
+
+## PANTONE Sources
+
+| PANTONE Name | Hex | Role |
+|---|---|---|
+| Posy Green | `#325B51` | Primary accent (malachite) |
+| Pine Grove | `#223631` | Secondary accent (darkslate) |
+| Carbon | `#272F38` | Primary text (onyx) |
+| Colonial Blue | `#2E6471` | Soft accent (lavender) |
+| Stormy Weather | `#58646D` | Body text (slate) |
 
 ## Color Palette
 
@@ -17,64 +27,87 @@ The palette was designed to feel **warm, fashion-forward, and sophisticated** ra
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Malachite** | `#0BDA51` | Primary CTAs, active states, highlights |
-| **Onyx** | `#00120B` | Primary text, headings, button text |
-| **Dark Slate** | `#35605A` | Hover states, secondary accents, links |
+| **Malachite** | `#325B51` | Primary CTAs, active states, highlights |
+| **Onyx** | `#272F38` | Primary text, headings |
+| **Dark Slate** | `#223631` | Hover states, secondary accents |
 
 ### Background Colors
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Champagne** | `#FAFAF8` | Main page background |
-| **Champagne-50** | `#FEFEFD` | Cards, panels, modals (subtle off-white) |
-| **Champagne-200** | `#F7F6F3` | Section backgrounds, hero areas |
-| **Champagne-300** | `#F0EFEB` | Dividers, subtle separations |
-| **Champagne-400** | `#E8E6E2` | Borders, input outlines |
+| **Champagne** | `#F9FAFA` | Main page background |
+| **Champagne-50** | `#FEFEFE` | Cards, panels, modals |
+| **Champagne-200** | `#F5F6F7` | Section backgrounds, hero areas |
+| **Champagne-300** | `#EEEEF0` | Dividers, subtle separations |
+| **Champagne-400** | `#E3E4E6` | Borders, input outlines |
 
 ### Text Colors
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Onyx** | `#00120B` | Primary text, headings |
-| **Onyx-soft** | `#1A2920` | Slightly softer variant |
-| **Slate** | `#6B818C` | Body text, secondary content |
-| **Slate-light** | `#8A9BA5` | Muted text, captions, placeholders |
-| **Slate-dark** | `#4A5C64` | Emphasized secondary text |
+| **Onyx** | `#272F38` | Primary text, headings |
+| **Onyx-soft** | `#343D47` | Slightly softer variant |
+| **Slate** | `#58646D` | Body text, secondary content |
+| **Slate-light** | `#7A848C` | Muted text, captions, placeholders |
+| **Slate-dark** | `#434D54` | Emphasized secondary text |
 
 ### Accent Colors
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Malachite** | `#0BDA51` | Primary buttons, active indicators |
-| **Malachite-dark** | `#09B844` | Hover state for malachite buttons |
-| **Malachite-muted** | `#E6FCF0` | Very light green tint backgrounds |
-| **Lavender** | `#D8E4FF` | Focus rings, selection backgrounds |
-| **Lavender-muted** | `#F2F5FF` | Subtle accent backgrounds |
+| **Malachite** | `#325B51` | Primary buttons, active indicators |
+| **Malachite-dark** | `#284A42` | Hover state for malachite buttons |
+| **Malachite-muted** | `#E8EFED` | Very light green tint backgrounds |
+| **Lavender** | `#2E6471` | Colonial Blue — dark accent for secondary buttons |
+| **Lavender-dark** | `#255560` | Hover state for lavender buttons |
+| **Lavender-light** | `#DFEDF1` | Light variant for subtle accents |
+| **Lavender-muted** | `#EDF4F6` | Subtle accent backgrounds |
 
 ### Semantic Colors
 
 | Name | Hex | Usage |
 |------|-----|-------|
-| **Success** | `#0BDA51` | Same as Malachite |
+| **Success** | `#325B51` | Same as Malachite |
 | **Error** | `#E53935` | Error states, validation |
 | **Warning** | `#FFA726` | Warning messages |
+
+## Text on Dark Accents
+
+Since both malachite (#325B51) and lavender (#2E6471) are **dark**, all text on those backgrounds must be **white**.
+
+```tsx
+// Primary button — white text on dark green
+<button className="bg-malachite text-white hover:bg-malachite-dark">
+  View on Seller
+</button>
+
+// Secondary button — white text on dark blue
+<Link className="bg-lavender text-white border border-lavender-dark hover:bg-lavender-dark">
+  View All
+</Link>
+
+// Icon buttons — white icons on dark blue
+<button className="bg-lavender text-white hover:bg-lavender-dark">
+  <EyeIcon />
+</button>
+```
 
 ## Tailwind Configuration
 
 Colors are defined in `tailwind.config.ts`. The configuration includes:
 
-1. **New semantic colors** (champagne, malachite, lavender, onyx, slate, darkslate)
-2. **Legacy mappings** for backward compatibility during transition
+1. **Semantic colors** (champagne, malachite, lavender, onyx, slate, darkslate)
+2. **Legacy mappings** for backward compatibility
 
 ### Using Colors in Components
 
 ```tsx
 // Primary button
-<button className="bg-malachite text-onyx hover:bg-malachite-dark">
+<button className="bg-malachite text-white hover:bg-malachite-dark">
   View on Seller
 </button>
 
-// Card with subtle off-white background
+// Card with subtle background
 <div className="bg-champagne-50 shadow-1 rounded-lg">
   ...
 </div>
@@ -103,91 +136,34 @@ body {
 }
 ```
 
-Component-level styles (dropdowns, sliders, carousels) also use the color palette.
-
 ### Box Shadows
 
-Custom shadows use champagne-400 for consistency:
+Custom shadows use champagne-400 (#E3E4E6):
 
 ```typescript
 boxShadow: {
-  breadcrumb: "0px 1px 0px 0px #E8E6E2, 0px -1px 0px 0px #E8E6E2",
-  filter: "0px 1px 0px 0px #E8E6E2",
-  list: "1px 0px 0px 0px #E8E6E2",
+  breadcrumb: "0px 1px 0px 0px #E3E4E6, 0px -1px 0px 0px #E3E4E6",
+  filter: "0px 1px 0px 0px #E3E4E6",
+  list: "1px 0px 0px 0px #E3E4E6",
+  input: "inset 0 0 0 2px #2E6471",  // Colonial Blue
 }
 ```
 
 ## Caveats & Lessons Learned
 
-### 1. Hardcoded Hex Values
+### 1. Dark Accents Need White Text
 
-Some components had hardcoded hex values like `bg-[#f3f4f6]` instead of Tailwind classes. Always search for hardcoded colors when doing palette changes:
+The biggest difference from the previous palette: malachite and lavender are now **dark colors**. Every element with `bg-malachite` or `bg-lavender` must use `text-white`, not `text-onyx`.
 
-```bash
-# Find hardcoded background colors
-grep -r "bg-\[#" src/components/
-```
+### 2. Legacy Color Mappings
 
-### 2. Invalid Class Names
+The config maintains legacy color names (`blue`, `gray`, `dark`, etc.) that map to PANTONE values. When writing new code, prefer semantic names (`malachite`, `champagne`, etc.).
 
-During search-and-replace operations, typos can create invalid classes:
-- `text-onyx-4` (doesn't exist - should be `text-slate`)
-- `hover:text-onyxslate` (typo - should be `hover:text-malachite`)
+### 3. SVG Icon Colors
 
-Always run `pnpm build` after color changes to catch CSS errors.
-
-### 3. Pure White vs Off-White
-
-Not everything should be off-white. Keep pure `bg-white` for:
-- Slider/range thumbs (functional elements)
-- Checkbox unchecked states
-
-Use `bg-lavender` for small icon buttons (Quick View, Wishlist icons) - they stand out better against cards.
-
-Use `bg-champagne-50` for:
-- Cards and panels
-- Filter containers
-- Modal backgrounds
-- Dropdowns
-
-### 4. Legacy Color Mappings
-
-The config maintains legacy color names (`blue`, `gray`, `dark`, etc.) that map to new values. This prevents breaking existing code during transition:
-
-```typescript
-blue: {
-  DEFAULT: "#0BDA51", // maps to malachite
-  dark: "#09B844",
-  // ...
-}
-```
-
-When writing new code, prefer the semantic names (`malachite`, `champagne`, etc.).
-
-### Secondary Button Pattern
-
-For internal actions (View All, Add to Wishlist), use lavender buttons to distinguish from primary green CTAs:
-
-| State | Classes |
-|-------|---------|
-| Default | `bg-lavender text-onyx border border-lavender-dark` |
-| Hover | `hover:bg-lavender-dark hover:border-lavender-dark` |
-
-**Design rationale:**
-- **Green (malachite)**: External actions (View on seller website, Buy)
-- **Lavender**: Internal actions (Add to Wishlist, View All, icon buttons)
-
-### 5. SVG Icon Colors
-
-Footer and header icons may have hardcoded `fill="#..."` attributes. These need manual updates:
-
-```tsx
-// Before
-<svg fill="#3C50E0">
-
-// After
-<svg fill="#35605A">  // or use fill="currentColor" with text color class
-```
+SVG icons use hardcoded fills. The current values:
+- Text/path fills: `#272F38` (Carbon)
+- Accent fills: `#325B51` (Posy Green)
 
 Prefer `fill="currentColor"` with a text color class for flexibility:
 
@@ -195,35 +171,39 @@ Prefer `fill="currentColor"` with a text color class for flexibility:
 <svg className="fill-current text-malachite">
 ```
 
-### 6. Contrast Ratios
+### 4. Contrast Ratios
 
 | Combination | Ratio | WCAG |
-|-------------|-------|------|
-| Onyx on Champagne | ~19:1 | AAA |
-| Malachite on Champagne | ~4:1 | AA (large text) |
-| Malachite on Onyx | ~10:1 | AAA |
-| Slate on Champagne | ~4.6:1 | AA |
+|---|---|---|
+| Carbon (#272F38) on Champagne (#F9FAFA) | ~14:1 | AAA |
+| White on Posy Green (#325B51) | ~5.5:1 | AA |
+| White on Pine Grove (#223631) | ~10:1 | AAA |
+| White on Colonial Blue (#2E6471) | ~6:1 | AA |
+| Stormy Weather (#58646D) on Champagne | ~5:1 | AA |
+| Posy Green on Champagne (text/link) | ~6.5:1 | AA |
 
-Malachite Green on light backgrounds meets large text requirements. For small text on malachite backgrounds, use Onyx (dark text).
+### 5. Button Patterns
 
-### 7. Subtlety is Key
+| Type | Classes |
+|---|---|
+| Primary CTA | `bg-malachite text-white hover:bg-malachite-dark` |
+| Secondary | `bg-lavender text-white border border-lavender-dark hover:bg-lavender-dark` |
+| Ghost/Hover | `text-onyx hover:bg-malachite hover:text-white` |
+| Icon button | `bg-lavender text-white hover:bg-lavender-dark` |
 
-The champagne palette should be barely perceptible. If backgrounds look obviously yellow/cream, the values are too saturated. Current values:
-- `#FAFAF8` - main background (almost white with hint of warmth)
-- `#FEFEFD` - cards (nearly indistinguishable from white)
+**Design rationale:**
+- **Green (malachite)**: External actions (View on seller website)
+- **Blue (lavender/Colonial Blue)**: Internal actions (View All, Quick View, Wishlist icons)
 
 ## File Reference
-
-Key files for color configuration:
 
 | File | Purpose |
 |------|---------|
 | `tailwind.config.ts` | Color palette definition |
 | `src/app/css/style.css` | Global styles, component styles |
-| `src/components/Header/index.tsx` | Header colors, icons |
-| `src/components/Footer/index.tsx` | Footer colors, social icons |
-| `src/components/Shop/*.tsx` | Product cards, filters |
-| `src/components/ShopWithSidebar/*.tsx` | Filter dropdowns |
+| `src/components/Icons/CheckCircleIcon.tsx` | Hardcoded accent fill |
+| `public/images/logo/logo.svg` | Logo fill colors |
+| `public/images/icons/*.svg` | Static SVG icon fills |
 
 ## Adding New Colors
 

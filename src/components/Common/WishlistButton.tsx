@@ -63,7 +63,7 @@ export default function WishlistButton({
       <HeartIcon
         size={iconSize}
         filled={isInWishlist}
-        className={isInWishlist ? "text-lipstick" : "text-onyx"}
+        className={isInWishlist ? "text-lipstick" : "text-white"}
       />
     </button>
   );

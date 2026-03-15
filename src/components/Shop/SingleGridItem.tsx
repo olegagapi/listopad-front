@@ -38,7 +38,7 @@ const SingleGridItem = ({ item }: { item: Product }) => {
             id="newOne"
             aria-label="button for quick view"
             data-testid="quick-view-btn"
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-white bg-lavender hover:bg-lavender-dark"
           >
             <EyeIcon />
           </button>
@@ -57,7 +57,7 @@ const SingleGridItem = ({ item }: { item: Product }) => {
                 });
               }
             }}
-            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-onyx bg-lavender hover:bg-lavender-dark"
+            className="flex items-center justify-center w-9 h-9 rounded-[5px] shadow-1 ease-out duration-200 text-white bg-lavender hover:bg-lavender-dark"
           >
             <CartIcon />
           </a>
