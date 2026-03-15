@@ -43,7 +43,7 @@ const BestSeller = ({ products }: BestSellerProps) => {
         <div className="text-center mt-12.5">
           <Link
             href="/shop-without-sidebar"
-            className="inline-flex font-medium text-custom-sm py-3 px-7 sm:px-12.5 rounded-md border-lavender-dark border bg-lavender text-white ease-out duration-200 hover:bg-lavender-dark hover:border-lavender-dark"
+            className="inline-flex font-medium text-custom-sm py-3 px-7 sm:px-12.5 rounded-md border-silver-dark border bg-silver text-onyx ease-out duration-200 hover:bg-silver-dark hover:border-silver-dark"
           >
             {t("viewAll")}
           </Link>
