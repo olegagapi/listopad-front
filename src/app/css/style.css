@@ -118,7 +118,7 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .custom-select-common .select-selected {
-  @apply bg-gray-1 rounded-md !border-r text-dark-4 py-3 pl-5 pr-9 duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-blue/20;
+  @apply bg-gray-1 rounded-md !border-r text-dark-4 py-3 pl-5 pr-9 duration-200 focus:border-transparent focus:shadow-input focus:ring-2 focus:ring-malachite/20;
 }
 
 .custom-select-common .select-selected:after {
