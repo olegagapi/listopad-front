@@ -28,7 +28,7 @@ const Newsletter = () => {
                   />
                   <button
                     type="submit"
-                    className="inline-flex justify-center py-3 px-7 text-onyx bg-malachite font-medium rounded-md ease-out duration-200 hover:bg-malachite-dark"
+                    className="inline-flex justify-center py-3 px-7 text-white bg-malachite font-medium rounded-md ease-out duration-200 hover:bg-malachite-dark"
                   >
                     {t("subscribe")}
                   </button>

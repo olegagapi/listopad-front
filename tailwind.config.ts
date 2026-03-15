@@ -24,92 +24,92 @@ const config: Config = {
       transparent: "transparent",
       white: "#FFFFFF",
 
-      // === WARM BACKGROUNDS (subtle warmth) ===
+      // === COOL BACKGROUNDS ===
       champagne: {
-        DEFAULT: "#FAFAF8",    // Very subtle warm white - main page bg
-        50: "#FEFEFD",         // Barely off-white - cards
-        100: "#FAFAF8",        // Same as default
-        200: "#F7F6F3",        // Subtle warm - product image bg
-        300: "#F0EFEB",        // Section dividers
-        400: "#E8E6E2",        // Borders, subtle lines
+        DEFAULT: "#F9FAFA",    // Cool white - main page bg
+        50: "#FEFEFE",         // Barely off-white - cards
+        100: "#F9FAFA",        // Same as default
+        200: "#F5F6F7",        // Subtle cool - product image bg
+        300: "#EEEEF0",        // Section dividers
+        400: "#E3E4E6",        // Borders, subtle lines
       },
 
       // === PRIMARY ACCENT (CTAs) ===
       malachite: {
-        DEFAULT: "#0BDA51",
-        dark: "#09B844",
-        muted: "#E6FCF0",
+        DEFAULT: "#325B51",    // Posy Green
+        dark: "#284A42",       // Posy Green -20%
+        muted: "#E8EFED",      // Posy Green ~10%
       },
 
-      // === SOFT ACCENT ===
+      // === SOFT ACCENT (Colonial Blue) ===
       lavender: {
-        DEFAULT: "#D8E4FF",
-        dark: "#B5C8F5",
-        light: "#E8EEFF",
-        muted: "#F2F5FF",
+        DEFAULT: "#2E6471",    // Colonial Blue — now dark
+        dark: "#255560",       // Hover state (darker)
+        light: "#DFEDF1",      // Light variant for subtle accents
+        muted: "#EDF4F6",      // Light variant for subtle bgs
       },
 
-      // === WISHLIST ACCENT ===
+      // === WISHLIST ACCENT (matches logo pink) ===
       lipstick: {
-        DEFAULT: "#C41E3A",
-        dark: "#A01830",
+        DEFAULT: "#FF008A",
+        dark: "#D90075",
       },
 
-      // === PRIMARY TEXT ===
+      // === PRIMARY TEXT (Carbon) ===
       onyx: {
-        DEFAULT: "#00120B",
-        soft: "#1A2920",
+        DEFAULT: "#272F38",    // Carbon
+        soft: "#343D47",       // Carbon lighter
       },
 
-      // === SECONDARY TEXT / NEUTRAL ===
+      // === SECONDARY TEXT (Stormy Weather) ===
       slate: {
-        DEFAULT: "#6B818C",
-        light: "#8A9BA5",
-        dark: "#4A5C64",
+        DEFAULT: "#58646D",    // Stormy Weather
+        light: "#7A848C",      // Stormy Weather +20%
+        dark: "#434D54",       // Stormy Weather -15%
       },
 
-      // === SECONDARY ACCENT (hover, borders) ===
+      // === SECONDARY ACCENT (Pine Grove) ===
       darkslate: {
-        DEFAULT: "#35605A",
-        light: "#4A7A72",
-        dark: "#2A4D48",
-        muted: "#E8EFED",
+        DEFAULT: "#223631",    // Pine Grove
+        light: "#2E4A3F",      // Pine Grove +15%
+        dark: "#1A2826",       // Pine Grove -15%
+        muted: "#E4EBE8",      // Pine Grove ~10%
       },
 
       // === LEGACY COLORS (keeping for backward compatibility during transition) ===
-      body: "#6B818C", // maps to slate
+      body: "#58646D", // maps to slate (Stormy Weather)
       meta: {
-        DEFAULT: "#FAFAF8", // maps to champagne
-        2: "#4A5C64",
-        3: "#6B818C",
-        4: "#8A9BA5",
-        5: "#E8E6E2",
+        DEFAULT: "#F9FAFA", // maps to champagne
+        2: "#434D54",
+        3: "#58646D",
+        4: "#7A848C",
+        5: "#E3E4E6",
       },
       dark: {
-        DEFAULT: "#00120B", // maps to onyx
-        2: "#1A2920",
-        3: "#6B818C", // maps to slate
-        4: "#8A9BA5",
-        5: "#E8E6E2",
+        DEFAULT: "#272F38", // maps to onyx (Carbon)
+        2: "#343D47",
+        3: "#58646D", // maps to slate (Stormy Weather)
+        4: "#7A848C",
+        5: "#E3E4E6",
       },
       gray: {
-        DEFAULT: "#F7F6F3", // maps to champagne-200
-        1: "#FAFAF8", // maps to champagne
-        2: "#F7F6F3",
-        3: "#E8E6E2", // maps to champagne-400
-        4: "#E8E6E2",
-        5: "#8A9BA5",
-        6: "#6B818C",
-        7: "#4A5C64",
+        DEFAULT: "#F5F6F7", // maps to champagne-200
+        1: "#F9FAFA", // maps to champagne
+        2: "#F5F6F7",
+        3: "#E3E4E6", // maps to champagne-400
+        4: "#E3E4E6",
+        5: "#7A848C",
+        6: "#58646D",
+        7: "#434D54",
       },
       blue: {
-        DEFAULT: "#0BDA51", // maps to malachite (primary CTA)
-        dark: "#09B844",
-        light: "#0BDA51",
-        "light-2": "#0BDA51",
-        "light-3": "#0BDA51",
-        "light-4": "#E6FCF0",
-        "light-5": "#E6FCF0",
+        DEFAULT: "#325B51", // maps to malachite (Posy Green)
+        dark: "#284A42",
+        light: "#325B51",
+        "light-2": "#325B51",
+        "light-3": "#325B51",
+        "light-4": "#E8EFED",
+        "light-5": "#E8EFED",
       },
       red: {
         DEFAULT: "#E53935",
@@ -122,14 +122,14 @@ const config: Config = {
         "light-6": "#FFF5F5",
       },
       green: {
-        DEFAULT: "#0BDA51", // maps to malachite
-        dark: "#09B844",
-        light: "#0BDA51",
-        "light-2": "#0BDA51",
-        "light-3": "#0BDA51",
-        "light-4": "#E6FCF0",
-        "light-5": "#E6FCF0",
-        "light-6": "#E6FCF0",
+        DEFAULT: "#325B51", // maps to malachite (Posy Green)
+        dark: "#284A42",
+        light: "#325B51",
+        "light-2": "#325B51",
+        "light-3": "#325B51",
+        "light-4": "#E8EFED",
+        "light-5": "#E8EFED",
+        "light-6": "#E8EFED",
       },
       yellow: {
         DEFAULT: "#FFA726",
@@ -141,8 +141,8 @@ const config: Config = {
         "light-4": "#FFFAF5",
       },
       teal: {
-        DEFAULT: "#35605A", // maps to darkslate
-        dark: "#2A4D48",
+        DEFAULT: "#223631", // maps to darkslate (Pine Grove)
+        dark: "#1A2826",
       },
       orange: {
         DEFAULT: "#FFA726",
@@ -150,7 +150,7 @@ const config: Config = {
       },
 
       // === SEMANTIC ===
-      success: "#0BDA51",
+      success: "#325B51",
       error: "#E53935",
       warning: "#FFA726",
     },
@@ -292,12 +292,12 @@ const config: Config = {
         3: "0px 2px 16px 0px rgba(13, 10, 44, 0.12)",
         testimonial:
           "0px 0px 4px 0px rgba(148, 163, 184, 0.10), 0px 6px 12px 0px rgba(224, 227, 238, 0.45)",
-        breadcrumb: "0px 1px 0px 0px #E8E6E2, 0px -1px 0px 0px #E8E6E2",
+        breadcrumb: "0px 1px 0px 0px #E3E4E6, 0px -1px 0px 0px #E3E4E6",
         range:
           "0px 0px 1px 0px rgba(33, 37, 41, 0.08), 0px 2px 2px 0px rgba(33, 37, 41, 0.06)",
-        filter: "0px 1px 0px 0px #E8E6E2",
-        list: "1px 0px 0px 0px #E8E6E2",
-        input: "inset 0 0 0 2px #D8E4FF",
+        filter: "0px 1px 0px 0px #E3E4E6",
+        list: "1px 0px 0px 0px #E3E4E6",
+        input: "inset 0 0 0 2px #2E6471",
       },
     },
   },

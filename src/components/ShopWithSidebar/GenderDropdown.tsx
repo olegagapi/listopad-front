@@ -35,8 +35,8 @@ const GenderItem = ({ gender, isSelected, onToggle, count }: GenderItemProps) =>
 
       {count !== undefined && (
         <span
-          className={`${isSelected ? "text-onyx bg-malachite" : "bg-champagne-200"
-            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-onyx group-hover:bg-malachite`}
+          className={`${isSelected ? "text-white bg-malachite" : "bg-champagne-200"
+            } inline-flex rounded-[30px] text-custom-xs px-2 ease-out duration-200 group-hover:text-white group-hover:bg-malachite`}
         >
           {count}
         </span>

@@ -32,7 +32,7 @@ const SizeDropdown = () => {
       >
         <label
           htmlFor="sizeM"
-          className="cursor-pointer select-none flex items-center rounded-md bg-malachite text-onyx hover:bg-malachite hover:text-onyx"
+          className="cursor-pointer select-none flex items-center rounded-md bg-malachite text-white hover:bg-malachite hover:text-white"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeM" className="sr-only" />
@@ -44,7 +44,7 @@ const SizeDropdown = () => {
 
         <label
           htmlFor="sizeL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-malachite hover:text-onyx"
+          className="cursor-pointer select-none flex items-center rounded-md hover:bg-malachite hover:text-white"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeL" className="sr-only" />
@@ -56,7 +56,7 @@ const SizeDropdown = () => {
 
         <label
           htmlFor="sizeXL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-malachite hover:text-onyx"
+          className="cursor-pointer select-none flex items-center rounded-md hover:bg-malachite hover:text-white"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeXL" className="sr-only" />
@@ -68,7 +68,7 @@ const SizeDropdown = () => {
 
         <label
           htmlFor="sizeXXL"
-          className="cursor-pointer select-none flex items-center rounded-md hover:bg-malachite hover:text-onyx"
+          className="cursor-pointer select-none flex items-center rounded-md hover:bg-malachite hover:text-white"
         >
           <div className="relative">
             <input type="radio" name="size" id="sizeXXL" className="sr-only" />
